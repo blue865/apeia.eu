@@ -1,0 +1,29 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+import TagResultList from '../../../components/TagResultList.astro';
+import { getTagsForSection } from '../../../lib/tags.ts';
+
+export async function getStaticPaths() {
+  const tags = await getTagsForSection('astro');
+  return Array.from(tags.entries()).map(([tag, entries]) => ({
+    params: { tag },
+    props: { tag, entries },
+  }));
+}
+
+const { tag, entries } = Astro.props;
+---
+
+<SectionLayout
+  title={`#${tag} — Astro`}
+  description={`Astro section content tagged ${tag}.`}
+  section="astro"
+  eyebrow={`Astro · Tags · #${tag}`}
+  heading={`Everything tagged #${tag}.`}
+  lede={`${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}, newest first.`}
+  crumb={{ label: 'All Astro tags', href: '/astro/tags/' }}
+>
+  <section class="container">
+    <TagResultList section="astro" tag={tag} entries={entries} />
+  </section>
+</SectionLayout>

@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import TagPill from '../components/TagPill.astro';
+import { formatDateLong } from '../lib/format.ts';
+import { normalizeTags } from '../lib/tags.ts';
+
+interface Props {
+  title: string;
+  date: Date;
+  description?: string;
+  tags?: string[];
+  cover?: ImageMetadata;
+  section: 'astro' | 'shards';
+  images: Array<{
+    file: ImageMetadata;
+    alt?: string;
+    caption?: string;
+    tags?: string[];
+  }>;
+}
+const { title, date, description, tags = [], cover, section, images } = Astro.props;
+const galleryTags = normalizeTags(tags);
+const heroImage = cover ?? images[0]?.file;
+---
+
+<Base title={title} description={description} section={section}>
+  <article class="gallery">
+    {section === 'astro' && heroImage && (
+      <div class="hero grain">
+        <Image src={heroImage} alt={title} width={2000} height={1200} class="hero-img" loading="eager" />
+        <div class="hero-fade"></div>
+      </div>
+    )}
+
+    <header class="gallery-header container">
+      <p class="meta">
+        <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
+      </p>
+      <h1>{title}</h1>
+      {description && <p class="lede">{description}</p>}
+      <p class="when">
+        <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+        <span class="dot">·</span>
+        <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
+      </p>
+    </header>
+
+    <div class="container-wide images">
+      {images.map((img, i) => {
+        const imgUnion = Array.from(new Set([...galleryTags, ...normalizeTags(img.tags)]));
+        return (
+          <figure id={`img-${i + 1}`} class="image">
+            <Image
+              src={img.file}
+              alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
+              widths={[480, 800, 1200, 1800]}
+              sizes="(min-width: 1100px) 1100px, 100vw"
+            />
+            {(img.caption || imgUnion.length > 0) && (
+              <figcaption>
+                {img.caption && <span class="caption">{img.caption}</span>}
+                {imgUnion.length > 0 && (
+                  <span class="img-tags">
+                    {imgUnion.map((t) => (
+                      <TagPill tag={t} section={section} size="sm" />
+                    ))}
+                  </span>
+                )}
+              </figcaption>
+            )}
+          </figure>
+        );
+      })}
+    </div>
+
+    {galleryTags.length > 0 && (
+      <footer class="container tags">
+        <span class="label">Gallery tagged</span>
+        <ul>
+          {galleryTags.map((t) => (
+            <li><TagPill tag={t} section={section} size="sm" /></li>
+          ))}
+        </ul>
+      </footer>
+    )}
+  </article>
+</Base>
+
+<style>
+  .gallery { padding-bottom: var(--space-7); }
+
+  .hero {
+    position: relative;
+    width: 100%;
+    max-height: 78vh;
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-fade {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 30%;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--color-bg) 95%);
+  }
+
+  .gallery-header { padding: var(--space-7) var(--space-5) var(--space-5); max-width: var(--maxw); }
+  .meta { margin: 0 0 var(--space-3); font-family: var(--font-mono); font-size: var(--fs-xs); }
+  .back { color: var(--color-text-muted); border-bottom: 1px solid transparent; }
+  .back:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  h1 { font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    max-width: var(--measure);
+    margin: 0 0 var(--space-4);
+  }
+  .when {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+  .dot { opacity: 0.6; }
+
+  .images {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+    margin: var(--space-7) auto;
+  }
+  .image { margin: 0; }
+  .image :global(img) {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius);
+  }
+  body[data-section="shards"] .image :global(img) {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut);
+  }
+  figcaption {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+  .caption { color: rgba(226, 228, 234, var(--text-body)); }
+  .img-tags { display: inline-flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  .tags {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border-soft);
+  }
+  .tags .label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+    margin-right: var(--space-3);
+  }
+  .tags ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+  }
+</style>

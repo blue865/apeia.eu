@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+import GalleryCard from '../../../components/GalleryCard.astro';
+
+const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<SectionLayout
+  title="Astro — gallery"
+  description="Astrophotography image collections."
+  section="astro"
+  eyebrow="Astro · Gallery"
+  heading="The gallery."
+  lede="Collections, in reverse-chronological order. Click any cover for full-size images and capture notes."
+  crumb={{ label: 'Astro', href: '/astro/' }}
+>
+  <section class="container-wide">
+    {galleries.length === 0 ? (
+      <p class="empty">No galleries yet.</p>
+    ) : (
+      <ul class="grid">
+        {galleries.map((g) => {
+          const slug = g.id.split('/')[0];
+          const cover = g.data.cover ?? g.data.images?.[0]?.file;
+          return (
+            <li>
+              <GalleryCard
+                href={`/astro/gallery/${slug}/`}
+                title={g.data.title}
+                date={g.data.date}
+                cover={cover}
+                description={g.data.description}
+                count={g.data.images.length}
+                section="astro"
+              />
+            </li>
+          );
+        })}
+      </ul>
+    )}
+  </section>
+</SectionLayout>
+
+<style>
+  .grid {
+    list-style: none; padding: 0;
+    margin: 0 auto var(--space-7);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-5);
+  }
+  .empty { color: var(--color-text-muted); padding: var(--space-7) 0; }
+</style>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not found" section="home">
+  <section class="container nf">
+    <p class="eyebrow">404</p>
+    <h1>Lost in the dark.</h1>
+    <p class="muted">That page is not on the map. Try one of the rooms instead.</p>
+    <p class="links">
+      <a href="/astro/" class="astro">Astro</a>
+      <span aria-hidden="true">·</span>
+      <a href="/shards/" class="shards">Shards</a>
+      <span aria-hidden="true">·</span>
+      <a href="/">Home</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    padding: var(--space-9) var(--space-5);
+    max-width: var(--measure);
+  }
+  .nf h1 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: var(--fs-2xl);
+  }
+  .muted { color: rgba(226, 228, 234, var(--text-medium)); }
+  .links {
+    margin-top: var(--space-6);
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+  }
+  .links a.astro  { color: var(--color-accent-astro); }
+  .links a.shards { color: var(--color-accent-shards); }
+</style>

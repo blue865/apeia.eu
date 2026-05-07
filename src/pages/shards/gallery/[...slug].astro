@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import GalleryLayout from '../../../layouts/GalleryLayout.astro';
+
+export async function getStaticPaths() {
+  const galleries = await getCollection('shards-gallery', ({ data }) => !data.draft);
+  return galleries.map((g) => {
+    const slug = g.id.split('/')[0];
+    return { params: { slug }, props: { entry: g } };
+  });
+}
+
+const { entry } = Astro.props;
+---
+
+<GalleryLayout
+  title={entry.data.title}
+  date={entry.data.date}
+  description={entry.data.description}
+  tags={entry.data.tags}
+  cover={entry.data.cover}
+  images={entry.data.images}
+  section="shards"
+/>

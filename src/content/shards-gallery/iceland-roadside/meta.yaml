@@ -1,0 +1,17 @@
+title: Roadside, Iceland
+date: 2026-03-22
+description: Three frames from a long drive south of Vík.
+tags: [travel, iceland, on-the-road]
+images:
+  - file: ./road-1.jpg
+    alt: Black sand spilling toward a dark sea
+    caption: Black sand, southern coast
+    tags: [black-sand]
+  - file: ./road-2.jpg
+    alt: Mossy lava field at low light
+    caption: The lava field, around four PM
+    tags: [moss]
+  - file: ./road-3.jpg
+    alt: A small church alone on a hillside
+    caption: A church, alone
+    tags: [architecture]

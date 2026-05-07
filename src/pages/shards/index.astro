@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ShardDecor from '../../components/ShardDecor.astro';
+import GalleryCard from '../../components/GalleryCard.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const galleries = (await getCollection('shards-gallery', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Star of the show for Shards is typographic — use the most recent post's title
+// as a pull-quote anchor. Fall back to a static line.
+const star = posts[0];
+---
+
+<Base
+  title="Shards — fragments and writing"
+  description="Essays and shorter pieces from apeia.eu on philosophy, science, politics, travel."
+  section="shards"
+>
+  <section class="hero grain">
+    <ShardDecor variant="hero" />
+    <div class="hero-content container-wide">
+      <p class="eyebrow">Shards</p>
+      <h1 class="anchor">
+        {star ? <>“{star.data.title.replace(/\.$/, '')}.”</> : <>“Looking in.”</>}
+      </h1>
+      <p class="lede">
+        Long and short pieces on philosophy, science and politics — and travel
+        notes when there are any. Written slowly, revised often, occasionally
+        argued with.
+      </p>
+      {star && (
+        <a class="star-link" href={`/shards/blog/${star.slug}/`}>
+          <span class="bar" aria-hidden="true"></span>
+          Latest: {star.data.title}
+        </a>
+      )}
+    </div>
+  </section>
+
+  <nav class="container subnav" aria-label="Shards section">
+    <a href="/shards/blog/">Blog</a>
+    <span aria-hidden="true">·</span>
+    <a href="/shards/gallery/">Gallery</a>
+    <span aria-hidden="true">·</span>
+    <a href="/shards/tags/">Tags</a>
+  </nav>
+
+  {posts.length > 0 && (
+    <section class="container block">
+      <header class="block-head">
+        <h2>Recent writing</h2>
+        <a href="/shards/blog/" class="see-all">All posts →</a>
+      </header>
+      <ul class="post-list">
+        {posts.slice(0, 5).map((p) => (
+          <PostCard
+            href={`/shards/blog/${p.slug}/`}
+            title={p.data.title}
+            date={p.data.date}
+            summary={p.data.summary}
+            topic={p.data.topic}
+          />
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {galleries.length > 0 && (
+    <section class="container-wide block">
+      <header class="block-head">
+        <h2>Galleries</h2>
+        <a href="/shards/gallery/" class="see-all">All galleries →</a>
+      </header>
+      <ul class="grid">
+        {galleries.slice(0, 6).map((g) => {
+          const slug = g.id.split('/')[0];
+          const cover = g.data.cover ?? g.data.images?.[0]?.file;
+          return (
+            <li>
+              <GalleryCard
+                href={`/shards/gallery/${slug}/`}
+                title={g.data.title}
+                date={g.data.date}
+                cover={cover}
+                description={g.data.description}
+                count={g.data.images.length}
+                section="shards"
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: clamp(380px, 56vh, 640px);
+    display: flex;
+    align-items: center;
+    background: linear-gradient(180deg, var(--color-bg-deep), var(--color-bg));
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-9) var(--space-5);
+    width: 100%;
+  }
+  .anchor {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: var(--fs-hero);
+    line-height: 1.05;
+    margin: 0 0 var(--space-5);
+    max-width: 22ch;
+    /* slight italic feel without italicising — Fraunces variable */
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    max-width: 60ch;
+    margin: 0 0 var(--space-4);
+  }
+  .star-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    border-bottom: 1px solid transparent;
+  }
+  .star-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .bar {
+    display: inline-block;
+    width: 18px; height: 2px;
+    background: var(--accent);
+    transform: skewX(-30deg);
+  }
+
+  .subnav {
+    padding: var(--space-5) var(--space-5) 0;
+    display: flex;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .subnav a { color: var(--color-text-muted); }
+  .subnav a:hover { color: var(--accent); }
+
+  .block { padding: var(--space-6) var(--space-5); }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-soft);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .block-head h2 { margin: 0; font-size: var(--fs-lg); }
+  .see-all {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .post-list { list-style: none; padding: 0; margin: 0; }
+  .grid {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-5);
+  }
+</style>

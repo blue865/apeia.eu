@@ -1,0 +1,122 @@
+---
+import Base from './Base.astro';
+import TagPill from '../components/TagPill.astro';
+import { formatDateLong } from '../lib/format.ts';
+
+interface Props {
+  title: string;
+  date: Date;
+  summary?: string;
+  tags?: string[];
+  topic?: string;
+  section: 'astro' | 'shards';
+}
+const { title, date, summary, tags = [], topic, section } = Astro.props;
+---
+
+<Base title={title} description={summary} section={section}>
+  <article class="post container">
+    <header class="post-header">
+      <p class="meta">
+        <a href={`/${section}/blog/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} blog</a>
+      </p>
+      {topic && <p class="topic">{topic}</p>}
+      <h1>{title}</h1>
+      {summary && <p class="lede">{summary}</p>}
+      <p class="when">
+        <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+      </p>
+    </header>
+
+    <div class="prose measure">
+      <slot />
+    </div>
+
+    {tags.length > 0 && (
+      <footer class="tags">
+        <span class="label">Tagged</span>
+        <ul>
+          {tags.map((t) => (
+            <li><TagPill tag={t} section={section} size="sm" /></li>
+          ))}
+        </ul>
+      </footer>
+    )}
+  </article>
+</Base>
+
+<style>
+  .post { padding: var(--space-8) var(--space-5) var(--space-6); }
+  .post-header { margin-bottom: var(--space-7); max-width: var(--measure); }
+
+  .meta { margin: 0 0 var(--space-3); font-family: var(--font-mono); font-size: var(--fs-xs); }
+  .back {
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .back:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .topic {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 { font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    margin: 0 0 var(--space-4);
+  }
+  .when {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    margin: 0;
+  }
+
+  .prose :global(p),
+  .prose :global(li) { color: rgba(226, 228, 234, var(--text-body)); }
+  .prose :global(img),
+  .prose :global(figure img) {
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border-soft);
+    margin: var(--space-6) 0;
+  }
+  body[data-section="shards"] .prose :global(img) {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut);
+  }
+  .prose :global(figcaption) {
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+    text-align: center;
+    margin-top: var(--space-2);
+  }
+
+  .tags {
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border-soft);
+  }
+  .tags .label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+    margin-right: var(--space-3);
+  }
+  .tags ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+  }
+</style>

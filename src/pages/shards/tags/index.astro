@@ -1,0 +1,21 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+import TagBrowser from '../../../components/TagBrowser.astro';
+import { getTagsForSection } from '../../../lib/tags.ts';
+
+const tags = await getTagsForSection('shards');
+---
+
+<SectionLayout
+  title="Shards — tags"
+  description="Tag browser for the Shards section."
+  section="shards"
+  eyebrow="Shards · Tags"
+  heading="Tagged."
+  lede="Every tag in the Shards section, sorted by how often it appears."
+  crumb={{ label: 'Shards', href: '/shards/' }}
+>
+  <section class="container">
+    <TagBrowser section="shards" tags={tags} />
+  </section>
+</SectionLayout>

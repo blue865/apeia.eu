@@ -1,0 +1,57 @@
+---
+/**
+ * Section-aware tag pill.
+ * Astro section: pill / rounded form (orbital motif).
+ * Shards section: angular cut corners (shard motif).
+ */
+interface Props {
+  tag: string;
+  count?: number;
+  section: 'astro' | 'shards';
+  href?: string;
+  size?: 'sm' | 'md';
+}
+const { tag, count, section, href, size = 'md' } = Astro.props;
+const target = href ?? `/${section}/tags/${tag}/`;
+---
+
+<a class:list={['pill', `pill-${section}`, `size-${size}`]} href={target}>
+  <span class="hash" aria-hidden="true">#</span>
+  <span class="name">{tag}</span>
+  {typeof count === 'number' && <span class="count">×{count}</span>}
+</a>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
+    padding: 0.30em 0.80em;
+    border: 1px solid var(--color-border);
+    color: var(--accent);
+    font-size: var(--fs-sm);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+    border-bottom: 1px solid var(--color-border); /* override default a border */
+  }
+  .pill:hover {
+    background: var(--color-surface);
+    border-color: var(--accent-line);
+    border-bottom-color: var(--accent-line);
+  }
+
+  .size-sm { padding: 0.20em 0.60em; font-size: var(--fs-xs); }
+
+  /* Astro — circular ends */
+  .pill-astro { border-radius: 999px; }
+
+  /* Shards — angular cut corners */
+  .pill-shards {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut-sm);
+  }
+
+  .hash { color: var(--color-text-muted); }
+  .count { color: var(--color-text-muted); font-size: 0.92em; }
+</style>

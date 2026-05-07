@@ -1,0 +1,9 @@
+title: M31 — Andromeda, in passing
+date: 2026-04-12
+description: A first attempt at our nearest large neighbour.
+tags: [galaxy, deep-sky]
+images:
+  - file: ./m31.jpg
+    alt: M31 Andromeda Galaxy with visible dust lanes
+    caption: M31 — 48 × 180s, gain 100
+    tags: [m31, galaxy-core]

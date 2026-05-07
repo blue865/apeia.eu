@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+
+const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<SectionLayout
+  title="Shards — blog"
+  description="Essays and shorter pieces from apeia.eu — philosophy, science, politics, personal."
+  section="shards"
+  eyebrow="Shards · Blog"
+  heading="Writing."
+  lede="Long and short, in reverse chronological order. Marked by topic; sometimes by mood."
+  crumb={{ label: 'Shards', href: '/shards/' }}
+>
+  <section class="container">
+    {posts.length === 0 ? (
+      <p class="empty">No posts yet.</p>
+    ) : (
+      <ul class="list">
+        {posts.map((p) => (
+          <PostCard
+            href={`/shards/blog/${p.slug}/`}
+            title={p.data.title}
+            date={p.data.date}
+            summary={p.data.summary}
+            topic={p.data.topic}
+          />
+        ))}
+      </ul>
+    )}
+  </section>
+</SectionLayout>
+
+<style>
+  .list { list-style: none; padding: 0; margin: 0; }
+  .empty { color: var(--color-text-muted); padding: var(--space-7) 0; }
+</style>

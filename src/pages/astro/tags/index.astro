@@ -1,0 +1,21 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout.astro';
+import TagBrowser from '../../../components/TagBrowser.astro';
+import { getTagsForSection } from '../../../lib/tags.ts';
+
+const tags = await getTagsForSection('astro');
+---
+
+<SectionLayout
+  title="Astro — tags"
+  description="Tag browser for the Astro section of apeia.eu."
+  section="astro"
+  eyebrow="Astro · Tags"
+  heading="Tagged."
+  lede="Every tag in the Astro section, sorted by how often it appears. Click any pill to see what's behind it."
+  crumb={{ label: 'Astro', href: '/astro/' }}
+>
+  <section class="container">
+    <TagBrowser section="astro" tags={tags} />
+  </section>
+</SectionLayout>

@@ -1,0 +1,17 @@
+title: Orion Rising
+date: 2026-01-12
+description: Three-panel mosaic of Orion from the backyard.
+tags: [mosaic, orion, winter]
+images:
+  - file: ./orion-1.jpg
+    alt: Left panel — Barnard's Loop arcing through the frame
+    caption: Left panel — Barnard's Loop
+    tags: [barnards-loop, emission]
+  - file: ./orion-2.jpg
+    alt: Centre panel — the Trapezium core, clipped slightly
+    caption: Centre — Trapezium core
+    tags: [trapezium, open-cluster]
+  - file: ./orion-3.jpg
+    alt: Right panel — M78 reflection nebula
+    caption: Right panel — M78
+    tags: [reflection-nebula, m78]

@@ -1,0 +1,95 @@
+---
+interface Props {
+  section?: 'astro' | 'shards' | 'home';
+}
+const { section = 'home' } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (p: string) => path.startsWith(p);
+---
+
+<header class="header">
+  <div class="container-wide inner">
+    <a class="brand" href="/" aria-label="apeia.eu — home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+        <!-- Mark fuses both motifs: an orbital ring intersecting a faceted shard -->
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.85"/>
+        <path d="M5 14 L11 4 L19 12 L13 22 Z" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.65"/>
+      </svg>
+      <span class="brand-text">apeia.eu</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li>
+          <a href="/astro/" class:list={['link link-astro', { active: isActive('/astro') }]}>
+            Astro
+          </a>
+        </li>
+        <li>
+          <a href="/shards/" class:list={['link link-shards', { active: isActive('/shards') }]}>
+            Shards
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    background: rgba(17, 19, 24, 0.78);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .inner {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    color: rgba(226, 228, 234, var(--text-high));
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    border-bottom: none;
+    letter-spacing: -0.01em;
+  }
+  .brand:hover { border-bottom: none; }
+  .mark {
+    width: 22px;
+    height: 22px;
+    color: var(--accent);
+  }
+
+  .nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-5);
+  }
+  .link {
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color var(--t-fast), border-color var(--t-fast);
+  }
+  .link:hover { color: rgba(226, 228, 234, var(--text-high)); }
+  .link.active { color: rgba(226, 228, 234, var(--text-high)); }
+  .link-astro.active  { border-bottom-color: var(--color-accent-astro);  }
+  .link-shards.active { border-bottom-color: var(--color-accent-shards); }
+
+  @media (max-width: 480px) {
+    .nav { gap: var(--space-4); }
+    .brand-text { display: none; }
+  }
+</style>

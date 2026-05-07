@@ -1,0 +1,50 @@
+---
+/**
+ * Shards section motif: angular crystalline shapes — faceted lines.
+ * Decorative only.
+ */
+interface Props {
+  variant?: 'hero' | 'block';
+}
+const { variant = 'hero' } = Astro.props;
+---
+
+<svg
+  class:list={['shard', `variant-${variant}`]}
+  viewBox="0 0 600 600"
+  aria-hidden="true"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <g fill="none" stroke="currentColor" stroke-width="1">
+    <!-- intersecting facets -->
+    <polygon points="120,80   480,140  360,420  60,320"  opacity="0.18"/>
+    <polygon points="180,160  500,220  420,460  140,360" opacity="0.30"/>
+    <polygon points="240,240  460,290  380,440  220,400" opacity="0.50"/>
+    <line x1="0"   y1="120" x2="600" y2="320" opacity="0.20"/>
+    <line x1="100" y1="600" x2="500" y2="0"   opacity="0.18"/>
+  </g>
+  <!-- a few accent points where lines cross -->
+  <circle cx="240" cy="240" r="1.8" fill="currentColor" opacity="0.7"/>
+  <circle cx="460" cy="290" r="1.4" fill="currentColor" opacity="0.6"/>
+</svg>
+
+<style>
+  .shard {
+    color: var(--accent);
+    pointer-events: none;
+    position: absolute;
+  }
+  .variant-hero {
+    inset: -8% auto auto -10%;
+    width: min(720px, 80vw);
+    height: min(720px, 80vw);
+    opacity: 0.55;
+  }
+  .variant-block {
+    width: 100%;
+    max-width: 420px;
+    opacity: 0.45;
+    position: relative;
+    inset: auto;
+  }
+</style>

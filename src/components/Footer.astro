@@ -1,0 +1,24 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container-wide inner">
+    <span class="copy">© {year} · apeia.eu</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span class="muted">Memory and thought, kept slowly.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-9);
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-border-soft);
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+    font-family: var(--font-mono);
+  }
+  .inner { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+  .dot { opacity: 0.5; }
+</style>

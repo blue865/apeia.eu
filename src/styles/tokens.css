@@ -1,0 +1,111 @@
+/* =========================================================
+   apeia.eu — design tokens
+   The single source of truth for palette, type, motion.
+   Edit hex values here and the change cascades.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---------------- Palette ---------------- */
+  --color-bg:           #111318;
+  --color-bg-deep:      #0c0e12;          /* slightly deeper for hero overlays */
+  --color-surface:      #1a1d24;
+  --color-surface-2:    #21252e;          /* hover surface */
+  --color-border:       #2a2d36;
+  --color-border-soft:  #1f2230;
+  --color-text:         #e2e4ea;
+  --color-text-muted:   #7a7f92;
+
+  --color-accent-astro:    #7aa2f7;
+  --color-accent-shards:   #bb9af7;
+
+  /* Generic accent — rebound by SectionLayout */
+  --accent:        var(--color-text);
+  --accent-rgb:    226, 228, 234;
+
+  /* Overlays expressed as rgba so we can compose with backdrop blur */
+  --accent-soft:   rgba(var(--accent-rgb), 0.10);
+  --accent-line:   rgba(var(--accent-rgb), 0.35);
+
+  /* ---------------- Type ---------------- */
+  /* Sections inherit which family they want via --font-display / --font-body. */
+  --font-display-astro:    "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-body-astro:       "Geist", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+
+  --font-display-shards:   "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body-shards:      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --font-display: var(--font-display-astro);
+  --font-body:    var(--font-body-astro);
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid type scale */
+  --fs-xs:    clamp(0.75rem, 0.72rem + 0.10vw, 0.82rem);
+  --fs-sm:    clamp(0.85rem, 0.82rem + 0.15vw, 0.95rem);
+  --fs-base:  clamp(1rem,    0.96rem + 0.20vw, 1.10rem);
+  --fs-md:    clamp(1.10rem, 1.04rem + 0.30vw, 1.28rem);
+  --fs-lg:    clamp(1.30rem, 1.18rem + 0.50vw, 1.55rem);
+  --fs-xl:    clamp(1.65rem, 1.40rem + 1.00vw, 2.10rem);
+  --fs-2xl:   clamp(2.00rem, 1.65rem + 1.60vw, 2.85rem);
+  --fs-hero:  clamp(2.50rem, 1.90rem + 3.00vw, 4.40rem);
+
+  /* ---------------- Text emphasis (opacity hierarchy) ---------------- */
+  --text-high:     1.00;   /* headlines, primary CTA */
+  --text-body:     0.87;   /* main body */
+  --text-medium:   0.70;   /* sub-headings, supporting */
+  /* Muted uses --color-text-muted directly */
+
+  /* ---------------- Spacing & radii ---------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  --measure:      65ch;       /* prose line-length cap */
+  --maxw:         860px;
+  --maxw-wide:    1200px;
+
+  /* ---------------- Motion ---------------- */
+  --t-fast:  120ms ease;
+  --t-base:  150ms ease;
+
+  /* ---------------- Motifs (primitive bits) ---------------- */
+  /* Astro — circular/orbital shapes */
+  --motif-astro-ring: 1px solid var(--color-accent-astro);
+
+  /* Shards — angular, faceted */
+  --motif-shards-cut: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  --motif-shards-cut-sm: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+/* ---------------- Section binding ----------------
+   Apply via <body data-section="astro|shards"> on every page in that section.
+   Generic accent + font tokens flip; everything else is unchanged. */
+
+body[data-section="astro"] {
+  --accent:      var(--color-accent-astro);
+  --accent-rgb:  122, 162, 247;
+  --accent-soft: rgba(122, 162, 247, 0.10);
+  --accent-line: rgba(122, 162, 247, 0.35);
+  --font-display: var(--font-display-astro);
+  --font-body:    var(--font-body-astro);
+}
+
+body[data-section="shards"] {
+  --accent:      var(--color-accent-shards);
+  --accent-rgb:  187, 154, 247;
+  --accent-soft: rgba(187, 154, 247, 0.10);
+  --accent-line: rgba(187, 154, 247, 0.35);
+  --font-display: var(--font-display-shards);
+  --font-body:    var(--font-body-shards);
+}

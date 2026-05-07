@@ -1,0 +1,211 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import OrbitalDecor from '../../components/OrbitalDecor.astro';
+import GalleryCard from '../../components/GalleryCard.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = (await getCollection('astro-posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// For the section's "star of the show" — the most recent gallery's cover image.
+const star = galleries[0];
+const starImage: ImageMetadata | undefined = star?.data.cover ?? star?.data.images?.[0]?.file;
+const starSlug = star?.id?.split('/')[0];
+---
+
+<Base
+  title="Astro — backyard astrophotography"
+  description="Backyard astrophotography from apeia.eu. Long exposures, capture notes, deep-sky targets."
+  section="astro"
+>
+  <section class="hero grain">
+    {starImage ? (
+      <Image src={starImage} alt={star?.data.title ?? ''} class="hero-img" widths={[800, 1400, 2000]} sizes="100vw" loading="eager" />
+    ) : (
+      <div class="hero-fallback" aria-hidden="true"></div>
+    )}
+    <OrbitalDecor variant="hero" />
+    <div class="hero-fade"></div>
+    <div class="hero-content container-wide">
+      <p class="eyebrow">Astro</p>
+      <h1>Looking up.</h1>
+      <p class="lede">
+        Long exposures, faint targets, late nights. Each image carries a small story —
+        what it is, when and where it was caught, and how.
+      </p>
+      {starSlug && star && (
+        <a class="star-link" href={`/astro/gallery/${starSlug}/`}>
+          <span class="dot" aria-hidden="true"></span>
+          Latest: {star.data.title}
+        </a>
+      )}
+    </div>
+  </section>
+
+  <nav class="container subnav" aria-label="Astro section">
+    <a href="/astro/blog/">Blog</a>
+    <span aria-hidden="true">·</span>
+    <a href="/astro/gallery/">Gallery</a>
+    <span aria-hidden="true">·</span>
+    <a href="/astro/tags/">Tags</a>
+  </nav>
+
+  {galleries.length > 0 && (
+    <section class="container-wide block">
+      <header class="block-head">
+        <h2>Recent galleries</h2>
+        <a href="/astro/gallery/" class="see-all">All galleries →</a>
+      </header>
+      <ul class="grid">
+        {galleries.slice(0, 6).map((g) => {
+          const slug = g.id.split('/')[0];
+          const cover = g.data.cover ?? g.data.images?.[0]?.file;
+          return (
+            <li>
+              <GalleryCard
+                href={`/astro/gallery/${slug}/`}
+                title={g.data.title}
+                date={g.data.date}
+                cover={cover}
+                description={g.data.description}
+                count={g.data.images.length}
+                section="astro"
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section class="container block">
+      <header class="block-head">
+        <h2>Recent posts</h2>
+        <a href="/astro/blog/" class="see-all">All posts →</a>
+      </header>
+      <ul class="post-list">
+        {posts.slice(0, 5).map((p) => (
+          <PostCard
+            href={`/astro/blog/${p.slug}/`}
+            title={p.data.title}
+            date={p.data.date}
+            summary={p.data.summary}
+          />
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: clamp(380px, 60vh, 720px);
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.65;
+  }
+  .hero-fallback {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(122,162,247,0.20), transparent 60%),
+                linear-gradient(180deg, var(--color-bg-deep), var(--color-bg));
+    z-index: 0;
+  }
+  .hero-fade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgba(17,19,24,0.45) 0%, rgba(17,19,24,0.10) 35%, rgba(17,19,24,0.95) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-9) var(--space-5);
+    width: 100%;
+  }
+  .hero-content h1 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: var(--fs-hero);
+    margin: 0 0 var(--space-4);
+    line-height: 1.05;
+  }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    max-width: 60ch;
+    margin: 0 0 var(--space-4);
+  }
+  .star-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    border-bottom: 1px solid transparent;
+  }
+  .star-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 999px;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .subnav {
+    padding: var(--space-5) var(--space-5) 0;
+    display: flex;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .subnav a { color: var(--color-text-muted); }
+  .subnav a:hover { color: var(--accent); }
+
+  .block { padding: var(--space-6) var(--space-5); }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-soft);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .block-head h2 { margin: 0; font-size: var(--fs-lg); }
+  .see-all {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .grid {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-5);
+  }
+  .post-list { list-style: none; padding: 0; margin: 0; }
+</style>

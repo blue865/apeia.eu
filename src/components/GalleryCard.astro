@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate } from '../lib/format.ts';
+
+interface Props {
+  href: string;
+  title: string;
+  date: Date;
+  cover?: ImageMetadata;
+  description?: string;
+  count?: number;
+  section: 'astro' | 'shards';
+}
+const { href, title, date, cover, description, count, section } = Astro.props;
+---
+
+<a class:list={['card', `card-${section}`]} href={href}>
+  <div class="thumb">
+    {cover ? (
+      <Image src={cover} alt={title} width={720} height={720} />
+    ) : (
+      <div class="placeholder" aria-hidden="true">
+        {section === 'astro' ? '◐' : '◇'}
+      </div>
+    )}
+    {typeof count === 'number' && (
+      <span class="count" aria-label={`${count} images`}>{count}</span>
+    )}
+  </div>
+  <div class="meta">
+    <span class="title">{title}</span>
+    <span class="sub">
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {description && <><span class="sep">·</span><span class="desc">{description}</span></>}
+    </span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    color: var(--color-text);
+    border-bottom: none;
+    transition: transform 200ms ease;
+  }
+  .card:hover { border-bottom: none; transform: translateY(-2px); }
+  .card:hover .title { color: var(--accent); }
+
+  .thumb {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-soft);
+    overflow: hidden;
+    transition: border-color var(--t-base);
+  }
+  .card-astro .thumb  { border-radius: var(--radius); }
+  .card-shards .thumb { clip-path: var(--motif-shards-cut); border-radius: 0; }
+  .card:hover .thumb { border-color: var(--accent-line); }
+
+  .thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease;
+  }
+  .card:hover .thumb :global(img) { transform: scale(1.03); }
+
+  .placeholder {
+    width: 100%; height: 100%;
+    display: grid; place-items: center;
+    color: var(--accent);
+    font-size: 2.6rem;
+    opacity: 0.65;
+  }
+
+  .count {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    padding: 0.10em 0.55em;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: rgba(226, 228, 234, var(--text-body));
+    background: rgba(17, 19, 24, 0.65);
+    backdrop-filter: blur(8px);
+    border-radius: 999px;
+  }
+  .card-shards .count { border-radius: 2px; }
+
+  .meta { margin-top: var(--space-3); }
+  .title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    color: rgba(226, 228, 234, var(--text-high));
+    transition: color var(--t-fast);
+  }
+  .sub {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--fs-xs);
+    font-family: var(--font-mono);
+    margin-top: 0.25em;
+  }
+  .sep { margin: 0 0.4em; }
+  .desc { color: var(--color-text-muted); font-family: var(--font-body); }
+</style>

@@ -1,0 +1,66 @@
+---
+/**
+ * Wraps a section page (sub-pages of /astro or /shards) so the section accent
+ * is bound and the page header is consistent. Pass `section` and (optionally)
+ * `subtitle` / `crumb`.
+ */
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  section: 'astro' | 'shards';
+  /** Eyebrow text — usually the section name. */
+  eyebrow?: string;
+  /** Heading shown at the top of the page if `slot="hero"` is not used. */
+  heading?: string;
+  /** Lede paragraph under the heading. */
+  lede?: string;
+  /** Breadcrumb-style link back to the section root. */
+  crumb?: { label: string; href: string };
+}
+const {
+  title, description, section,
+  eyebrow = section === 'astro' ? 'Astro' : 'Shards',
+  heading, lede, crumb,
+} = Astro.props;
+---
+
+<Base title={title} description={description} section={section}>
+  <slot name="hero">
+    {heading && (
+      <header class="page-header container">
+        {crumb && (
+          <p class="crumb">
+            <a href={crumb.href}>← {crumb.label}</a>
+          </p>
+        )}
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h1>{heading}</h1>
+        {lede && <p class="lede">{lede}</p>}
+      </header>
+    )}
+  </slot>
+
+  <slot />
+</Base>
+
+<style>
+  .page-header {
+    padding: var(--space-8) var(--space-5) var(--space-6);
+  }
+  .crumb {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+  }
+  .crumb a { color: var(--color-text-muted); border-bottom: 1px solid transparent; }
+  .crumb a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    max-width: var(--measure);
+    margin-top: var(--space-3);
+  }
+</style>
