@@ -48,16 +48,58 @@ Each section has:
 
 ### Typography
 
-- **Font**: System font stack (no web font by default; may add a single variable font later)
+Font choice follows a **two-font combo** strategy. Start with the **anchor headline font** — it sets the whole personality of the section. Find a body/UI font that contrasts with the anchor without clashing; they should feel like they come from the same world but offer visual variety. Use [Fonts In Use](https://fontsinuse.com) to explore pairings for a given anchor.
+
+- **Astro anchor** — precise and technical, condensed or geometric. Suggested starting point: *Instrument Serif* (headlines) + *Geist Sans* (body/UI). Both free via Google Fonts.
+- **Shards anchor** — literary and human, warmer display face. Pick from the same anchor-first approach.
 - **Scale**: Fluid type via `clamp()` — define in `src/styles/tokens.css`
 - **Line length**: Cap prose at `65ch`
+- System font stack is for development only. Commit to the chosen combo before first deploy.
 
-### Principles
+### Star of the Show
+
+Each section's landing experience must have **one element that makes a visitor feel something** before they read a word. It is not chosen for aesthetics — it grows directly from the section's content identity.
+
+- **Astro**: The hero *photograph* is the star. One dramatic full-bleed image commands the hero; every layout decision serves it.
+- **Shards**: More typographic — a bold headline or a provocative pull quote anchors the hero, supported by a subtle abstract visual.
+
+The star is the visual seed. Every other decorative choice on the page grows from it. If a decoration has no connection to the star, cut it.
+
+### Visual Rhyming
+
+Repeat a small set of visual details throughout the section so everything feels from the same universe. Derive 1–2 motifs from the star of the show and echo them across UI chrome:
+
+- **Astro motif** — circular/orbital forms echoing celestial bodies (rings, arcs, dot grids)
+- **Shards motif** — angular, faceted shapes echoing the section name (diagonals, shard edges, crystalline cuts)
+
+Apply motifs subtly to: dividers, tag pill shapes, icon choices, section breaks, image masks. Accent colour appearing consistently in interactive states (tag pills, hover, active indicators) also counts as rhyming.
+
+### Depth
+
+The site should feel tangible, not flat:
+
+- Add subtle **noise/grain texture** to hero backgrounds and large image overlays — not to cards or UI chrome.
+- Cards and panels may use a light **glass/frost effect** (`backdrop-filter: blur` + low-opacity surface colour) — keep it barely-there.
+- Depth cues must never compete with the star of the show. If in doubt, pull back.
+- Gradients and shadows **are allowed** where they serve depth, not decoration — keep them low-contrast and monochromatic.
+
+### Text Opacity Hierarchy
+
+Do not set all text to 100% opacity. Use opacity to signal read-priority:
+
+| Level | Opacity | Use |
+|---|---|---|
+| High emphasis | 100% | Headlines, primary CTAs |
+| Body | 87% | Main body text |
+| Medium | 70% | Subheadings, supporting copy |
+| Muted | `--color-text-muted` colour | Captions, timestamps, metadata |
+
+### General Principles
 
 - Whitespace over decoration
 - Images lead; text supports
-- No gradients, shadows, or rounded corners except where functionally meaningful
 - Transitions: `150ms ease` max
+- **Iterate aggressively**: before committing to a layout or star of the show, try at least 2–3 completely different directions — different layout, different star, different font combo. The first version is a draft, not a destination.
 
 ---
 
@@ -219,5 +261,9 @@ If a section has zero results for a given type, that group is omitted entirely. 
 
 - [x] Exact section names — **Astro** (`/astro`) and **Shards** (`/shards`) confirmed
 - [ ] Accent colour values — placeholder values above, finalise before first deploy
-- [ ] Web font choice — system stack for now
+- [ ] Astro font combo — suggested *Instrument Serif* + *Geist Sans*; validate on real content before committing
+- [ ] Shards font combo — pick anchor headline font, then find body pairing via [Fonts In Use](https://fontsinuse.com)
+- [ ] Astro star of the show — confirm hero image treatment and orbital/circular motif
+- [ ] Shards star of the show — confirm typographic anchor and shard/angular motif
+- [ ] Depth level — decide how far to push noise texture and glass effects (subtle vs. very subtle)
 - [ ] Deployment target
