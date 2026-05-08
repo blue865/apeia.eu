@@ -4,10 +4,7 @@ import GalleryLayout from '../../../layouts/GalleryLayout.astro';
 
 export async function getStaticPaths() {
   const galleries = await getCollection('astro-gallery', ({ data }) => !data.draft);
-  return galleries.map((g) => {
-    const slug = g.id.split('/')[0];
-    return { params: { slug }, props: { entry: g } };
-  });
+  return galleries.map((g) => ({ params: { slug: g.id }, props: { entry: g } }));
 }
 
 const { entry } = Astro.props;

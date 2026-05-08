@@ -22,7 +22,7 @@ const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draf
     ) : (
       <ul class="grid">
         {galleries.map((g) => {
-          const slug = g.id.split('/')[0];
+          const slug = g.id;
           const cover = g.data.cover ?? g.data.images?.[0]?.file;
           return (
             <li>
@@ -51,5 +51,4 @@ const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draf
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-5);
   }
-  .empty { color: var(--color-text-muted); padding: var(--space-7) 0; }
-</style>
+  .empty { col

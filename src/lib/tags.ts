@@ -39,12 +39,6 @@ export function normalizeTags(tags: readonly string[] | undefined): string[] {
   return out;
 }
 
-/** Strip the leading directory from an entry id like `orion-rising/meta` → `orion-rising`. */
-function gallerySlugFromId(id: string): string {
-  const idx = id.indexOf('/');
-  return idx === -1 ? id : id.slice(0, idx);
-}
-
 export async function getTagsForSection(section: Section): Promise<Map<string, TagEntry[]>> {
   const postsCol = section === 'astro' ? 'astro-posts' : 'shards-posts';
   const galleryCol = section === 'astro' ? 'astro-gallery' : 'shards-gallery';
@@ -59,22 +53,23 @@ export async function getTagsForSection(section: Section): Promise<Map<string, T
     else map.set(tag, [entry]);
   };
 
-  // Posts
+  // Posts — entry.id is the filename slug under the new content layer.
   for (const p of posts) {
     const entry: TagEntry = {
       type: 'post',
-      slug: p.slug,
+      slug: p.id,
       title: p.data.title,
       date: p.data.date,
       summary: p.data.summary,
-      href: `/${section}/blog/${p.slug}/`,
+      href: `/${section}/blog/${p.id}/`,
     };
     for (const t of normalizeTags(p.data.tags)) push(t, entry);
   }
 
-  // Galleries (and their images)
+  // Galleries (and their images) — generateId in content.config strips the
+  // /meta.yaml suffix, so g.id is just the gallery slug.
   for (const g of galleries) {
-    const slug = gallerySlugFromId(g.id);
+    const slug = g.id;
     const galleryHref = `/${section}/gallery/${slug}/`;
     const galleryTags = normalizeTags(g.data.tags);
     const cover: ImageMetadata | undefined = g.data.cover ?? g.data.images?.[0]?.file;

@@ -14,7 +14,7 @@ const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draf
 // For the section's "star of the show" — the most recent gallery's cover image.
 const star = galleries[0];
 const starImage: ImageMetadata | undefined = star?.data.cover ?? star?.data.images?.[0]?.file;
-const starSlug = star?.id?.split('/')[0];
+const starSlug = star?.id;
 ---
 
 <Base
@@ -62,7 +62,7 @@ const starSlug = star?.id?.split('/')[0];
       </header>
       <ul class="grid">
         {galleries.slice(0, 6).map((g) => {
-          const slug = g.id.split('/')[0];
+          const slug = g.id;
           const cover = g.data.cover ?? g.data.images?.[0]?.file;
           return (
             <li>
@@ -91,7 +91,7 @@ const starSlug = star?.id?.split('/')[0];
       <ul class="post-list">
         {posts.slice(0, 5).map((p) => (
           <PostCard
-            href={`/astro/blog/${p.slug}/`}
+            href={`/astro/blog/${p.id}/`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}
@@ -201,11 +201,4 @@ const starSlug = star?.id?.split('/')[0];
   }
   .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-  .grid {
-    list-style: none; padding: 0; margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--space-5);
-  }
-  .post-list { list-style: none; padding: 0; margin: 0; }
-</style>
+  

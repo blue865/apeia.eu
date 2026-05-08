@@ -23,7 +23,7 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
       <ul class="list">
         {posts.map((p) => (
           <PostCard
-            href={`/shards/blog/${p.slug}/`}
+            href={`/shards/blog/${p.id}/`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}
@@ -37,5 +37,4 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
 
 <style>
   .list { list-style: none; padding: 0; margin: 0; }
-  .empty { color: var(--color-text-muted); padding: var(--space-7) 0; }
-</style>
+  .empty { color: var(--color-text-muted
