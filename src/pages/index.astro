@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import OrbitalDecor from '../components/OrbitalDecor.astro';
 import ShardDecor from '../components/ShardDecor.astro';
 import { formatDate } from '../lib/format.ts';
+import { getHomeBackgrounds } from '../lib/homeBackgrounds.ts';
 
 const astroPosts = (await getCollection('astro-posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -11,10 +12,43 @@ const astroPosts = (await getCollection('astro-posts', ({ data }) => !data.draft
 const shardsPosts = (await getCollection('shards-posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+// Every image tagged `home-page` (across both galleries) becomes a candidate
+// background. We embed the optimised URLs and pick one client-side on load,
+// so the choice is fresh each visit without a server.
+const bgCandidates = await getHomeBackgrounds();
 ---
 
 <Base title="apeia.eu" section="home">
-  <section class="hero container-wide grain">
+  {bgCandidates.length > 0 && (
+    <>
+      <div class="page-bg" id="page-bg" aria-hidden="true"></div>
+      <div class="page-bg-veil" aria-hidden="true"></div>
+      <script is:inline define:vars={{ urls: bgCandidates.map((b) => b.src) }}>
+        (() => {
+          try {
+            if (!Array.isArray(urls) || urls.length === 0) return;
+            const el = document.getElementById('page-bg');
+            if (!el) return;
+            const url = urls[Math.floor(Math.random() * urls.length)];
+            // Preload, then swap in — avoids a flash before the image arrives.
+            const img = new Image();
+            img.onload = () => {
+              el.style.backgroundImage = 'url("' + url + '")';
+              el.classList.add('is-loaded');
+            };
+            img.onerror = () => {
+              // If the random pick fails, leave the deep-bg colour in place.
+              el.classList.add('is-loaded');
+            };
+            img.src = url;
+          } catch (_) { /* fail silent */ }
+        })();
+      </script>
+    </>
+  )}
+
+  <section class="hero container-wide">
     <p class="kicker">apeia.eu</p>
     <h1>A site of memory and thought.</h1>
     <p class="sub">
@@ -78,17 +112,58 @@ const shardsPosts = (await getCollection('shards-posts', ({ data }) => !data.dra
 </Base>
 
 <style>
+  /* ---- Random full-page background (tagged home-page) ---- */
+  .page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    /* Cover preserves aspect ratio. May crop edges. */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: var(--color-bg-deep);
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+  .page-bg.is-loaded { opacity: 1; }
+
+  /* Veil — keeps content readable over any image, but lets the photo breathe.
+     Mostly clear at the top of the viewport (let the image speak), with a
+     darker floor at the bottom so the recent-posts list stays legible.
+     The cards on top already have their own frost; the veil doesn't need to
+     dim the whole image. */
+  .page-bg-veil {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg,
+        rgba(17,19,24,0.10) 0%,
+        rgba(17,19,24,0.10) 35%,
+        rgba(17,19,24,0.55) 80%,
+        rgba(17,19,24,0.85) 100%);
+  }
+
+  /* When the random bg is active, drop the html-level radial accent gradient
+     so it doesn't fight with the photograph. */
+  :global(html:has(#page-bg)) { background-image: none; }
+
   .hero {
     position: relative;
     padding: var(--space-9) var(--space-5) var(--space-7);
     overflow: hidden;
+    /* Subtle text shadow so headline stays legible over a bright patch of sky
+       without us having to darken the whole image. */
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55);
   }
   .kicker {
     margin: 0 0 var(--space-3);
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
     letter-spacing: 0.18em;
-    color: var(--color-text-muted);
+    color: var(--color-text);
+    opacity: 0.85;
     text-transform: uppercase;
   }
   .hero h1 {
@@ -99,7 +174,7 @@ const shardsPosts = (await getCollection('shards-posts', ({ data }) => !data.dra
     margin: 0 0 var(--space-5);
   }
   .hero .sub {
-    color: rgba(226, 228, 234, var(--text-medium));
+    color: rgba(226, 228, 234, 0.95);
     font-size: var(--fs-md);
     max-width: 56ch;
   }
@@ -122,7 +197,10 @@ const shardsPosts = (await getCollection('shards-posts', ({ data }) => !data.dra
     justify-content: flex-end;
     min-height: 280px;
     padding: var(--space-6);
-    background: var(--color-surface);
+    /* Frosted surface so the cards read over any random photo behind */
+    background: rgba(26, 29, 36, 0.62);
+    backdrop-filter: blur(10px) saturate(115%);
+    -webkit-backdrop-filter: blur(10px) saturate(115%);
     border: 1px solid var(--color-border-soft);
     color: var(--color-text);
     border-bottom: 1px solid var(--color-border-soft);

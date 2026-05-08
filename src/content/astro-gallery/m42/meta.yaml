@@ -6,7 +6,7 @@ images:
   - file: ./M42 - Orion Nebula.jpg
     alt: M42 - Orion Nebula
     caption: RGB
-    tags: [4k, wallpaper]
+    tags: [4k, wallpaper, home-page]
   - file: ./M42 - lomo1.jpg
     alt: M42 - Orion Nebula
     caption: First take at astrohoto

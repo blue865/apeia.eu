@@ -62,6 +62,7 @@ Each section's landing experience must have **one element that makes a visitor f
 
 - **Astro**: The hero *photograph* is the star. One dramatic full-bleed image commands the hero; every layout decision serves it.
 - **Shards**: More typographic — a bold headline or a provocative pull quote anchors the hero, supported by a subtle abstract visual.
+- **Home (`/`)**: A full-bleed photograph behind the whole page, randomly selected per load from images tagged `home-page`. See the [Home Page Background](#home-page-background) section.
 
 The star is the visual seed. Every other decorative choice on the page grows from it. If a decoration has no connection to the star, cut it.
 
@@ -244,6 +245,50 @@ If a section has zero results for a given type, that group is omitted entirely. 
 - Tags are normalised on ingest: lowercased, spaces → hyphens
 - Tags are **not** shared between sections — `/astro/tags/nebula` and `/shards/tags/nebula` are independent pages
 - `TagBrowser.astro` and `TagResultList.astro` are shared components; section identity comes from the `section` prop
+
+---
+
+## Home Page Background
+
+The landing page (`/`) carries a **full-bleed photograph behind everything**, randomly selected on each page load from the pool of images tagged `home-page` across both gallery sections. This is the home equivalent of a section's "star of the show": the image speaks first, the text supports.
+
+### How an image qualifies
+
+Tag any image — or a whole gallery — with `home-page` to add it to the rotation:
+
+```yaml
+images:
+  - file: ./M31 - Andromeda Galaxy.jpg
+    tags: [4k, wallpaper, home-page]
+```
+
+Matching follows the additive rule used everywhere else: gallery-level `home-page` qualifies every image in that gallery; image-level `home-page` qualifies only that one.
+
+The pool is collected at build time by `src/lib/homeBackgrounds.ts`, which runs every candidate through Astro's `getImage()` (webp, 2400 px wide) and emits the optimised URL list to the page.
+
+### Selection and presentation
+
+- **Random per page load** — a tiny inline script in `src/pages/index.astro` picks one URL with `Math.random()` from the embedded list. Asset caching is fine; the freshness is in the pick, not the file.
+- **Aspect ratio preserved** — `background-size: cover; background-position: center`. The image fills the viewport; edges may crop. Switching to `contain` (full image visible, possible empty bands) is a one-line change.
+- **Fade-in** — `.page-bg` starts at opacity 0; a `new Image()` preloads the URL, then we add `.is-loaded` and fade to 1 over 600 ms. Prevents a flash before the asset arrives. If preload fails the deep-bg colour stays in place.
+- **Legibility over the photo, not by darkening it** — the veil (`.page-bg-veil`) is mostly clear at the top of the viewport (let the image breathe) and ramps darker only at the bottom where content needs a readable floor. The hero headline carries a soft `text-shadow` so it stays readable over a bright patch of sky without us having to dim the whole image.
+- **Frosted home cards** — the two section cards on the landing use `backdrop-filter: blur(10px)` plus a 62 %-opacity surface tint, so they remain readable over any random photo without competing with it.
+
+### Client-side JS exception
+
+This feature is the **only** place on the site that ships JavaScript to the browser. The Tech Stack rule ("no client-side JS unless strictly necessary") permits exactly this case: per-load randomness on a static site cannot be achieved server-side. The script is inline (no extra request), runs once on `DOMContentLoaded`, and degrades silently if anything goes wrong.
+
+### Tuning the veil
+
+`.page-bg-veil` in `src/pages/index.astro` is a single linear gradient. Approximate stops:
+
+```
+0–35 %  → 10 % black overlay   (image breathes)
+80 %    → 55 % black overlay   (transition into content)
+100 %   → 85 % black overlay   (dark floor under recent-posts)
+```
+
+If photographs still feel too dark, lower these alphas; if text legibility at the bottom suffers, raise the `100 %` stop.
 
 ---
 
