@@ -4,6 +4,7 @@ import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import { formatDateLong } from '../lib/format.ts';
 import { normalizeTags } from '../lib/tags.ts';
+import { buildDownloadOptions, type DownloadOption, type GalleryCollection } from '../lib/galleryDownloads.ts';
 
 interface Props {
   title: string;
@@ -12,6 +13,8 @@ interface Props {
   tags?: string[];
   cover?: ImageMetadata;
   section: 'astro' | 'shards';
+  /** Gallery slug (used to resolve original filenames for download options). */
+  slug: string;
   images: Array<{
     file: ImageMetadata;
     alt?: string;
@@ -19,9 +22,24 @@ interface Props {
     tags?: string[];
   }>;
 }
-const { title, date, description, tags = [], cover, section, images } = Astro.props;
+const { title, date, description, tags = [], cover, section, slug, images } = Astro.props;
 const galleryTags = normalizeTags(tags);
 const heroImage = cover ?? images[0]?.file;
+
+// Build per-image download options. The helper resolves the original filename
+// via Vite's `import.meta.glob('?raw')` on meta.yaml, so it works in both dev
+// and build (no fs / import.meta.url path-walk needed here).
+const collection: GalleryCollection = section === 'astro' ? 'astro-gallery' : 'shards-gallery';
+const downloads: DownloadOption[][] = await Promise.all(
+  images.map((_img, i) =>
+    buildDownloadOptions({
+      imageMeta: images[i].file,
+      collection,
+      gallerySlug: slug,
+      imageIndex: i,
+    }),
+  ),
+);
 ---
 
 <Base title={title} description={description} section={section}>
@@ -49,14 +67,39 @@ const heroImage = cover ?? images[0]?.file;
     <div class="container-wide images">
       {images.map((img, i) => {
         const imgUnion = Array.from(new Set([...galleryTags, ...normalizeTags(img.tags)]));
+        const opts = downloads[i] ?? [];
         return (
           <figure id={`img-${i + 1}`} class="image">
-            <Image
-              src={img.file}
-              alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
-              widths={[480, 800, 1200, 1800]}
-              sizes="(min-width: 1100px) 1100px, 100vw"
-            />
+            <div class="image-wrap">
+              <Image
+                src={img.file}
+                alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
+                widths={[480, 800, 1200, 1800]}
+                sizes="(min-width: 1100px) 1100px, 100vw"
+              />
+              {opts.length > 0 && (
+                <details class="dl">
+                  <summary aria-label="Download this image">
+                    <svg class="dl-icon" viewBox="0 0 16 16" aria-hidden="true">
+                      <path fill="none" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 2v8M4 7l4 4 4-4M3 13h10" />
+                    </svg>
+                    <span class="dl-label">Download</span>
+                  </summary>
+                  <ul class="dl-menu" role="menu">
+                    {opts.map((o) => (
+                      <li role="none">
+                        <a role="menuitem" href={o.url} download={o.filename}>
+                          <span class="dl-opt-label">{o.label}</span>
+                          {o.isOriginal && <span class="dl-opt-badge">original</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
             {(img.caption || imgUnion.length > 0) && (
               <figcaption>
                 {img.caption && <span class="caption">{img.caption}</span>}
@@ -140,6 +183,10 @@ const heroImage = cover ?? images[0]?.file;
     margin: var(--space-7) auto;
   }
   .image { margin: 0; }
+
+  /* Wrap is the positioning context for the download dropdown. */
+  .image-wrap { position: relative; display: block; }
+
   .image :global(img) {
     width: 100%;
     height: auto;
@@ -150,6 +197,7 @@ const heroImage = cover ?? images[0]?.file;
     border-radius: 0;
     clip-path: var(--motif-shards-cut);
   }
+
   figcaption {
     margin-top: var(--space-3);
     display: flex;
@@ -161,6 +209,94 @@ const heroImage = cover ?? images[0]?.file;
   }
   .caption { color: rgba(226, 228, 234, var(--text-body)); }
   .img-tags { display: inline-flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* ------- Download dropdown (pure-CSS <details>) ------- */
+  .dl {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    z-index: 2;
+    color: rgba(226, 228, 234, 0.92);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+  }
+  .dl summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.45em 0.85em;
+    background: rgba(17, 19, 24, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  }
+  .dl summary::-webkit-details-marker { display: none; }
+  .dl summary:hover {
+    background: rgba(17, 19, 24, 0.88);
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+  body[data-section="shards"] .dl summary { border-radius: 4px; }
+
+  .dl-icon { width: 14px; height: 14px; }
+  .dl-label { letter-spacing: 0.04em; }
+
+  .dl[open] summary {
+    background: rgba(17, 19, 24, 0.92);
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+
+  .dl-menu {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    min-width: 220px;
+    margin: 0;
+    padding: var(--space-2) 0;
+    list-style: none;
+    background: rgba(17, 19, 24, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+  body[data-section="shards"] .dl-menu { border-radius: 4px; }
+
+  .dl-menu a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 0.55em var(--space-4);
+    color: rgba(226, 228, 234, 0.92);
+    border-bottom: none;
+    transition: background var(--t-fast), color var(--t-fast);
+  }
+  .dl-menu a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-bottom: none;
+  }
+  .dl-opt-label { white-space: nowrap; }
+  .dl-opt-badge {
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+  .dl-menu a:hover .dl-opt-badge { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .dl summary .dl-label { display: none; }
+    .dl summary { padding: 0.5em; }
+  }
 
   .tags {
     margin-top: var(--space-6);
