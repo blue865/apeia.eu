@@ -4,7 +4,7 @@
    Edit hex values here and the change cascades.
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Outfit:wght@300;400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Lora:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* ---------------- Palette ---------------- */
@@ -17,8 +17,8 @@
   --color-text:         #e2e4ea;
   --color-text-muted:   #7a7f92;
 
-  --color-accent-astro:    #7aa2f7;
-  --color-accent-shards:   #bb9af7;
+  --color-accent-astro:    #5dd6c8;     /* mint teal — sky / water */
+  --color-accent-shards:   #e8a87c;     /* warm peach — earth / sun */
 
   /* Generic accent — rebound by SectionLayout */
   --accent:        var(--color-text);
@@ -29,12 +29,16 @@
   --accent-line:   rgba(var(--accent-rgb), 0.35);
 
   /* ---------------- Type ---------------- */
-  /* Sections inherit which family they want via --font-display / --font-body. */
-  --font-display-astro:    "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-body-astro:       "Geist", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  /* Sections inherit which family they want via --font-display / --font-body.
+     --font-brand is the wordmark font used by the apeia.eu link in the header
+     — pinned to one face so the brand looks the same in every context. */
+  --font-brand:            "Bricolage Grotesque", "Iowan Old Style", Georgia, serif;
 
-  --font-display-shards:   "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body-shards:      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display-astro:    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body-astro:       "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --font-display-shards:   "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body-shards:      "Lora", "Iowan Old Style", Georgia, serif;
 
   --font-display: var(--font-display-astro);
   --font-body:    var(--font-body-astro);
@@ -94,18 +98,18 @@
 
 body[data-section="astro"] {
   --accent:      var(--color-accent-astro);
-  --accent-rgb:  122, 162, 247;
-  --accent-soft: rgba(122, 162, 247, 0.10);
-  --accent-line: rgba(122, 162, 247, 0.35);
+  --accent-rgb:  93, 214, 200;
+  --accent-soft: rgba(93, 214, 200, 0.10);
+  --accent-line: rgba(93, 214, 200, 0.35);
   --font-display: var(--font-display-astro);
   --font-body:    var(--font-body-astro);
 }
 
 body[data-section="shards"] {
   --accent:      var(--color-accent-shards);
-  --accent-rgb:  187, 154, 247;
-  --accent-soft: rgba(187, 154, 247, 0.10);
-  --accent-line: rgba(187, 154, 247, 0.35);
+  --accent-rgb:  232, 168, 124;
+  --accent-soft: rgba(232, 168, 124, 0.10);
+  --accent-line: rgba(232, 168, 124, 0.35);
   --font-display: var(--font-display-shards);
   --font-body:    var(--font-body-shards);
 }

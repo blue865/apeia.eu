@@ -41,20 +41,22 @@ Each section has:
 | `--color-border` | `#2a2d36` | Dividers, outlines |
 | `--color-text` | `#e2e4ea` | Body text |
 | `--color-text-muted` | `#7a7f92` | Captions, metadata |
-| `--color-accent-astro` | `#7aa2f7` | Astro section accent (blue) |
-| `--color-accent-shards` | `#bb9af7` | Shards section accent (violet) |
+| `--color-accent-astro` | `#5dd6c8` | Astro section accent (mint teal — sky / water) |
+| `--color-accent-shards` | `#e8a87c` | Shards section accent (warm peach — earth / sun) |
 
 > Tweak hex values here and update throughout — these are the source of truth.
 
 ### Typography
 
-Font choice follows a **two-font combo** strategy. Start with the **anchor headline font** — it sets the whole personality of the section. Find a body/UI font that contrasts with the anchor without clashing; they should feel like they come from the same world but offer visual variety. Use [Fonts In Use](https://fontsinuse.com) to explore pairings for a given anchor.
+Font choice follows a **two-font combo** strategy per section, plus a pinned wordmark and a pinned mono. Start with the **anchor headline font** — it sets the whole personality of the section. Find a body/UI font that contrasts with the anchor without clashing; they should feel like they come from the same world but offer visual variety.
 
-- **Astro anchor** — precise and technical, condensed or geometric. Suggested starting point: *Instrument Serif* (headlines) + *Geist Sans* (body/UI). Both free via Google Fonts.
-- **Shards anchor** — literary and human, warmer display face. Pick from the same anchor-first approach.
-- **Scale**: Fluid type via `clamp()` — define in `src/styles/tokens.css`
-- **Line length**: Cap prose at `65ch`
-- System font stack is for development only. Commit to the chosen combo before first deploy.
+- **`--font-brand`** — pinned wordmark for the `apeia.eu` link in the header. Stays the same across both sections so the brand has a consistent face. Currently *Bricolage Grotesque*.
+- **Astro anchor** — geometric, precise, instrument-panel feel. *Outfit* (display) + *DM Sans* (body/UI).
+- **Shards anchor** — literary, human, warmer. *Newsreader* (display, with optical sizing) + *Lora* (body).
+- **`--font-mono`** — pinned for image captions, dates, tag pills, eyebrows, code. Currently *JetBrains Mono*. Don't flip it per section; it's the connective tissue between rooms.
+- **Scale**: Fluid type via `clamp()` — define in `src/styles/tokens.css`.
+- **Line length**: Cap prose at `65ch`.
+- All fonts are loaded from Google Fonts at the top of `src/styles/tokens.css`. No system-font fallback as a final design — system stacks remain only for graceful loading degradation.
 
 ### Star of the Show
 
@@ -347,9 +349,10 @@ Add an entry, rebuild. The "skip if width >= source width" rule applies automati
 ## Open Decisions
 
 - [x] Exact section names — **Astro** (`/astro`) and **Shards** (`/shards`) confirmed
-- [ ] Accent colour values — placeholder values above, finalise before first deploy
-- [ ] Astro font combo — suggested *Instrument Serif* + *Geist Sans*; validate on real content before committing
-- [ ] Shards font combo — pick anchor headline font, then find body pairing via [Fonts In Use](https://fontsinuse.com)
+- [x] Accent colour values — **Astro `#5dd6c8` (mint teal)**, **Shards `#e8a87c` (warm peach)**
+- [x] Astro font combo — **Outfit** (display) + **DM Sans** (body)
+- [x] Shards font combo — **Newsreader** (display, opsz) + **Lora** (body)
+- [x] Brand wordmark — **Bricolage Grotesque** pinned across both sections via `--font-brand`
 - [ ] Astro star of the show — confirm hero image treatment and orbital/circular motif
 - [ ] Shards star of the show — confirm typographic anchor and shard/angular motif
 - [ ] Depth level — decide how far to push noise texture and glass effects (subtle vs. very subtle)

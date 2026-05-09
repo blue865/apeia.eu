@@ -167,11 +167,14 @@ const bgCandidates = await getHomeBackgrounds();
     text-transform: uppercase;
   }
   .hero h1 {
-    font-family: "Instrument Serif", Georgia, serif;
+    /* Home page borrows the Astro display face for visual continuity with
+       the "looking up" half — it's also the heavier of the two displays. */
+    font-family: var(--font-display-astro);
     font-size: var(--fs-hero);
     line-height: 1.05;
     max-width: 14ch;
     margin: 0 0 var(--space-5);
+    letter-spacing: -0.02em;
   }
   .hero .sub {
     color: rgba(226, 228, 234, 0.95);
@@ -221,13 +224,13 @@ const bgCandidates = await getHomeBackgrounds();
 
   /* astro card — circular language */
   .astro { border-radius: var(--radius-lg); }
-  .astro:hover     { border-color: var(--color-accent-astro); background: rgba(122,162,247,0.04); }
+  .astro:hover     { border-color: var(--color-accent-astro); background: rgba(93, 214, 200, 0.05); }
   .astro .eyebrow  { color: var(--color-accent-astro); }
   .astro:hover .more { color: var(--color-accent-astro); }
 
   /* shards card — angular / shard language */
   .shards { clip-path: var(--motif-shards-cut); border-radius: 0; }
-  .shards:hover    { border-color: var(--color-accent-shards); background: rgba(187,154,247,0.04); }
+  .shards:hover    { border-color: var(--color-accent-shards); background: rgba(232, 168, 124, 0.05); }
   .shards .eyebrow { color: var(--color-accent-shards); }
   .shards:hover .more { color: var(--color-accent-shards); }
 
@@ -239,8 +242,8 @@ const bgCandidates = await getHomeBackgrounds();
     text-transform: uppercase;
     margin: 0 0 var(--space-3);
   }
-  .astro h2  { font-family: "Instrument Serif", Georgia, serif; font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
-  .shards h2 { font-family: "Fraunces", Georgia, serif;          font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
+  .astro  h2 { font-family: var(--font-display-astro);  font-size: var(--fs-2xl); margin: 0 0 var(--space-3); letter-spacing: -0.02em; }
+  .shards h2 { font-family: var(--font-display-shards); font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
   .card p {
     color: rgba(226, 228, 234, var(--text-medium));
     margin: 0 0 var(--space-4);

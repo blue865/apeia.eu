@@ -123,7 +123,7 @@ const starSlug = star?.id;
   .hero-fallback {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 70% 30%, rgba(122,162,247,0.20), transparent 60%),
+    background: radial-gradient(ellipse at 70% 30%, rgba(var(--accent-rgb), 0.20), transparent 60%),
                 linear-gradient(180deg, var(--color-bg-deep), var(--color-bg));
     z-index: 0;
   }
@@ -142,7 +142,7 @@ const starSlug = star?.id;
     width: 100%;
   }
   .hero-content h1 {
-    font-family: "Instrument Serif", Georgia, serif;
+    font-family: var(--font-display-astro);
     font-size: var(--fs-hero);
     margin: 0 0 var(--space-4);
     line-height: 1.05;

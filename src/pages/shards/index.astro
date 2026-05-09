@@ -115,14 +115,14 @@ const star = posts[0];
     width: 100%;
   }
   .anchor {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-display-shards);
     font-weight: 400;
     font-size: var(--fs-hero);
     line-height: 1.05;
     margin: 0 0 var(--space-5);
     max-width: 22ch;
-    /* slight italic feel without italicising — Fraunces variable */
-    font-variation-settings: "opsz" 144, "SOFT" 100;
+    /* opsz pushes Newsreader into its display variant at large sizes */
+    font-variation-settings: "opsz" 72;
   }
   .lede {
     color: rgba(226, 228, 234, var(--text-medium));

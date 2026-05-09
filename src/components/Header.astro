@@ -57,8 +57,11 @@ const isActive = (p: string) => path.startsWith(p);
     align-items: center;
     gap: 0.6em;
     color: rgba(226, 228, 234, var(--text-high));
-    font-family: var(--font-display);
+    /* Pinned to --font-brand so the wordmark looks the same in every section,
+       independent of the section's display font flip. */
+    font-family: var(--font-brand);
     font-size: var(--fs-md);
+    font-weight: 500;
     border-bottom: none;
     letter-spacing: -0.01em;
   }
