@@ -292,6 +292,48 @@ If photographs still feel too dark, lower these alphas; if text legibility at th
 
 ---
 
+## Image Downloads
+
+Every image inside a gallery detail page (`/astro/gallery/<slug>/`, `/shards/gallery/<slug>/`) carries a small **Download** pill in its top-right corner. Clicking it opens a dropdown with up to four sizes:
+
+- **Original** — the source file, byte-for-byte. Labelled with the source dimensions, e.g. `Original · 4096 × 2731 px`, plus a small `original` badge.
+- **4K · 3840 px** — only offered when the source is wider than 3840.
+- **2K · 2048 px** — only offered when the source is wider than 2048.
+- **800 px** — only offered when the source is wider than 800.
+
+A 600-px-wide source thus offers only Original; a 1500-px source offers Original + 800 px; only 4K-or-bigger sources show every option. The rule is "never offer a resolution larger than the source", to avoid the misleading impression that we're upscaling.
+
+### How it's wired
+
+`src/lib/galleryDownloads.ts` is the single source of truth.
+
+- **Original bytes** are served as-is via Vite: `import.meta.glob('/src/content/*-gallery/**/*.{jpg,jpeg,png,webp}', { query: '?url' })`. Vite copies the source file to `dist/_astro/<hash>` untouched.
+- **Resized variants** are produced at build time by Astro's `getImage()` in the source's original format (PNG stays PNG, JPEG stays JPEG).
+- The `<a download="...">` attribute supplies a clean filename — `M31 - Andromeda Galaxy - 2K.jpg` rather than the hashed asset name.
+- Original filenames are recovered from `meta.yaml` via `import.meta.glob('/src/content/*-gallery/*/meta.yaml', { query: '?raw' })` — the raw text is inlined into the bundle and parsed with `js-yaml`. **Do not** read `meta.yaml` from a layout via `fs` and a path derived from `import.meta.url`: that works in dev (the layout is the source `.astro` file) but breaks in build (layouts get bundled and `import.meta.url` no longer points at the project tree). The Vite-glob route works in both modes.
+
+### UI
+
+The dropdown is a pure-HTML `<details>` / `<summary>` — no JavaScript ships to the browser. The summary is a small frosted pill (icon + "Download"); the menu opens below it with a darker frosted background and accent-coloured hover. The pill picks up the section motif: rounded for Astro, shard-cut corners for Shards. On narrow viewports (`max-width: 640px`) the label collapses and only the down-arrow icon remains.
+
+The `<details>` doesn't auto-close on click outside — clicking the summary again closes it. If a richer menu becomes necessary later (lightbox, EXIF info, copy-link button), this is the natural place to add one tiny `<script>`; until then we stay JS-free.
+
+### Adding a new size
+
+Edit the `VARIANTS` array at the top of `src/lib/galleryDownloads.ts`:
+
+```ts
+const VARIANTS = [
+  { width: 800,  short: '800',  label: '800 px' },
+  { width: 2048, short: '2K',   label: '2K · 2048 px' },
+  { width: 3840, short: '4K',   label: '4K · 3840 px' },
+] as const;
+```
+
+Add an entry, rebuild. The "skip if width >= source width" rule applies automatically.
+
+---
+
 ## Out of Scope (for now)
 
 - Comments, likes, or any social features
