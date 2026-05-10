@@ -15,3 +15,9 @@ images:
     alt: M42 - Orion Nebula
     caption: Hubble of Creation - backyard
     tags: []
+object:
+  position: "RA 18h 18m 48s · Dec −13° 49′"
+  culmination: "Late July"
+  distance: "≈ 7,000 ly"
+  size: "≈ 70 ly across"
+  apparentSize: "7′"

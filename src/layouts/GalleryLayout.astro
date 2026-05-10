@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
+import ObjectInfo, { type ObjectInfo as ObjectInfoData } from '../components/ObjectInfo.astro';
 import { formatDateLong } from '../lib/format.ts';
 import { normalizeTags } from '../lib/tags.ts';
 import { buildDownloadOptions, type DownloadOption, type GalleryCollection } from '../lib/galleryDownloads.ts';
@@ -15,6 +16,8 @@ interface Props {
   section: 'astro' | 'shards';
   /** Gallery slug (used to resolve original filenames for download options). */
   slug: string;
+  /** Optional astronomical metadata; only meaningful for the Astro section. */
+  objectInfo?: ObjectInfoData;
   images: Array<{
     file: ImageMetadata;
     alt?: string;
@@ -22,7 +25,7 @@ interface Props {
     tags?: string[];
   }>;
 }
-const { title, date, description, tags = [], cover, section, slug, images } = Astro.props;
+const { title, date, description, tags = [], cover, section, slug, objectInfo, images } = Astro.props;
 const galleryTags = normalizeTags(tags);
 const heroImage = cover ?? images[0]?.file;
 
@@ -51,18 +54,26 @@ const downloads: DownloadOption[][] = await Promise.all(
       </div>
     )}
 
-    <header class="gallery-header container">
-      <p class="meta">
-        <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
-      </p>
-      <h1>{title}</h1>
-      {description && <p class="lede">{description}</p>}
-      <p class="when">
-        <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
-        <span class="dot">·</span>
-        <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
-      </p>
-    </header>
+    <div class="header-row container-wide">
+      <header class="gallery-header">
+        <p class="meta">
+          <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
+        </p>
+        <h1>{title}</h1>
+        {description && <p class="lede">{description}</p>}
+        <p class="when">
+          <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+          <span class="dot">·</span>
+          <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
+        </p>
+      </header>
+
+      {section === 'astro' && objectInfo && (
+        <aside class="header-side">
+          <ObjectInfo data={objectInfo} />
+        </aside>
+      )}
+    </div>
 
     <div class="container-wide images">
       {images.map((img, i) => {
@@ -153,7 +164,29 @@ const downloads: DownloadOption[][] = await Promise.all(
     background: linear-gradient(to bottom, transparent, var(--color-bg) 95%);
   }
 
-  .gallery-header { padding: var(--space-7) var(--space-5) var(--space-5); max-width: var(--maxw); }
+  /* Header row — title/description on the left, object-info card on the right.
+     Wraps to a single column on narrow viewports. */
+  .header-row {
+    padding: var(--space-7) var(--space-5) var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-7);
+    align-items: flex-start;
+  }
+  .gallery-header {
+    flex: 1 1 420px;
+    min-width: 0;
+    max-width: var(--maxw);
+  }
+  .header-side {
+    flex: 0 0 320px;
+    width: 320px;
+  }
+  @media (max-width: 760px) {
+    .gallery-header { flex-basis: 100%; max-width: 100%; }
+    .header-side    { flex: 1 1 100%; width: 100%; }
+  }
+
   .meta { margin: 0 0 var(--space-3); font-family: var(--font-mono); font-size: var(--fs-xs); }
   .back { color: var(--color-text-muted); border-bottom: 1px solid transparent; }
   .back:hover { color: var(--accent); border-bottom-color: var(--accent); }
@@ -279,6 +312,7 @@ const downloads: DownloadOption[][] = await Promise.all(
     border-bottom: none;
     transition: background var(--t-fast), color var(--t-fast);
   }
+  .dl-menu a:hover {
   .dl-menu a:hover {
     background: var(--accent-soft);
     color: var(--accent);

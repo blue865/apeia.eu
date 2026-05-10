@@ -121,10 +121,23 @@ Frontmatter: `title`, `date`, `summary`, `tags[]`, `draft`
 ```
 src/content/astro/gallery/
   collection-slug/
-    meta.yaml       # title, date, description, tags[]
+    meta.yaml       # title, date, description, tags[], object{?}
     *.jpg / *.webp
 ```
 Individual images within a gallery can carry their own tags via an `images` list in `meta.yaml` (see Tagging section).
+
+Astro galleries also accept an optional **`object:`** block describing the astronomical subject. Every field is itself optional — pick whatever the night and the source data justified, leave the rest off. The card only renders the fields that are present, and is hidden entirely if the whole block is absent.
+
+```yaml
+object:
+  position:     "RA 5h 35m 17s · Dec −5° 23′"
+  culmination:  "Late January"
+  distance:     "≈ 1,344 ly"
+  size:         "≈ 24 ly across"
+  apparentSize: "65′ × 60′"
+```
+
+Values are free-form strings so authors can write whatever notation reads best (HMS/DMS, decimal degrees, "≈", arc-min vs arc-sec, etc.). The `Shards` gallery schema does not accept this block.
 
 ### `shards-posts`
 ```

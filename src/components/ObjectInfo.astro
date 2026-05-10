@@ -1,0 +1,88 @@
+---
+/**
+ * Object info card for an Astro gallery.
+ *
+ * Every field is optional. If all five are missing, the component renders
+ * nothing. Layout is a <dl> grid with monospace uppercase labels in the left
+ * column and free-form values in the right column.
+ *
+ * Note: this card no longer renders its own heading — the gallery title
+ * already names the object on the page, so a duplicate would be noise.
+ */
+export type ObjectInfo = {
+  position?: string;
+  culmination?: string;
+  distance?: string;
+  size?: string;
+  apparentSize?: string;
+};
+
+interface Props {
+  data?: ObjectInfo;
+}
+
+const { data } = Astro.props;
+
+const fields: Array<{ label: string; value: string }> = [
+  { label: 'Position',      value: data?.position ?? '' },
+  { label: 'Culmination',   value: data?.culmination ?? '' },
+  { label: 'Distance',      value: data?.distance ?? '' },
+  { label: 'Size',          value: data?.size ?? '' },
+  { label: 'Apparent size', value: data?.apparentSize ?? '' },
+].filter((f) => f.value.trim().length > 0);
+---
+
+{fields.length > 0 && (
+  <aside class="object-info" aria-label="Object information">
+    <dl>
+      {fields.map((f) => (
+        <>
+          <dt>{f.label}</dt>
+          <dd>{f.value}</dd>
+        </>
+      ))}
+    </dl>
+  </aside>
+)}
+
+<style>
+  .object-info {
+    padding: var(--space-5);
+    background: rgba(var(--bg-rgb, 17, 19, 24), 0.55);
+    backdrop-filter: blur(8px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    border: 1px solid var(--color-border-soft);
+    border-left: 2px solid var(--accent-line);
+    border-radius: var(--radius);
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+  }
+  dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    align-self: baseline;
+    white-space: nowrap;
+  }
+  dd {
+    margin: 0;
+    color: rgba(226, 228, 234, var(--text-body));
+    font-size: var(--fs-sm);
+  }
+
+  @media (max-width: 540px) {
+    dl {
+      grid-template-columns: 1fr;
+      gap: var(--space-1) 0;
+    }
+    dt { padding-top: var(--space-2); }
+    dt:first-of-type { padding-top: 0; }
+  }
+</style>

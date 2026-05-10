@@ -69,13 +69,29 @@ const gallerySchema = ({ image }: { image: () => any }) =>
       .min(1),
   });
 
+/** Optional astronomical metadata for an Astro gallery's subject.
+ *  Every field is a free-form string so authors can write whatever notation
+ *  reads best ("RA 5h 35m · Dec −5° 23'", "≈ 1,344 ly", "65' × 60'", …). */
+const objectInfoSchema = z
+  .object({
+    position: z.string().optional(),
+    culmination: z.string().optional(),
+    distance: z.string().optional(),
+    size: z.string().optional(),
+    apparentSize: z.string().optional(),
+  })
+  .optional();
+
 const astroGallery = defineCollection({
   loader: glob({
     pattern: '*/meta.yaml',
     base: './src/content/astro-gallery',
     generateId: ({ entry }) => entry.replace(/\/meta\.yaml$/, ''),
   }),
-  schema: ({ image }) => gallerySchema({ image }),
+  schema: ({ image }) =>
+    gallerySchema({ image }).extend({
+      object: objectInfoSchema,
+    }),
 });
 
 const shardsGallery = defineCollection({

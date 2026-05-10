@@ -7,3 +7,9 @@ images:
     alt: M31 - Andromeda Galaxy
     caption: RGB
     tags: [4k, wallpaper, home-page]
+object:
+  position: "RA 0h 42m 44s · Dec +41° 16′"
+  culmination: "Late November"
+  distance: "≈ 2.5 million ly"
+  size: "≈ 152,000 ly across"
+  apparentSize: "178′ × 63′"

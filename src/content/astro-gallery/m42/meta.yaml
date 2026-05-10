@@ -15,3 +15,9 @@ images:
     alt: M42 - Orion Nebula
     caption: Second Take
     tags: [lomo]
+object:
+  position: "RA 5h 35m 17s · Dec −5° 23′"
+  culmination: "Late January"
+  distance: "≈ 1,344 ly"
+  size: "≈ 24 ly across"
+  apparentSize: "65′ × 60′"
