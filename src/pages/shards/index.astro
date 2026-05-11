@@ -25,12 +25,11 @@ const star = posts[0];
     <div class="hero-content container-wide">
       <p class="eyebrow">Shards</p>
       <h1 class="anchor">
-        {star ? <>“{star.data.title.replace(/\.$/, '')}.”</> : <>“Looking in.”</>}
+        Looking in
+        <!-- {star ? <>“{star.data.title.replace(/\.$/, '')}.”</> : <>“Looking in.”</>} -->
       </h1>
       <p class="lede">
-        Long and short pieces on philosophy, science and politics — and travel
-        notes when there are any. Written slowly, revised often, occasionally
-        argued with.
+        The Synoptic Gospels of a Society in Search of Meaning - gardening section.
       </p>
       {star && (
         <a class="star-link" href={`/shards/blog/${star.id}/`}>
@@ -103,7 +102,7 @@ const star = posts[0];
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    min-height: clamp(380px, 56vh, 640px);
+    min-height: clamp(190px, 28vh, 320px);
     display: flex;
     align-items: center;
     background: linear-gradient(180deg, var(--color-bg-deep), var(--color-bg));
@@ -111,7 +110,7 @@ const star = posts[0];
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: var(--space-9) var(--space-5);
+    padding: var(--space-6) var(--space-5);
     width: 100%;
   }
   .anchor {
