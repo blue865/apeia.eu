@@ -24,24 +24,31 @@ const bgCandidates = await getHomeBackgrounds();
     <>
       <div class="page-bg" id="page-bg" aria-hidden="true"></div>
       <div class="page-bg-veil" aria-hidden="true"></div>
-      <script is:inline define:vars={{ urls: bgCandidates.map((b) => b.src) }}>
+      <script is:inline define:vars={{
+        picks: bgCandidates.map((b) => ({ src: b.src, a: b.accents.astro, s: b.accents.shards })),
+      }}>
         (() => {
           try {
-            if (!Array.isArray(urls) || urls.length === 0) return;
+            if (!Array.isArray(picks) || picks.length === 0) return;
             const el = document.getElementById('page-bg');
             if (!el) return;
-            const url = urls[Math.floor(Math.random() * urls.length)];
+            const pick = picks[Math.floor(Math.random() * picks.length)];
+            // Apply image-derived accents immediately so any chrome that paints
+            // before the bg image finishes loading already uses the right tint.
+            const root = document.documentElement;
+            if (pick.a) root.style.setProperty('--color-accent-astro', pick.a);
+            if (pick.s) root.style.setProperty('--color-accent-shards', pick.s);
             // Preload, then swap in — avoids a flash before the image arrives.
             const img = new Image();
             img.onload = () => {
-              el.style.backgroundImage = 'url("' + url + '")';
+              el.style.backgroundImage = 'url("' + pick.src + '")';
               el.classList.add('is-loaded');
             };
             img.onerror = () => {
               // If the random pick fails, leave the deep-bg colour in place.
               el.classList.add('is-loaded');
             };
-            img.src = url;
+            img.src = pick.src;
           } catch (_) { /* fail silent */ }
         })();
       </script>
