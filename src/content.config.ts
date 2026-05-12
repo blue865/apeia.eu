@@ -63,6 +63,9 @@ const gallerySchema = ({ image }: { image: () => any }) =>
           file: image(),
           alt: z.string().optional(),
           caption: z.string().optional(),
+          /** Optional multiline prose. Use YAML's `|` literal block style
+           *  so line breaks survive into the rendered output. */
+          notes: z.string().optional(),
           tags: z.array(z.string()).default([]),
         }),
       )

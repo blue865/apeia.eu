@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from './Base.astro';
 import TagPill from '../components/TagPill.astro';
 import ObjectInfo, { type ObjectInfo as ObjectInfoData } from '../components/ObjectInfo.astro';
@@ -22,12 +22,21 @@ interface Props {
     file: ImageMetadata;
     alt?: string;
     caption?: string;
+    /** Optional multiline prose rendered under the image. */
+    notes?: string;
     tags?: string[];
   }>;
 }
 const { title, date, description, tags = [], cover, section, slug, objectInfo, images } = Astro.props;
 const galleryTags = normalizeTags(tags);
 const heroImage = cover ?? images[0]?.file;
+
+// Render the hero photo as a CSS background-image rather than an <Image>,
+// so the photo is a pure backdrop with no Astro-injected aspect-ratio/inline
+// styles fighting our layout. The home page uses the same pattern.
+const heroBg = section === 'astro' && heroImage
+  ? await getImage({ src: heroImage, width: 2400, format: 'webp', quality: 75 })
+  : null;
 
 // Build per-image download options. The helper resolves the original filename
 // via Vite's `import.meta.glob('?raw')` on meta.yaml, so it works in both dev
@@ -47,11 +56,13 @@ const downloads: DownloadOption[][] = await Promise.all(
 
 <Base title={title} description={description} section={section}>
   <article class="gallery">
-    {section === 'astro' && heroImage ? (
-      <section class="hero grain">
-        <Image src={heroImage} alt={title} width={2000} height={1200} class="hero-img" loading="eager" />
+    {heroBg ? (
+      <section
+        class="hero grain"
+        style={`background-image: url('${heroBg.src}');`}
+      >
         <div class="hero-veil"></div>
-        <div class="header-row container-wide on-hero">
+        <div class="hero-meta container-wide">
           <header class="gallery-header">
             <p class="meta">
               <a href={`/${section}/gallery/`} class="back">← Astro gallery</a>
@@ -174,6 +185,17 @@ const downloads: DownloadOption[][] = await Promise.all(
                 )}
               </figcaption>
             )}
+
+            {img.notes && img.notes.trim().length > 0 && (
+              <div class="image-notes">
+                {img.notes
+                  .trim()
+                  .split(/\n\s*\n+/)
+                  .map((para) => (
+                    <p>{para}</p>
+                  ))}
+              </div>
+            )}
           </figure>
         );
       })}
@@ -195,28 +217,69 @@ const downloads: DownloadOption[][] = await Promise.all(
 <style>
   .gallery { padding-bottom: var(--space-7); }
 
+  /* Hero — the photo is a CSS background (no <img> element), so there are no
+     Astro-injected inline styles fighting our layout. The hero's in-flow
+     child (`.hero-meta`) drives the hero's actual height; `min-height` is a
+     floor so the photo always has presence even with little text. */
   .hero {
     position: relative;
     width: 100%;
-    max-height: 78vh;
     overflow: hidden;
+    isolation: isolate;
+    min-height: 360px;
+    background-color: var(--color-bg-deep);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
-  .hero-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    /* Darker on the left half (under the headline), gradually clearing to
+       the right (where the object card has its own frosted surface). A
+       second vertical gradient floors the bottom so the hero-fade transition
+       into the next section still reads. */
+    background:
+      linear-gradient(90deg,
+        rgba(12,14,18,0.78) 0%,
+        rgba(12,14,18,0.55) 45%,
+        rgba(12,14,18,0.25) 100%),
+      linear-gradient(180deg,
+        rgba(12,14,18,0.05) 0%,
+        rgba(12,14,18,0.05) 60%,
+        rgba(12,14,18,0.45) 100%);
   }
   .hero-fade {
     position: absolute;
     inset: auto 0 0 0;
-    height: 30%;
+    height: 28%;
+    z-index: 2;
     pointer-events: none;
-    background: linear-gradient(to bottom, transparent, var(--color-bg) 95%);
+    background: linear-gradient(to bottom, transparent, var(--color-bg) 96%);
   }
 
-  /* Header row — title/description on the left, object-info card on the right.
-     Wraps to a single column on narrow viewports. */
+  /* Header content INSIDE the hero. Sits above the veil and drives the
+     hero's intrinsic height. Same flex layout as the standalone header-row
+     used below the hero on shards (or astro galleries without a cover). */
+  .hero-meta {
+    position: relative;
+    z-index: 3;
+    padding: var(--space-6) var(--space-5) var(--space-7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-7);
+    align-items: flex-start;
+    /* Soft shadow so the headline stays legible on a bright patch of sky
+       without darkening the whole image. */
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+  }
+  .hero-meta .lede { color: rgba(226, 228, 234, 0.92); }
+  .hero-meta .back { color: rgba(226, 228, 234, 0.78); }
+
+  /* Standalone header row (used when there is no hero — Shards galleries
+     and Astro galleries without a cover). Unchanged from before. */
   .header-row {
     padding: var(--space-7) var(--space-5) var(--space-5);
     display: flex;
@@ -224,6 +287,9 @@ const downloads: DownloadOption[][] = await Promise.all(
     gap: var(--space-6) var(--space-7);
     align-items: flex-start;
   }
+
+  /* Title block + side card sizing — applies in both the hero and the
+     standalone case. */
   .gallery-header {
     flex: 1 1 420px;
     min-width: 0;
@@ -306,6 +372,23 @@ const downloads: DownloadOption[][] = await Promise.all(
   }
   .caption { color: rgba(226, 228, 234, var(--text-body)); }
   .img-tags { display: inline-flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* Optional multiline notes under an image.
+     Blank-line-separated chunks become <p>s; single newlines inside a
+     paragraph survive via `white-space: pre-line` so YAML `|` literal
+     blocks render naturally. */
+  .image-notes {
+    margin-top: var(--space-3);
+    max-width: var(--measure);
+    color: rgba(226, 228, 234, var(--text-body));
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+  }
+  .image-notes p {
+    margin: 0 0 var(--space-3);
+    white-space: pre-line;
+  }
+  .image-notes p:last-child { margin-bottom: 0; }
 
   /* ------- Image action pills (fullscreen + download) ------- */
   /* Both pills live in a single flex strip pinned to the top-right of the
