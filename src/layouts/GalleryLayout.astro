@@ -269,8 +269,12 @@ const downloads: DownloadOption[][] = await Promise.all(
     transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
   }
   .dl summary::-webkit-details-marker { display: none; }
-  .dl summary:hover {
-    background: rgba(17, 19, 24, 0.88);
+  /* Hover and open use exactly the same surface so the pill doesn't flicker
+     tone between "cursor over the Download button" and "menu open, cursor on
+     the menu". */
+  .dl summary:hover,
+  .dl[open] summary {
+    background: rgba(17, 19, 24, 0.92);
     border-color: var(--accent-line);
     color: var(--accent);
   }
@@ -279,17 +283,18 @@ const downloads: DownloadOption[][] = await Promise.all(
   .dl-icon { width: 14px; height: 14px; }
   .dl-label { letter-spacing: 0.04em; }
 
-  .dl[open] summary {
-    background: rgba(17, 19, 24, 0.92);
-    border-color: var(--accent-line);
-    color: var(--accent);
-  }
-
   .dl-menu {
     position: absolute;
     top: calc(100% + var(--space-2));
     right: 0;
-    min-width: 220px;
+    /* An explicit floor sized for the worst-case row (Original line carrying
+       a 4-digit resolution and the "original" badge). `width: max-content` is
+       kept as well so shorter strings don't waste space, but the floor is
+       what guarantees one-line items in every browser regardless of how the
+       absolute-positioned shrink-to-fit calculation lands. */
+    width: max-content;
+    min-width: 360px;
+    max-width: min(92vw, 520px);
     margin: 0;
     padding: var(--space-2) 0;
     list-style: none;
@@ -302,28 +307,36 @@ const downloads: DownloadOption[][] = await Promise.all(
   }
   body[data-section="shards"] .dl-menu { border-radius: 4px; }
 
+  /* Grid (not flex) for the row: `auto auto` columns size to each child's
+     content. Flex children can shrink below their content under
+     `justify-content: space-between`, which is what was causing the label to
+     wrap on first paint. */
   .dl-menu a {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: baseline;
-    justify-content: space-between;
     gap: var(--space-3);
     padding: 0.55em var(--space-4);
     color: rgba(226, 228, 234, 0.92);
     border-bottom: none;
+    white-space: nowrap;
     transition: background var(--t-fast), color var(--t-fast);
   }
-  .dl-menu a:hover {
   .dl-menu a:hover {
     background: var(--accent-soft);
     color: var(--accent);
     border-bottom: none;
   }
-  .dl-opt-label { white-space: nowrap; }
+  .dl-opt-label {
+    white-space: nowrap;
+    min-width: 0;            /* lets grid track size honestly */
+  }
   .dl-opt-badge {
     font-size: 0.78em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-text-muted);
+    white-space: nowrap;
   }
   .dl-menu a:hover .dl-opt-badge { color: var(--accent); }
 
