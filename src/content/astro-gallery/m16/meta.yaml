@@ -7,9 +7,11 @@ images:
     alt: M16 - Eagle Nebula
     caption: M16 - Eagle Nebula
     tags: [4k, wallpaper, home-page]
-    notes: >
-      Astro community tends to dislike green since there is almost none of it in the universe, after all. The culprits are black body radiation curve and the stars themselves. 
-      Even though most stars peak around green, they are intense also in blue and red. And that is white to us.
+    notes: |
+      Astro community tends to dislike green since there is almost none of it in the universe, after all. 
+      The culprits are black body radiation curve and the stars themselves. Even though lots of stars peak around green, they are intense also in blue and red. 
+      
+      And that is white to us.
   - file: ./pillars-of-creation-hubble.png
     alt: Pillars of Craetion - Hubble
     caption: Pillars of Craetion - Hubble
