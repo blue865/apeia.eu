@@ -81,12 +81,13 @@ const downloads: DownloadOption[][] = await Promise.all(
         const opts = downloads[i] ?? [];
         return (
           <figure id={`img-${i + 1}`} class="image">
-            <div class="image-wrap">
+            <div class="image-wrap" style={`max-width: ${img.file.width}px;`}>
               <Image
                 src={img.file}
                 alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
                 widths={[480, 800, 1200, 1800]}
                 sizes="(min-width: 1100px) 1100px, 100vw"
+                style={`max-width: min(${img.file.width}px, 100%);`}
               />
               <div class="image-actions">
                 <a class="fs-btn" href={`#fs-${i + 1}`} aria-label="View fullscreen">
@@ -142,6 +143,7 @@ const downloads: DownloadOption[][] = await Promise.all(
                 sizes="100vw"
                 loading="lazy"
                 class="fs-image"
+                style={`max-width: min(${img.file.width}px, 100%); max-height: 100%;`}
               />
             </a>
 
@@ -251,12 +253,25 @@ const downloads: DownloadOption[][] = await Promise.all(
   }
   .image { margin: 0; }
 
-  /* Wrap is the positioning context for the download dropdown. */
-  .image-wrap { position: relative; display: block; }
+  /* The wrap inherits an inline `max-width` set per image (= source width in
+     px) so it never grows beyond the original's natural size; `margin: auto`
+     then centres the wrap inside the column. Result: small originals are
+     displayed at their natural size and centred, with the action pills
+     anchored to the right edge of the image rather than the column. */
+  .image-wrap {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
 
   .image :global(img) {
+    /* Inline style on the img clamps max-width to the source width too, so
+       even if a future change makes the wrap wider than the source, the img
+       still won't upscale. */
+    max-width: 100%;
     width: 100%;
     height: auto;
+    display: block;
     border: 1px solid var(--color-border-soft);
     border-radius: var(--radius);
   }
