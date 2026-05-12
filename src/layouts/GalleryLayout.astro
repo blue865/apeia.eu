@@ -47,33 +47,48 @@ const downloads: DownloadOption[][] = await Promise.all(
 
 <Base title={title} description={description} section={section}>
   <article class="gallery">
-    {section === 'astro' && heroImage && (
-      <div class="hero grain">
+    {section === 'astro' && heroImage ? (
+      <section class="hero grain">
         <Image src={heroImage} alt={title} width={2000} height={1200} class="hero-img" loading="eager" />
+        <div class="hero-veil"></div>
+        <div class="header-row container-wide on-hero">
+          <header class="gallery-header">
+            <p class="meta">
+              <a href={`/${section}/gallery/`} class="back">← Astro gallery</a>
+            </p>
+            <h1>{title}</h1>
+            {description && <p class="lede">{description}</p>}
+            <p class="when">
+              <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+              <span class="dot">·</span>
+              <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
+            </p>
+          </header>
+
+          {objectInfo && (
+            <aside class="header-side">
+              <ObjectInfo data={objectInfo} />
+            </aside>
+          )}
+        </div>
         <div class="hero-fade"></div>
+      </section>
+    ) : (
+      <div class="header-row container-wide">
+        <header class="gallery-header">
+          <p class="meta">
+            <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
+          </p>
+          <h1>{title}</h1>
+          {description && <p class="lede">{description}</p>}
+          <p class="when">
+            <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
+            <span class="dot">·</span>
+            <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
+          </p>
+        </header>
       </div>
     )}
-
-    <div class="header-row container-wide">
-      <header class="gallery-header">
-        <p class="meta">
-          <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
-        </p>
-        <h1>{title}</h1>
-        {description && <p class="lede">{description}</p>}
-        <p class="when">
-          <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
-          <span class="dot">·</span>
-          <span>{images.length} {images.length === 1 ? 'image' : 'images'}</span>
-        </p>
-      </header>
-
-      {section === 'astro' && objectInfo && (
-        <aside class="header-side">
-          <ObjectInfo data={objectInfo} />
-        </aside>
-      )}
-    </div>
 
     <div class="container-wide images">
       {images.map((img, i) => {
