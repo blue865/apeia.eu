@@ -88,29 +88,63 @@ const downloads: DownloadOption[][] = await Promise.all(
                 widths={[480, 800, 1200, 1800]}
                 sizes="(min-width: 1100px) 1100px, 100vw"
               />
-              {opts.length > 0 && (
-                <details class="dl">
-                  <summary aria-label="Download this image">
-                    <svg class="dl-icon" viewBox="0 0 16 16" aria-hidden="true">
-                      <path fill="none" stroke="currentColor" stroke-width="1.4"
-                            stroke-linecap="round" stroke-linejoin="round"
-                            d="M8 2v8M4 7l4 4 4-4M3 13h10" />
-                    </svg>
-                    <span class="dl-label">Download</span>
-                  </summary>
-                  <ul class="dl-menu" role="menu">
-                    {opts.map((o) => (
-                      <li role="none">
-                        <a role="menuitem" href={o.url} download={o.filename}>
-                          <span class="dl-opt-label">{o.label}</span>
-                          {o.isOriginal && <span class="dl-opt-badge">original</span>}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              )}
+              <div class="image-actions">
+                <a class="fs-btn" href={`#fs-${i + 1}`} aria-label="View fullscreen">
+                  <svg class="fs-icon" viewBox="0 0 16 16" aria-hidden="true">
+                    <path fill="none" stroke="currentColor" stroke-width="1.4"
+                          stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 6V3h3 M10 3h3v3 M13 10v3h-3 M6 13H3v-3" />
+                  </svg>
+                </a>
+                {opts.length > 0 && (
+                  <details class="dl">
+                    <summary aria-label="Download this image">
+                      <svg class="dl-icon" viewBox="0 0 16 16" aria-hidden="true">
+                        <path fill="none" stroke="currentColor" stroke-width="1.4"
+                              stroke-linecap="round" stroke-linejoin="round"
+                              d="M8 2v8M4 7l4 4 4-4M3 13h10" />
+                      </svg>
+                    </summary>
+                    <ul class="dl-menu" role="menu">
+                      {opts.map((o) => (
+                        <li role="none">
+                          <a role="menuitem" href={o.url} download={o.filename}>
+                            <span class="dl-opt-label">{o.label}</span>
+                            {o.isOriginal && <span class="dl-opt-badge">original</span>}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
             </div>
+
+            {/* Fullscreen overlay — pure-CSS :target. The whole overlay is a
+               link back to the in-flow figure so clicking anywhere closes. */}
+            <a
+              id={`fs-${i + 1}`}
+              class="fs-overlay"
+              href={`#img-${i + 1}`}
+              aria-label="Close fullscreen"
+            >
+              <span class="fs-close" aria-hidden="true">
+                <svg viewBox="0 0 16 16">
+                  <path fill="none" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 3l10 10M13 3L3 13" />
+                </svg>
+              </span>
+              <Image
+                src={img.file}
+                alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
+                widths={[1200, 1800, 2400, 3000]}
+                sizes="100vw"
+                loading="lazy"
+                class="fs-image"
+              />
+            </a>
+
             {(img.caption || imgUnion.length > 0) && (
               <figcaption>
                 {img.caption && <span class="caption">{img.caption}</span>}
@@ -243,12 +277,103 @@ const downloads: DownloadOption[][] = await Promise.all(
   .caption { color: rgba(226, 228, 234, var(--text-body)); }
   .img-tags { display: inline-flex; gap: var(--space-2); flex-wrap: wrap; }
 
-  /* ------- Download dropdown (pure-CSS <details>) ------- */
-  .dl {
+  /* ------- Image action pills (fullscreen + download) ------- */
+  /* Both pills live in a single flex strip pinned to the top-right of the
+     image. Each pill is a static-positioned child so they sit side by side
+     instead of overlapping. */
+  .image-actions {
     position: absolute;
     top: var(--space-3);
     right: var(--space-3);
     z-index: 2;
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+
+  /* ------- Fullscreen pill ------- */
+  .fs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.45em 0.85em;
+    background: rgba(17, 19, 24, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    color: rgba(226, 228, 234, 0.92);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  }
+  .fs-btn:hover {
+    background: rgba(17, 19, 24, 0.92);
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+  body[data-section="shards"] .fs-btn { border-radius: 4px; }
+  .fs-icon { width: 14px; height: 14px; }
+  .fs-label { letter-spacing: 0.04em; }
+  @media (max-width: 640px) {
+    .fs-btn .fs-label { display: none; }
+    .fs-btn { padding: 0.5em; }
+  }
+
+  /* ------- Fullscreen overlay (pure-CSS via :target) ------- */
+  .fs-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.96);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+    cursor: zoom-out;
+    border-bottom: none;        /* override global <a> chrome */
+  }
+  .fs-overlay:target { display: flex; }
+  .fs-overlay :global(img) {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border: 0;
+    border-radius: var(--radius);
+  }
+  body[data-section="shards"] .fs-overlay :global(img) {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut);
+  }
+  .fs-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 19, 24, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    color: rgba(226, 228, 234, 0.92);
+    /* Visual hint only — clicks bubble up to the wrapping <a>. */
+    pointer-events: none;
+  }
+  .fs-close svg { width: 14px; height: 14px; }
+  body[data-section="shards"] .fs-close { border-radius: 4px; }
+
+  /* ------- Download dropdown (pure-CSS <details>) ------- */
+  .dl {
+    position: static;
     color: rgba(226, 228, 234, 0.92);
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
