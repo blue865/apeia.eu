@@ -74,6 +74,7 @@ const gallerySchema = ({ image }: { image: () => any }) =>
  *  reads best ("RA 5h 35m · Dec −5° 23'", "≈ 1,344 ly", "65' × 60'", …). */
 const objectInfoSchema = z
   .object({
+    constellation: z.string().optional(),
     position: z.string().optional(),
     culmination: z.string().optional(),
     distance: z.string().optional(),

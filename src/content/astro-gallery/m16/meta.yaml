@@ -1,23 +1,24 @@
 title: M16 - Eagle Nebula
-date: 2026-04-12
-description: no green up there? - so what :)
-tags: [nebula, m16, eagle nebula]
+date: 2025-06-22
+description: no green up there? - so what
+tags: [nebula, m16, eagle nebula, pillars of creation]
 images:
   - file: ./M16 - Eagle Nebula.jpg
     alt: M16 - Eagle Nebula
     caption: M16 - Eagle Nebula
     tags: [4k, wallpaper, home-page]
   - file: ./pillars-of-creation-hubble.png
-    alt: M42 - Orion Nebula
-    caption: Hubble of Craetion - Hubble
+    alt: Pillars of Craetion - Hubble
+    caption: Pillars of Craetion - Hubble
     tags: [hubble]
   - file: ./pillars-of-creation-backyard.jpg
-    alt: M42 - Orion Nebula
-    caption: Hubble of Creation - backyard
+    alt: Pillars of Creation - backyard
+    caption: Pillars of Creation - backyard
     tags: []
 object:
-  position: "RA 18h 18m 48s · Dec −13° 49′"
+  position: "RA 18h 18m 45s · Dec −13° 47′ 13\""
   culmination: "Late July"
-  distance: "≈ 7,000 ly"
+  distance: "≈ 5700 ly"
   size: "≈ 70 ly across"
-  apparentSize: "7′"
+  apparentSize: "70 arcmin"
+  constellation: "Serpens"

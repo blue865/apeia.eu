@@ -130,11 +130,12 @@ Astro galleries also accept an optional **`object:`** block describing the astro
 
 ```yaml
 object:
-  position:     "RA 5h 35m 17s · Dec −5° 23′"
-  culmination:  "Late January"
-  distance:     "≈ 1,344 ly"
-  size:         "≈ 24 ly across"
-  apparentSize: "65′ × 60′"
+  constellation: "Orion"
+  position:      "RA 5h 35m 17s · Dec −5° 23′"
+  culmination:   "Late January"
+  distance:      "≈ 1,344 ly"
+  size:          "≈ 24 ly across"
+  apparentSize:  "65′ × 60′"
 ```
 
 Values are free-form strings so authors can write whatever notation reads best (HMS/DMS, decimal degrees, "≈", arc-min vs arc-sec, etc.). The `Shards` gallery schema does not accept this block.

@@ -10,6 +10,7 @@
  * already names the object on the page, so a duplicate would be noise.
  */
 export type ObjectInfo = {
+  constellation?: string;
   position?: string;
   culmination?: string;
   distance?: string;
@@ -23,13 +24,33 @@ interface Props {
 
 const { data } = Astro.props;
 
-const fields: Array<{ label: string; value: string }> = [
-  { label: 'Position',      value: data?.position ?? '' },
-  { label: 'Culmination',   value: data?.culmination ?? '' },
-  { label: 'Distance',      value: data?.distance ?? '' },
-  { label: 'Size',          value: data?.size ?? '' },
-  { label: 'Apparent size', value: data?.apparentSize ?? '' },
-].filter((f) => f.value.trim().length > 0);
+/**
+ * Position is conventionally written as "RA … · Dec …" (the two parts of a
+ * celestial coordinate separated by ` · `). Split it so each part lives on
+ * its own line in the card — pure-string fallback if no separator is found.
+ */
+function splitPosition(value: string): string[] {
+  const trimmed = value.trim();
+  if (!trimmed) return [];
+  // Accept the conventional " · " separator, plus a few near-misses to be
+  // forgiving of authoring style (regular dot with surrounding spaces, or a
+  // semicolon).
+  const parts = trimmed.split(/\s+[·•|;]\s+/);
+  return parts.map((p) => p.trim()).filter(Boolean);
+}
+
+type Field = { label: string; lines: string[] };
+
+const fields: Field[] = [
+  { label: 'Position',      lines: splitPosition(data?.position ?? '') },
+  { label: 'Culmination',   lines: [data?.culmination ?? ''] },
+  { label: 'Distance',      lines: [data?.distance ?? ''] },
+  { label: 'Size',          lines: [data?.size ?? ''] },
+  { label: 'Apparent size', lines: [data?.apparentSize ?? ''] },
+  { label: 'Constellation', lines: [data?.constellation ?? ''] },
+]
+  .map((f) => ({ ...f, lines: f.lines.map((l) => l.trim()).filter(Boolean) }))
+  .filter((f) => f.lines.length > 0);
 ---
 
 {fields.length > 0 && (
@@ -38,7 +59,14 @@ const fields: Array<{ label: string; value: string }> = [
       {fields.map((f) => (
         <>
           <dt>{f.label}</dt>
-          <dd>{f.value}</dd>
+          <dd>
+            {f.lines.map((line, i) => (
+              <>
+                {i > 0 && <br />}
+                {line}
+              </>
+            ))}
+          </dd>
         </>
       ))}
     </dl>
@@ -75,6 +103,10 @@ const fields: Array<{ label: string; value: string }> = [
     margin: 0;
     color: rgba(226, 228, 234, var(--text-body));
     font-size: var(--fs-sm);
+    /* Each line is a self-contained value (e.g. an RA coordinate); keep it
+       on a single line so it doesn't wrap mid-coordinate. The <br>s between
+       lines still introduce the intended line breaks. */
+    white-space: nowrap;
   }
 
   @media (max-width: 540px) {
