@@ -1,0 +1,14 @@
+title: LDN935
+date: 2026-04-12
+description: Wide-field shot of LDN 935 containing a wide variety of nebulae, including the North America Nebula and the Pelican Nebula.
+tags: [nebula, ldn935, North American Nebula, Pelican Nebula, ngc7000]
+images:
+  - file: ./LDN935.jpg
+    alt: LDN935
+    caption: LDN935 OSC
+    tags: [4k, wallpaper, home-page]
+object:
+  position: "RA 20h 54' 19\" · Dec +43° 31′ 30\""
+  distance: "≈ 500 ly"
+  culmination: "Mid-June"
+  constellation: Cygnus

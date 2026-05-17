@@ -1,7 +1,7 @@
 title: M42 — Orion Nebula
-date: 2026-04-12
+date: 2024-01-10
 description: 100kly wide. distance 2.5Mly and closing
-tags: [nebula, m42]
+tags: [nebula, m42, ngc1976, sh2-279]
 images:
   - file: ./M42 - Orion Nebula.jpg
     alt: M42 - Orion Nebula
@@ -16,8 +16,9 @@ images:
     caption: Second Take
     tags: [lomo]
 object:
-  position: "RA 5h 35m 17s · Dec −5° 23′"
+  position: "RA 5h 35m 17s · Dec −5° 23′ 15\""
   culmination: "Late January"
-  distance: "≈ 1,344 ly"
+  distance: "≈ 1344 ly"
   size: "≈ 24 ly across"
   apparentSize: "65′ × 60′"
+  constellation: Orion

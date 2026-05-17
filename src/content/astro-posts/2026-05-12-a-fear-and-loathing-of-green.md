@@ -9,3 +9,9 @@ Astro community tends to dislike green since there is almost none of it in the u
 The culprits are black body radiation curve and the stars themselves. Even though lots of stars peak around green, they are intense also in blue and red. 
       
 **And that is white to us.**
+
+RGB beyermask
+
+SHO
+
+SCNR signal obliterator

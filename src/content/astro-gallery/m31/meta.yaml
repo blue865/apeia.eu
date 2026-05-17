@@ -1,15 +1,15 @@
 title: M31 — Andromeda Galaxy
-date: 2026-04-12
-description: 100kly wide. distance 2.5Mly and closing
-tags: [nebula, m31]
+date: 2026-02-12
+description: 150kly wide. distance 2.5Mly and closing. brace for impact in 4 billion years. or not.
+tags: [galaxy, m31, m10, ngc110]
 images:
   - file: ./M31 - Andromeda Galaxy.jpg
     alt: M31 - Andromeda Galaxy
     caption: RGB
     tags: [4k, wallpaper, home-page]
 object:
-  position: "RA 0h 42m 44s · Dec +41° 16′"
+  position: "RA 0h 42m 44s · Dec +41° 16′ 9\""
   culmination: "Late November"
   distance: "≈ 2.5 million ly"
-  size: "≈ 152,000 ly across"
-  apparentSize: "178′ × 63′"
+  apparentSize: "3.167° × 1°"
+  constellation: Andromeda
