@@ -1,0 +1,17 @@
+title: M104 - Sombrero Galaxy
+date: 2025-05-05
+description: TBD
+tags: [galaxy, m104]
+images:
+  - file: ./m104-sombrero-galaxy-closup.jpg
+  - file: ./M104-Sombrero-Galaxy-4k.jpg
+    alt: M104 - Sombrero Galaxy
+    caption: M104 - Sombrero Galaxy
+    tags: []
+object:
+  position: "RA 18h 18m 45s · Dec −13° 47′ 13\""
+  culmination: "Late July"
+  distance: "≈ 5700 ly"
+  size: "≈ 70 ly across"
+  apparentSize: "70 arcmin"
+  constellation: "Serpens"
