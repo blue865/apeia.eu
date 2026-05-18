@@ -6,12 +6,48 @@ import ShardDecor from '../components/ShardDecor.astro';
 import { formatDate } from '../lib/format.ts';
 import { getHomeBackgrounds } from '../lib/homeBackgrounds.ts';
 
-const astroPosts = (await getCollection('astro-posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-const shardsPosts = (await getCollection('shards-posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+// Recent items per section are a *mix* of blog posts and galleries, sorted
+// by date together so the list reads as "what's been added lately" rather
+// than "what's been written lately".
+type RecentItem = {
+  title: string;
+  date: Date;
+  href: string;
+  kind: 'post' | 'gallery';
+};
+
+const RECENT_LIMIT = 5;
+
+const astroPostsRaw = await getCollection('astro-posts', ({ data }) => !data.draft);
+const astroGalleriesRaw = await getCollection('astro-gallery', ({ data }) => !data.draft);
+const shardsPostsRaw = await getCollection('shards-posts', ({ data }) => !data.draft);
+const shardsGalleriesRaw = await getCollection('shards-gallery', ({ data }) => !data.draft);
+
+function recentMix(
+  posts: typeof astroPostsRaw,
+  galleries: typeof astroGalleriesRaw,
+  section: 'astro' | 'shards',
+): RecentItem[] {
+  const items: RecentItem[] = [
+    ...posts.map((p) => ({
+      title: p.data.title,
+      date: p.data.date,
+      href: `/${section}/blog/${p.id}/`,
+      kind: 'post' as const,
+    })),
+    ...galleries.map((g) => ({
+      title: g.data.title,
+      date: g.data.date,
+      href: `/${section}/gallery/${g.id}/`,
+      kind: 'gallery' as const,
+    })),
+  ];
+  items.sort((a, b) => b.date.valueOf() - a.date.valueOf());
+  return items.slice(0, RECENT_LIMIT);
+}
+
+const astroRecent = recentMix(astroPostsRaw, astroGalleriesRaw, 'astro');
+const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards');
 
 // Every image tagged `home-page` (across both galleries) becomes a candidate
 // background. We embed the optimised URLs and pick one client-side on load,
@@ -82,32 +118,38 @@ const bgCandidates = await getHomeBackgrounds();
     </a>
   </section>
 
-  {(astroPosts.length > 0 || shardsPosts.length > 0) && (
+  {(astroRecent.length > 0 || shardsRecent.length > 0) && (
     <section class="container-wide recent">
-      {astroPosts.length > 0 && (
+      {astroRecent.length > 0 && (
         <div class="col">
           <h3 class="col-title col-astro">Recent Astro</h3>
           <ul>
-            {astroPosts.map((p) => (
+            {astroRecent.map((item) => (
               <li>
-                <a href={`/astro/blog/${p.id}/`}>
-                  <span class="date">{formatDate(p.data.date)}</span>
-                  <span class="t">{p.data.title}</span>
+                <a href={item.href}>
+                  <span class="date">{formatDate(item.date)}</span>
+                  <span class="t">
+                    {item.title}
+                    {item.kind === 'gallery' && <span class="kind">gallery</span>}
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
         </div>
       )}
-      {shardsPosts.length > 0 && (
+      {shardsRecent.length > 0 && (
         <div class="col">
           <h3 class="col-title col-shards">Recent Shards</h3>
           <ul>
-            {shardsPosts.map((p) => (
+            {shardsRecent.map((item) => (
               <li>
-                <a href={`/shards/blog/${p.id}/`}>
-                  <span class="date">{formatDate(p.data.date)}</span>
-                  <span class="t">{p.data.title}</span>
+                <a href={item.href}>
+                  <span class="date">{formatDate(item.date)}</span>
+                  <span class="t">
+                    {item.title}
+                    {item.kind === 'gallery' && <span class="kind">gallery</span>}
+                  </span>
                 </a>
               </li>
             ))}
@@ -303,6 +345,20 @@ const bgCandidates = await getHomeBackgrounds();
   .col .t { transition: color var(--t-fast); }
   .col:nth-child(1) a:hover .t { color: var(--color-accent-astro); }
   .col:nth-child(2) a:hover .t { color: var(--color-accent-shards); }
+
+  /* Subtle "gallery" tag after a title — same family as the date column,
+     a touch smaller so it reads as a postfix annotation rather than part
+     of the title. Posts get no badge (they're the implicit default). */
+  .col .kind {
+    margin-left: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    opacity: 0.75;
+    vertical-align: 0.05em;
+  }
 
   @media (max-width: 720px) {
     .split  { grid-template-columns: 1fr; }
