@@ -35,7 +35,7 @@ const heroImage = cover ?? images[0]?.file;
 // so the photo is a pure backdrop with no Astro-injected aspect-ratio/inline
 // styles fighting our layout. The home page uses the same pattern.
 const heroBg = section === 'astro' && heroImage
-  ? await getImage({ src: heroImage, width: 2400, format: 'webp', quality: 75 })
+  ? await getImage({ src: heroImage, width: 2400, format: 'webp', quality: 90 })
   : null;
 
 // Build per-image download options. The helper resolves the original filename
@@ -111,8 +111,10 @@ const downloads: DownloadOption[][] = await Promise.all(
               <Image
                 src={img.file}
                 alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
-                widths={[480, 800, 1200, 1800]}
+                widths={[480, 800, 1200, 1800, 2400]}
                 sizes="(min-width: 1100px) 1100px, 100vw"
+                format="webp"
+                quality={92}
                 style={`max-width: min(${img.file.width}px, 100%);`}
               />
               <div class="image-actions">
@@ -165,9 +167,11 @@ const downloads: DownloadOption[][] = await Promise.all(
               <Image
                 src={img.file}
                 alt={img.alt ?? img.caption ?? `${title} — ${i + 1}`}
-                widths={[1200, 1800, 2400, 3000]}
+                widths={[1200, 1800, 2400, 3000, 3840]}
                 sizes="100vw"
                 loading="lazy"
+                format="webp"
+                quality={95}
                 class="fs-image"
                 style={`max-width: min(${img.file.width}px, 100%); max-height: 100%;`}
               />

@@ -43,12 +43,12 @@ export async function getHomeBackgrounds(): Promise<HomeBackground[]> {
         const matches = inheritedHasTag || imgTags.includes(HOME_BG_TAG);
         if (!matches) continue;
 
-        // Optimised webp for fast page load.
+        // Optimised webp at high quality so dark astro gradients don't band.
         const optimised = await getImage({
           src: img.file,
           width: 2400,
           format: 'webp',
-          quality: 75,
+          quality: 90,
         });
 
         // Image-derived accents — resolved off the original source bytes.

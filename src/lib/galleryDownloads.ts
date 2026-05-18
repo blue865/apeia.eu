@@ -115,6 +115,10 @@ export async function buildDownloadOptions(args: {
         src: imageMeta,
         width: v.width,
         format: imageMeta.format,
+        // High quality for downloads — these are reference exports of
+        // astrophotography, where dark gradients are very intolerant of
+        // low-quality JPEG/WebP quantisation.
+        quality: 95,
       });
       out.push({
         label: v.label,
