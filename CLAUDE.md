@@ -167,6 +167,8 @@ src/content/shards/gallery/
 | `/astro/blog/[slug]` | Single post |
 | `/astro/gallery` | Gallery index |
 | `/astro/gallery/[slug]` | Single gallery |
+| `/astro/gallery/[slug]/[image]` | Per-image **permalink** page (one per image in the gallery) |
+| `/astro/gallery/[slug]/[image]/[file]` | Per-image **variant download** endpoint (serves the actual bytes) |
 | `/astro/tags` | Tag browser for Astro section |
 | `/astro/tags/[tag]` | All Astro artefacts (posts + galleries + images) with that tag |
 | `/shards` | Section index |
@@ -174,6 +176,8 @@ src/content/shards/gallery/
 | `/shards/blog/[slug]` | Single post |
 | `/shards/gallery` | Gallery index |
 | `/shards/gallery/[slug]` | Single gallery |
+| `/shards/gallery/[slug]/[image]` | Per-image **permalink** page |
+| `/shards/gallery/[slug]/[image]/[file]` | Per-image **variant download** endpoint |
 | `/shards/tags` | Tag browser for Shards section |
 | `/shards/tags/[tag]` | All Shards artefacts (posts + galleries + images) with that tag |
 
@@ -308,45 +312,94 @@ If photographs still feel too dark, lower these alphas; if text legibility at th
 
 ---
 
-## Image Downloads
+## Image Permalinks
 
-Every image inside a gallery detail page (`/astro/gallery/<slug>/`, `/shards/gallery/<slug>/`) carries a small **Download** pill in its top-right corner. Clicking it opens a dropdown with up to four sizes:
+Every gallery image has a **stable URL space** that doesn't move across rebuilds. This is the canonical address for the image — visitors can bookmark, share, or link to these URLs and the links survive future changes to the image pipeline (quality bumps, format switches, Astro/Vite upgrades). See the "Stability" subsection below for what does and doesn't preserve them.
 
-- **Original** — the source file, byte-for-byte. Labelled with the source dimensions, e.g. `Original · 4096 × 2731 px`, plus a small `original` badge.
-- **4K · 3840 px** — only offered when the source is wider than 3840.
-- **2K · 2048 px** — only offered when the source is wider than 2048.
-- **800 px** — only offered when the source is wider than 800.
+### URL scheme
 
-A 600-px-wide source thus offers only Original; a 1500-px source offers Original + 800 px; only 4K-or-bigger sources show every option. The rule is "never offer a resolution larger than the source", to avoid the misleading impression that we're upscaling.
+For each image in each gallery, three layers of URL exist:
+
+```
+/{section}/gallery/{gallery-slug}/{image-slug}/                                — per-image page
+/{section}/gallery/{gallery-slug}/{image-slug}/{image-slug}-{variant}.{ext}    — variant download
+```
+
+- **`section`** — `astro` or `shards`.
+- **`gallery-slug`** — directory name under `src/content/{section}-gallery/`.
+- **`image-slug`** — derived from the original filename: extension stripped, lowercased, non-alphanumeric runs collapsed to `-`. `M104 - Sombrero.jpg` → `m104-sombrero`.
+- **`variant`** — one of `original | 800 | 2k | 4k`.
+- **`ext`** — extension of the source file (`jpg`, `png`, `webp`, …).
+
+Concrete example for `src/content/astro-gallery/m104-sombrero/M104.jpg` (4096 × 2731):
+
+- Per-image page: `/astro/gallery/m104-sombrero/m104/`
+- Original download: `/astro/gallery/m104-sombrero/m104/m104-original.jpg`
+- 4K download: `/astro/gallery/m104-sombrero/m104/m104-4k.jpg`
+- 2K download: `/astro/gallery/m104-sombrero/m104/m104-2k.jpg`
+- 800-px download: `/astro/gallery/m104-sombrero/m104/m104-800.jpg`
+
+### Variants offered
+
+Same rule as before — never offer a resolution larger than the source:
+
+- **Original** — the source file, byte-for-byte.
+- **4K · 3840 px** — only when source > 3840 wide.
+- **2K · 2048 px** — only when source > 2048 wide.
+- **800 px** — only when source > 800 wide.
+
+A 600-px source thus offers only Original. A 1500-px source offers Original + 800. Only 4K-or-bigger sources show every option.
 
 ### How it's wired
 
-`src/lib/galleryDownloads.ts` is the single source of truth.
+The single source of truth is **`src/lib/imagePermalinks.ts`**. At module load it walks every `meta.yaml` via `import.meta.glob('/src/content/*-gallery/*/meta.yaml', { query: '?raw' })`, builds a registry of `{section, gallerySlug, imageIndex, imageSlug, originalFilename, fsPath}` per image, and exposes helpers (`pageUrl`, `variantUrl`, `variantDownloadName`, `variantsForWidth`, `resolveFileRequest`, …).
 
-- **Original bytes** are served as-is via Vite: `import.meta.glob('/src/content/*-gallery/**/*.{jpg,jpeg,png,webp}', { query: '?url' })`. Vite copies the source file to `dist/_astro/<hash>` untouched.
-- **Resized variants** are produced at build time by Astro's `getImage()` in the source's original format (PNG stays PNG, JPEG stays JPEG).
-- The `<a download="...">` attribute supplies a clean filename — `M31 - Andromeda Galaxy - 2K.jpg` rather than the hashed asset name.
-- Original filenames are recovered from `meta.yaml` via `import.meta.glob('/src/content/*-gallery/*/meta.yaml', { query: '?raw' })` — the raw text is inlined into the bundle and parsed with `js-yaml`. **Do not** read `meta.yaml` from a layout via `fs` and a path derived from `import.meta.url`: that works in dev (the layout is the source `.astro` file) but breaks in build (layouts get bundled and `import.meta.url` no longer points at the project tree). The Vite-glob route works in both modes.
+Two route files per section serve the URLs:
+
+- **`src/pages/{section}/gallery/[slug]/[image]/index.astro`** — the per-image page. Renders the photo via Astro's `<Image>` (so the in-page display still benefits from `/_astro/`-hashed cache-busting), plus caption, notes, tags, and the list of downloads.
+- **`src/pages/{section}/gallery/[slug]/[image]/[file].ts`** — a static endpoint that produces the actual bytes at the permalink URL. For `original` it copies the source file verbatim; for `800/2k/4k` it runs sharp at quality 95 in the source format. Astro writes the response body to a real file at the URL path, so visitors get a clean direct download with no redirect.
+
+`src/lib/galleryDownloads.ts` is a thin shim that produces the `DownloadOption[]` consumed by `GalleryLayout.astro` — it just asks the permalink registry for URLs.
 
 ### UI
 
-The dropdown is a pure-HTML `<details>` / `<summary>` — no JavaScript ships to the browser. The summary is a small frosted pill (icon + "Download"); the menu opens below it with a darker frosted background and accent-coloured hover. The pill picks up the section motif: rounded for Astro, shard-cut corners for Shards. On narrow viewports (`max-width: 640px`) the label collapses and only the down-arrow icon remains.
+Each gallery image in `GalleryLayout.astro` has a three-pill action strip in its top-right corner:
 
-The `<details>` doesn't auto-close on click outside — clicking the summary again closes it. If a richer menu becomes necessary later (lightbox, EXIF info, copy-link button), this is the natural place to add one tiny `<script>`; until then we stay JS-free.
+- **Fullscreen** — pure-CSS `:target` overlay (same as before).
+- **Share** — links to the per-image permalink page. The icon is the iOS-style "box with arrow up". Same pill family as Fullscreen.
+- **Download** — a pure-HTML `<details>`/`<summary>` dropdown listing the available variants. Each menu item is an `<a>` with `download="<friendly-name>"`. Clicking a row navigates to the permalink, which serves the file bytes directly — `download` works as expected.
 
-### Adding a new size
+The Download dropdown picks up the section motif (rounded for Astro, shard-cut for Shards). On viewports under 640 px the pills collapse to icons-only.
 
-Edit the `VARIANTS` array at the top of `src/lib/galleryDownloads.ts`:
+The dropdown ships no JavaScript — `<details>` handles open/close. Clicking the summary again closes it. Clicking outside doesn't auto-close.
+
+### Stability
+
+What's permanent:
+
+- **Page routes and gallery slugs** are stable as long as you don't rename the file (for posts) or directory (for galleries).
+- **Image slugs** are stable as long as you don't rename the original file. If you rename `M104.jpg` to `M104_v2.jpg`, the slug changes from `m104` to `m104-v2`.
+- **Variant URLs** are stable as long as both `gallerySlug` and `originalFilename` stay the same. They are immune to image-encoding parameter changes (quality, format), Astro/Vite version upgrades, and bundler heuristic shifts.
+
+What's *not* permanent (and is invalidated when it changes):
+
+- `/_astro/`-hashed URLs used for in-page **display** images. These deliberately rotate when the file content or transformation parameters change, so the browser cache flushes correctly. They're not what the permalink mechanism is for.
+- Anchor fragments inside a gallery page (`#img-1`, `#fs-1`) — these are positional, so reordering `images:` in `meta.yaml` will shift them.
+
+### Adding a new variant size
+
+Edit the variant tables at the top of `src/lib/imagePermalinks.ts`:
 
 ```ts
-const VARIANTS = [
-  { width: 800,  short: '800',  label: '800 px' },
-  { width: 2048, short: '2K',   label: '2K · 2048 px' },
-  { width: 3840, short: '4K',   label: '4K · 3840 px' },
-] as const;
+const VARIANT_WIDTHS: Record<Variant, number | null> = {
+  original: null,
+  '800': 800,
+  '2k': 2048,
+  '4k': 3840,
+};
 ```
 
-Add an entry, rebuild. The "skip if width >= source width" rule applies automatically.
+Add a new entry (and a matching label/short in the parallel maps), include it in `ALL_VARIANTS`, and add it to the `Variant` union type. Rebuild. The "skip if width >= source width" rule applies automatically, and the new endpoint URLs appear in the Download menu and the per-image page.
 
 ---
 
