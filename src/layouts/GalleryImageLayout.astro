@@ -1,0 +1,247 @@
+---
+/**
+ * Layout for a single-image permalink page (e.g. /astro/gallery/{slug}/{image-slug}/).
+ *
+ * The page is the canonical permanent address for one photograph: caption,
+ * notes, tags, and download links live here. Visitors can bookmark and share
+ * this URL; it won't move across rebuilds.
+ *
+ * For the in-page display we still use Astro's <Image> (i.e. /_astro/-hashed
+ * URLs) — those are browser-cacheable forever per content hash. Only the
+ * downloads use the permalink path so they survive transformation changes.
+ */
+import { Image } from 'astro:assets';
+import Base from './Base.astro';
+import TagPill from '../components/TagPill.astro';
+import { formatDateLong } from '../lib/format.ts';
+import { normalizeTags } from '../lib/tags.ts';
+import {
+  variantUrl,
+  variantLabel,
+  variantDownloadName,
+  variantsForWidth,
+  type ImagePermalink,
+} from '../lib/imagePermalinks.ts';
+
+interface Props {
+  permalink: ImagePermalink;
+  section: 'astro' | 'shards';
+  galleryTitle: string;
+  galleryDate: Date;
+  galleryDescription?: string;
+  galleryTags?: string[];
+  image: {
+    file: ImageMetadata;
+    alt?: string;
+    caption?: string;
+    notes?: string;
+    tags?: string[];
+  };
+}
+
+const {
+  permalink,
+  section,
+  galleryTitle,
+  galleryDate,
+  galleryDescription,
+  galleryTags = [],
+  image,
+} = Astro.props;
+
+const tags = Array.from(new Set([...normalizeTags(galleryTags), ...normalizeTags(image.tags)]));
+const variants = variantsForWidth(image.file.width);
+
+const pageTitle = image.caption ? `${image.caption} — ${galleryTitle}` : galleryTitle;
+const pageDescription =
+  (image.notes ? image.notes.trim().split(/\n+/)[0] : undefined) ??
+  image.caption ??
+  galleryDescription;
+---
+
+<Base title={pageTitle} description={pageDescription} section={section}>
+  <article class="image-page container-wide">
+    <p class="back">
+      <a href={`/${section}/gallery/${permalink.gallerySlug}/`}>← {galleryTitle}</a>
+    </p>
+
+    <div class="image-wrap" style={`max-width: ${image.file.width}px;`}>
+      <Image
+        src={image.file}
+        alt={image.alt ?? image.caption ?? pageTitle}
+        widths={[800, 1200, 1800, 2400]}
+        sizes="(min-width: 1100px) 1100px, 100vw"
+        format="webp"
+        quality={92}
+        loading="eager"
+        style={`max-width: min(${image.file.width}px, 100%);`}
+      />
+    </div>
+
+    <header class="meta">
+      {image.caption && <h1>{image.caption}</h1>}
+      <p class="when">
+        <time datetime={galleryDate.toISOString()}>{formatDateLong(galleryDate)}</time>
+        <span class="dot" aria-hidden="true">·</span>
+        <span class="dims">{image.file.width} × {image.file.height} px</span>
+      </p>
+    </header>
+
+    {image.notes && image.notes.trim().length > 0 && (
+      <div class="notes">
+        {image.notes.trim().split(/\n\s*\n+/).map((para) => (
+          <p>{para}</p>
+        ))}
+      </div>
+    )}
+
+    {variants.length > 0 && (
+      <section class="downloads" aria-label="Download options">
+        <h2>Download</h2>
+        <ul>
+          {variants.map((v) => (
+            <li>
+              <a
+                href={variantUrl(permalink, v)}
+                download={variantDownloadName(permalink, v)}
+              >
+                <span class="dl-label">{variantLabel(v)}</span>
+                {v === 'original' && (
+                  <span class="dl-dims">{image.file.width} × {image.file.height} px</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {tags.length > 0 && (
+      <footer class="tags">
+        <span class="tag-label">Tagged</span>
+        <ul>
+          {tags.map((t) => (
+            <li><TagPill tag={t} section={section} size="sm" /></li>
+          ))}
+        </ul>
+      </footer>
+    )}
+  </article>
+</Base>
+
+<style>
+  .image-page {
+    padding: var(--space-7) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .back {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+  }
+  .back a {
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .back a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .image-wrap {
+    margin: 0 auto;
+    width: 100%;
+  }
+  .image-wrap :global(img) {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius);
+  }
+  body[data-section="shards"] .image-wrap :global(img) {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut);
+  }
+
+  .meta { margin: 0; }
+  .meta h1 {
+    font-size: var(--fs-xl);
+    margin: 0 0 var(--space-2);
+  }
+  .when {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+  .dot { opacity: 0.6; }
+
+  /* Same subdued treatment as gallery-image notes — supporting copy. */
+  .notes {
+    max-width: var(--measure);
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+  }
+  .notes p { margin: 0 0 var(--space-3); white-space: pre-line; }
+  .notes p:last-child { margin-bottom: 0; }
+
+  .downloads h2 {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-2);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .downloads ul { list-style: none; padding: 0; margin: 0; }
+  .downloads li { border-bottom: 1px solid var(--color-border-soft); }
+  .downloads li:last-child { border-bottom: none; }
+  .downloads a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    color: var(--color-text);
+    border-bottom: none;
+    transition: color var(--t-fast);
+  }
+  .downloads a:hover { color: var(--accent); }
+  .dl-label { font-family: var(--font-mono); font-size: var(--fs-sm); }
+  .dl-dims  { color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--fs-xs); }
+
+  .tags {
+    margin-top: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border-soft);
+  }
+  .tag-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+    margin-right: var(--space-3);
+  }
+  .tags ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+  }
+</style>

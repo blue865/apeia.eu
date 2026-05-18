@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import GalleryImageLayout from '../../../../../layouts/GalleryImageLayout.astro';
+import { findByIndex } from '../../../../../lib/imagePermalinks.ts';
+
+export async function getStaticPaths() {
+  const galleries = await getCollection('shards-gallery', ({ data }) => !data.draft);
+  const paths: any[] = [];
+  for (const gallery of galleries) {
+    for (let i = 0; i < gallery.data.images.length; i++) {
+      const permalink = findByIndex('shards', gallery.id, i);
+      if (!permalink) continue;
+      paths.push({
+        params: { slug: gallery.id, image: permalink.imageSlug },
+        props: { gallery, imageIndex: i, permalink },
+      });
+    }
+  }
+  return paths;
+}
+
+const { gallery, imageIndex, permalink } = Astro.props as any;
+const image = gallery.data.images[imageIndex];
+---
+
+<GalleryImageLayout
+  permalink={permalink}
+  section="shards"
+  galleryTitle={gallery.data.title}
+  galleryDate={gallery.data.date}
+  galleryDescription={gallery.data.description}
+  galleryTags={gallery.data.tags}
+  image={image}
+/>
