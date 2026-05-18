@@ -6,6 +6,7 @@ import ObjectInfo, { type ObjectInfo as ObjectInfoData } from '../components/Obj
 import { formatDateLong } from '../lib/format.ts';
 import { normalizeTags } from '../lib/tags.ts';
 import { buildDownloadOptions, type DownloadOption, type GalleryCollection } from '../lib/galleryDownloads.ts';
+import { findByIndex, pageUrl } from '../lib/imagePermalinks.ts';
 
 interface Props {
   title: string;
@@ -105,6 +106,8 @@ const downloads: DownloadOption[][] = await Promise.all(
       {images.map((img, i) => {
         const imgUnion = Array.from(new Set([...galleryTags, ...normalizeTags(img.tags)]));
         const opts = downloads[i] ?? [];
+        const permalink = findByIndex(section, slug, i);
+        const sharePageHref = permalink ? pageUrl(permalink) : undefined;
         return (
           <figure id={`img-${i + 1}`} class="image">
             <div class="image-wrap" style={`max-width: ${img.file.width}px;`}>
@@ -125,6 +128,15 @@ const downloads: DownloadOption[][] = await Promise.all(
                           d="M3 6V3h3 M10 3h3v3 M13 10v3h-3 M6 13H3v-3" />
                   </svg>
                 </a>
+                {sharePageHref && (
+                  <a class="share-btn" href={sharePageHref} aria-label="Open this image's permanent page">
+                    <svg class="share-icon" viewBox="0 0 16 16" aria-hidden="true">
+                      <path fill="none" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 10V2 M5 5l3-3 3 3 M3 8v4a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8" />
+                    </svg>
+                  </a>
+                )}
                 {opts.length > 0 && (
                   <details class="dl">
                     <summary aria-label="Download this image">
@@ -410,8 +422,9 @@ const downloads: DownloadOption[][] = await Promise.all(
     align-items: flex-start;
   }
 
-  /* ------- Fullscreen pill ------- */
-  .fs-btn {
+  /* ------- Fullscreen + Share pills (same pill family) ------- */
+  .fs-btn,
+  .share-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.45em;
@@ -428,17 +441,21 @@ const downloads: DownloadOption[][] = await Promise.all(
     user-select: none;
     transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
   }
-  .fs-btn:hover {
+  .fs-btn:hover,
+  .share-btn:hover {
     background: rgba(17, 19, 24, 0.92);
     border-color: var(--accent-line);
     color: var(--accent);
   }
-  body[data-section="shards"] .fs-btn { border-radius: 4px; }
-  .fs-icon { width: 14px; height: 14px; }
+  body[data-section="shards"] .fs-btn,
+  body[data-section="shards"] .share-btn { border-radius: 4px; }
+  .fs-icon,
+  .share-icon { width: 14px; height: 14px; }
   .fs-label { letter-spacing: 0.04em; }
   @media (max-width: 640px) {
     .fs-btn .fs-label { display: none; }
-    .fs-btn { padding: 0.5em; }
+    .fs-btn,
+    .share-btn { padding: 0.5em; }
   }
 
   /* ------- Fullscreen overlay (pure-CSS via :target) ------- */
