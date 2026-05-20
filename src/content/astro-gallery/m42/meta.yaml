@@ -13,7 +13,7 @@ images:
     tags: [lomo]
   - file: ./M42 - lomo2.jpg
     alt: M42 - Orion Nebula
-    caption: Second Take
+    caption: Take Two
     tags: [lomo]
 object:
   position: "RA 5h 35m 17s · Dec −5° 23′ 15\""
