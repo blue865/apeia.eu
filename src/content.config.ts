@@ -43,7 +43,7 @@ const shardsPosts = defineCollection({
   schema: ({ image }) =>
     postSchema({ image }).extend({
       topic: z
-        .enum(['philosophy', 'science', 'politics', 'personal', 'travel'])
+        .enum(['philosophy', 'science', 'politics', 'personal', 'travel', 'IT'])
         .default('personal'),
     }),
 });
