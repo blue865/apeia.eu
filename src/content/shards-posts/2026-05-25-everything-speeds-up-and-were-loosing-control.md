@@ -4,7 +4,7 @@ date: 2026-05-25
 summary: What if we stopped caring?
 topic: IT
 tags: [ai, system-architecture]
-draft: false
+draft: true
 ---
 A reflection on https://www.youtube.com/watch?v=2n41YjR5QfU and my own two day successful effort making a portion of my work redundant.
 

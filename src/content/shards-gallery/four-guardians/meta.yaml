@@ -1,5 +1,5 @@
 title: Four Guardians
-date: 2026-03-22
+date: 2026-06-06
 description: Gastonne, Gépardinne, Erwinne and the mighty Pedro the Little Bucket.
 tags: [four-guardians, cats]
 images:
@@ -16,10 +16,14 @@ images:
     caption: Gépardinne
     tags: [gepardninne]
   - file: ./erwinne.jpg
-    alt: Gepardinne
-    caption: Gepardinne
-    tags: [gepardninne]
+    alt: Erwinne
+    caption: Erwinne
+    tags: [erwinne]
   - file: ./pedro.jpg 
     alt: Pedro
     caption: Pedro the Little Bucket
     tags: [pedro]
+  - file: ./zofka-la-palma.jpg
+    alt: Soffie
+    caption: Soffie, guarding the Grand Telescopio Canarias.
+    tags: [žofka, soffie]
