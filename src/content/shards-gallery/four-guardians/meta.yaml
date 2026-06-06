@@ -21,7 +21,7 @@ images:
     tags: [erwinne]
   - file: ./pedro.jpg 
     alt: Pedro
-    caption: Pedro the Little Bucket
+    caption: Pedro the Little Pail
     tags: [pedro]
   - file: ./zofka-la-palma.jpg
     alt: Soffie
