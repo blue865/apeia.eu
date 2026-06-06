@@ -30,6 +30,17 @@ const isActive = (p: string) => path.startsWith(p);
             Shards
           </a>
         </li>
+        <li>
+          <a href="/rss.xml" class="link link-rss" aria-label="RSS feed">
+            <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 11a9 9 0 0 1 9 9" />
+              <path d="M4 4a16 16 0 0 1 16 16" />
+              <circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none" />
+            </svg>
+            <span>RSS</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -90,6 +101,17 @@ const isActive = (p: string) => path.startsWith(p);
   .link.active { color: rgba(226, 228, 234, var(--text-high)); }
   .link-astro.active  { border-bottom-color: var(--color-accent-astro);  }
   .link-shards.active { border-bottom-color: var(--color-accent-shards); }
+
+  .link-rss {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  .rss-icon {
+    width: 15px;
+    height: 15px;
+    display: block;
+  }
 
   @media (max-width: 480px) {
     .nav { gap: var(--space-4); }
