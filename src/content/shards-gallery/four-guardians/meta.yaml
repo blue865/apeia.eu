@@ -1,0 +1,25 @@
+title: Four Guardians
+date: 2026-03-22
+description: Gastonne, Gépardinne, Erwinne and the mighty Pedro the Little Bucket.
+tags: [four-guardians, cats]
+images:
+  - file: ./four-guardians.webp 
+    alt: Four Guardians
+    caption: Four Guardians
+    tags: [four-guardians]
+  - file: ./gastonne.jpg 
+    alt: Gastonne
+    caption: Gastonne
+    tags: [gastonne]
+  - file: ./gepardinne.jpg 
+    alt: Gepardinne
+    caption: Gepardinne
+    tags: [gepardninne]
+  - file: ./erwinne.jpg
+    alt: Gepardinne
+    caption: Gepardinne
+    tags: [gepardninne]
+  - file: ./pedro.jpg 
+    alt: Pedro
+    caption: Pedro the Little Bucket
+    tags: [pedro]

@@ -13,10 +13,10 @@
  *   src/content/shards-gallery/<slug>/meta.yaml + *.jpg
  */
 
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const postSchema = ({ image }: { image: () => any }) =>
+const postSchema = ({ image }: { image: SchemaContext['image'] }) =>
   z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -49,7 +49,7 @@ const shardsPosts = defineCollection({
 });
 
 /** Gallery — one entry per <slug>/meta.yaml. Id is normalised to just <slug>. */
-const gallerySchema = ({ image }: { image: () => any }) =>
+const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
   z.object({
     title: z.string(),
     date: z.coerce.date(),

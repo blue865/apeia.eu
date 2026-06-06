@@ -24,8 +24,8 @@ const shardsPostsRaw = await getCollection('shards-posts', ({ data }) => !data.d
 const shardsGalleriesRaw = await getCollection('shards-gallery', ({ data }) => !data.draft);
 
 function recentMix(
-  posts: typeof astroPostsRaw,
-  galleries: typeof astroGalleriesRaw,
+  posts: { id: string; data: { title: string; date: Date } }[],
+  galleries: { id: string; data: { title: string; date: Date } }[],
   section: 'astro' | 'shards',
 ): RecentItem[] {
   const items: RecentItem[] = [

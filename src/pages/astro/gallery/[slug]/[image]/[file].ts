@@ -74,5 +74,5 @@ export const GET: APIRoute = async ({ params }) => {
       .toBuffer();
   }
 
-  return new Response(bytes, { headers: { 'Content-Type': contentType } });
+  return new Response(new Uint8Array(bytes), { headers: { 'Content-Type': contentType } });
 };
