@@ -30,7 +30,7 @@ images:
 
   - file: ./PXL_20241030_123846619.jpg
     caption: Gran Telescopio Canaria
-    tags: [gran-telescopio-canaria, gtc, telescope]
+    tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_124128400.jpg
     alt: Observatory access road curving up toward domes on the ridge
@@ -73,11 +73,11 @@ images:
 
   - file: ./PXL_20241030_133553725.jpg
     caption: GTC
-    tags: [gran-telescopio-canaria, gtc, telescope]
+    tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_134544320.jpg
     caption: GTC
-    tags: [gran-telescopio-canaria, gtc, telescope]
+    tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_135104734.jpg
     caption: Galileo Telescope
@@ -88,7 +88,7 @@ images:
     tags: [galileo-telescope, telescope]
     
   - file: ./PXL_20241030_135659540.jpg
-    tags: [galileo-telescope, gran-telescopio-canaria, gtc, telescope]
+    tags: [galileo-telescope, gran-telescopio-canarias, gtc, telescope]
     
   - file: ./PXL_20241030_135754610.jpg
     tags: [telescope]
