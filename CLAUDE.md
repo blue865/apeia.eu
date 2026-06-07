@@ -407,7 +407,6 @@ Add a new entry (and a matching label/short in the parallel maps), include it in
 
 - Comments, likes, or any social features
 - Search
-- RSS feed (add later)
 - Dark/light mode toggle (dark only)
 - i18n
 
