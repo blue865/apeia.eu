@@ -26,7 +26,7 @@ images:
 
   - file: ./PXL_20241030_122227174.jpg
     caption: Gran Telescopio Canaria
-    tags: [gran-telescopio-canaria, gtc, telescope]
+    tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_123846619.jpg
     caption: Gran Telescopio Canaria
