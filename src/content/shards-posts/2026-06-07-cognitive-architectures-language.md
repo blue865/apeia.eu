@@ -18,7 +18,7 @@ Fun fact: Yes. Schizophrenics don't lie - there are many of us. What does unity 
 
 Fun hypothesis: What if a sense of the self is quite recent? It is quite plausible to relate to our thoughts as "Athena speaking" rather than as me deliberating with myself about something out there.
 
-What I'm doing right now exactly? :)
+And what I'm doing right now exactly? :)
 
 Does it mean that banality is merely an autoregressive reaction of an isolated language model? 
 And what about an autoregressive reaction of, let's say, the visual cortex? Is there any banality there?
