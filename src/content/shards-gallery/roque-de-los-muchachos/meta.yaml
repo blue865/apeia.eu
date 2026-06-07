@@ -19,7 +19,7 @@ images:
   - file: ./PXL_20241030_121058373.jpg
     alt: A telescope with a large faceted, mirror-tiled reflector dish under blue sky
     caption: MAGIC telescope
-    notes: MAGIC 17m Cherenkov gamma raystelescope.
+    notes: MAGIC 17m Cherenkov gamma-ray telescope.
     tags: [magic, gamma-ray, telescope]
 
   - file: ./PXL_20241030_121355003.jpg
@@ -68,7 +68,7 @@ images:
     tags: [goats, wildlife, landscape]
 
   - file: ./PXL_20241030_131945168.jpg
-    caption: Thats how they live over there
+    caption: That's how they live over there
     tags: [landscape]
 
   - file: ./PXL_20241030_133553725.jpg
