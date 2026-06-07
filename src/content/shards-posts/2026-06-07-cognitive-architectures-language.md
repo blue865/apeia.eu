@@ -2,7 +2,7 @@
 title: Cognitive Architectures - Language
 date: 2026-06-07
 summary: A Shard on Language
-topic: IT
+topic: shard
 tags: [cognitive-architectures, language]
 draft: false
 ---
