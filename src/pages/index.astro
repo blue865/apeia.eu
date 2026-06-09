@@ -101,13 +101,14 @@ const bgCandidates = await getHomeBackgrounds();
   </section>
 
   <section class="container-wide split">
-    <a class="card astro" href="/astro/">
+    <div class="card astro">
       <OrbitalDecor variant="block" />
+      <a class="card-cover" href="/astro/" aria-label="Enter the Astro gallery"></a>
       <span class="eyebrow">Astro</span>
       <h2>Looking up</h2>
-      <p>Long exposures guarded by Gastonne, Gépardinne, Erwinne and the mighty Pedro - the little pail.</p>
+      <p>Long exposures guarded by <a class="names" href="/shards/tags/four-guardians/">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
       <span class="more">Enter the gallery →</span>
-    </a>
+    </div>
 
     <a class="card shards" href="/shards/">
       <ShardDecor variant="block" />
@@ -271,6 +272,23 @@ const bgCandidates = await getHomeBackgrounds();
   .card:hover { transform: translateY(-2px); }
   .card:hover :global(svg) { opacity: 0.7; transform: scale(1.05); }
   .card > * { position: relative; z-index: 1; }
+
+  /* The Astro card stays fully clickable to /astro/ via a stretched cover
+     link, while the guardians' names in the copy link out to their tag
+     independently (a link can't be nested inside the card's own link). */
+  .card-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-bottom: none;
+  }
+  .card > p { z-index: 3; }            /* keep the copy — and its link — above the cover */
+  .names {
+    color: var(--color-accent-astro);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--t-fast);
+  }
+  .names:hover { border-bottom-color: var(--color-accent-astro); }
 
   /* astro card — circular language */
   .astro { border-radius: var(--radius-lg); }
