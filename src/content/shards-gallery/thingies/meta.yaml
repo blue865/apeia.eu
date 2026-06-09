@@ -1,0 +1,7 @@
+title: Thingies
+date: 2000-1-1
+description: Random thingies.
+images:
+  - file: ./galaxy_callibration.png 
+    caption: Galaxy White Reference
+    notes: I suffered from bad galaxy colours for years. This white balance value eventually did help greatly.
