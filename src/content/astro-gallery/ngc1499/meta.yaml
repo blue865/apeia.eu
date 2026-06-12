@@ -1,0 +1,16 @@
+title: NGC1499 - California Nebula
+date: 2023-01-23
+description: NGC1499 - California Nebula
+tags: [nebula, ngc1499, california-nebula]
+images:
+  - file: ./ngc1499-california-nebula.jpg
+    alt: NGC1499
+    caption: NGC1499
+    tags: [4k, wallpaper, home-page]
+object:
+  position: "RA 4h 03' 18\" · Dec +36° 25′ 18\""
+  distance: "≈ 130 ly"
+  size: ≈100ly long
+  apparentSize: 2.5° long
+  culmination: "November-End"
+  constellation: Perseus
