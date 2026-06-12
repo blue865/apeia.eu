@@ -1,0 +1,182 @@
+---
+/**
+ * GalleryPager — the "Recent galleries" block on section index pages.
+ *
+ * Shows galleries four at a time with back/forth navigation, implemented
+ * entirely in CSS: hidden radio inputs hold the current page, the arrow
+ * pills are <label>s that check the neighbouring radio, and sibling
+ * selectors show exactly one page (and one nav group) at a time. No JS,
+ * no URL fragments, no scroll jumps. Arrow keys work too — the radios are
+ * focusable, and a radio group steps with ←/→ natively.
+ *
+ * Supports up to MAX_PAGES pages (CSS rules are written out statically);
+ * anything beyond that is reachable via the section's "All galleries" page.
+ */
+import GalleryCard from './GalleryCard.astro';
+
+type GalleryEntry = {
+  id: string;
+  data: {
+    title: string;
+    date: Date;
+    description?: string;
+    cover?: ImageMetadata;
+    images: { file: ImageMetadata; added?: Date }[];
+  };
+};
+
+interface Props {
+  galleries: GalleryEntry[];
+  section: 'astro' | 'shards';
+}
+const { galleries, section } = Astro.props;
+
+const PER_PAGE = 4;
+const MAX_PAGES = 8;
+const pages: GalleryEntry[][] = [];
+for (let i = 0; i < galleries.length && pages.length < MAX_PAGES; i += PER_PAGE) {
+  pages.push(galleries.slice(i, i + PER_PAGE));
+}
+---
+
+<div class="pager">
+  {pages.map((_, i) => (
+    <input
+      class="gp"
+      type="radio"
+      name="gallery-page"
+      id={`gp-${i}`}
+      checked={i === 0}
+      aria-label={`Gallery page ${i + 1} of ${pages.length}`}
+    />
+  ))}
+
+  {pages.map((page, i) => (
+    <div class="page" id={`gpage-${i}`}>
+      <ul class="grid">
+        {page.map((g) => {
+          const cover = g.data.cover ?? g.data.images?.[0]?.file;
+          return (
+            <li>
+              <GalleryCard
+                href={`/${section}/gallery/${g.id}/`}
+                title={g.data.title}
+                date={g.data.date}
+                cover={cover}
+                description={g.data.description}
+                count={g.data.images.length}
+                section={section}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  ))}
+
+  {pages.length > 1 && (
+    <div class="nav">
+      {pages.map((_, i) => (
+        <span class="group" id={`gnav-${i}`}>
+          {i > 0 ? (
+            <label class="arrow" for={`gp-${i - 1}`} aria-label="Previous galleries">←</label>
+          ) : (
+            <span class="arrow disabled" aria-hidden="true">←</span>
+          )}
+          <span class="count">{i + 1} / {pages.length}</span>
+          {i < pages.length - 1 ? (
+            <label class="arrow" for={`gp-${i + 1}`} aria-label="Next galleries">→</label>
+          ) : (
+            <span class="arrow disabled" aria-hidden="true">→</span>
+          )}
+        </span>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  /* Radios hold the state; visually hidden but still focusable so the
+     keyboard can drive the pager (radio groups step with arrow keys). */
+  .gp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .page { display: none; }
+  #gp-0:checked ~ #gpage-0,
+  #gp-1:checked ~ #gpage-1,
+  #gp-2:checked ~ #gpage-2,
+  #gp-3:checked ~ #gpage-3,
+  #gp-4:checked ~ #gpage-4,
+  #gp-5:checked ~ #gpage-5,
+  #gp-6:checked ~ #gpage-6,
+  #gp-7:checked ~ #gpage-7 { display: block; }
+
+  .grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-5);
+  }
+  .group { display: none; align-items: center; gap: var(--space-3); }
+  #gp-0:checked ~ .nav #gnav-0,
+  #gp-1:checked ~ .nav #gnav-1,
+  #gp-2:checked ~ .nav #gnav-2,
+  #gp-3:checked ~ .nav #gnav-3,
+  #gp-4:checked ~ .nav #gnav-4,
+  #gp-5:checked ~ .nav #gnav-5,
+  #gp-6:checked ~ .nav #gnav-6,
+  #gp-7:checked ~ .nav #gnav-7 { display: inline-flex; }
+
+  .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    user-select: none;
+    transition: color var(--t-fast, 150ms ease), border-color var(--t-fast, 150ms ease), background var(--t-fast, 150ms ease);
+  }
+  label.arrow:hover {
+    color: var(--accent);
+    border-color: var(--accent-line);
+    background: var(--accent-soft);
+  }
+  .arrow.disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  /* Shards motif: shard-cut corners instead of circles */
+  :global(body[data-section='shards']) .arrow { border-radius: 4px; }
+
+  /* Keyboard focus on the (hidden) radios highlights the visible controls */
+  .gp:focus-visible ~ .nav .group label.arrow {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .count {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+  }
+</style>
