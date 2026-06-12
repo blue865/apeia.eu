@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ShardDecor from '../../components/ShardDecor.astro';
-import GalleryCard from '../../components/GalleryCard.astro';
+import GalleryPager from '../../components/GalleryPager.astro';
 import PostCard from '../../components/PostCard.astro';
 import { byActivityDesc } from '../../lib/galleryDates';
 
@@ -75,25 +75,7 @@ const star = posts[0];
         <h2>Galleries</h2>
         <a href="/shards/gallery/" class="see-all">All galleries →</a>
       </header>
-      <ul class="grid">
-        {galleries.slice(0, 6).map((g) => {
-          const slug = g.id;
-          const cover = g.data.cover ?? g.data.images?.[0]?.file;
-          return (
-            <li>
-              <GalleryCard
-                href={`/shards/gallery/${slug}/`}
-                title={g.data.title}
-                date={g.data.date}
-                cover={cover}
-                description={g.data.description}
-                count={g.data.images.length}
-                section="shards"
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <GalleryPager galleries={galleries} section="shards" />
     </section>
   )}
 </Base>

@@ -5,7 +5,7 @@ import Base from '../../layouts/Base.astro';
 import OrbitalDecor from '../../components/OrbitalDecor.astro';
 import SkyMap from '../../components/SkyMap.astro';
 import { byActivityDesc } from '../../lib/galleryDates';
-import GalleryCard from '../../components/GalleryCard.astro';
+import GalleryPager from '../../components/GalleryPager.astro';
 import PostCard from '../../components/PostCard.astro';
 
 const posts = (await getCollection('astro-posts', ({ data }) => !data.draft))
@@ -69,25 +69,7 @@ const starSlug = star?.id;
         <h2>Recent galleries</h2>
         <a href="/astro/gallery/" class="see-all">All galleries →</a>
       </header>
-      <ul class="grid">
-        {galleries.slice(0, 6).map((g) => {
-          const slug = g.id;
-          const cover = g.data.cover ?? g.data.images?.[0]?.file;
-          return (
-            <li>
-              <GalleryCard
-                href={`/astro/gallery/${slug}/`}
-                title={g.data.title}
-                date={g.data.date}
-                cover={cover}
-                description={g.data.description}
-                count={g.data.images.length}
-                section="astro"
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <GalleryPager galleries={galleries} section="astro" />
     </section>
   )}
 
