@@ -5,6 +5,7 @@ import OrbitalDecor from '../components/OrbitalDecor.astro';
 import ShardDecor from '../components/ShardDecor.astro';
 import { formatDate } from '../lib/format.ts';
 import { getHomeBackgrounds } from '../lib/homeBackgrounds.ts';
+import { galleryActivityDate } from '../lib/galleryDates.ts';
 
 // Recent items per section are a *mix* of blog posts and galleries, sorted
 // by date together so the list reads as "what's been added lately" rather
@@ -25,7 +26,7 @@ const shardsGalleriesRaw = await getCollection('shards-gallery', ({ data }) => !
 
 function recentMix(
   posts: { id: string; data: { title: string; date: Date } }[],
-  galleries: { id: string; data: { title: string; date: Date } }[],
+  galleries: { id: string; data: { title: string; date: Date; images?: { added?: Date }[] } }[],
   section: 'astro' | 'shards',
 ): RecentItem[] {
   const items: RecentItem[] = [
@@ -35,9 +36,11 @@ function recentMix(
       href: `/${section}/blog/${p.id}/`,
       kind: 'post' as const,
     })),
+    // Galleries date by their newest picture (images[].added, falling back
+    // to the gallery date) so adding a photo resurfaces the gallery here.
     ...galleries.map((g) => ({
       title: g.data.title,
-      date: g.data.date,
+      date: galleryActivityDate(g),
       href: `/${section}/gallery/${g.id}/`,
       kind: 'gallery' as const,
     })),

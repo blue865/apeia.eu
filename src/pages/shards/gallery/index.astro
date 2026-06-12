@@ -2,9 +2,10 @@
 import { getCollection } from 'astro:content';
 import SectionLayout from '../../../layouts/SectionLayout.astro';
 import GalleryCard from '../../../components/GalleryCard.astro';
+import { byActivityDesc } from '../../../lib/galleryDates';
 
 const galleries = (await getCollection('shards-gallery', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort(byActivityDesc);
 ---
 
 <SectionLayout

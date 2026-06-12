@@ -4,11 +4,12 @@ import Base from '../../layouts/Base.astro';
 import ShardDecor from '../../components/ShardDecor.astro';
 import GalleryCard from '../../components/GalleryCard.astro';
 import PostCard from '../../components/PostCard.astro';
+import { byActivityDesc } from '../../lib/galleryDates';
 
 const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const galleries = (await getCollection('shards-gallery', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort(byActivityDesc);
 
 // Star of the show for Shards is typographic — use the most recent post's title
 // as a pull-quote anchor. Fall back to a static line.

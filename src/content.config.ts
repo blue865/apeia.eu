@@ -66,6 +66,10 @@ const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
           /** Optional multiline prose. Use YAML's `|` literal block style
            *  so line breaks survive into the rendered output. */
           notes: z.string().optional(),
+          /** Optional date the picture was added to the gallery. Used to
+           *  order galleries by their newest picture ("activity"); when
+           *  absent, the gallery's own `date` stands in for the image. */
+          added: z.coerce.date().optional(),
           tags: z.array(z.string()).default([]),
         }),
       )

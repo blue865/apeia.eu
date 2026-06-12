@@ -126,6 +126,17 @@ src/content/astro/gallery/
 ```
 Individual images within a gallery can carry their own tags via an `images` list in `meta.yaml` (see Tagging section).
 
+Images may also carry an optional **`added:`** date — the day the picture joined the gallery:
+
+```yaml
+images:
+  - file: ./new-take.jpg
+    caption: Reprocessed with better calibration
+    added: 2026-06-12
+```
+
+**Gallery ordering is by activity, not creation**: everywhere galleries are listed (section indexes, gallery indexes, the home page's recent mix), they sort by the newest `added` across their images, falling back to the gallery's own `date` (which also stands in for images without `added`). Adding a fresh picture with today's `added` elevates the gallery to the top. Implemented in `src/lib/galleryDates.ts` (`galleryActivityDate`, `byActivityDesc`). Applies to both sections; the RSS feed and tag result pages still use the gallery's creation `date`.
+
 Astro galleries also accept an optional **`object:`** block describing the astronomical subject. Every field is itself optional — pick whatever the night and the source data justified, leave the rest off. The card only renders the fields that are present, and is hidden entirely if the whole block is absent.
 
 ```yaml

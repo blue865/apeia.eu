@@ -4,13 +4,14 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import OrbitalDecor from '../../components/OrbitalDecor.astro';
 import SkyMap from '../../components/SkyMap.astro';
+import { byActivityDesc } from '../../lib/galleryDates';
 import GalleryCard from '../../components/GalleryCard.astro';
 import PostCard from '../../components/PostCard.astro';
 
 const posts = (await getCollection('astro-posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  .sort(byActivityDesc);
 
 // For the section's "star of the show" — the most recent gallery's cover image.
 const star = galleries[0];

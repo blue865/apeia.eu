@@ -4,6 +4,7 @@ description: IC1396 - With Elephant's Trunk Nebula
 tags: [nebula, IC1396, elephants-trunk-nebula]
 images:
   - file: ./ic1396-fullres.jpg
+    added: 2024-11-19
     alt: IC1396A - Elephant's Trunk Nebula
     caption: IC1396 - Fullres
     tags: [home-page]
