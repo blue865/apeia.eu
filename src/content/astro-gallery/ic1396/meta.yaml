@@ -1,0 +1,29 @@
+title: IC1396 - With Elephant's Trunk Nebula
+date: 2020-08-09
+description: IC1396 - With Elephant's Trunk Nebula
+tags: [nebula, IC1396, elephants-trunk-nebula]
+images:
+  - file: ./ic1396-fullres.jpg
+    alt: IC1396A - Elephant's Trunk Nebula
+    caption: IC1396 - Fullres
+    tags: [home-page, ic1396]
+  - file: ./ic1396-fly.jpg
+    alt: IC1396
+    caption: Fly!
+    tags: [home-page, ic1396, 4k, wallpaper]
+  - file: ./ic1396a-elephants-trunk-nebula-azuro.jpg
+    alt: IC1396A - Elephant's Trunk Nebula
+    caption: IC1396A - Elephant's Trunk Nebula
+    tags: [4k, wallpaper, home-page, ic1396a]
+    
+  - file: ./ic1396-4k.jpg
+    alt: IC1396 - Elephant's Trunk Nebula
+    caption: IC1396 - 4k
+    tags: [home-page, ic1396, 4k, wallpaper]
+object:
+  position: "RA 21h 39' 1\" · Dec +57° 29′ 8\""
+  distance: "≈ 2400 ly"
+  # size: ≈100ly
+  # apparentSize: 2.5° long
+  culmination: "Mid-July"
+  constellation: Cepheus
