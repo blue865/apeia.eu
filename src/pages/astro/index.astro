@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import OrbitalDecor from '../../components/OrbitalDecor.astro';
+import SkyMap from '../../components/SkyMap.astro';
 import GalleryCard from '../../components/GalleryCard.astro';
 import PostCard from '../../components/PostCard.astro';
 
@@ -52,6 +53,14 @@ const starSlug = star?.id;
     <span aria-hidden="true">·</span>
     <a href="/astro/tags/">Tags</a>
   </nav>
+
+  <section class="container-wide block">
+    <header class="block-head">
+      <h2>The sky so far</h2>
+      <a href="/astro/gallery/" class="see-all">All captures →</a>
+    </header>
+    <SkyMap />
+  </section>
 
   {galleries.length > 0 && (
     <section class="container-wide block">

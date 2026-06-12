@@ -3,15 +3,15 @@ date: 2025-05-05
 description: TBD
 tags: [galaxy, m104]
 images:
-  - file: ./m104-sombrero-galaxy-closup.jpg
+  - file: ./m104-sombrero-galaxy-close-up.jpg
   - file: ./m104-sombrero-galaxy-4k.jpg
     alt: M104 - Sombrero Galaxy
     caption: M104 - Sombrero Galaxy
     tags: []
 object:
-  position: "RA 18h 18m 45s · Dec −13° 47′ 13\""
-  culmination: "Late July"
-  distance: "≈ 5700 ly"
-  size: "≈ 70 ly across"
-  apparentSize: "70 arcmin"
+  position: "RA 12h 39m 59s · Dec −11° 37′ 23″"
+  culmination: "Mid-April"
+  distance: "≈ 31 million ly"
+  size: "≈ 50,000 ly across"
+  apparentSize: "9′ × 4′"
   constellation: "Virgo"

@@ -1,0 +1,275 @@
+---
+/**
+ * SkyMapSvg — the sky chart itself, shared by the in-flow SkyMap figure and
+ * its fullscreen overlay. Static, build-time SVG: real bright stars
+ * (mag ≤ 4.6) and constellation stick figures from d3-celestial data reduced
+ * into src/data/skymap/, plus every captured astro-gallery object that has a
+ * parsable `object.position`.
+ *
+ * `interactive: false` renders markers without links — used inside the
+ * fullscreen overlay, which is itself one big close-link (nested anchors are
+ * invalid HTML).
+ */
+import { getCollection } from 'astro:content';
+import stars from '../data/skymap/stars.json';
+import constellations from '../data/skymap/constellation-lines.json';
+import borders from '../data/skymap/constellation-borders.json';
+import {
+  parsePosition,
+  raToLon,
+  makeProjector,
+  splitAtWrap,
+  magRadius,
+  magOpacity,
+} from '../lib/skymap';
+
+interface Props {
+  interactive?: boolean;
+}
+const { interactive = true } = Astro.props;
+
+const W = 960;
+const H = 500;
+const PAD = 18;
+const proj = makeProjector(W, H, PAD);
+
+type Star = [number, number, number]; // [lon, lat, mag]
+type Constellation = { id: string; lines: [number, number][][] };
+
+/* ---- background stars ---- */
+const starDots = (stars as Star[]).map(([lon, lat, mag]) => {
+  const { x, y } = proj(lon, lat);
+  return { x, y, r: magRadius(mag), o: magOpacity(mag) };
+});
+
+/* ---- constellation stick figures, one <path> each ---- */
+const constellationPaths = (constellations as Constellation[]).map((c) => {
+  const d = c.lines
+    .flatMap((line) => splitAtWrap(line))
+    .map(
+      (part) =>
+        'M' +
+        part
+          .map((pt) => {
+            const { x, y } = proj(pt[0], pt[1]);
+            return `${x.toFixed(1)},${y.toFixed(1)}`;
+          })
+          .join('L'),
+    )
+    .join('');
+  return { id: c.id, d };
+});
+
+/* ---- constellation boundaries (IAU), all segments in one <path> ---- */
+const borderPath = (borders as [number, number][][])
+  .flatMap((line) => splitAtWrap(line))
+  .map(
+    (part) =>
+      'M' +
+      part
+        .map((pt) => {
+          const { x, y } = proj(pt[0], pt[1]);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        })
+        .join('L'),
+  )
+  .join('');
+
+/* ---- grid: RA every 2h, Dec every 30° ---- */
+const raGrid = [];
+for (let lon = -150; lon <= 180; lon += 30) {
+  const x = proj(lon, 0).x;
+  const hours = (((lon % 360) + 360) % 360) / 15;
+  raGrid.push({ x, label: `${hours}h` });
+}
+const decGrid = [];
+for (let lat = -60; lat <= 60; lat += 30) {
+  const y = proj(0, lat).y;
+  const label = lat === 0 ? '0°' : `${lat > 0 ? '+' : '−'}${Math.abs(lat)}°`;
+  decGrid.push({ y, label });
+}
+
+/* ---- captured objects ---- */
+const galleries = await getCollection('astro-gallery', ({ data }) => !data.draft);
+const markers = galleries
+  .flatMap((g) => {
+    const position = g.data.object?.position;
+    const pos = position ? parsePosition(position) : null;
+    if (!pos) return [];
+    const { x, y } = proj(raToLon(pos.raDeg), pos.decDeg);
+    return [
+      {
+        x,
+        y,
+        href: `/astro/gallery/${g.id}/`,
+        title: g.data.title,
+        constellation: g.data.object?.constellation,
+      },
+    ];
+  })
+  .sort((a, b) => a.x - b.x);
+
+/*
+ * Label placement with collision avoidance. Default spot is to the right of
+ * the marker; if that box would overlap an already-placed label (or run off
+ * the right edge), try flipping to the left, then nudging up/down until a
+ * free spot is found. Pure build-time — markers stay put, only labels move.
+ */
+const CHAR_W = 6.5; // ≈ width of one 10.5px mono character
+const LABEL_H = 13;
+type Rect = { x1: number; y1: number; x2: number; y2: number };
+const placedRects: Rect[] = [];
+const overlaps = (r: Rect) =>
+  placedRects.some((p) => r.x1 < p.x2 && r.x2 > p.x1 && r.y1 < p.y2 && r.y2 > p.y1);
+
+const labelledMarkers = markers.map((m) => {
+  const w = m.title.length * CHAR_W;
+  let labelX = m.x + 12;
+  let anchor: 'start' | 'end' = 'start';
+  if (labelX + w > W - 4) {
+    labelX = m.x - 12;
+    anchor = 'end';
+  }
+  let labelY = m.y + 3.5;
+  for (const dy of [0, 16, -16, 32, -32, 48]) {
+    const x1 = anchor === 'start' ? labelX : labelX - w;
+    const rect = { x1, y1: m.y + 3.5 + dy - LABEL_H, x2: x1 + w, y2: m.y + 3.5 + dy };
+    if (!overlaps(rect)) {
+      placedRects.push(rect);
+      labelY = m.y + 3.5 + dy;
+      break;
+    }
+  }
+  return { ...m, labelX, labelY, anchor };
+});
+---
+
+<svg
+  viewBox={`0 0 ${W} ${H}`}
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={`Sky map with ${markers.length} captured object${markers.length === 1 ? '' : 's'} plotted`}
+>
+  <!-- grid -->
+  <g class="grid">
+    {raGrid.map(({ x }) => <line x1={x} y1={PAD} x2={x} y2={H - PAD} />)}
+    {decGrid.map(({ y }) => <line x1={PAD} y1={y} x2={W - PAD} y2={y} />)}
+  </g>
+  <g class="grid-labels" aria-hidden="true">
+    {raGrid.map(({ x, label }) => (
+      <text x={x} y={H - 4} text-anchor="middle">{label}</text>
+    ))}
+    {decGrid.map(({ y, label }) => (
+      <text x={2} y={y + 3}>{label}</text>
+    ))}
+  </g>
+
+  <!-- constellation boundaries (IAU) -->
+  <g class="borders" aria-hidden="true">
+    <path d={borderPath} />
+  </g>
+
+  <!-- constellation stick figures -->
+  <g class="constellations" aria-hidden="true">
+    {constellationPaths.map(({ id, d }) => <path data-con={id} d={d} />)}
+  </g>
+
+  <!-- background stars -->
+  <g class="stars" aria-hidden="true">
+    {starDots.map(({ x, y, r, o }) => (
+      <circle cx={x.toFixed(1)} cy={y.toFixed(1)} r={r.toFixed(2)} opacity={o.toFixed(2)} />
+    ))}
+  </g>
+
+  <!-- captured objects -->
+  <g class="objects">
+    {labelledMarkers.map((m) =>
+      interactive ? (
+        <a href={m.href} class="object">
+          <title>{m.title}{m.constellation ? ` — ${m.constellation}` : ''}</title>
+          <circle class="hit" cx={m.x} cy={m.y} r="11" />
+          <circle class="dot" cx={m.x} cy={m.y} r="2.5" />
+          <text class="label" x={m.labelX} y={m.labelY} text-anchor={m.anchor}>{m.title}</text>
+        </a>
+      ) : (
+        <g class="object">
+          <title>{m.title}{m.constellation ? ` — ${m.constellation}` : ''}</title>
+          <circle class="dot" cx={m.x} cy={m.y} r="2.5" />
+          <text class="label" x={m.labelX} y={m.labelY} text-anchor={m.anchor}>{m.title}</text>
+        </g>
+      ),
+    )}
+  </g>
+</svg>
+
+<style>
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .grid line {
+    stroke: rgba(226, 228, 234, 0.05);
+    stroke-width: 1;
+  }
+  .grid-labels text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--color-text-muted);
+    opacity: 0.55;
+  }
+
+  .borders path {
+    fill: none;
+    stroke: rgba(122, 127, 146, 0.22);
+    stroke-width: 0.6;
+    stroke-dasharray: 3 4;
+  }
+
+  .constellations path {
+    fill: none;
+    stroke: rgba(122, 127, 146, 0.42);
+    stroke-width: 0.8;
+  }
+
+  .stars circle {
+    fill: var(--color-text);
+  }
+
+  .object {
+    text-decoration: none;
+  }
+  .object .hit {
+    fill: transparent; /* invisible, but keeps a comfortable click target */
+  }
+  .object .dot {
+    fill: var(--accent);
+    opacity: 0.85;
+    transition: opacity 150ms ease;
+  }
+  .object .label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    fill: var(--color-text);
+    opacity: 0.62;
+    transition: opacity 150ms ease;
+  }
+  a.object:hover .dot,
+  a.object:focus .dot {
+    opacity: 1;
+  }
+  a.object:hover .label,
+  a.object:focus .label {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .object .label {
+      font-size: 13px;
+    }
+    .grid-labels text {
+      font-size: 11px;
+    }
+  }
+</style>

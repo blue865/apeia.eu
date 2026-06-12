@@ -1,0 +1,125 @@
+---
+/**
+ * SkyMap — in-flow sky chart figure with a fullscreen view, following the
+ * exact pattern of gallery images: an icon-only pill in the figure's
+ * top-right corner targets a pure-CSS `:target` overlay; the whole overlay
+ * is a link back to the figure, so clicking anywhere closes it. No JS.
+ *
+ * The chart itself lives in SkyMapSvg.astro and is rendered twice — the
+ * overlay copy is non-interactive (the overlay is one big close-link).
+ */
+import SkyMapSvg from './SkyMapSvg.astro';
+---
+
+<figure id="skymap" class="skymap">
+  <SkyMapSvg />
+  <div class="map-actions">
+    <a class="fs-btn" href="#skymap-fs" aria-label="View sky map fullscreen">
+      <svg class="fs-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path fill="none" stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"
+              d="M3 6V3h3 M10 3h3v3 M13 10v3h-3 M6 13H3v-3" />
+      </svg>
+    </a>
+  </div>
+</figure>
+
+{/* Fullscreen overlay — pure-CSS :target. The whole overlay is a
+   link back to the in-flow figure so clicking anywhere closes. */}
+<a id="skymap-fs" class="fs-overlay" href="#skymap" aria-label="Close fullscreen">
+  <span class="fs-close" aria-hidden="true">
+    <svg viewBox="0 0 16 16">
+      <path fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round"
+            d="M3 3l10 10M13 3L3 13" />
+    </svg>
+  </span>
+  <span class="fs-map">
+    <SkyMapSvg interactive={false} />
+  </span>
+</a>
+
+<style>
+  .skymap {
+    position: relative;
+    margin: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius, 8px);
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(var(--accent-rgb), 0.05), transparent 55%),
+      var(--color-bg-deep, #0c0e12);
+    overflow: hidden;
+  }
+
+  .map-actions {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    z-index: 2;
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+
+  /* ------- Fullscreen pill (same family as gallery images) ------- */
+  .fs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.5em;
+    background: rgba(17, 19, 24, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    color: rgba(226, 228, 234, 0.92);
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--t-fast, 150ms ease), border-color var(--t-fast, 150ms ease), color var(--t-fast, 150ms ease);
+  }
+  .fs-btn:hover {
+    background: rgba(17, 19, 24, 0.92);
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+  .fs-icon { width: 14px; height: 14px; }
+
+  /* ------- Fullscreen overlay (pure-CSS via :target) ------- */
+  .fs-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.96);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+    cursor: zoom-out;
+    border-bottom: none;        /* override global <a> chrome */
+  }
+  .fs-overlay:target { display: flex; }
+  .fs-map {
+    display: block;
+    width: 100%;
+    max-width: calc((100vh - 2 * var(--space-5)) * 1.92); /* keep 960:500 inside viewport */
+  }
+  .fs-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 19, 24, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 999px;
+    color: rgba(226, 228, 234, 0.92);
+    /* Visual hint only — clicks bubble up to the wrapping <a>. */
+    pointer-events: none;
+  }
+  .fs-close svg { width: 14px; height: 14px; }
+</style>
