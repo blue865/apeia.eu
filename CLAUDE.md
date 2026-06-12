@@ -403,6 +403,45 @@ Add a new entry (and a matching label/short in the parallel maps), include it in
 
 ---
 
+## Sky Map
+
+The `/astro` index carries **"The sky so far"** — a static, build-time SVG chart of the whole sky with every captured object plotted on it. Zero client-side JS: markers are plain SVG `<a>` links, tooltips are SVG `<title>`, fullscreen is the same pure-CSS `:target` overlay pattern as gallery images.
+
+### Files
+
+| File | Role |
+|---|---|
+| `src/components/SkyMap.astro` | In-flow figure + fullscreen pill + `:target` overlay |
+| `src/components/SkyMapSvg.astro` | The chart itself, rendered twice (figure + overlay; overlay copy is non-interactive since the overlay is one big close-link) |
+| `src/lib/skymap.ts` | Position parser, equirectangular projection, ±180° seam splitting, magnitude→radius/opacity |
+| `src/data/skymap/stars.json` | 1,018 real stars, mag ≤ 4.6 — `[lon, lat, mag]` triplets |
+| `src/data/skymap/constellation-lines.json` | 89 constellation stick figures |
+| `src/data/skymap/constellation-borders.json` | IAU boundary segments (drawn dashed, fainter than stick figures) |
+
+Background data derives from **d3-celestial** (BSD-3-Clause, built on the HYG database), reduced to compact build-time-only JSON.
+
+### How objects get plotted
+
+An astro gallery appears on the map iff its `meta.yaml` has a parsable `object.position` and is not a draft. Marker = small accent dot + mono label, linked to the gallery page; `constellation` (if present) enriches the tooltip. Nothing else to do — the map grows with the archive.
+
+Accepted position notations (minutes/seconds optional):
+
+```
+"RA 0h 42m 44s · Dec +41° 16′ 9″"
+"RA 20h 54' 19\" · Dec +43° 31′ 30\""
+"RA 13h 30m · Dec −47° 12′"          (ASCII or U+2212 minus)
+```
+
+Unparsable or missing positions fail silently (by design) — check the map after adding a gallery.
+
+### Chart conventions
+
+- Equirectangular, full sky, RA 0h centred, RA increasing right-to-left (printed-chart convention)
+- Visual hierarchy: stick figures (most visible) → dashed IAU borders (fainter) → grid (faintest); captured objects are the only accent colour on the chart
+- Label placement is collision-avoiding at build time: labels nudge ±16 px vertically and flip to the marker's left near the right edge; markers never move
+
+---
+
 ## Out of Scope (for now)
 
 - Comments, likes, or any social features
