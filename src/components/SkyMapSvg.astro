@@ -1,14 +1,18 @@
 ---
 /**
  * SkyMapSvg — the sky chart itself, shared by the in-flow SkyMap figure and
- * its fullscreen overlay. Static, build-time SVG: real bright stars
- * (mag ≤ 4.6) and constellation stick figures from d3-celestial data reduced
- * into src/data/skymap/, plus every captured astro-gallery object that has a
- * parsable `object.position`.
+ * its fullscreen overlay. Static, build-time SVG on an equirectangular
+ * chart: real bright stars (mag ≤ 4.6), constellation stick figures, IAU
+ * boundaries and names, plus every captured astro-gallery object that has
+ * a parsable `object.position`.
  *
  * `interactive: false` renders markers without links — used inside the
  * fullscreen overlay, which is itself one big close-link (nested anchors are
  * invalid HTML).
+ *
+ * Data provenance: stick figures follow Stellarium's "Modern (Sky &
+ * Telescope)" sky culture (the same figures used on IAU/Wikipedia charts);
+ * stars, IAU boundaries and name positions derive from d3-celestial / HYG.
  */
 import { getCollection } from 'astro:content';
 import stars from '../data/skymap/stars.json';
@@ -20,6 +24,7 @@ import {
   raToLon,
   makeProjector,
   splitAtWrap,
+  densify,
   magRadius,
   magOpacity,
 } from '../lib/skymap';
@@ -37,6 +42,19 @@ const proj = makeProjector(W, H, PAD);
 type Star = [number, number, number]; // [lon, lat, mag]
 type Constellation = { id: string; lines: [number, number][][] };
 
+/** [lon, lat] polyline (already seam-split) → densified SVG path fragment. */
+function toPath(part: [number, number][], stepDeg = 2): string {
+  return (
+    'M' +
+    densify(part, stepDeg)
+      .map((pt) => {
+        const { x, y } = proj(pt[0], pt[1]);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      })
+      .join('L')
+  );
+}
+
 /* ---- background stars ---- */
 const starDots = (stars as Star[]).map(([lon, lat, mag]) => {
   const { x, y } = proj(lon, lat);
@@ -44,36 +62,15 @@ const starDots = (stars as Star[]).map(([lon, lat, mag]) => {
 });
 
 /* ---- constellation stick figures, one <path> each ---- */
-const constellationPaths = (constellations as Constellation[]).map((c) => {
-  const d = c.lines
-    .flatMap((line) => splitAtWrap(line))
-    .map(
-      (part) =>
-        'M' +
-        part
-          .map((pt) => {
-            const { x, y } = proj(pt[0], pt[1]);
-            return `${x.toFixed(1)},${y.toFixed(1)}`;
-          })
-          .join('L'),
-    )
-    .join('');
-  return { id: c.id, d };
-});
+const constellationPaths = (constellations as Constellation[]).map((c) => ({
+  id: c.id,
+  d: c.lines.flatMap((line) => splitAtWrap(line)).map((p) => toPath(p)).join(''),
+}));
 
 /* ---- constellation boundaries (IAU), all segments in one <path> ---- */
 const borderPath = (borders as [number, number][][])
   .flatMap((line) => splitAtWrap(line))
-  .map(
-    (part) =>
-      'M' +
-      part
-        .map((pt) => {
-          const { x, y } = proj(pt[0], pt[1]);
-          return `${x.toFixed(1)},${y.toFixed(1)}`;
-        })
-        .join('L'),
-  )
+  .map((p) => toPath(p))
   .join('');
 
 /* ---- constellation names at their conventional label positions ---- */
@@ -83,7 +80,7 @@ const conNames = (constellationNames as ConName[]).map(([name, lon, lat, rank]) 
   return { name, x, y, rank };
 });
 
-/* ---- grid: RA every 2h, Dec every 30° ---- */
+/* ---- grid: RA every 2h, Dec every 30° (straight on this projection) ---- */
 const raGrid = [];
 for (let lon = -150; lon <= 180; lon += 30) {
   const x = proj(lon, 0).x;

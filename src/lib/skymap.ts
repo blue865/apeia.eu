@@ -3,12 +3,16 @@
  *
  * Parses the free-form `object.position` strings used in astro-gallery
  * meta.yaml files and projects celestial coordinates onto a flat
- * equirectangular chart (the classic "whole sky on a rectangle" view,
- * RA increasing right-to-left as on printed star charts, RA 0h centred).
+ * equirectangular chart (the classic "whole sky on a rectangle" view).
+ * RA increases right-to-left as on printed charts, RA 0h centred.
  *
- * Background data in `src/data/skymap/` is derived from the d3-celestial
- * project (BSD-3-Clause, https://github.com/ofrohn/d3-celestial), which in
- * turn builds on the HYG star database. Stars are pre-filtered to mag ≤ 4.6.
+ * `densify()` is a no-op visually on this projection (straight lon/lat
+ * segments stay straight) but is kept so switching to a curved projection
+ * later is a one-function change in makeProjector.
+ *
+ * Background data in `src/data/skymap/` derives from Stellarium's
+ * "Modern (Sky & Telescope)" sky culture (stick figures) and the
+ * d3-celestial project / HYG database (stars, borders, name positions).
  */
 
 export type SkyPoint = { raDeg: number; decDeg: number };
@@ -39,7 +43,7 @@ export function parsePosition(position: string): SkyPoint | null {
   return { raDeg, decDeg };
 }
 
-/** RA in degrees (0..360) → chart longitude (-180..180, d3-celestial convention). */
+/** RA in degrees (0..360) → chart longitude (-180..180, RA 0h at centre). */
 export function raToLon(raDeg: number): number {
   const r = ((raDeg % 360) + 360) % 360;
   return r > 180 ? r - 360 : r;
@@ -63,7 +67,7 @@ export function makeProjector(w: number, h: number, pad = 0): Projector {
 
 /**
  * Split a polyline of [lon, lat] vertices wherever it crosses the ±180°
- * seam, so the flat chart doesn't draw a line clear across the map.
+ * seam, so the chart doesn't draw a line clear across the map.
  */
 export function splitAtWrap(line: [number, number][]): [number, number][][] {
   const parts: [number, number][][] = [];
@@ -77,6 +81,41 @@ export function splitAtWrap(line: [number, number][]): [number, number][][] {
   }
   if (current.length > 1) parts.push(current);
   return parts;
+}
+
+/**
+ * Insert intermediate vertices so that no segment spans more than
+ * `stepDeg` degrees — straight (lon, lat) segments must curve on the
+ * Hammer ellipse. Interpolation is linear in lon/lat, which is exactly
+ * how the source polylines are defined.
+ */
+export function densify(line: [number, number][], stepDeg = 2): [number, number][] {
+  if (line.length < 2) return line;
+  const out: [number, number][] = [line[0]];
+  for (let i = 1; i < line.length; i++) {
+    const [x0, y0] = line[i - 1];
+    const [x1, y1] = line[i];
+    const span = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0));
+    const n = Math.max(1, Math.ceil(span / stepDeg));
+    for (let k = 1; k <= n; k++) {
+      out.push([x0 + ((x1 - x0) * k) / n, y0 + ((y1 - y0) * k) / n]);
+    }
+  }
+  return out;
+}
+
+/** Sampled meridian (constant lon) as a [lon, lat] polyline. */
+export function sampleMeridian(lonDeg: number, stepDeg = 3): [number, number][] {
+  const pts: [number, number][] = [];
+  for (let lat = -90; lat <= 90; lat += stepDeg) pts.push([lonDeg, lat]);
+  return pts;
+}
+
+/** Sampled parallel (constant lat) as a [lon, lat] polyline. */
+export function sampleParallel(latDeg: number, stepDeg = 3): [number, number][] {
+  const pts: [number, number][] = [];
+  for (let lon = -180; lon <= 180; lon += stepDeg) pts.push([lon, latDeg]);
+  return pts;
 }
 
 /** Star dot radius from visual magnitude (brighter → bigger). */

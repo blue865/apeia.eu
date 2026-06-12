@@ -415,10 +415,11 @@ The `/astro` index carries **"The sky so far"** — a static, build-time SVG cha
 | `src/components/SkyMapSvg.astro` | The chart itself, rendered twice (figure + overlay; overlay copy is non-interactive since the overlay is one big close-link) |
 | `src/lib/skymap.ts` | Position parser, equirectangular projection, ±180° seam splitting, magnitude→radius/opacity |
 | `src/data/skymap/stars.json` | 1,018 real stars, mag ≤ 4.6 — `[lon, lat, mag]` triplets |
-| `src/data/skymap/constellation-lines.json` | 89 constellation stick figures |
+| `src/data/skymap/constellation-lines.json` | 88 constellation stick figures |
 | `src/data/skymap/constellation-borders.json` | IAU boundary segments (drawn dashed, fainter than stick figures) |
+| `src/data/skymap/constellation-names.json` | 89 constellation names at conventional label positions, with prominence rank |
 
-Background data derives from **d3-celestial** (BSD-3-Clause, built on the HYG database), reduced to compact build-time-only JSON.
+Stick figures follow **Stellarium's "Modern (Sky & Telescope)" sky culture** (GPL-2 data; the same figures as IAU/Wikipedia charts), resolved from HIP numbers to coordinates. Stars, boundaries and name positions derive from **d3-celestial** (BSD-3-Clause, built on the HYG database). Everything is reduced to compact build-time-only JSON.
 
 ### How objects get plotted
 
@@ -436,7 +437,7 @@ Unparsable or missing positions fail silently (by design) — check the map afte
 
 ### Chart conventions
 
-- Equirectangular, full sky, RA 0h centred, RA increasing right-to-left (printed-chart convention)
+- Equirectangular, full sky, RA 0h centred, RA increasing right-to-left (printed-chart convention); polylines are densified before projection so a curved projection remains a one-function swap in `skymap.ts`
 - Visual hierarchy: stick figures (most visible) → dashed IAU borders (fainter) → grid (faintest); captured objects are the only accent colour on the chart
 - Label placement is collision-avoiding at build time: labels nudge ±16 px vertically and flip to the marker's left near the right edge; markers never move
 
