@@ -14,6 +14,7 @@ import { getCollection } from 'astro:content';
 import stars from '../data/skymap/stars.json';
 import constellations from '../data/skymap/constellation-lines.json';
 import borders from '../data/skymap/constellation-borders.json';
+import constellationNames from '../data/skymap/constellation-names.json';
 import {
   parsePosition,
   raToLon,
@@ -74,6 +75,13 @@ const borderPath = (borders as [number, number][][])
         .join('L'),
   )
   .join('');
+
+/* ---- constellation names at their conventional label positions ---- */
+type ConName = [string, number, number, number]; // [name, lon, lat, rank 1–3]
+const conNames = (constellationNames as ConName[]).map(([name, lon, lat, rank]) => {
+  const { x, y } = proj(lon, lat);
+  return { name, x, y, rank };
+});
 
 /* ---- grid: RA every 2h, Dec every 30° ---- */
 const raGrid = [];
@@ -169,6 +177,13 @@ const labelledMarkers = markers.map((m) => {
     <path d={borderPath} />
   </g>
 
+  <!-- constellation names -->
+  <g class="con-names" aria-hidden="true">
+    {conNames.map(({ name, x, y, rank }) => (
+      <text class={`rank-${rank}`} x={x.toFixed(1)} y={y.toFixed(1)} text-anchor="middle">{name}</text>
+    ))}
+  </g>
+
   <!-- constellation stick figures -->
   <g class="constellations" aria-hidden="true">
     {constellationPaths.map(({ id, d }) => <path data-con={id} d={d} />)}
@@ -222,10 +237,24 @@ const labelledMarkers = markers.map((m) => {
 
   .borders path {
     fill: none;
-    stroke: rgba(122, 127, 146, 0.22);
+    stroke: rgba(122, 127, 146, 0.32);
     stroke-width: 0.6;
     stroke-dasharray: 3 4;
   }
+
+  /* Constellation names — thin, quiet chart furniture. They sit between the
+     borders and the stick figures in visual weight: present when you look
+     for them, invisible when you don't. */
+  .con-names text {
+    font-family: var(--font-display-astro, var(--font-body));
+    font-weight: 300; /* lightest Outfit weight loaded in tokens.css */
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    fill: var(--color-text-muted);
+  }
+  .con-names .rank-1 { font-size: 11px;  opacity: 0.42; }
+  .con-names .rank-2 { font-size: 9.5px; opacity: 0.34; }
+  .con-names .rank-3 { font-size: 8.5px; opacity: 0.26; }
 
   .constellations path {
     fill: none;
