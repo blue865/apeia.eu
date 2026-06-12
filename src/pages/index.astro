@@ -257,7 +257,6 @@ const bgCandidates = await getHomeBackgrounds();
     -webkit-backdrop-filter: blur(10px) saturate(115%);
     border: 1px solid var(--color-border-soft);
     color: var(--color-text);
-    border-bottom: 1
     border-bottom: 1px solid var(--color-border-soft);
     transition: border-color 200ms ease, transform 200ms ease, background 200ms ease;
   }
@@ -276,14 +275,22 @@ const bgCandidates = await getHomeBackgrounds();
   /* The Astro card stays fully clickable to /astro/ via a stretched cover
      link, while the guardians' names in the copy link out to their tag
      independently (a link can't be nested inside the card's own link). */
-  .card-cover {
+  /* NOTE: must be written as `.card > .card-cover` (not bare `.card-cover`) —
+     Astro's attribute scoping inflates `.card > *` to two attribute selectors,
+     which would otherwise out-specify this rule and flatten the cover back to
+     position: relative (zero size, unclickable). */
+  .card > .card-cover {
     position: absolute;
     inset: 0;
     z-index: 2;
     border-bottom: none;
   }
-  .card > p { z-index: 3; }            /* keep the copy — and its link — above the cover */
+  /* The copy sits above the cover so its inner link can be reached, but the
+     paragraph itself lets clicks fall through to the cover (→ /astro/).
+     Only the guardians link re-enables pointer events for itself. */
+  .card > p { z-index: 3; pointer-events: none; }
   .names {
+    pointer-events: auto;
     color: var(--color-accent-astro);
     border-bottom: 1px solid transparent;
     transition: border-color var(--t-fast);
