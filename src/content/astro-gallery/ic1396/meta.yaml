@@ -6,20 +6,22 @@ images:
   - file: ./ic1396-fullres.jpg
     alt: IC1396A - Elephant's Trunk Nebula
     caption: IC1396 - Fullres
-    tags: [home-page, ic1396]
+    tags: [home-page]
+
   - file: ./ic1396-fly.jpg
     alt: IC1396
     caption: Fly!
-    tags: [home-page, ic1396, 4k, wallpaper]
+    tags: [home-page, 4k, wallpaper]
+
   - file: ./ic1396a-elephants-trunk-nebula-azuro.jpg
     alt: IC1396A - Elephant's Trunk Nebula
     caption: IC1396A - Elephant's Trunk Nebula
     tags: [4k, wallpaper, home-page, ic1396a]
-    
+
   - file: ./ic1396-4k.jpg
     alt: IC1396 - Elephant's Trunk Nebula
     caption: IC1396 - 4k
-    tags: [home-page, ic1396, 4k, wallpaper]
+    tags: [home-page, 4k, wallpaper]
 object:
   position: "RA 21h 39' 1\" · Dec +57° 29′ 8\""
   distance: "≈ 2400 ly"
