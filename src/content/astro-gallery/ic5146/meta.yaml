@@ -1,0 +1,16 @@
+title: IC5146 - Coccon Nebula
+date: 2025-07-03
+description: The Galactic Comet
+tags: [nebula, dark-nebula, ic5146 , cocoon-nebula]
+images:
+  - file: ./ic5146-cocoon-nebula.jpg
+    alt: IC5146 - Coccon Nebula
+    caption: IC5146 - Coccon Nebula
+    tags: [4k, wallpaper, home-page]
+object:
+  position: "RA 21h 53m 29s · Dec −47° 16′ 01\""
+  culmination: "Mid August"
+  distance: "≈ 2500 ly"
+  size: "≈ 9ly diameter"
+  apparentSize: "12 arcmin"
+  constellation: "Cygnus"
