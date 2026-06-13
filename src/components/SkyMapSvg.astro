@@ -305,7 +305,7 @@ const labelledMarkers = markers.map((m) => {
   .object .dot {
     fill: #ff5d5d;            /* bright reddish — captured objects pop off the chart */
     opacity: 0.95;
-    transition: opacity 150ms ease;
+    transition: opacity 150ms ease, fill 150ms ease;
   }
   .object .label {
     font-family: var(--font-mono);
@@ -316,6 +316,7 @@ const labelledMarkers = markers.map((m) => {
   }
   a.object:hover .dot,
   a.object:focus .dot {
+    fill: #fbff05;           /* lifts to a lighter red on hover */
     opacity: 1;
   }
   a.object:hover .label,
