@@ -1,12 +1,12 @@
 ---
 /**
- * SkyMap — in-flow sky chart figure with a fullscreen view, following the
- * exact pattern of gallery images: an icon-only pill in the figure's
- * top-right corner targets a pure-CSS `:target` overlay; the whole overlay
- * is a link back to the figure, so clicking anywhere closes it. No JS.
+ * SkyMap — in-flow sky chart figure with a fullscreen view. An icon-only pill
+ * in the figure's top-right corner targets a pure-CSS `:target` overlay. No JS.
  *
- * The chart itself lives in SkyMapSvg.astro and is rendered twice — the
- * overlay copy is non-interactive (the overlay is one big close-link).
+ * The chart lives in SkyMapSvg.astro and is rendered twice, BOTH interactive.
+ * The fullscreen overlay is a lightbox: a full-area backdrop link (and an X
+ * button) close it, while the chart sits above the backdrop so its object
+ * markers stay clickable — no nested anchors.
  */
 import SkyMapSvg from './SkyMapSvg.astro';
 ---
@@ -24,20 +24,21 @@ import SkyMapSvg from './SkyMapSvg.astro';
   </div>
 </figure>
 
-{/* Fullscreen overlay — pure-CSS :target. The whole overlay is a
-   link back to the in-flow figure so clicking anywhere closes. */}
-<a id="skymap-fs" class="fs-overlay" href="#skymap" aria-label="Close fullscreen">
-  <span class="fs-close" aria-hidden="true">
-    <svg viewBox="0 0 16 16">
+{/* Fullscreen overlay — pure-CSS :target lightbox. The backdrop link and the
+   X close it; the chart on top keeps its clickable markers. */}
+<div id="skymap-fs" class="fs-overlay">
+  <a class="fs-backdrop" href="#skymap" aria-label="Close fullscreen"></a>
+  <a class="fs-close" href="#skymap" aria-label="Close fullscreen">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
       <path fill="none" stroke="currentColor" stroke-width="1.6"
             stroke-linecap="round" stroke-linejoin="round"
             d="M3 3l10 10M13 3L3 13" />
     </svg>
-  </span>
-  <span class="fs-map">
-    <SkyMapSvg interactive={false} />
-  </span>
-</a>
+  </a>
+  <div class="fs-map">
+    <SkyMapSvg />
+  </div>
+</div>
 
 <style>
   .skymap {
@@ -94,11 +95,23 @@ import SkyMapSvg from './SkyMapSvg.astro';
     align-items: center;
     justify-content: center;
     padding: var(--space-5);
+  }
+  .fs-overlay:target { display: flex; }
+
+  /* Full-area close link, behind the chart: clicking the backdrop closes,
+     while the chart on top keeps its clickable markers. */
+  .fs-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
     cursor: zoom-out;
     border-bottom: none;        /* override global <a> chrome */
   }
-  .fs-overlay:target { display: flex; }
+  .fs-backdrop:hover { border-bottom: none; }
+
   .fs-map {
+    position: relative;
+    z-index: 1;
     display: block;
     width: 100%;
     max-width: calc((100vh - 2 * var(--space-5)) * 1.92); /* keep 960:500 inside viewport */
@@ -107,6 +120,7 @@ import SkyMapSvg from './SkyMapSvg.astro';
     position: absolute;
     top: var(--space-4);
     right: var(--space-4);
+    z-index: 2;
     width: 36px;
     height: 36px;
     display: inline-flex;
@@ -118,8 +132,13 @@ import SkyMapSvg from './SkyMapSvg.astro';
     border: 1px solid rgba(255, 255, 255, 0.10);
     border-radius: 999px;
     color: rgba(226, 228, 234, 0.92);
-    /* Visual hint only — clicks bubble up to the wrapping <a>. */
-    pointer-events: none;
+    cursor: pointer;
+    transition: background var(--t-fast, 150ms ease), border-color var(--t-fast, 150ms ease), color var(--t-fast, 150ms ease);
+  }
+  .fs-close:hover {
+    background: rgba(17, 19, 24, 0.92);
+    border-color: var(--accent-line);
+    color: var(--accent);
   }
   .fs-close svg { width: 14px; height: 14px; }
 </style>
