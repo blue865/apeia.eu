@@ -1,6 +1,8 @@
 import { defineConfig, sharpImageService } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://apeia.eu',
@@ -9,7 +11,7 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
   image: {
     // Astrophotography needs every pixel: a 4K-wide original has
     // ~33 megapixels, which exceeds sharp's default `limitInputPixels`.

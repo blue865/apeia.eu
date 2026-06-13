@@ -1,0 +1,42 @@
+---
+title: A Fear and Loathing of Green
+date: 2026-05-12
+summary: Astro lovers and the green.
+cover: ../astro-gallery/m16/m16-eagle-nebula.jpg
+coverAlt: M16 — Eagle Nebula
+tags: [green, astrophotography]
+draft: false
+---
+import PostImage from '../../components/PostImage.astro';
+import m16Eagle from '../astro-gallery/m16/m16-eagle-nebula.jpg';
+
+Some tend to dislike green since there is almost none of it in the universe. 
+The culprits are the black body radiation curve and the stars themselves. 
+Even though lots of stars peak around green, they are also intense in blue and red. 
+      
+***And that is white to us.***
+
+Some greenhorns — sorry guys, we've all been here :) — might get spooked by the first stretch of their first OSC session that comes out totally green. 
+It is caused by the RGB Bayer mask that contains more green pixels than red and blue. Thus the signal is stronger in the green channel. 
+
+A similar situation arises with narrowband SHO images, where we often cram Ha (usually by far the strongest channel) into the green channel for a similar outcome to OSC.
+
+***And that might lead to a slight green PTSD.***
+
+But. Green is as good a colour as any other. We do massage our data to a great extent anyway. It is especially true for narrowband. 
+But RGB shots are not always kept as close to reality as possible either. 
+
+***And that is fine. We are mostly not scientists. We are peepers and we do it for looks and peeps :)***
+
+#### Note on SCNR — The Great Green Obliterator
+I was doing it too — just run it and the green is gone.
+
+The default *Average Neutral* method computes G' = min(G, ½(R+B)) - meaning it pulls the green channel down where green exceeds the average of red and blue.
+If used properly it works fine, because green is naturally weak. But if the image is in an imbalanced state and green contains legitimate signal, it simply 
+causes signal loss. 
+
+It is always better to rein in the green with proper colour calibration or narrowband normalisation.
+
+***Green isn't evil and can be part of our toolkit to express something.***
+
+[<PostImage src={m16Eagle} alt="Like autumnal melancholy on burning voids" caption="Like autumnal melancholy on burning voids" size="prose" />](/astro/gallery/m16/)
