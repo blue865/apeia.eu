@@ -8,7 +8,7 @@ draft: false
 ---
 The human language subsystem is its own world, without a direct relationship to external reality outside what is already embedded in the language structure itself. Similar to LLMs. And that might be the source of fascism and other human cruelty and gross misunderstanding. It just generates what is plausible within the system and tries to maintain consistency as much as possible. In a sense, it is a supreme sophist.
 
-However, the structure itself might become constructively creative if prompted (pun intended) in an interesting way.
+However, the structure itself might become constructively creative if prompted in an interesting way (pun intended).
 
 Experiments with patients with severed Corpus Callosum show (The Matter with Things, McGilchrist) that their left hemisphere (where the language normally resides) is able to completely fabricate a reason for what it said, even if it does not have any information that what it said is valid. The only concern is self-consistency.
 
