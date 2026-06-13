@@ -208,7 +208,7 @@ const downloads: DownloadOption[][] = await Promise.all(
                   .trim()
                   .split(/\n\s*\n+/)
                   .map((para) => (
-                    <p>{para}</p>
+                    <p set:html={para} />
                   ))}
               </div>
             )}

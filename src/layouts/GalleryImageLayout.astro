@@ -90,7 +90,7 @@ const pageDescription =
     {image.notes && image.notes.trim().length > 0 && (
       <div class="notes">
         {image.notes.trim().split(/\n\s*\n+/).map((para) => (
-          <p>{para}</p>
+          <p set:html={para} />
         ))}
       </div>
     )}
