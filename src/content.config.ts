@@ -52,6 +52,8 @@ const shardsPosts = defineCollection({
 const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
   z.object({
     title: z.string(),
+    /** Short label — the first whitespace-delimited token of the title. */
+    name: z.string().optional(),
     date: z.coerce.date(),
     description: z.string().optional(),
     cover: image().optional(),
