@@ -2,7 +2,7 @@
 title: A Fear and Loathing of Green
 date: 2026-05-12
 summary: Astro lovers and the green.
-cover: ../astro-gallery/m16/M16 - Eagle Nebula.jpg
+cover: ../astro-gallery/m16/m16-eagle-nebula.jpg
 coverAlt: M16 — Eagle Nebula
 tags: [green, astrophotography]
 draft: false
