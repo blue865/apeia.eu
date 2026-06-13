@@ -67,6 +67,14 @@ const constellationPaths = (constellations as Constellation[]).map((c) => ({
   d: c.lines.flatMap((line) => splitAtWrap(line)).map((p) => toPath(p)).join(''),
 }));
 
+/* ---- Big Dipper asterism: the seven Plough stars (handle + bowl), drawn a
+   touch brighter than the rest of the figures so it reads first ---- */
+const bigDipper: [number, number][] = [
+  [-153.11, 49.31], [-159.02, 54.93], [-166.49, 55.96], [-176.14, 57.03],
+  [165.93, 61.75], [165.46, 56.38], [178.46, 53.69], [-176.14, 57.03],
+];
+const bigDipperPath = splitAtWrap(bigDipper).map((p) => toPath(p)).join('');
+
 /* ---- constellation boundaries (IAU), all segments in one <path> ---- */
 const borderPath = (borders as [number, number][][])
   .flatMap((line) => splitAtWrap(line))
@@ -186,6 +194,11 @@ const labelledMarkers = markers.map((m) => {
     {constellationPaths.map(({ id, d }) => <path data-con={id} d={d} />)}
   </g>
 
+  <!-- Big Dipper asterism, lifted a touch above the other figures -->
+  <g class="asterism" aria-hidden="true">
+    <path d={bigDipperPath} />
+  </g>
+
   <!-- background stars -->
   <g class="stars" aria-hidden="true">
     {starDots.map(({ x, y, r, o }) => (
@@ -257,6 +270,14 @@ const labelledMarkers = markers.map((m) => {
     fill: none;
     stroke: rgba(122, 127, 146, 0.42);
     stroke-width: 0.8;
+  }
+  /* Big Dipper — slightly brighter and heavier so it stands out a touch. */
+  .asterism path {
+    fill: none;
+    stroke: rgba(184, 192, 208, 0.7);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .stars circle {

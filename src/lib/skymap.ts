@@ -66,16 +66,35 @@ export function makeProjector(w: number, h: number, pad = 0): Projector {
 }
 
 /**
- * Split a polyline of [lon, lat] vertices wherever it crosses the ±180°
- * seam, so the chart doesn't draw a line clear across the map.
+ * Split a polyline of [lon, lat] vertices wherever it crosses the ±180° seam.
+ *
+ * A segment that crosses the seam isn't dropped — it's clamped to the seam on
+ * both edges so the figure "wraps" around the chart like a cylinder: the piece
+ * runs off one edge and continues back in from the opposite edge at the same
+ * latitude. This keeps closed figures (e.g. the Big Dipper bowl, which straddles
+ * RA 12h) intact across the left/right edges without drawing a line clear across
+ * the map.
  */
 export function splitAtWrap(line: [number, number][]): [number, number][][] {
   const parts: [number, number][][] = [];
   let current: [number, number][] = [];
   for (const pt of line) {
-    if (current.length > 0 && Math.abs(pt[0] - current[current.length - 1][0]) > 180) {
-      if (current.length > 1) parts.push(current);
-      current = [];
+    if (current.length > 0) {
+      const prev = current[current.length - 1];
+      const dlon = pt[0] - prev[0];
+      if (Math.abs(dlon) > 180) {
+        // Unwrap the endpoint to find where the segment meets the seam, then
+        // split: end this piece at the seam edge, start the next at the opposite
+        // edge (same latitude).
+        const ptUn = dlon > 180 ? pt[0] - 360 : pt[0] + 360;
+        const seam = ptUn > prev[0] ? 180 : -180;
+        const t = (seam - prev[0]) / (ptUn - prev[0]);
+        const latSeam = prev[1] + t * (pt[1] - prev[1]);
+        current.push([seam, latSeam]);
+        if (current.length > 1) parts.push(current);
+        current = [[-seam, latSeam], pt];
+        continue;
+      }
     }
     current.push(pt);
   }
