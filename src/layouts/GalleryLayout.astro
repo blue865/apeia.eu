@@ -66,7 +66,7 @@ const downloads: DownloadOption[][] = await Promise.all(
         <div class="hero-meta container-wide">
           <header class="gallery-header">
             <p class="meta">
-              <a href={`/${section}/gallery/`} class="back">← Astro gallery</a>
+              <a href={`/${section}/gallery`} class="back">← Astro gallery</a>
             </p>
             <h1>{title}</h1>
             {description && <p class="lede">{description}</p>}
@@ -89,7 +89,7 @@ const downloads: DownloadOption[][] = await Promise.all(
       <div class="header-row container-wide">
         <header class="gallery-header">
           <p class="meta">
-            <a href={`/${section}/gallery/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
+            <a href={`/${section}/gallery`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} gallery</a>
           </p>
           <h1>{title}</h1>
           {description && <p class="lede">{description}</p>}

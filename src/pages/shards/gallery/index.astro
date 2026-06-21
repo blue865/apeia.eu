@@ -15,7 +15,7 @@ const galleries = (await getCollection('shards-gallery', ({ data }) => !data.dra
   eyebrow="Shards · Gallery"
   heading="Image collections."
   lede="Loose visual notebooks — places, things, sometimes people. Captions where they help, silence where they don't."
-  crumb={{ label: 'Shards', href: '/shards/' }}
+  crumb={{ label: 'Shards', href: '/shards' }}
 >
   <section class="container-wide">
     {galleries.length === 0 ? (
@@ -28,7 +28,7 @@ const galleries = (await getCollection('shards-gallery', ({ data }) => !data.dra
           return (
             <li>
               <GalleryCard
-                href={`/shards/gallery/${slug}/`}
+                href={`/shards/gallery/${slug}`}
                 title={g.data.title}
                 date={g.data.date}
                 cover={cover}

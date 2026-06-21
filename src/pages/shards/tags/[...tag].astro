@@ -21,7 +21,7 @@ const { tag, entries } = Astro.props;
   eyebrow={`Shards · Tags · #${tag}`}
   heading={`Everything tagged #${tag}.`}
   lede={`${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}, newest first.`}
-  crumb={{ label: 'All Shards tags', href: '/shards/tags/' }}
+  crumb={{ label: 'All Shards tags', href: '/shards/tags' }}
 >
   <section class="container">
     <TagResultList section="shards" tag={tag} entries={entries} />

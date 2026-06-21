@@ -17,7 +17,10 @@ const {
 } = Astro.props;
 
 const fullTitle = title === 'apeia.eu' ? title : `${title} — apeia.eu`;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+// Drop the trailing slash (except on the root "/") so the canonical/og URLs
+// match the slash-free internal links generated across the site.
+const canonicalPath = Astro.url.pathname.replace(/(.+)\/$/, '$1');
+const canonical = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
 ---
 
 <!doctype html>

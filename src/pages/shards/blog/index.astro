@@ -14,7 +14,7 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
   eyebrow="Shards · Blog"
   heading="Writings."
   lede=""
-  crumb={{ label: 'Shards', href: '/shards/' }}
+  crumb={{ label: 'Shards', href: '/shards' }}
 >
   <section class="container">
     {posts.length === 0 ? (
@@ -23,7 +23,7 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
       <ul class="list">
         {posts.map((p) => (
           <PostCard
-            href={`/shards/blog/${p.id}/`}
+            href={`/shards/blog/${p.id}`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}

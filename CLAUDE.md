@@ -332,7 +332,7 @@ Every gallery image has a **stable URL space** that doesn't move across rebuilds
 For each image in each gallery, three layers of URL exist:
 
 ```
-/{section}/gallery/{gallery-slug}/{image-slug}/                                — per-image page
+/{section}/gallery/{gallery-slug}/{image-slug}                                 — per-image page
 /{section}/gallery/{gallery-slug}/{image-slug}/{image-slug}-{variant}.{ext}    — variant download
 ```
 
@@ -344,7 +344,7 @@ For each image in each gallery, three layers of URL exist:
 
 Concrete example for `src/content/astro-gallery/m104-sombrero/M104.jpg` (4096 × 2731):
 
-- Per-image page: `/astro/gallery/m104-sombrero/m104/`
+- Per-image page: `/astro/gallery/m104-sombrero/m104`
 - Original download: `/astro/gallery/m104-sombrero/m104/m104-original.jpg`
 - 4K download: `/astro/gallery/m104-sombrero/m104/m104-4k.jpg`
 - 2K download: `/astro/gallery/m104-sombrero/m104/m104-2k.jpg`

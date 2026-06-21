@@ -12,7 +12,7 @@ interface Props {
   size?: 'sm' | 'md';
 }
 const { tag, count, section, href, size = 'md' } = Astro.props;
-const target = href ?? `/${section}/tags/${tag}/`;
+const target = href ?? `/${section}/tags/${tag}`;
 ---
 
 <a class:list={['pill', `pill-${section}`, `size-${size}`]} href={target}>

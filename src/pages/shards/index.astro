@@ -33,7 +33,7 @@ const star = posts[0];
         The Synoptic Gospels of a Society in Search of Meaning - gardening section.
       </p>
       {star && (
-        <a class="star-link" href={`/shards/blog/${star.id}/`}>
+        <a class="star-link" href={`/shards/blog/${star.id}`}>
           <span class="bar" aria-hidden="true"></span>
           Latest: {star.data.title}
         </a>
@@ -42,23 +42,23 @@ const star = posts[0];
   </section>
 
   <nav class="container subnav" aria-label="Shards section">
-    <a href="/shards/blog/">Blog</a>
+    <a href="/shards/blog">Blog</a>
     <span aria-hidden="true">·</span>
-    <a href="/shards/gallery/">Gallery</a>
+    <a href="/shards/gallery">Gallery</a>
     <span aria-hidden="true">·</span>
-    <a href="/shards/tags/">Tags</a>
+    <a href="/shards/tags">Tags</a>
   </nav>
 
   {posts.length > 0 && (
     <section class="container block">
       <header class="block-head">
         <h2>Recent writings</h2>
-        <a href="/shards/blog/" class="see-all">All posts →</a>
+        <a href="/shards/blog" class="see-all">All posts →</a>
       </header>
       <ul class="post-list">
         {posts.slice(0, 5).map((p) => (
           <PostCard
-            href={`/shards/blog/${p.id}/`}
+            href={`/shards/blog/${p.id}`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}
@@ -73,7 +73,7 @@ const star = posts[0];
     <section class="container-wide block">
       <header class="block-head">
         <h2>Galleries</h2>
-        <a href="/shards/gallery/" class="see-all">All galleries →</a>
+        <a href="/shards/gallery" class="see-all">All galleries →</a>
       </header>
       <GalleryPager galleries={galleries} section="shards" />
     </section>

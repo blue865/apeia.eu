@@ -152,7 +152,7 @@ export function findBySlug(
 
 /** URL of the per-image page. */
 export function pageUrl(p: ImagePermalink): string {
-  return `/${p.section}/gallery/${p.gallerySlug}/${p.imageSlug}/`;
+  return `/${p.section}/gallery/${p.gallerySlug}/${p.imageSlug}`;
 }
 
 /** Filename portion of the variant URL — the `[file]` route param value. */
@@ -163,7 +163,7 @@ export function variantFile(p: ImagePermalink, variant: Variant): string {
 
 /** Full URL of a variant download. */
 export function variantUrl(p: ImagePermalink, variant: Variant): string {
-  return `${pageUrl(p)}${variantFile(p, variant)}`;
+  return `${pageUrl(p)}/${variantFile(p, variant)}`;
 }
 
 /** Suggested filename for the browser's `download` attribute. */

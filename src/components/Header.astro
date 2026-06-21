@@ -21,12 +21,12 @@ const isActive = (p: string) => path.startsWith(p);
     <nav aria-label="Primary">
       <ul class="nav">
         <li>
-          <a href="/astro/" class:list={['link link-astro', { active: isActive('/astro') }]}>
+          <a href="/astro" class:list={['link link-astro', { active: isActive('/astro') }]}>
             Astro
           </a>
         </li>
         <li>
-          <a href="/shards/" class:list={['link link-shards', { active: isActive('/shards') }]}>
+          <a href="/shards" class:list={['link link-shards', { active: isActive('/shards') }]}>
             Shards
           </a>
         </li>

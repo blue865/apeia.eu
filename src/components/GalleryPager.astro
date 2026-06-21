@@ -59,7 +59,7 @@ for (let i = 0; i < galleries.length && pages.length < MAX_PAGES; i += PER_PAGE)
           return (
             <li>
               <GalleryCard
-                href={`/${section}/gallery/${g.id}/`}
+                href={`/${section}/gallery/${g.id}`}
                 title={g.data.title}
                 date={g.data.date}
                 cover={cover}

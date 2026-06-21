@@ -61,7 +61,7 @@ export async function getTagsForSection(section: Section): Promise<Map<string, T
       title: p.data.title,
       date: p.data.date,
       summary: p.data.summary,
-      href: `/${section}/blog/${p.id}/`,
+      href: `/${section}/blog/${p.id}`,
     };
     for (const t of normalizeTags(p.data.tags)) push(t, entry);
   }
@@ -70,7 +70,7 @@ export async function getTagsForSection(section: Section): Promise<Map<string, T
   // /meta.yaml suffix, so g.id is just the gallery slug.
   for (const g of galleries) {
     const slug = g.id;
-    const galleryHref = `/${section}/gallery/${slug}/`;
+    const galleryHref = `/${section}/gallery/${slug}`;
     const galleryTags = normalizeTags(g.data.tags);
     const cover: ImageMetadata | undefined = g.data.cover ?? g.data.images?.[0]?.file;
 

@@ -18,7 +18,7 @@ const { title, date, summary, tags = [], topic, section } = Astro.props;
   <article class="post container">
     <header class="post-header">
       <p class="meta">
-        <a href={`/${section}/blog/`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} blog</a>
+        <a href={`/${section}/blog`} class="back">← {section === 'astro' ? 'Astro' : 'Shards'} blog</a>
       </p>
       {topic && <p class="topic">{topic}</p>}
       <h1>{title}</h1>

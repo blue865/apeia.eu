@@ -39,7 +39,7 @@ const starSlug = star?.id;
         Long exposures guarded by Gastonne, Gépardinne, Erwinne and the mighty Pedro - the little pail.
       </p>
       {starSlug && star && (
-        <a class="star-link" href={`/astro/gallery/${starSlug}/`}>
+        <a class="star-link" href={`/astro/gallery/${starSlug}`}>
           <span class="dot" aria-hidden="true"></span>
           Latest: {star.data.title}
         </a>
@@ -48,17 +48,17 @@ const starSlug = star?.id;
   </section>
 
   <nav class="container subnav" aria-label="Astro section">
-    <a href="/astro/blog/">Blog</a>
+    <a href="/astro/blog">Blog</a>
     <span aria-hidden="true">·</span>
-    <a href="/astro/gallery/">Gallery</a>
+    <a href="/astro/gallery">Gallery</a>
     <span aria-hidden="true">·</span>
-    <a href="/astro/tags/">Tags</a>
+    <a href="/astro/tags">Tags</a>
   </nav>
 
   <section class="container-wide block">
     <header class="block-head">
       <!-- <h2>The sky so far</h2> -->
-      <a href="/astro/gallery/" class="see-all">All captures →</a>
+      <a href="/astro/gallery" class="see-all">All captures →</a>
     </header>
     <SkyMap />
   </section>
@@ -67,7 +67,7 @@ const starSlug = star?.id;
     <section class="container-wide block">
       <header class="block-head">
         <h2>Recent galleries</h2>
-        <a href="/astro/gallery/" class="see-all">All galleries →</a>
+        <a href="/astro/gallery" class="see-all">All galleries →</a>
       </header>
       <GalleryPager galleries={galleries} section="astro" />
     </section>
@@ -77,12 +77,12 @@ const starSlug = star?.id;
     <section class="container block">
       <header class="block-head">
         <h2>Recent posts</h2>
-        <a href="/astro/blog/" class="see-all">All posts →</a>
+        <a href="/astro/blog" class="see-all">All posts →</a>
       </header>
       <ul class="post-list">
         {posts.slice(0, 5).map((p) => (
           <PostCard
-            href={`/astro/blog/${p.id}/`}
+            href={`/astro/blog/${p.id}`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}

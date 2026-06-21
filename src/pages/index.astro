@@ -33,7 +33,7 @@ function recentMix(
     ...posts.map((p) => ({
       title: p.data.title,
       date: p.data.date,
-      href: `/${section}/blog/${p.id}/`,
+      href: `/${section}/blog/${p.id}`,
       kind: 'post' as const,
     })),
     // Galleries date by their newest picture (images[].added, falling back
@@ -41,7 +41,7 @@ function recentMix(
     ...galleries.map((g) => ({
       title: g.data.title,
       date: galleryActivityDate(g),
-      href: `/${section}/gallery/${g.id}/`,
+      href: `/${section}/gallery/${g.id}`,
       kind: 'gallery' as const,
     })),
   ];
@@ -106,14 +106,14 @@ const bgCandidates = await getHomeBackgrounds();
   <section class="container-wide split">
     <div class="card astro">
       <OrbitalDecor variant="block" />
-      <a class="card-cover" href="/astro/" aria-label="Enter the Astro gallery"></a>
+      <a class="card-cover" href="/astro" aria-label="Enter the Astro gallery"></a>
       <span class="eyebrow">Astro</span>
       <h2>Looking up</h2>
-      <p>Long exposures guarded by <a class="names" href="/shards/tags/four-guardians/">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
+      <p>Long exposures guarded by <a class="names" href="/shards/tags/four-guardians">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
       <span class="more">Enter the gallery →</span>
     </div>
 
-    <a class="card shards" href="/shards/">
+    <a class="card shards" href="/shards">
       <ShardDecor variant="block" />
       <span class="eyebrow">Shards</span>
       <h2>Looking in</h2>

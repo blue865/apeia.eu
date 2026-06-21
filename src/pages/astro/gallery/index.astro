@@ -15,7 +15,7 @@ const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draf
   eyebrow="Astro · Gallery"
   heading="The gallery."
   lede="Collections, in reverse-chronological order. Click any cover for full-size images and capture notes."
-  crumb={{ label: 'Astro', href: '/astro/' }}
+  crumb={{ label: 'Astro', href: '/astro' }}
 >
   <section class="container-wide">
     {galleries.length === 0 ? (
@@ -28,7 +28,7 @@ const galleries = (await getCollection('astro-gallery', ({ data }) => !data.draf
           return (
             <li>
               <GalleryCard
-                href={`/astro/gallery/${slug}/`}
+                href={`/astro/gallery/${slug}`}
                 title={g.data.title}
                 date={g.data.date}
                 cover={cover}

@@ -13,7 +13,7 @@ const posts = (await getCollection('astro-posts', ({ data }) => !data.draft))
   section="astro"
   eyebrow="Astro · Blog"
   heading="Notes from the dark."
-  crumb={{ label: 'Astro', href: '/astro/' }}
+  crumb={{ label: 'Astro', href: '/astro' }}
 >
   <section class="container">
     {posts.length === 0 ? (
@@ -22,7 +22,7 @@ const posts = (await getCollection('astro-posts', ({ data }) => !data.draft))
       <ul class="list">
         {posts.map((p) => (
           <PostCard
-            href={`/astro/blog/${p.id}/`}
+            href={`/astro/blog/${p.id}`}
             title={p.data.title}
             date={p.data.date}
             summary={p.data.summary}
