@@ -7,7 +7,11 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://apeia.eu',
   output: 'static',
-  trailingSlash: 'always',
+  // 'ignore' (Astro's own default) lets a URL resolve with or without a
+  // trailing slash instead of forcing one. Pages are still emitted as
+  // `dir/index.html` (format: 'directory'), so `/astro/blog/post` and
+  // `/astro/blog/post/` both work; the host serves the index file either way.
+  trailingSlash: 'ignore',
   build: {
     format: 'directory',
   },

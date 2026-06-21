@@ -156,7 +156,7 @@ Values are free-form strings so authors can write whatever notation reads best (
 src/content/shards/posts/
   YYYY-MM-DD-slug.md
 ```
-Frontmatter: `title`, `date`, `summary`, `tags[]`, `topic` (philosophy | science | politics | personal | travel), `draft`
+Frontmatter: `title`, `date`, `summary`, `tags[]`, `topic` (philosophy | science | politics | shard | travel | IT — defaults to `shard`), `draft`, optional `cover` + `coverAlt`
 
 ### `shards-gallery`
 ```
@@ -470,7 +470,7 @@ Unparsable or missing positions fail silently (by design) — check the map afte
 - [x] Astro font combo — **Outfit** (display) + **DM Sans** (body)
 - [x] Shards font combo — **Newsreader** (display, opsz) + **Lora** (body)
 - [x] Brand wordmark — **Bricolage Grotesque** pinned across both sections via `--font-brand`
-- [ ] Astro star of the show — confirm hero image treatment and orbital/circular motif
-- [ ] Shards star of the show — confirm typographic anchor and shard/angular motif
-- [ ] Depth level — decide how far to push noise texture and glass effects (subtle vs. very subtle)
+- [x] Astro star of the show — hero photo (most recent gallery cover) + `OrbitalDecor` orbital/circular motif
+- [x] Shards star of the show — typographic anchor + `ShardDecor` angular/shard motif
+- [x] Depth level — settled on subtle: grain on heroes, barely-there glass on cards (`backdrop-filter`)
 - [ ] Deployment target

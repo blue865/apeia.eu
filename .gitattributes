@@ -1,0 +1,14 @@
+# Normalise line endings: store LF in the repo, check out LF everywhere.
+# Stops Windows checkouts from showing every file as modified (CRLF churn).
+* text=auto eol=lf
+
+# Binary assets — never touch.
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.svg   text eol=lf
+*.woff  binary
+*.woff2 binary

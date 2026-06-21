@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# backups / scratch
+*.bak
