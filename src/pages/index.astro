@@ -151,28 +151,33 @@ const bgCandidates = await getHomeBackgrounds();
   )}
 
   <section class="container-wide doorway-wrap">
-    <a class="doorway" href="/shards">
+    <div class="doorway">
       <ShardDecor variant="block" />
-      <div class="doorway-copy">
+      <a class="doorway-copy" href="/shards">
         <span class="eyebrow">Shards</span>
         <h2>Looking in</h2>
         <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section.</p>
         <span class="more">Read the writing →</span>
-      </div>
+      </a>
       {shardsRecent.length > 0 && (
-        <ul class="doorway-recent">
-          {shardsRecent.map((item) => (
-            <li>
-              <span class="d-date">{formatDate(item.date)}</span>
-              <span class="d-title">
-                {item.title}
-                {item.kind === 'gallery' && <span class="d-kind">gallery</span>}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="doorway-side">
+          <p class="recent-label">Latest</p>
+          <ul class="doorway-recent">
+            {shardsRecent.map((item) => (
+              <li>
+                <a href={item.href}>
+                  <span class="d-date">{formatDate(item.date)}</span>
+                  <span class="d-title">
+                    {item.title}
+                    {item.kind === 'gallery' && <span class="d-kind">gallery</span>}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
-    </a>
+    </div>
   </section>
 </Base>
 
@@ -287,9 +292,9 @@ const bgCandidates = await getHomeBackgrounds();
     overflow: hidden;
     display: grid;
     grid-template-columns: 1.3fr 1fr;
-    gap: var(--space-5);
-    align-items: center;
-    padding: var(--space-1) var(--space-5);
+    gap: var(--space-6);
+    align-items: start;
+    padding: var(--space-3) var(--space-5);
     color: var(--color-text);
     background: rgba(26, 29, 36, 0.55);
     backdrop-filter: blur(10px) saturate(115%);
@@ -310,49 +315,77 @@ const bgCandidates = await getHomeBackgrounds();
   }
   .doorway > * { position: relative; z-index: 1; }
 
-  .doorway .eyebrow {
-    display: inline-block;
+  /* Shared mono "chrome" label — the connective tissue that frames the
+     serif headline and titles. Used by the brand eyebrow and the Latest tag. */
+  .doorway .eyebrow,
+  .doorway .recent-label {
+    display: block;
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-accent-shards);
     margin: 0 0 var(--space-2);
+    line-height: 1;
   }
+  .doorway .eyebrow { color: var(--color-accent-shards); }
+  .doorway .recent-label { color: var(--color-text-muted); }
+
   .doorway h2 {
     font-family: var(--font-display-shards);
     font-size: var(--fs-lg);
+    font-weight: 400;
     margin: 0 0 var(--space-2);
-    line-height: 1.15;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
   .doorway-copy {
-    align-self: start;
+    display: block;
+    color: var(--color-text);
+    border-bottom: none;
   }
+  .doorway-copy:hover { border-bottom: none; }
   .doorway-copy p {
     color: rgba(226, 228, 234, var(--text-medium));
-    margin: 0 0 var(--space-3);
-    max-width: 44ch;
-  }
-  .doorway .more {
     font-size: var(--fs-sm);
+    line-height: 1.5;
+    margin: 0 0 var(--space-4);
+    max-width: 40ch;
+  }
+  /* CTA joins the mono chrome family so the copy is framed top and bottom
+     by the same voice. */
+  .doorway .more {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
     transition: color var(--t-fast);
   }
   .doorway:hover .more { color: var(--color-accent-shards); }
 
+  .doorway-side { min-width: 0; }
   .doorway-recent { list-style: none; padding: 0; margin: 0; }
   .doorway-recent li {
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+  .doorway-recent li:first-child { border-top: 1px solid var(--color-border-soft); }
+  .doorway-recent a {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.2em 0.7em;
+    gap: 0.15em 0.8em;
     padding: var(--space-2) 0;
-    border-bottom: 1px solid var(--color-border-soft);
+    color: var(--color-text);
+    border-bottom: none;
+    transition: color var(--t-fast);
   }
-  .doorway-recent .d-date { flex: none; }
-  .doorway-recent li:last-child { border-bottom: none; }
+  .doorway-recent a:hover { border-bottom: none; }
+  .doorway-recent a:hover .d-title { color: var(--color-accent-shards); }
+  /* Fixed date rail so the serif titles align into a tidy column. */
   .d-date {
+    flex: none;
+    min-width: 5.5em;
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
@@ -361,6 +394,8 @@ const bgCandidates = await getHomeBackgrounds();
     color: rgba(226, 228, 234, var(--text-body));
     font-family: var(--font-display-shards);
     font-size: var(--fs-sm);
+    line-height: 1.3;
+    transition: color var(--t-fast);
   }
   .d-kind {
     margin-left: var(--space-2);
