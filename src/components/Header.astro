@@ -4,17 +4,19 @@ interface Props {
 }
 const { section = 'home' } = Astro.props;
 const path = Astro.url.pathname;
-// The segmented switch shows where you are. The home page leans Astro by
-// design, so "/" highlights the Astro segment too — anywhere under /shards
-// flips it to Shards.
-const inShards = path.startsWith('/shards');
-const astroActive = !inShards;   // /, /astro/* → Astro
-const shardsActive = inShards;   // /shards/*   → Shards
+// The segmented switch shows which section you're actually in. On the home
+// page ("/") you're in neither, so both segments read as neutral — the switch
+// then invites a choice rather than claiming a location. The apeia.eu wordmark
+// is the home affordance.
+const astroActive = path.startsWith('/astro');   // /astro/*  → Astro
+const shardsActive = path.startsWith('/shards');  // /shards/* → Shards
+const atHome = !astroActive && !shardsActive;     // "/" and anything else
 ---
 
 <header class="header">
   <div class="container-wide inner">
-    <a class="brand" href="/" aria-label="apeia.eu — home">
+    <a class:list={['brand', { 'at-home': atHome }]} href="/" aria-label="apeia.eu — home"
+       aria-current={atHome ? 'page' : undefined}>
       <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
         <!-- Mark fuses both motifs: an orbital ring intersecting a faceted shard -->
         <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.85"/>
@@ -85,7 +87,13 @@ const shardsActive = inShards;   // /shards/*   → Shards
     width: 22px;
     height: 22px;
     color: var(--accent);
+    opacity: 0.85;
+    transition: opacity var(--t-fast);
   }
+  /* On the home page the wordmark is the current location — brighten its mark
+     so "you are here" reads without the switch claiming a section. */
+  .brand.at-home .mark { opacity: 1; }
+  .brand:hover .mark { opacity: 1; }
 
   .actions {
     display: flex;
