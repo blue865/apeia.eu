@@ -29,6 +29,12 @@ export default defineConfig({
     },
   },
   vite: {
+    // When building inside the Linux sandbox the project is reached over a
+    // Windows mount that can't unlink Vite's cache (EPERM). Redirecting the
+    // cache to a native tmp path avoids that. No-op for local runs: the env
+    // var is only set in the sandbox, so cacheDir falls back to Vite's default
+    // (node_modules/.vite).
+    cacheDir: process.env.CLAUDE_SANDBOX ? '/tmp/apeia-vite' : undefined,
     ssr: {
       noExternal: ['js-yaml'],
     },
