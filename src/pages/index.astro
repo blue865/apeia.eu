@@ -343,11 +343,14 @@ const bgCandidates = await getHomeBackgrounds();
   .doorway-recent { list-style: none; padding: 0; margin: 0; }
   .doorway-recent li {
     display: flex;
-    flex-direction: column;
-    gap: 0.15em;
-    padding: var(--space-3) 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2em 0.7em;
+    padding: var(--space-2) 0;
     border-bottom: 1px solid var(--color-border-soft);
   }
+  .doorway-recent .d-date { flex: none; }
   .doorway-recent li:last-child { border-bottom: none; }
   .d-date {
     color: var(--color-text-muted);
