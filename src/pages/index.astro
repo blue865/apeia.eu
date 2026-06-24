@@ -156,7 +156,7 @@ const bgCandidates = await getHomeBackgrounds();
       <div class="doorway-copy">
         <span class="eyebrow">Shards</span>
         <h2>Looking in</h2>
-        <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section. Philosophy, science, politics, travel and notes.</p>
+        <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section.</p>
         <span class="more">Read the writing →</span>
       </div>
       {shardsRecent.length > 0 && (
@@ -279,7 +279,7 @@ const bgCandidates = await getHomeBackgrounds();
   .post-list { list-style: none; padding: 0; margin: 0; }
 
   /* ---- Shards doorway (secondary, but clearly inviting) ---- */
-  .doorway-wrap { padding: var(--space-6) var(--space-5) var(--space-8); }
+  .doorway-wrap { padding: var(--space-2) var(--space-5) var(--space-4); }
   .doorway {
     --accent: var(--color-accent-shards);
     position: relative;
@@ -287,9 +287,9 @@ const bgCandidates = await getHomeBackgrounds();
     overflow: hidden;
     display: grid;
     grid-template-columns: 1.3fr 1fr;
-    gap: var(--space-6);
+    gap: var(--space-5);
     align-items: center;
-    padding: var(--space-6);
+    padding: var(--space-1) var(--space-5);
     color: var(--color-text);
     background: rgba(26, 29, 36, 0.55);
     backdrop-filter: blur(10px) saturate(115%);
@@ -317,17 +317,20 @@ const bgCandidates = await getHomeBackgrounds();
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-accent-shards);
-    margin: 0 0 var(--space-3);
+    margin: 0 0 var(--space-2);
   }
   .doorway h2 {
     font-family: var(--font-display-shards);
-    font-size: var(--fs-2xl);
-    margin: 0 0 var(--space-3);
-    line-height: 1.1;
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--space-2);
+    line-height: 1.15;
+  }
+  .doorway-copy {
+    align-self: start;
   }
   .doorway-copy p {
     color: rgba(226, 228, 234, var(--text-medium));
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-3);
     max-width: 44ch;
   }
   .doorway .more {
