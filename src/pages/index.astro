@@ -1,15 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import OrbitalDecor from '../components/OrbitalDecor.astro';
+import GalleryCard from '../components/GalleryCard.astro';
+import PostCard from '../components/PostCard.astro';
 import ShardDecor from '../components/ShardDecor.astro';
 import { formatDate } from '../lib/format.ts';
 import { getHomeBackgrounds } from '../lib/homeBackgrounds.ts';
-import { galleryActivityDate } from '../lib/galleryDates.ts';
+import { galleryActivityDate, byActivityDesc } from '../lib/galleryDates.ts';
 
-// Recent items per section are a *mix* of blog posts and galleries, sorted
-// by date together so the list reads as "what's been added lately" rather
-// than "what's been written lately".
+// The home now *defaults to the Astro room*: Astro takes the lead — a gallery
+// preview and recent posts — while Shards is reachable through a clear doorway
+// and the segmented section switch in the hero. Nothing is hidden; the page
+// just declares a primary side.
+
 type RecentItem = {
   title: string;
   date: Date;
@@ -17,13 +20,16 @@ type RecentItem = {
   kind: 'post' | 'gallery';
 };
 
-const RECENT_LIMIT = 5;
+const astroPosts = (await getCollection('astro-posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const astroGalleries = (await getCollection('astro-gallery', ({ data }) => !data.draft))
+  .sort(byActivityDesc);
 
-const astroPostsRaw = await getCollection('astro-posts', ({ data }) => !data.draft);
-const astroGalleriesRaw = await getCollection('astro-gallery', ({ data }) => !data.draft);
 const shardsPostsRaw = await getCollection('shards-posts', ({ data }) => !data.draft);
 const shardsGalleriesRaw = await getCollection('shards-gallery', ({ data }) => !data.draft);
 
+// Recent Shards items are a *mix* of posts and galleries, newest first — they
+// feed the doorway so the other room still surfaces fresh work.
 function recentMix(
   posts: { id: string; data: { title: string; date: Date } }[],
   galleries: { id: string; data: { title: string; date: Date; images?: { added?: Date }[] } }[],
@@ -36,8 +42,6 @@ function recentMix(
       href: `/${section}/blog/${p.id}`,
       kind: 'post' as const,
     })),
-    // Galleries date by their newest picture (images[].added, falling back
-    // to the gallery date) so adding a photo resurfaces the gallery here.
     ...galleries.map((g) => ({
       title: g.data.title,
       date: galleryActivityDate(g),
@@ -46,15 +50,21 @@ function recentMix(
     })),
   ];
   items.sort((a, b) => b.date.valueOf() - a.date.valueOf());
-  return items.slice(0, RECENT_LIMIT);
+  return items;
 }
 
-const astroRecent = recentMix(astroPostsRaw, astroGalleriesRaw, 'astro');
-const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards');
+const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards').slice(0, 4);
 
-// Every image tagged `home-page` (across both galleries) becomes a candidate
-// background. We embed the optimised URLs and pick one client-side on load,
-// so the choice is fresh each visit without a server.
+// Top Astro galleries become the visual lead, rendered as cover cards.
+const astroFeature = astroGalleries.slice(0, 3).map((g) => ({
+  href: `/astro/gallery/${g.id}`,
+  title: g.data.title,
+  date: galleryActivityDate(g),
+  cover: g.data.cover ?? g.data.images?.[0]?.file,
+  description: g.data.description,
+  count: g.data.images?.length,
+}));
+
 const bgCandidates = await getHomeBackgrounds();
 ---
 
@@ -72,21 +82,15 @@ const bgCandidates = await getHomeBackgrounds();
             const el = document.getElementById('page-bg');
             if (!el) return;
             const pick = picks[Math.floor(Math.random() * picks.length)];
-            // Apply image-derived accents immediately so any chrome that paints
-            // before the bg image finishes loading already uses the right tint.
             const root = document.documentElement;
             if (pick.a) root.style.setProperty('--color-accent-astro', pick.a);
             if (pick.s) root.style.setProperty('--color-accent-shards', pick.s);
-            // Preload, then swap in — avoids a flash before the image arrives.
             const img = new Image();
             img.onload = () => {
               el.style.backgroundImage = 'url("' + pick.src + '")';
               el.classList.add('is-loaded');
             };
-            img.onerror = () => {
-              // If the random pick fails, leave the deep-bg colour in place.
-              el.classList.add('is-loaded');
-            };
+            img.onerror = () => { el.classList.add('is-loaded'); };
             img.src = pick.src;
           } catch (_) { /* fail silent */ }
         })();
@@ -101,67 +105,88 @@ const bgCandidates = await getHomeBackgrounds();
       <span class="accent-astro">One looks up</span>;
       <span class="accent-shards">the other looks in</span>.
     </p>
+
+    <nav class="switch" aria-label="Choose a section">
+      <a href="/astro" class="seg seg-astro is-default" title="Astrophotography — the default room">
+        <span class="ic" aria-hidden="true">◐</span>
+        <span class="seg-label">Astro</span>
+        <span class="seg-hint">looking up</span>
+      </a>
+      <a href="/shards" class="seg seg-shards" title="Writing — philosophy, science, notes">
+        <span class="ic" aria-hidden="true">◇</span>
+        <span class="seg-label">Shards</span>
+        <span class="seg-hint">looking in</span>
+      </a>
+    </nav>
   </section>
 
-  <section class="container-wide split">
-    <div class="card astro">
-      <OrbitalDecor variant="block" />
-      <a class="card-cover" href="/astro" aria-label="Enter the Astro gallery"></a>
-      <span class="eyebrow">Astro</span>
-      <h2>Looking up</h2>
-      <p>Long exposures guarded by <a class="names" href="/shards/tags/four-guardians">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
-      <span class="more">Enter the gallery →</span>
-    </div>
-
-    <a class="card shards" href="/shards">
-      <ShardDecor variant="block" />
-      <span class="eyebrow">Shards</span>
-      <h2>Looking in</h2>
-      <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section.</p>
-      <span class="more">Read the writing →</span>
-    </a>
-  </section>
-
-  {(astroRecent.length > 0 || shardsRecent.length > 0) && (
-    <section class="container-wide recent">
-      {astroRecent.length > 0 && (
-        <div class="col">
-          <h3 class="col-title col-astro">Recent Astro</h3>
-          <ul>
-            {astroRecent.map((item) => (
-              <li>
-                <a href={item.href}>
-                  <span class="date">{formatDate(item.date)}</span>
-                  <span class="t">
-                    {item.title}
-                    {item.kind === 'gallery' && <span class="kind">gallery</span>}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {shardsRecent.length > 0 && (
-        <div class="col">
-          <h3 class="col-title col-shards">Recent Shards</h3>
-          <ul>
-            {shardsRecent.map((item) => (
-              <li>
-                <a href={item.href}>
-                  <span class="date">{formatDate(item.date)}</span>
-                  <span class="t">
-                    {item.title}
-                    {item.kind === 'gallery' && <span class="kind">gallery</span>}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+  {astroFeature.length > 0 && (
+    <section class="container-wide block astro-zone">
+      <header class="block-head">
+        <h2>Recent from the sky</h2>
+        <a href="/astro" class="see-all">Enter Astro →</a>
+      </header>
+      <ul class="gallery-grid">
+        {astroFeature.map((g) => (
+          <li>
+            <GalleryCard
+              href={g.href}
+              title={g.title}
+              date={g.date}
+              cover={g.cover}
+              description={g.description}
+              count={g.count}
+              section="astro"
+            />
+          </li>
+        ))}
+      </ul>
     </section>
   )}
+
+  {astroPosts.length > 0 && (
+    <section class="container block astro-zone">
+      <header class="block-head">
+        <h2>Latest notes from the garden</h2>
+        <a href="/astro/blog" class="see-all">All posts →</a>
+      </header>
+      <ul class="post-list">
+        {astroPosts.slice(0, 4).map((p) => (
+          <PostCard
+            href={`/astro/blog/${p.id}`}
+            title={p.data.title}
+            date={p.data.date}
+            summary={p.data.summary}
+          />
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="container-wide doorway-wrap">
+    <a class="doorway" href="/shards">
+      <ShardDecor variant="block" />
+      <div class="doorway-copy">
+        <span class="eyebrow">Shards</span>
+        <h2>The other room — looking in</h2>
+        <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section. Philosophy, science, politics, travel and notes.</p>
+        <span class="more">Read the writing →</span>
+      </div>
+      {shardsRecent.length > 0 && (
+        <ul class="doorway-recent">
+          {shardsRecent.map((item) => (
+            <li>
+              <span class="d-date">{formatDate(item.date)}</span>
+              <span class="d-title">
+                {item.title}
+                {item.kind === 'gallery' && <span class="d-kind">gallery</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </a>
+  </section>
 </Base>
 
 <style>
@@ -170,7 +195,6 @@ const bgCandidates = await getHomeBackgrounds();
     position: fixed;
     inset: 0;
     z-index: -2;
-    /* Cover preserves aspect ratio. May crop edges. */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -180,11 +204,6 @@ const bgCandidates = await getHomeBackgrounds();
   }
   .page-bg.is-loaded { opacity: 1; }
 
-  /* Veil — keeps content readable over any image, but lets the photo breathe.
-     Mostly clear at the top of the viewport (let the image speak), with a
-     darker floor at the bottom so the recent-posts list stays legible.
-     The cards on top already have their own frost; the veil doesn't need to
-     dim the whole image. */
   .page-bg-veil {
     position: fixed;
     inset: 0;
@@ -193,21 +212,17 @@ const bgCandidates = await getHomeBackgrounds();
     background:
       linear-gradient(180deg,
         rgba(17,19,24,0.10) 0%,
-        rgba(17,19,24,0.10) 35%,
-        rgba(17,19,24,0.55) 80%,
-        rgba(17,19,24,0.85) 100%);
+        rgba(17,19,24,0.10) 30%,
+        rgba(17,19,24,0.62) 72%,
+        rgba(17,19,24,0.92) 100%);
   }
-
-  /* When the random bg is active, drop the html-level radial accent gradient
-     so it doesn't fight with the photograph. */
   :global(html:has(#page-bg)) { background-image: none; }
 
+  /* ---- Hero ---- */
   .hero {
     position: relative;
     padding: var(--space-7) var(--space-5) var(--space-5);
     overflow: hidden;
-    /* Subtle text shadow so headline stays legible over a bright patch of sky
-       without us having to darken the whole image. */
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   }
   .kicker {
@@ -220,8 +235,6 @@ const bgCandidates = await getHomeBackgrounds();
     text-transform: uppercase;
   }
   .hero h1 {
-    /* Home page borrows the Astro display face for visual continuity with
-       the "looking up" half — it's also the heavier of the two displays. */
     font-family: var(--font-display-astro);
     font-size: var(--fs-xl);
     line-height: 1.15;
@@ -234,150 +247,166 @@ const bgCandidates = await getHomeBackgrounds();
     color: rgba(226, 228, 234, 0.82);
     font-size: var(--fs-sm);
     max-width: 56ch;
+    margin: 0 0 var(--space-5);
   }
   .accent-astro  { color: var(--color-accent-astro); }
   .accent-shards { color: var(--color-accent-shards); }
 
-  .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    margin: var(--space-7) auto;
-    padding: 0 var(--space-5);
+  /* ---- Section switch (the discoverable toggle) ---- */
+  .switch {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px;
+    background: rgba(17, 19, 24, 0.55);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    backdrop-filter: blur(10px) saturate(115%);
+    -webkit-backdrop-filter: blur(10px) saturate(115%);
+    text-shadow: none;
   }
-  .card {
+  .seg {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+    padding: 0.5em 1.1em;
+    border-radius: 999px;
+    border-bottom: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.08em;
+    transition: color var(--t-fast), background var(--t-fast);
+  }
+  .seg .ic { font-size: 1.05em; transform: translateY(0.08em); }
+  .seg-label { text-transform: uppercase; letter-spacing: 0.14em; }
+  .seg-hint { opacity: 0.6; font-size: 0.9em; }
+
+  /* Astro is the default — rendered active. */
+  .seg-astro.is-default {
+    color: var(--color-accent-astro);
+    background: rgba(93, 214, 200, 0.14);
+  }
+  .seg-astro:hover { color: var(--color-accent-astro); }
+  .seg-shards:hover { color: var(--color-accent-shards); background: rgba(232, 168, 124, 0.12); }
+
+  /* ---- Shared block scaffolding ---- */
+  .block { padding: var(--space-6) var(--space-5); }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    border-bottom: 1px solid var(--color-border-soft);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .block-head h2 { margin: 0; font-size: var(--fs-lg); font-family: var(--font-display-astro); }
+  .see-all {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .see-all:hover { color: var(--color-accent-astro); border-bottom-color: var(--color-accent-astro); }
+
+  /* Locally theme the Astro lead so child cards pick up the mint accent
+     without flipping the whole page's section binding. */
+  .astro-zone {
+    --accent: var(--color-accent-astro);
+    --accent-rgb: 93, 214, 200;
+    --accent-line: rgba(93, 214, 200, 0.35);
+  }
+
+  .gallery-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-5);
+  }
+  .post-list { list-style: none; padding: 0; margin: 0; }
+
+  /* ---- Shards doorway (secondary, but clearly inviting) ---- */
+  .doorway-wrap { padding: var(--space-6) var(--space-5) var(--space-8); }
+  .doorway {
+    --accent: var(--color-accent-shards);
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 280px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-6);
+    align-items: center;
     padding: var(--space-6);
-    /* Frosted surface so the cards read over any random photo behind */
-    background: rgba(26, 29, 36, 0.62);
+    color: var(--color-text);
+    background: rgba(26, 29, 36, 0.55);
     backdrop-filter: blur(10px) saturate(115%);
     -webkit-backdrop-filter: blur(10px) saturate(115%);
     border: 1px solid var(--color-border-soft);
-    color: var(--color-text);
-    border-bottom: 1px solid var(--color-border-soft);
-    transition: border-color 200ms ease, transform 200ms ease, background 200ms ease;
+    border-left: 2px solid var(--color-accent-shards);
+    clip-path: var(--motif-shards-cut);
+    border-radius: 0;
+    transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
   }
-  .card :global(svg) {
+  .doorway:hover { transform: translateY(-2px); background: rgba(232, 168, 124, 0.06); }
+  .doorway :global(svg) {
     position: absolute;
-    inset: -10% -20% auto auto;
-    width: 70%;
+    inset: -20% -10% auto auto;
+    width: 60%;
     z-index: 0;
-    opacity: 0.45;
-    transition: opacity 200ms ease, transform 400ms ease;
+    opacity: 0.4;
   }
-  .card:hover { transform: translateY(-2px); }
-  .card:hover :global(svg) { opacity: 0.7; transform: scale(1.05); }
-  .card > * { position: relative; z-index: 1; }
+  .doorway > * { position: relative; z-index: 1; }
 
-  /* The Astro card stays fully clickable to /astro/ via a stretched cover
-     link, while the guardians' names in the copy link out to their tag
-     independently (a link can't be nested inside the card's own link). */
-  /* NOTE: must be written as `.card > .card-cover` (not bare `.card-cover`) —
-     Astro's attribute scoping inflates `.card > *` to two attribute selectors,
-     which would otherwise out-specify this rule and flatten the cover back to
-     position: relative (zero size, unclickable). */
-  .card > .card-cover {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    border-bottom: none;
-  }
-  /* The copy sits above the cover so its inner link can be reached, but the
-     paragraph itself lets clicks fall through to the cover (→ /astro/).
-     Only the guardians link re-enables pointer events for itself. */
-  .card > p { z-index: 3; pointer-events: none; }
-  .names {
-    pointer-events: auto;
-    color: var(--color-accent-astro);
-    border-bottom: 1px solid transparent;
-    transition: border-color var(--t-fast);
-  }
-  .names:hover { border-bottom-color: var(--color-accent-astro); }
-
-  /* astro card — circular language */
-  .astro { border-radius: var(--radius-lg); }
-  .astro:hover     { border-color: var(--color-accent-astro); background: rgba(93, 214, 200, 0.05); }
-  .astro .eyebrow  { color: var(--color-accent-astro); }
-  .astro:hover .more { color: var(--color-accent-astro); }
-
-  /* shards card — angular / shard language */
-  .shards { clip-path: var(--motif-shards-cut); border-radius: 0; }
-  .shards:hover    { border-color: var(--color-accent-shards); background: rgba(232, 168, 124, 0.05); }
-  .shards .eyebrow { color: var(--color-accent-shards); }
-  .shards:hover .more { color: var(--color-accent-shards); }
-
-  .card .eyebrow {
+  .doorway .eyebrow {
     display: inline-block;
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--color-accent-shards);
     margin: 0 0 var(--space-3);
   }
-  .astro  h2 { font-family: var(--font-display-astro);  font-size: var(--fs-2xl); margin: 0 0 var(--space-3); letter-spacing: -0.02em; }
-  .shards h2 { font-family: var(--font-display-shards); font-size: var(--fs-2xl); margin: 0 0 var(--space-3); }
-  .card p {
+  .doorway h2 {
+    font-family: var(--font-display-shards);
+    font-size: var(--fs-2xl);
+    margin: 0 0 var(--space-3);
+    line-height: 1.1;
+  }
+  .doorway-copy p {
     color: rgba(226, 228, 234, var(--text-medium));
     margin: 0 0 var(--space-4);
-    max-width: 36ch;
+    max-width: 44ch;
   }
-  .more {
+  .doorway .more {
     font-size: var(--fs-sm);
     color: var(--color-text-muted);
     transition: color var(--t-fast);
   }
+  .doorway:hover .more { color: var(--color-accent-shards); }
 
-  /* ----- Recent posts grid (the part that was missing) ----- */
-  .recent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-7);
-    margin: var(--space-8) auto;
-    padding: 0 var(--space-5);
-  }
-  .col-title {
-    margin: 0 0 var(--space-2);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-border-soft);
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-  .col-astro  { color: var(--color-accent-astro); }
-  .col-shards { color: var(--color-accent-shards); }
-
-  .col ul { list-style: none; padding: 0; margin: 0; }
-  .col li { border-bottom: 1px solid var(--color-border-soft); }
-  .col li:last-child { border-bottom: none; }
-  .col a {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: var(--space-4);
+  .doorway-recent { list-style: none; padding: 0; margin: 0; }
+  .doorway-recent li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
     padding: var(--space-3) 0;
-    align-items: baseline;
-    color: var(--color-text);
-    border-bottom: none;
+    border-bottom: 1px solid var(--color-border-soft);
   }
-  .col .date {
+  .doorway-recent li:last-child { border-bottom: none; }
+  .d-date {
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
   }
-  .col .t { transition: color var(--t-fast); }
-  .col:nth-child(1) a:hover .t { color: var(--color-accent-astro); }
-  .col:nth-child(2) a:hover .t { color: var(--color-accent-shards); }
-
-  /* Subtle "gallery" tag after a title — same family as the date column,
-     a touch smaller so it reads as a postfix annotation rather than part
-     of the title. Posts get no badge (they're the implicit default). */
-  .col .kind {
+  .d-title {
+    color: rgba(226, 228, 234, var(--text-body));
+    font-family: var(--font-display-shards);
+    font-size: var(--fs-sm);
+  }
+  .d-kind {
     margin-left: var(--space-2);
     font-family: var(--font-mono);
     font-size: 0.7em;
@@ -389,7 +418,7 @@ const bgCandidates = await getHomeBackgrounds();
   }
 
   @media (max-width: 720px) {
-    .split  { grid-template-columns: 1fr; }
-    .recent { grid-template-columns: 1fr; gap: var(--space-6); }
+    .doorway { grid-template-columns: 1fr; gap: var(--space-5); }
+    .switch { flex-wrap: wrap; }
   }
 </style>
