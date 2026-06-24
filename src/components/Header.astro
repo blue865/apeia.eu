@@ -4,7 +4,12 @@ interface Props {
 }
 const { section = 'home' } = Astro.props;
 const path = Astro.url.pathname;
-const isActive = (p: string) => path.startsWith(p);
+// The segmented switch shows where you are. The home page leans Astro by
+// design, so "/" highlights the Astro segment too — anywhere under /shards
+// flips it to Shards.
+const inShards = path.startsWith('/shards');
+const astroActive = !inShards;   // /, /astro/* → Astro
+const shardsActive = inShards;   // /shards/*   → Shards
 ---
 
 <header class="header">
@@ -18,31 +23,30 @@ const isActive = (p: string) => path.startsWith(p);
       <span class="brand-text">apeia.eu</span>
     </a>
 
-    <nav aria-label="Primary">
-      <ul class="nav">
-        <li>
-          <a href="/astro" class:list={['link link-astro', { active: isActive('/astro') }]}>
-            Astro
-          </a>
-        </li>
-        <li>
-          <a href="/shards" class:list={['link link-shards', { active: isActive('/shards') }]}>
-            Shards
-          </a>
-        </li>
-        <li>
-          <a href="/rss.xml" class="link link-rss" aria-label="RSS feed">
-            <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 11a9 9 0 0 1 9 9" />
-              <path d="M4 4a16 16 0 0 1 16 16" />
-              <circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none" />
-            </svg>
-            <span>RSS</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="actions">
+      <nav class="switch" aria-label="Sections">
+        <a href="/astro" class:list={['seg seg-astro', { active: astroActive }]}
+           aria-current={astroActive ? 'true' : undefined}>
+          <span class="ic" aria-hidden="true">◐</span>
+          <span class="lbl">Astro</span>
+        </a>
+        <a href="/shards" class:list={['seg seg-shards', { active: shardsActive }]}
+           aria-current={shardsActive ? 'true' : undefined}>
+          <span class="ic" aria-hidden="true">◇</span>
+          <span class="lbl">Shards</span>
+        </a>
+      </nav>
+
+      <a href="/rss.xml" class="link link-rss" aria-label="RSS feed">
+        <svg class="rss-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none" />
+        </svg>
+        <span>RSS</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -83,38 +87,68 @@ const isActive = (p: string) => path.startsWith(p);
     color: var(--accent);
   }
 
-  .nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .actions {
     display: flex;
-    gap: var(--space-5);
+    align-items: center;
+    gap: var(--space-4);
   }
-  .link {
+
+  /* Segmented section switch — the discoverable Astro/Shards toggle. */
+  .switch {
+    display: inline-flex;
+    gap: 3px;
+    padding: 3px;
+    background: rgba(17, 19, 24, 0.5);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+  }
+  .seg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.35em 0.85em;
+    border-radius: 999px;
+    border-bottom: none;
     color: var(--color-text-muted);
-    font-size: var(--fs-sm);
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
-    transition: color var(--t-fast), border-color var(--t-fast);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color var(--t-fast), background var(--t-fast);
   }
-  .link:hover { color: rgba(226, 228, 234, var(--text-high)); }
-  .link.active { color: rgba(226, 228, 234, var(--text-high)); }
-  .link-astro.active  { border-bottom-color: var(--color-accent-astro);  }
-  .link-shards.active { border-bottom-color: var(--color-accent-shards); }
+  .seg:hover { border-bottom: none; }
+  .seg .ic { font-size: 1.05em; line-height: 1; }
+  .seg-astro:hover  { color: var(--color-accent-astro); }
+  .seg-shards:hover { color: var(--color-accent-shards); }
+
+  .seg-astro.active {
+    color: var(--color-accent-astro);
+    background: rgba(93, 214, 200, 0.14);
+  }
+  .seg-shards.active {
+    color: var(--color-accent-shards);
+    background: rgba(232, 168, 124, 0.14);
+  }
 
   .link-rss {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    border-bottom: none;
+    transition: color var(--t-fast);
   }
+  .link-rss:hover { color: rgba(226, 228, 234, var(--text-high)); border-bottom: none; }
   .rss-icon {
     width: 15px;
     height: 15px;
     display: block;
   }
 
-  @media (max-width: 480px) {
-    .nav { gap: var(--space-4); }
+  @media (max-width: 560px) {
+    .seg .lbl { display: none; }
+    .seg { padding: 0.4em 0.6em; }
     .brand-text { display: none; }
   }
 </style>

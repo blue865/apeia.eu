@@ -56,7 +56,7 @@ function recentMix(
 const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards').slice(0, 4);
 
 // Top Astro galleries become the visual lead, rendered as cover cards.
-const astroFeature = astroGalleries.slice(0, 3).map((g) => ({
+const astroFeature = astroGalleries.slice(0, 4).map((g) => ({
   href: `/astro/gallery/${g.id}`,
   title: g.data.title,
   date: galleryActivityDate(g),
@@ -105,19 +105,6 @@ const bgCandidates = await getHomeBackgrounds();
       <span class="accent-astro">One looks up</span>;
       <span class="accent-shards">the other looks in</span>.
     </p>
-
-    <nav class="switch" aria-label="Choose a section">
-      <a href="/astro" class="seg seg-astro is-default" title="Astrophotography — the default room">
-        <span class="ic" aria-hidden="true">◐</span>
-        <span class="seg-label">Astro</span>
-        <span class="seg-hint">looking up</span>
-      </a>
-      <a href="/shards" class="seg seg-shards" title="Writing — philosophy, science, notes">
-        <span class="ic" aria-hidden="true">◇</span>
-        <span class="seg-label">Shards</span>
-        <span class="seg-hint">looking in</span>
-      </a>
-    </nav>
   </section>
 
   {astroFeature.length > 0 && (
@@ -168,7 +155,7 @@ const bgCandidates = await getHomeBackgrounds();
       <ShardDecor variant="block" />
       <div class="doorway-copy">
         <span class="eyebrow">Shards</span>
-        <h2>The other room — looking in</h2>
+        <h2>Looking in</h2>
         <p>The Synoptic Gospels of a Society in Search of Meaning - gardening section. Philosophy, science, politics, travel and notes.</p>
         <span class="more">Read the writing →</span>
       </div>
@@ -251,43 +238,6 @@ const bgCandidates = await getHomeBackgrounds();
   }
   .accent-astro  { color: var(--color-accent-astro); }
   .accent-shards { color: var(--color-accent-shards); }
-
-  /* ---- Section switch (the discoverable toggle) ---- */
-  .switch {
-    display: inline-flex;
-    gap: 4px;
-    padding: 5px;
-    background: rgba(17, 19, 24, 0.55);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    backdrop-filter: blur(10px) saturate(115%);
-    -webkit-backdrop-filter: blur(10px) saturate(115%);
-    text-shadow: none;
-  }
-  .seg {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5em;
-    padding: 0.5em 1.1em;
-    border-radius: 999px;
-    border-bottom: none;
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    letter-spacing: 0.08em;
-    transition: color var(--t-fast), background var(--t-fast);
-  }
-  .seg .ic { font-size: 1.05em; transform: translateY(0.08em); }
-  .seg-label { text-transform: uppercase; letter-spacing: 0.14em; }
-  .seg-hint { opacity: 0.6; font-size: 0.9em; }
-
-  /* Astro is the default — rendered active. */
-  .seg-astro.is-default {
-    color: var(--color-accent-astro);
-    background: rgba(93, 214, 200, 0.14);
-  }
-  .seg-astro:hover { color: var(--color-accent-astro); }
-  .seg-shards:hover { color: var(--color-accent-shards); background: rgba(232, 168, 124, 0.12); }
 
   /* ---- Shared block scaffolding ---- */
   .block { padding: var(--space-6) var(--space-5); }
@@ -419,6 +369,5 @@ const bgCandidates = await getHomeBackgrounds();
 
   @media (max-width: 720px) {
     .doorway { grid-template-columns: 1fr; gap: var(--space-5); }
-    .switch { flex-wrap: wrap; }
   }
 </style>
