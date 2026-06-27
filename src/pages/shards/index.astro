@@ -41,19 +41,18 @@ const star = posts[0];
     </div>
   </section>
 
-  <nav class="container subnav" aria-label="Shards section">
-    <a href="/shards/blog">Blog</a>
-    <span aria-hidden="true">·</span>
-    <a href="/shards/gallery">Gallery</a>
-    <span aria-hidden="true">·</span>
-    <a href="/shards/tags">Tags</a>
+  <nav class="container-wide subnav" aria-label="Shards section">
+    <a href="/shards/blog" class="see-all">All posts →</a>
+    <span class="subnav-right">
+      <a href="/shards/gallery" class="see-all">Gallery</a>
+      <a href="/shards/tags" class="see-all">Tags</a>
+    </span>
   </nav>
 
   {posts.length > 0 && (
-    <section class="container block">
+    <section class="container-wide block">
       <header class="block-head">
         <h2>Recent writings</h2>
-        <a href="/shards/blog" class="see-all">All posts →</a>
       </header>
       <ul class="post-list">
         {posts.slice(0, 5).map((p) => (
@@ -129,19 +128,6 @@ const star = posts[0];
     transform: skewX(-30deg);
   }
 
-  .subnav {
-    padding: var(--space-5) var(--space-5) 0;
-    display: flex;
-    gap: var(--space-3);
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-  }
-  .subnav a { color: var(--color-text-muted); }
-  .subnav a:hover { color: var(--accent); }
-
   .block { padding: var(--space-6) var(--space-5); }
   .block-head {
     display: flex;
@@ -152,6 +138,17 @@ const star = posts[0];
     margin-bottom: var(--space-5);
   }
   .block-head h2 { margin: 0; font-size: var(--fs-lg); }
+  .subnav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-5) 0;
+  }
+  .subnav-right {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
   .see-all {
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
