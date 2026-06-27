@@ -4,7 +4,7 @@ date: 2026-06-21
 summary: A Shard on Sanity
 topic: shard
 tags: []
-draft: false
+draft: true
 ---
 * Our believes can be thought of as propabilities
 
@@ -16,9 +16,11 @@ draft: false
 * One has some hypothesis, and evidence (belief)
 Then P(Hypothesis/given that evidence is true) ~ P(H|E) - conditional probalitiy
 
-P{rior}(H) - prior probality that andy is an librarian (say only librarians can fit the description)
-* P{osterior}(H|E) = (P{rior}(H)*P(E|H))  / (P{rior}(H)*P(E|H) + (P{rior}(!H)*P(E|!H))) = (P{rior}(H)*P(E|H))  / P(total E)
+P\{rior\}(H) - prior probality that andy is an librarian (say only librarians can fit the description)
+* P\{osterior\}(H|E) = (P\{rior\}(H)*P(E|H))  / (P\{rior\}(H)*P(E|H) + (P\{rior\}(!H)*P(E|!H))) = (P\{rior\}(H)*P(E|H))  / P(total E)
 
 The better way to understand it is to draw a geometric (normalized) shape of all propabilities with propabilities of 
 hyphotesis is true as a subset of that shape (propability is the area of that subset) - evidence restricts
-that space. 
+that space.
+
+Beyesians focus on modeling uncertainty as propability. Can include even uncertainities about the model itself or its parameters.
