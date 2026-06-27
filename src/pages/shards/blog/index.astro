@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import SectionLayout from '../../../layouts/SectionLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
+import ShardDecor from '../../../components/ShardDecor.astro';
 
 const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -16,6 +17,10 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
   lede=""
   crumb={{ label: 'Shards', href: '/shards' }}
 >
+  <div class="page-decor" aria-hidden="true">
+    <ShardDecor variant="hero" />
+  </div>
+
   <section class="container">
     {posts.length === 0 ? (
       <p class="empty">No posts yet.</p>
@@ -38,4 +43,21 @@ const posts = (await getCollection('shards-posts', ({ data }) => !data.draft))
 <style>
   .list { list-style: none; padding: 0; margin: 0; }
   .empty { color: var(--color-text-muted); padding: var(--space-7) 0; }
+
+  /* Shards crystalline facets as a fixed page background — echoes the shard
+     graphics on the home page's Shards card. Decorative, behind all content. */
+  .page-decor {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .page-decor :global(.shard) {
+    position: absolute;
+    inset: -10% auto auto -12%;
+    width: min(760px, 88vw);
+    height: min(760px, 88vw);
+    opacity: 0.42;
+  }
 </style>
