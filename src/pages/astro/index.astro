@@ -47,18 +47,13 @@ const starSlug = star?.id;
     </div>
   </section>
 
-  <nav class="container subnav" aria-label="Astro section">
-    <a href="/astro/blog">Blog</a>
-    <span aria-hidden="true">·</span>
-    <a href="/astro/gallery">Gallery</a>
-    <span aria-hidden="true">·</span>
-    <a href="/astro/tags">Tags</a>
-  </nav>
-
   <section class="container-wide block">
     <header class="block-head">
-      <!-- <h2>The sky so far</h2> -->
       <a href="/astro/gallery" class="see-all">All captures →</a>
+      <nav class="head-nav" aria-label="Astro section">
+        <a href="/astro/blog" class="see-all">Blog</a>
+        <a href="/astro/tags" class="see-all">Tags</a>
+      </nav>
     </header>
     <SkyMap />
   </section>
@@ -161,19 +156,6 @@ const starSlug = star?.id;
     box-shadow: 0 0 8px var(--accent);
   }
 
-  .subnav {
-    padding: var(--space-5) var(--space-5) 0;
-    display: flex;
-    gap: var(--space-3);
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-  }
-  .subnav a { color: var(--color-text-muted); }
-  .subnav a:hover { color: var(--accent); }
-
   .block { padding: var(--space-6) var(--space-5); }
   .block-head {
     display: flex;
@@ -184,6 +166,11 @@ const starSlug = star?.id;
     margin-bottom: var(--space-5);
   }
   .block-head h2 { margin: 0; font-size: var(--fs-lg); }
+  .head-nav {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
   .see-all {
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
