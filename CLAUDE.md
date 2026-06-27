@@ -165,6 +165,7 @@ src/content/shards/gallery/
     meta.yaml       # title, date, description, tags[]
     *.jpg / *.webp
 ```
+Images may carry an optional **`location:`** block (and/or `geolocate: true`) for the location maps — see the [Location Maps](#location-maps-shards-only) section. The `astro-gallery` schema does not accept location data.
 
 ---
 
@@ -191,6 +192,7 @@ src/content/shards/gallery/
 | `/shards/gallery/[slug]/[image]/[file]` | Per-image **variant download** endpoint |
 | `/shards/tags` | Tag browser for Shards section |
 | `/shards/tags/[tag]` | All Shards artefacts (posts + galleries + images) with that tag |
+| `/shards/map` | Global location map — one dot per located Shards gallery (provisional placement) |
 
 ---
 
@@ -454,6 +456,75 @@ Unparsable or missing positions fail silently (by design) — check the map afte
 
 ---
 
+## Location Maps (Shards only)
+
+A **Shards-only** feature that plots where photographs were taken on a static, build-time SVG world map — the geographic twin of the Sky Map. Same philosophy: zero client-side JS, markers as plain SVG `<a>` links, tooltips via SVG `<title>`, fullscreen via the pure-CSS `:target` overlay. The `astro-gallery` schema does **not** accept location data; this keeps backyard astrophotography coordinates from ever being published.
+
+Two surfaces:
+
+- **Per-gallery map** — appears on a Shards gallery page when any image in it carries a location. One dot per located image, **auto-fitted** to the bounding box of that gallery's points (a trip zooms to its own region, not the whole world).
+- **Global map** — a standalone page at `/shards/map` collecting every located Shards gallery. **One dot per gallery** (not per image), so dense trips don't blob; the dot links to the gallery page and sits at the gallery's mean point. Shows the meaningful world extent of all travels (no auto-fit). Route placement is provisional — it lives on its own page for now and may later fold into the `/shards` index or nav; because collection lives in a lib, moving it is trivial.
+
+### Authoring locations
+
+Location is **opt-in per image** (never inherited from gallery-level the way tags are). Add a `location:` block to images in a `shards-gallery` `meta.yaml`:
+
+```yaml
+images:
+  - file: ./alfama-rooftops.jpg
+    caption: Rooftops at golden hour
+    location:
+      lat: 38.7139
+      lon: -9.1334
+      place: "Alfama, Lisbon"   # optional tooltip label; falls back to caption, then coords
+  - file: ./tram-28.jpg
+    caption: Tram 28 climbing
+    geolocate: true             # no coords given → extract from the file's EXIF GPS at build time
+```
+
+**Source precedence** for an image's coordinates:
+
+1. Explicit `location.lat` / `location.lon` — always wins.
+2. Else if `geolocate: true` — read EXIF GPS from the original file at build time (e.g. via `exifr` over the `fsPath` already tracked in the permalink registry).
+3. Else — the image has no point and is omitted from both maps.
+
+### EXIF extraction caveats
+
+Phone travel photos almost always carry GPS, so `geolocate: true` mostly just works. But heavily processed/exported images often have EXIF stripped, and `webp` frequently loses it. When `geolocate: true` is set but no GPS is found, **emit a build-time warning** (e.g. `tram-28.jpg marked geolocate but no GPS found`) — unlike the Sky Map's silent-fail convention, a missing dot here should be noisy so it isn't overlooked.
+
+### Map conventions
+
+- Equirectangular projection sharing `skymap.ts`'s machinery; polylines densified before projection so a curved projection stays a one-function swap. Reuse the existing ±180° seam splitting for both rendering and the auto-fit bounding-box calc (a trip crossing the date line must not wrap the wrong way).
+- **Auto-fit (per-gallery)**: compute the lon/lat extent of the gallery's points and set the SVG `viewBox` to that region plus padding. A gallery with a **single** located image has no extent — fall back to a default span of **≈5 km** centred on that point.
+- Coastline/border base reduced to compact build-time-only JSON, mirroring the `src/data/skymap/` approach. Captured-location dots are the only accent colour on the chart.
+- Label placement collision-avoiding at build time, same approach as the Sky Map.
+
+### Data sources
+
+Base geometry comes from **Natural Earth** (public domain) — the cartographic counterpart to d3-celestial on the Sky Map. Easiest path is the **`world-atlas`** npm package (Bostock's pre-built TopoJSON derived from Natural Earth, also public domain), run once through `topojson` / `d3-geo` at build time to extract polylines, simplify, and reduce to `src/data/geomap/*.json`.
+
+Resolution tiers: **110m** (small, world/continent scale) and **50m** (regional/island scale — needed because small islands like the Canaries don't exist at 110m) are both shipped. `GeoMapSvg.astro` picks per render: 110m when the fitted box spans > 30°, else 50m. (**10m** exists in `world-atlas` if ever needed; not shipped.) Geometry is clipped to the frame, so even the 50m world file only contributes the few nearby polylines to any one map.
+
+**Scale caveat for the 5 km single-point fallback**: no Natural Earth tier carries street/shoreline detail at city scale, so a lone-photo map renders as a dot on a near-blank field. True street-level context only exists in tiled providers (OSM), which is the JS/tile dependency we ruled out. The static maps work well from world scale down to roughly regional/island scale; at extreme single-point zoom they show position-in-the-abstract, not a recognizable place. If that becomes a problem, the fix is a graticule/grid backdrop at high zoom, or a wider default span (≈50–100 km) so some coastline/border usually falls in frame.
+
+Place-name **geocoding** is out of scope (we use manual coords + EXIF). If ever added, the build-time source would be Nominatim/OSM.
+
+### Files (as built)
+
+| File | Role |
+|---|---|
+| `src/lib/geomap.ts` | Coordinate parsing, equirectangular projection (Earth orientation), auto-fit bbox with antimeridian framing + single-point ≈5 km span, `heightForBox` (cos-lat undistorted), polyline clipping, graticule, `niceStep`. Reuses `splitAtWrap`/`densify` from `skymap.ts`. |
+| `src/lib/locations.ts` | Build-time collection: walks `shards-gallery` `meta.yaml`, resolves coords (manual → EXIF via `exifr`), memoised; emits per-gallery point sets (`getGalleryPoints`) and one-mean-per-gallery (`getAllGalleryLocations`); owns the noisy missing-GPS warning. |
+| `src/components/GeoMapSvg.astro` | The chart itself: coastline + borders + graticule + accent markers; picks 110m vs 50m geometry by zoom; `interactive` flag for the overlay copy. |
+| `src/components/GeoMap.astro` | In-flow figure + fullscreen pill + `:target` overlay (per-gallery + global variants); unique `id` per map. |
+| `src/data/geomap/{coastline,borders}-{110m,50m}.json` | Reduced Natural Earth geometry — `[lon,lat][]` polylines. |
+| `scripts/build-geomap.mjs` | One-time generator for the JSON above (devDeps `world-atlas` + `topojson-client`). |
+| `src/pages/shards/map.astro` | Standalone global map page, linked from the `/shards` subnav. |
+
+The per-gallery map renders conditionally in `GalleryLayout.astro` (via a `locationPoints` prop passed from the shards gallery route) — present only when the gallery has ≥1 located image, the same way the astro `object` card hides when absent. `exifr` is a runtime dependency (EXIF read happens during `astro build`).
+
+---
+
 ## Out of Scope (for now)
 
 - Comments, likes, or any social features
@@ -473,4 +544,6 @@ Unparsable or missing positions fail silently (by design) — check the map afte
 - [x] Astro star of the show — hero photo (most recent gallery cover) + `OrbitalDecor` orbital/circular motif
 - [x] Shards star of the show — typographic anchor + `ShardDecor` angular/shard motif
 - [x] Depth level — settled on subtle: grain on heroes, barely-there glass on cards (`backdrop-filter`)
+- [x] Location Maps — **Shards only**; per-gallery map (auto-fit, point per image, no route line) + global map at `/shards/map` (one dot per gallery); manual coords with EXIF fallback via `geolocate: true`; noisy warning on missing GPS; 5 km default span for single-point galleries
+- [ ] Location Maps — final home for the global map (standalone `/shards/map` for now)
 - [ ] Deployment target

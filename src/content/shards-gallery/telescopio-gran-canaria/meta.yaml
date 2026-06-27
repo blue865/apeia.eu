@@ -6,41 +6,57 @@ cover: ./PXL_20241027_115742023.MP.jpg
 tags: [la-palma, roque-de-los-muchachos, gtc, gran-telescopio-canarias, telescope, astronomy, pilgrimage]
 images:
   - file: ./PXL_20241027_092941406.MP.jpg
+    geolocate: true
     caption: Arrival in the cloud
 
   - file: ./PXL_20241027_114229777.jpg
+    geolocate: true
     caption: A little Alt-Az Mount with a friend :)
 
   - file: ./PXL_20241027_114332768.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_114422118.jpg
+    geolocate: true
     caption: The secondary mirror
 
   - file: ./PXL_20241027_114615842.jpg
+    geolocate: true
     caption: Instrument selection mirror
 
   - file: ./PXL_20241027_114620806.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_114802441.jpg
+    geolocate: true
     caption: Dirty little mirrors
 
   - file: ./PXL_20241027_114810661.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_114827566.MP.jpg
+    geolocate: true
     caption: The secondary mirror
 
   - file: ./PXL_20241027_114833541.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_115431250.MP.jpg
+    geolocate: true
     caption: Another view at the secondary mirror assembly.
 
   - file: ./PXL_20241027_115742023.MP.jpg
+    geolocate: true
     caption: The primary mirror back side
 
   - file: ./PXL_20241027_120048186.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_120252354.MP.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_122240363.jpg
+    geolocate: true
 
   - file: ./PXL_20241027_124738746.jpg
+    geolocate: true

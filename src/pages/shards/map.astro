@@ -1,0 +1,99 @@
+---
+/**
+ * /shards/map — the global location map. One dot per located Shards gallery
+ * (the gallery's mean point), so dense trips don't blob. Standalone for now;
+ * placement is provisional (see CLAUDE.md). Empty-safe.
+ */
+import Base from '../../layouts/Base.astro';
+import GeoMap from '../../components/GeoMap.astro';
+import { getAllGalleryLocations } from '../../lib/locations.ts';
+
+const galleries = await getAllGalleryLocations();
+const points = galleries.map((g) => ({
+  lat: g.lat,
+  lon: g.lon,
+  label: g.title,
+  href: g.href,
+  count: g.count,
+}));
+---
+
+<Base
+  title="Map"
+  description="Where the Shards photographs were taken — a map of travels across apeia.eu."
+  section="shards"
+>
+  <section class="container-wide head">
+    <p class="eyebrow">Shards</p>
+    <h1>Where I've wandered</h1>
+    <p class="lede">
+      One dot per gallery, placed at the mean of its located photos. Follow a dot
+      to its gallery.
+    </p>
+    <nav class="subnav" aria-label="Shards section">
+      <a href="/shards" class="see-all">← Shards</a>
+      <a href="/shards/gallery" class="see-all">Gallery</a>
+    </nav>
+  </section>
+
+  <section class="container-wide block">
+    {points.length > 0 ? (
+      <GeoMap
+        points={points}
+        variant="global"
+        id="global-map"
+        caption={`${points.length} located ${points.length === 1 ? 'gallery' : 'galleries'}`}
+      />
+    ) : (
+      <p class="empty">No located galleries yet. Add a <code>location:</code> block or
+      <code>geolocate: true</code> to images in a Shards gallery to put them on the map.</p>
+    )}
+  </section>
+</Base>
+
+<style>
+  .head { padding: var(--space-7) var(--space-5) var(--space-4); }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-3);
+  }
+  h1 {
+    font-family: var(--font-display-shards);
+    font-weight: 400;
+    font-size: var(--fs-2xl);
+    margin: 0 0 var(--space-3);
+    font-variation-settings: "opsz" 48;
+  }
+  .lede {
+    color: rgba(226, 228, 234, var(--text-medium));
+    font-size: var(--fs-md);
+    max-width: 60ch;
+    margin: 0 0 var(--space-4);
+  }
+  .subnav { display: flex; gap: var(--space-4); align-items: baseline; }
+  .see-all {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .block { padding: 0 var(--space-5) var(--space-7); }
+  .empty {
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    border: 1px solid var(--color-border-soft);
+    border-radius: 4px;
+    padding: var(--space-5);
+  }
+  .empty code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+</style>

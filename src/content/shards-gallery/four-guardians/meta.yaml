@@ -11,18 +11,22 @@ images:
     alt: Gastonne
     caption: Gastonne
     tags: [gastonne]
+    geolocate: true
   - file: ./gepardinne.jpg 
     alt: Gépardinne
     caption: Gépardinne
     tags: [gepardinne]
+    geolocate: true
   - file: ./erwinne.jpg
     alt: Erwinne
     caption: Erwinne
     tags: [erwinne]
+    geolocate: true
   - file: ./pedro.jpg 
     alt: Pedro
     caption: Pedro the Little Pail
     tags: [pedro]
+    geolocate: true
   - file: ./zofka-la-palma.jpg
     alt: Soffie
     caption: A bonus guardian, Soffie, guarding the Gran Telescopio Canarias.

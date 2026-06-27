@@ -48,9 +48,46 @@ const shardsPosts = defineCollection({
     }),
 });
 
-/** Gallery — one entry per <slug>/meta.yaml. Id is normalised to just <slug>. */
-const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
-  z.object({
+/** Opt-in geographic location for a Shards gallery image (never inherited).
+ *  Either explicit coords win, or `geolocate: true` pulls them from EXIF at
+ *  build time. The astro-gallery schema deliberately omits this block so
+ *  backyard astrophotography coordinates can never be published. */
+const locationSchema = z
+  .object({
+    lat: z.number().min(-90).max(90),
+    lon: z.number().min(-180).max(180),
+    place: z.string().optional(),
+  })
+  .optional();
+
+/** Gallery — one entry per <slug>/meta.yaml. Id is normalised to just <slug>.
+ *  `withLocation` adds the per-image `location`/`geolocate` fields (Shards only). */
+const gallerySchema = (
+  { image }: { image: SchemaContext['image'] },
+  { withLocation = false }: { withLocation?: boolean } = {},
+) => {
+  const imageObject = z.object({
+    file: image(),
+    alt: z.string().optional(),
+    caption: z.string().optional(),
+    /** Optional multiline prose. Use YAML's `|` literal block style
+     *  so line breaks survive into the rendered output. */
+    notes: z.string().optional(),
+    /** Optional date the picture was added to the gallery. Used to
+     *  order galleries by their newest picture ("activity"); when
+     *  absent, the gallery's own `date` stands in for the image. */
+    added: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    ...(withLocation
+      ? {
+          location: locationSchema,
+          /** When true and no explicit `location`, read EXIF GPS at build. */
+          geolocate: z.boolean().optional(),
+        }
+      : {}),
+  });
+
+  return z.object({
     title: z.string(),
     /** Short label — the first whitespace-delimited token of the title. */
     name: z.string().optional(),
@@ -59,24 +96,9 @@ const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
     cover: image().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-    images: z
-      .array(
-        z.object({
-          file: image(),
-          alt: z.string().optional(),
-          caption: z.string().optional(),
-          /** Optional multiline prose. Use YAML's `|` literal block style
-           *  so line breaks survive into the rendered output. */
-          notes: z.string().optional(),
-          /** Optional date the picture was added to the gallery. Used to
-           *  order galleries by their newest picture ("activity"); when
-           *  absent, the gallery's own `date` stands in for the image. */
-          added: z.coerce.date().optional(),
-          tags: z.array(z.string()).default([]),
-        }),
-      )
-      .min(1),
+    images: z.array(imageObject).min(1),
   });
+};
 
 /** Optional astronomical metadata for an Astro gallery's subject.
  *  Every field is a free-form string so authors can write whatever notation
@@ -110,7 +132,7 @@ const shardsGallery = defineCollection({
     base: './src/content/shards-gallery',
     generateId: ({ entry }) => entry.replace(/\/meta\.yaml$/, ''),
   }),
-  schema: ({ image }) => gallerySchema({ image }),
+  schema: ({ image }) => gallerySchema({ image }, { withLocation: true }),
 });
 
 export const collections = {

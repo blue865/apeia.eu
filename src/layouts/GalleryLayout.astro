@@ -7,6 +7,8 @@ import { formatDateLong } from '../lib/format.ts';
 import { normalizeTags } from '../lib/tags.ts';
 import { buildDownloadOptions, type DownloadOption, type GalleryCollection } from '../lib/galleryDownloads.ts';
 import { findByIndex, pageUrl } from '../lib/imagePermalinks.ts';
+import GeoMap from '../components/GeoMap.astro';
+import type { GeoMarker } from '../components/GeoMapSvg.astro';
 
 interface Props {
   title: string;
@@ -19,6 +21,8 @@ interface Props {
   slug: string;
   /** Optional astronomical metadata; only meaningful for the Astro section. */
   objectInfo?: ObjectInfoData;
+  /** Located photos for the per-gallery map; Shards only, empty = no map. */
+  locationPoints?: GeoMarker[];
   images: Array<{
     file: ImageMetadata;
     alt?: string;
@@ -28,7 +32,8 @@ interface Props {
     tags?: string[];
   }>;
 }
-const { title, date, description, tags = [], cover, section, slug, objectInfo, images } = Astro.props;
+const { title, date, description, tags = [], cover, section, slug, objectInfo, locationPoints = [], images } = Astro.props;
+const showMap = section === 'shards' && locationPoints.length > 0;
 const galleryTags = normalizeTags(tags);
 const heroImage = cover ?? images[0]?.file;
 
@@ -216,6 +221,21 @@ const downloads: DownloadOption[][] = await Promise.all(
         );
       })}
     </div>
+
+    {showMap && (
+      <section class="container-wide map-block">
+        <header class="map-head">
+          <h2>Where these were taken</h2>
+          <a href="/shards/map" class="see-all">Global map →</a>
+        </header>
+        <GeoMap
+          points={locationPoints}
+          variant="gallery"
+          id={`map-${slug}`}
+          caption={`${locationPoints.length} located ${locationPoints.length === 1 ? 'photo' : 'photos'}`}
+        />
+      </section>
+    )}
 
     {galleryTags.length > 0 && (
       <footer class="container tags">
@@ -605,6 +625,24 @@ const downloads: DownloadOption[][] = await Promise.all(
     .dl summary .dl-label { display: none; }
     .dl summary { padding: 0.5em; }
   }
+
+  .map-block { margin: var(--space-7) auto; }
+  .map-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-soft);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .map-head h2 { margin: 0; font-size: var(--fs-lg); }
+  .map-head .see-all {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+    border-bottom: 1px solid transparent;
+  }
+  .map-head .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   .tags {
     margin-top: var(--space-6);
