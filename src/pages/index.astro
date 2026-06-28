@@ -1,8 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import GalleryCard from '../components/GalleryCard.astro';
-import PostCard from '../components/PostCard.astro';
+import OrbitalDecor from '../components/OrbitalDecor.astro';
 import ShardDecor from '../components/ShardDecor.astro';
 import { formatDate } from '../lib/format.ts';
 import { getHomeBackgrounds } from '../lib/homeBackgrounds.ts';
@@ -53,17 +52,8 @@ function recentMix(
   return items;
 }
 
+const astroRecent = recentMix(astroPosts, astroGalleries, 'astro').slice(0, 4);
 const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards').slice(0, 4);
-
-// Top Astro galleries become the visual lead, rendered as cover cards.
-const astroFeature = astroGalleries.slice(0, 4).map((g) => ({
-  href: `/astro/gallery/${g.id}`,
-  title: g.data.title,
-  date: galleryActivityDate(g),
-  cover: g.data.cover ?? g.data.images?.[0]?.file,
-  description: g.data.description,
-  count: g.data.images?.length,
-}));
 
 const bgCandidates = await getHomeBackgrounds();
 ---
@@ -107,51 +97,38 @@ const bgCandidates = await getHomeBackgrounds();
     </p>
   </section>
 
-  {astroFeature.length > 0 && (
-    <section class="container-wide block astro-zone">
-      <header class="block-head">
-        <h2>Recent from the sky</h2>
-        <a href="/astro" class="see-all">Enter Astro →</a>
-      </header>
-      <ul class="gallery-grid">
-        {astroFeature.map((g) => (
-          <li>
-            <GalleryCard
-              href={g.href}
-              title={g.title}
-              date={g.date}
-              cover={g.cover}
-              description={g.description}
-              count={g.count}
-              section="astro"
-            />
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
-
-  {astroPosts.length > 0 && (
-    <section class="container-wide block astro-zone posts-block">
-      <header class="block-head">
-        <h2>Recent Astro</h2>
-        <a href="/astro/blog" class="see-all">All posts →</a>
-      </header>
-      <ul class="post-list">
-        {astroPosts.slice(0, 4).map((p) => (
-          <PostCard
-            href={`/astro/blog/${p.id}`}
-            title={p.data.title}
-            date={p.data.date}
-            summary={p.data.summary}
-          />
-        ))}
-      </ul>
-    </section>
-  )}
+  <section class="container-wide doorway-wrap">
+    <div class="doorway astro">
+      <OrbitalDecor variant="block" />
+      <a class="doorway-copy" href="/astro">
+        <span class="eyebrow">Astro</span>
+        <h2>Looking up</h2>
+        <p>Backyard astrophotography - the night sky from the garden.</p>
+        <span class="more">See the photographs →</span>
+      </a>
+      {astroRecent.length > 0 && (
+        <div class="doorway-side">
+          <p class="recent-label">Latest</p>
+          <ul class="doorway-recent">
+            {astroRecent.map((item) => (
+              <li>
+                <a href={item.href}>
+                  <span class="d-date">{formatDate(item.date)}</span>
+                  <span class="d-title">
+                    {item.title}
+                    {item.kind === 'gallery' && <span class="d-kind">gallery</span>}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
 
   <section class="container-wide doorway-wrap">
-    <div class="doorway">
+    <div class="doorway shards">
       <ShardDecor variant="block" />
       <a class="doorway-copy" href="/shards">
         <span class="eyebrow">Shards</span>
@@ -244,60 +221,9 @@ const bgCandidates = await getHomeBackgrounds();
   .accent-astro  { color: var(--color-accent-astro); }
   .accent-shards { color: var(--color-accent-shards); }
 
-  /* ---- Shared block scaffolding ---- */
-  .block { padding: var(--space-6) var(--space-5); }
-  .block-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
-    border-bottom: 1px solid var(--color-border-soft);
-    padding-bottom: var(--space-3);
-    margin-bottom: var(--space-5);
-  }
-  .block-head h2 { margin: 0; font-size: var(--fs-lg); font-family: var(--font-display-astro); }
-  .see-all {
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--color-text-muted);
-    border-bottom: 1px solid transparent;
-    white-space: nowrap;
-  }
-  .see-all:hover { color: var(--color-accent-astro); border-bottom-color: var(--color-accent-astro); }
-
-  /* Locally theme the Astro lead so child cards pick up the mint accent
-     without flipping the whole page's section binding. */
-  .astro-zone {
-    --accent: var(--color-accent-astro);
-    --accent-rgb: 93, 214, 200;
-    --accent-line: rgba(93, 214, 200, 0.35);
-  }
-
-  /* Exactly four featured galleries → a tidy 4-up that folds to 2×2 then a
-     single column. Fixed tracks (not auto-fill) so there's never an orphan
-     empty column or a 3+1 wrap. */
-  .gallery-grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-5);
-  }
-  @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
-  .post-list { list-style: none; padding: 0; margin: 0; }
-  /* The post list reads as a left rail: its heading underline and rows share a
-     readable max-width and align with the gallery's left edge, so the wide
-     block never floats a full-width underline over a near-empty row. Robust
-     for any number of posts (no orphan cells). */
-  .posts-block .block-head,
-  .posts-block .post-list { max-width: 760px; }
-
-  /* ---- Shards doorway (secondary, but clearly inviting) ---- */
+  /* ---- Section doorways (two equal cards: Astro + Shards) ---- */
   .doorway-wrap { padding: var(--space-2) var(--space-5) var(--space-4); }
   .doorway {
-    --accent: var(--color-accent-shards);
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -311,12 +237,23 @@ const bgCandidates = await getHomeBackgrounds();
     backdrop-filter: blur(10px) saturate(115%);
     -webkit-backdrop-filter: blur(10px) saturate(115%);
     border: 1px solid var(--color-border-soft);
-    border-left: 2px solid var(--color-accent-shards);
-    clip-path: var(--motif-shards-cut);
-    border-radius: 0;
+    border-left: 2px solid var(--accent);
     transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
   }
-  .doorway:hover { transform: translateY(-2px); background: rgba(232, 168, 124, 0.06); }
+  .doorway:hover { transform: translateY(-2px); }
+
+  /* Per-section identity: accent, motif, headline font. */
+  .doorway.astro {
+    --accent: var(--color-accent-astro);
+    border-radius: 14px;
+  }
+  .doorway.astro:hover { background: rgba(93, 214, 200, 0.06); }
+  .doorway.shards {
+    --accent: var(--color-accent-shards);
+    clip-path: var(--motif-shards-cut);
+    border-radius: 0;
+  }
+  .doorway.shards:hover { background: rgba(232, 168, 124, 0.06); }
   .doorway :global(svg) {
     position: absolute;
     inset: -20% -10% auto auto;
@@ -338,17 +275,26 @@ const bgCandidates = await getHomeBackgrounds();
     margin: 0 0 var(--space-2);
     line-height: 1;
   }
-  .doorway .eyebrow { color: var(--color-accent-shards); }
+  .doorway .eyebrow { color: var(--accent); }
   .doorway .recent-label { color: var(--color-text-muted); }
 
   .doorway h2 {
-    font-family: var(--font-display-shards);
     font-size: var(--fs-lg);
     font-weight: 400;
     margin: 0 0 var(--space-2);
     line-height: 1.1;
     letter-spacing: -0.01em;
   }
+  /* Astro card: one clean sans family across every element on the card. */
+  .doorway.astro,
+  .doorway.astro .eyebrow,
+  .doorway.astro .recent-label,
+  .doorway.astro .more,
+  .doorway.astro .d-date,
+  .doorway.astro .d-kind,
+  .doorway.astro .doorway-copy p { font-family: var(--font-body-astro); }
+  .doorway.astro h2 { font-family: var(--font-body-astro); }
+  .doorway.shards h2 { font-family: var(--font-display-shards); }
   .doorway-copy {
     display: block;
     color: var(--color-text);
@@ -372,7 +318,7 @@ const bgCandidates = await getHomeBackgrounds();
     color: var(--color-text-muted);
     transition: color var(--t-fast);
   }
-  .doorway:hover .more { color: var(--color-accent-shards); }
+  .doorway:hover .more { color: var(--accent); }
 
   .doorway-side { min-width: 0; }
   .doorway-recent { list-style: none; padding: 0; margin: 0; }
@@ -392,7 +338,7 @@ const bgCandidates = await getHomeBackgrounds();
     transition: color var(--t-fast);
   }
   .doorway-recent a:hover { border-bottom: none; }
-  .doorway-recent a:hover .d-title { color: var(--color-accent-shards); }
+  .doorway-recent a:hover .d-title { color: var(--accent); }
   /* Fixed date rail so the serif titles align into a tidy column. */
   .d-date {
     flex: none;
@@ -403,11 +349,12 @@ const bgCandidates = await getHomeBackgrounds();
   }
   .d-title {
     color: rgba(226, 228, 234, var(--text-body));
-    font-family: var(--font-display-shards);
     font-size: var(--fs-sm);
     line-height: 1.3;
     transition: color var(--t-fast);
   }
+  .doorway.astro .d-title { font-family: var(--font-body-astro); }
+  .doorway.shards .d-title { font-family: var(--font-display-shards); }
   .d-kind {
     margin-left: var(--space-2);
     font-family: var(--font-mono);
