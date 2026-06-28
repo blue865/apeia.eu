@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import PageDecor from '../components/PageDecor.astro';
 import TagPill from '../components/TagPill.astro';
 import { formatDateLong } from '../lib/format.ts';
 
@@ -15,6 +16,7 @@ const { title, date, summary, tags = [], topic, section } = Astro.props;
 ---
 
 <Base title={title} description={summary} section={section}>
+  <PageDecor section={section} />
   <article class="post container">
     <header class="post-header">
       <p class="meta">

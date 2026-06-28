@@ -12,6 +12,7 @@
  */
 import { Image } from 'astro:assets';
 import Base from './Base.astro';
+import PageDecor from '../components/PageDecor.astro';
 import TagPill from '../components/TagPill.astro';
 import { formatDateLong } from '../lib/format.ts';
 import { normalizeTags } from '../lib/tags.ts';
@@ -60,6 +61,7 @@ const pageDescription =
 ---
 
 <Base title={pageTitle} description={pageDescription} section={section}>
+  <PageDecor section={section} />
   <article class="image-page container-wide">
     <p class="back">
       <a href={`/${section}/gallery/${permalink.gallerySlug}`}>← {galleryTitle}</a>

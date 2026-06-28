@@ -1,0 +1,35 @@
+---
+/**
+ * Page-level section motif for subpages that have NO hero background image.
+ * Orbital rings for Astro, faceted lines for Shards — a faint, fixed
+ * decoration anchored in a corner behind the page content. Mirrors the
+ * motif used on the home cards and the section hero. Decorative only.
+ */
+import OrbitalDecor from './OrbitalDecor.astro';
+import ShardDecor from './ShardDecor.astro';
+
+interface Props {
+  section: 'astro' | 'shards';
+}
+const { section } = Astro.props;
+---
+
+<div class="page-decor" aria-hidden="true">
+  {section === 'astro' ? <OrbitalDecor variant="hero" /> : <ShardDecor variant="hero" />}
+</div>
+
+<style>
+  .page-decor {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  /* Slightly softer than the hero use, since this sits behind body text.
+     Higher specificity than the components' own .variant-hero opacity. */
+  .page-decor :global(svg.orbital),
+  .page-decor :global(svg.shard) {
+    opacity: 0.45;
+  }
+</style>

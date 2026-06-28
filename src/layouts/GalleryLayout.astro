@@ -1,6 +1,7 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import Base from './Base.astro';
+import PageDecor from '../components/PageDecor.astro';
 import TagPill from '../components/TagPill.astro';
 import ObjectInfo, { type ObjectInfo as ObjectInfoData } from '../components/ObjectInfo.astro';
 import { formatDateLong } from '../lib/format.ts';
@@ -56,6 +57,7 @@ const downloads: DownloadOption[][] = await Promise.all(
 ---
 
 <Base title={title} description={description} section={section}>
+  {!heroBg && <PageDecor section={section} />}
   <article class="gallery">
     {heroBg ? (
       <section
