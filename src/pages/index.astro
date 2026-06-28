@@ -120,8 +120,8 @@ const bgCandidates = await getHomeBackgrounds();
           <span class="eyebrow">Astro</span>
           <h2>Looking up</h2>
         </a>
-        <p>Long exposures guarded by <a href="/shards/tags/four-guardians">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
-        <a class="more" href="/astro">See the photographs →</a>
+        <p>Long exposures guarded by <a class="inline-link" href="/shards/tags/four-guardians">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
+        <span class="more">See the photographs →</span>
       </div>
       {(featuredAstroCover || astroRecent.length > 0) && (
         <div class="doorway-side">
@@ -342,18 +342,33 @@ const bgCandidates = await getHomeBackgrounds();
   .doorway.shards h2 { font-family: var(--font-display-shards); }
   .doorway-copy {
     display: block;
+    position: relative;
+    /* Fill the full row height so the stretched link below covers the empty
+       space beneath the CTA (the right column is usually taller). */
+    align-self: stretch;
     color: var(--color-text);
     border-bottom: none;
   }
   .doorway-copy:hover { border-bottom: none; }
-  /* Astro card head is its own link now (so the description can hold a link
-     without nesting anchors). Keep it looking like the rest of the copy. */
   .doorway-head {
     display: block;
     color: var(--color-text);
     border-bottom: none;
   }
   .doorway-head:hover { border-bottom: none; }
+  /* The whole left column is the link to /astro: the heading's link is
+     stretched to cover the column. The inline "four guardians" link is
+     lifted above the overlay so it stays independently clickable. */
+  .doorway-head::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .doorway-copy .inline-link {
+    position: relative;
+    z-index: 1;
+  }
   .doorway-copy p {
     color: rgba(226, 228, 234, var(--text-medium));
     font-size: var(--fs-sm);
