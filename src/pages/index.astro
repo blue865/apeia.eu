@@ -105,7 +105,7 @@ const bgCandidates = await getHomeBackgrounds();
 
   <section class="hero container-wide">
     <p class="kicker">/synoptics/</p>
-    <h1>Mostly from the garden.</h1>
+    <h1>Mostly from the garden</h1>
     <p class="sub">
       <span class="accent-astro">One looks up</span>;
       <span class="accent-shards">the other looks in</span>.
@@ -115,12 +115,14 @@ const bgCandidates = await getHomeBackgrounds();
   <section class="container-wide doorway-wrap">
     <div class="doorway astro">
       <OrbitalDecor variant="block" />
-      <a class="doorway-copy" href="/astro">
-        <span class="eyebrow">Astro</span>
-        <h2>Looking up</h2>
-        <p>Backyard astrophotography - the night sky from the garden.</p>
-        <span class="more">See the photographs →</span>
-      </a>
+      <div class="doorway-copy">
+        <a class="doorway-head" href="/astro">
+          <span class="eyebrow">Astro</span>
+          <h2>Looking up</h2>
+        </a>
+        <p>Long exposures guarded by <a href="/shards/tags/four-guardians">Gastonne, Gépardinne, Erwinne and the mighty Pedro</a> - the little pail.</p>
+        <a class="more" href="/astro">See the photographs →</a>
+      </div>
       {(featuredAstroCover || astroRecent.length > 0) && (
         <div class="doorway-side">
           {featuredAstroCover && featuredAstroGallery && (
@@ -132,7 +134,7 @@ const bgCandidates = await getHomeBackgrounds();
                 height={300}
               />
               <span class="featured-tag">
-                <span class="featured-kind">Gallery</span>
+                <span class="featured-kind">New</span>
                 <span class="featured-title">
                   {featuredAstroGallery.data.name ?? featuredAstroGallery.data.title}
                 </span>
@@ -204,7 +206,7 @@ const bgCandidates = await getHomeBackgrounds();
     opacity: 0;
     transition: opacity 600ms ease;
   }
-  .page-bg.is-loaded { opacity: 1; }
+  .page-bg.is-loaded { opacity: 0.7; }
 
   .page-bg-veil {
     position: fixed;
@@ -266,33 +268,43 @@ const bgCandidates = await getHomeBackgrounds();
     align-items: start;
     padding: var(--space-3) var(--space-5);
     color: var(--color-text);
-    background: rgba(26, 29, 36, 0.55);
-    backdrop-filter: blur(10px) saturate(115%);
+    background: rgba(26, 29, 36, 0.6);
+    backdrop-filter: blur(1px) saturate(115%);
     -webkit-backdrop-filter: blur(10px) saturate(115%);
     border: 1px solid var(--color-border-soft);
     border-left: 2px solid var(--accent);
     transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
   }
-  .doorway:hover { transform: translateY(-2px); }
+  /* Transparency + hover are shared across both cards (Shards settings). */
+  .doorway:hover {
+    transform: translateY(-2px);
+    background: rgba(232, 168, 124, 0.06);
+  }
 
   /* Per-section identity: accent, motif, headline font. */
   .doorway.astro {
     --accent: var(--color-accent-astro);
     border-radius: 14px;
   }
-  .doorway.astro:hover { background: rgba(93, 214, 200, 0.06); }
   .doorway.shards {
     --accent: var(--color-accent-shards);
     clip-path: var(--motif-shards-cut);
     border-radius: 0;
   }
-  .doorway.shards:hover { background: rgba(232, 168, 124, 0.06); }
   .doorway :global(svg) {
     position: absolute;
     inset: -20% -10% auto auto;
     width: 60%;
     z-index: 0;
-    opacity: 0.4;
+    opacity: 0.6;
+  }
+  /* The Astro card's featured image occupies the top-right where the shared
+     motif lives, so re-anchor the orbital to the left, behind the copy, where
+     it reads as a faint background motif just like the Shards lines do. */
+  .doorway.astro :global(svg) {
+    inset: 50% auto auto -14%;
+    transform: translateY(-50%);
+    width: 52%;
   }
   .doorway > * { position: relative; z-index: 1; }
 
@@ -334,6 +346,14 @@ const bgCandidates = await getHomeBackgrounds();
     border-bottom: none;
   }
   .doorway-copy:hover { border-bottom: none; }
+  /* Astro card head is its own link now (so the description can hold a link
+     without nesting anchors). Keep it looking like the rest of the copy. */
+  .doorway-head {
+    display: block;
+    color: var(--color-text);
+    border-bottom: none;
+  }
+  .doorway-head:hover { border-bottom: none; }
   .doorway-copy p {
     color: rgba(226, 228, 234, var(--text-medium));
     font-size: var(--fs-sm);
@@ -350,7 +370,9 @@ const bgCandidates = await getHomeBackgrounds();
     text-transform: uppercase;
     color: var(--color-text-muted);
     transition: color var(--t-fast);
+    border-bottom: none;
   }
+  .doorway .more:hover { border-bottom: none; }
   .doorway:hover .more { color: var(--accent); }
 
   .doorway-side { min-width: 0; }
