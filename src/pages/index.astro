@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import OrbitalDecor from '../components/OrbitalDecor.astro';
 import ShardDecor from '../components/ShardDecor.astro';
@@ -52,7 +53,21 @@ function recentMix(
   return items;
 }
 
-const astroRecent = recentMix(astroPosts, astroGalleries, 'astro').slice(0, 4);
+// The Astro card leads with a single featured image: the newest gallery's
+// leading frame (its `cover`, or the first image when no cover is set). It
+// pulls the eye toward the photographs without crowding the page.
+const featuredAstroGallery = astroGalleries[0];
+const featuredAstroHref = featuredAstroGallery
+  ? `/astro/gallery/${featuredAstroGallery.id}`
+  : undefined;
+const featuredAstroCover = featuredAstroGallery
+  ? (featuredAstroGallery.data.cover ?? featuredAstroGallery.data.images[0].file)
+  : undefined;
+
+// Drop the featured gallery from the list below so it isn't shown twice.
+const astroRecent = recentMix(astroPosts, astroGalleries, 'astro')
+  .filter((item) => item.href !== featuredAstroHref)
+  .slice(0, 4);
 const shardsRecent = recentMix(shardsPostsRaw, shardsGalleriesRaw, 'shards').slice(0, 4);
 
 const bgCandidates = await getHomeBackgrounds();
@@ -106,9 +121,27 @@ const bgCandidates = await getHomeBackgrounds();
         <p>Backyard astrophotography - the night sky from the garden.</p>
         <span class="more">See the photographs →</span>
       </a>
-      {astroRecent.length > 0 && (
+      {(featuredAstroCover || astroRecent.length > 0) && (
         <div class="doorway-side">
-          <p class="recent-label">Latest</p>
+          {featuredAstroCover && featuredAstroGallery && (
+            <a class="featured-gallery" href={featuredAstroHref}>
+              <Image
+                src={featuredAstroCover}
+                alt={featuredAstroGallery.data.title}
+                width={480}
+                height={300}
+              />
+              <span class="featured-tag">
+                <span class="featured-kind">Gallery</span>
+                <span class="featured-title">
+                  {featuredAstroGallery.data.name ?? featuredAstroGallery.data.title}
+                </span>
+              </span>
+            </a>
+          )}
+          {astroRecent.length > 0 && (
+            <p class="recent-label">Latest</p>
+          )}
           <ul class="doorway-recent">
             {astroRecent.map((item) => (
               <li>
@@ -321,6 +354,58 @@ const bgCandidates = await getHomeBackgrounds();
   .doorway:hover .more { color: var(--accent); }
 
   .doorway-side { min-width: 0; }
+
+  /* Featured gallery — the Astro card leads with the newest gallery's image,
+     a quiet focal point that pulls the eye toward the photographs. */
+  .featured-gallery {
+    display: block;
+    position: relative;
+    margin: 0 0 var(--space-4);
+    overflow: hidden;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 10px;
+    border-bottom: none;
+    transition: border-color var(--t-fast), transform 200ms ease;
+  }
+  .featured-gallery:hover {
+    border-bottom: none;
+    border-color: var(--accent-line);
+    transform: translateY(-2px);
+  }
+  .featured-gallery :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+  .featured-gallery:hover :global(img) { transform: scale(1.04); }
+  .featured-tag {
+    position: absolute;
+    left: var(--space-2);
+    bottom: var(--space-2);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55em;
+    padding: 0.22em 0.6em;
+    background: rgba(12, 14, 18, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 6px;
+  }
+  .featured-kind {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+  }
+  .featured-title {
+    font-family: var(--font-body-astro);
+    font-size: var(--fs-xs);
+    color: rgba(226, 228, 234, var(--text-high));
+  }
+
   .doorway-recent { list-style: none; padding: 0; margin: 0; }
   .doorway-recent li {
     border-bottom: 1px solid var(--color-border-soft);
