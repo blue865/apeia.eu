@@ -106,10 +106,6 @@ const bgCandidates = await getHomeBackgrounds();
   <section class="hero container-wide">
     <p class="kicker">/synoptics/</p>
     <h1>Mostly from the garden</h1>
-    <p class="sub">
-      <span class="accent-astro">One looks up</span>;
-      <span class="accent-shards">the other looks in</span>.
-    </p>
   </section>
 
   <section class="container-wide doorway-wrap">
@@ -134,7 +130,7 @@ const bgCandidates = await getHomeBackgrounds();
                 height={300}
               />
               <span class="featured-tag">
-                <span class="featured-kind">New</span>
+                <span class="featured-kind">Latest</span>
                 <span class="featured-title">
                   {featuredAstroGallery.data.name ?? featuredAstroGallery.data.title}
                 </span>
@@ -142,7 +138,7 @@ const bgCandidates = await getHomeBackgrounds();
             </a>
           )}
           {astroRecent.length > 0 && (
-            <p class="recent-label">Latest</p>
+            <p class="recent-label">Recent</p>
           )}
           <ul class="doorway-recent">
             {astroRecent.map((item) => (
@@ -173,7 +169,7 @@ const bgCandidates = await getHomeBackgrounds();
       </a>
       {shardsRecent.length > 0 && (
         <div class="doorway-side">
-          <p class="recent-label">Latest</p>
+          <p class="recent-label">Recent</p>
           <ul class="doorway-recent">
             {shardsRecent.map((item) => (
               <li>
