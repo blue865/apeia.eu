@@ -13,6 +13,7 @@ import {
   sharpFormatFor,
   resolveFileRequest,
 } from '../../../../../lib/imagePermalinks.ts';
+import { downloadQuality } from '../../../../../lib/imagePresets.ts';
 
 export const prerender = true;
 
@@ -58,7 +59,7 @@ export const GET: APIRoute = async ({ params }) => {
     if (!width || !fmt) return new Response('Bad variant', { status: 400 });
     bytes = await sharp(permalink.fsPath)
       .resize(width, null, { fit: 'inside', withoutEnlargement: true })
-      .toFormat(fmt, { quality: 95 })
+      .toFormat(fmt, { quality: downloadQuality('shards') })
       .toBuffer();
   }
 

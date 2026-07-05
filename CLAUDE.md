@@ -24,7 +24,7 @@ Each section has:
 - **Framework**: Astro (static output, `output: 'static'`)
 - **Styling**: CSS custom properties (design tokens) + scoped component styles; no utility-class framework
 - **Content**: Astro Content Collections (Markdown/MDX for posts, JSON/YAML for gallery metadata)
-- **Images**: Astro's built-in `<Image />` component for optimisation
+- **Images**: Astro's built-in `<Image />` component for optimisation. All display widths/qualities come from **`src/lib/imagePresets.ts`** — per-section quality (astro 92, shards 80 for display; astro 95, shards 85 for download re-encodes) and shared width ladders, so overlapping transforms dedupe to one generated file. Never hardcode `quality`/`widths` at a call site.
 - **Deployment**: Static hosting (TBD — likely Cloudflare Pages or Netlify)
 - **No client-side JS** unless strictly necessary
 
@@ -380,7 +380,7 @@ The single source of truth is **`src/lib/imagePermalinks.ts`**. At module load i
 Two route files per section serve the URLs:
 
 - **`src/pages/{section}/gallery/[slug]/[image]/index.astro`** — the per-image page. Renders the photo via Astro's `<Image>` (so the in-page display still benefits from `/_astro/`-hashed cache-busting), plus caption, notes, tags, and the list of downloads.
-- **`src/pages/{section}/gallery/[slug]/[image]/[file].ts`** — a static endpoint that produces the actual bytes at the permalink URL. For `original` it copies the source file verbatim; for `800/2k/4k` it runs sharp at quality 95 in the source format. Astro writes the response body to a real file at the URL path, so visitors get a clean direct download with no redirect.
+- **`src/pages/{section}/gallery/[slug]/[image]/[file].ts`** — a static endpoint that produces the actual bytes at the permalink URL. For `original` it copies the source file verbatim; for `800/2k/4k` it runs sharp in the source format at the section's download quality from `src/lib/imagePresets.ts` (astro 95, shards 85). Astro writes the response body to a real file at the URL path, so visitors get a clean direct download with no redirect.
 
 `src/lib/galleryDownloads.ts` is a thin shim that produces the `DownloadOption[]` consumed by `GalleryLayout.astro` — it just asks the permalink registry for URLs.
 

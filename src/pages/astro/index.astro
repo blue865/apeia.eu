@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import OrbitalDecor from '../../components/OrbitalDecor.astro';
 import SkyMap from '../../components/SkyMap.astro';
 import { byActivityDesc } from '../../lib/galleryDates';
+import { displayQuality, INDEX_HERO_WIDTHS } from '../../lib/imagePresets.ts';
 import GalleryPager from '../../components/GalleryPager.astro';
 import PostCard from '../../components/PostCard.astro';
 
@@ -26,7 +27,7 @@ const starSlug = star?.id;
 >
   <section class="hero grain">
     {starImage ? (
-      <Image src={starImage} alt={star?.data.title ?? ''} class="hero-img" widths={[800, 1400, 2000]} sizes="100vw" loading="eager" />
+      <Image src={starImage} alt={star?.data.title ?? ''} class="hero-img" widths={INDEX_HERO_WIDTHS} sizes="100vw" format="webp" quality={displayQuality('astro')} loading="eager" />
     ) : (
       <div class="hero-fallback" aria-hidden="true"></div>
     )}
@@ -179,7 +180,7 @@ const starSlug = star?.id;
   }
   .see-all:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-  
+
 
   .grid {
     list-style: none;

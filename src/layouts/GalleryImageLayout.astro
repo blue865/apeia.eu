@@ -23,6 +23,7 @@ import {
   variantsForPermalink,
   type ImagePermalink,
 } from '../lib/imagePermalinks.ts';
+import { displayQuality, PERMALINK_PAGE_WIDTHS } from '../lib/imagePresets.ts';
 
 interface Props {
   permalink: ImagePermalink;
@@ -71,10 +72,10 @@ const pageDescription =
       <Image
         src={image.file}
         alt={image.alt ?? image.caption ?? pageTitle}
-        widths={[800, 1200, 1800, 2400]}
+        widths={PERMALINK_PAGE_WIDTHS}
         sizes="(min-width: 1100px) 1100px, 100vw"
         format="webp"
-        quality={92}
+        quality={displayQuality(section)}
         loading="eager"
         style={`max-width: min(${image.file.width}px, 100%);`}
       />

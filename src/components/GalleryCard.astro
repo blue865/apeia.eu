@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { formatDate } from '../lib/format.ts';
+import { CARD_SIZE } from '../lib/imagePresets.ts';
 
 interface Props {
   href: string;
@@ -17,7 +18,7 @@ const { href, title, date, cover, description, count, section } = Astro.props;
 <a class:list={['card', `card-${section}`]} href={href}>
   <div class="thumb">
     {cover ? (
-      <Image src={cover} alt={title} width={720} height={720} />
+      <Image src={cover} alt={title} width={CARD_SIZE} height={CARD_SIZE} />
     ) : (
       <div class="placeholder" aria-hidden="true">
         {section === 'astro' ? '◐' : '◇'}

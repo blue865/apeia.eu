@@ -33,8 +33,12 @@ export default defineConfig({
     // Windows mount that can't unlink Vite's cache (EPERM). Redirecting the
     // cache to a native tmp path avoids that. No-op for local runs: the env
     // var is only set in the sandbox, so cacheDir falls back to Vite's default
-    // (node_modules/.vite).
-    cacheDir: process.env.CLAUDE_SANDBOX ? '/tmp/apeia-vite' : undefined,
+    // (node_modules/.vite). VITE_CACHE_DIR overrides the tmp path — needed
+    // when a previous sandbox session left /tmp/apeia-vite owned by another
+    // uid (EACCES on re-optimise).
+    cacheDir: process.env.CLAUDE_SANDBOX
+      ? (process.env.VITE_CACHE_DIR || '/tmp/apeia-vite')
+      : undefined,
     ssr: {
       noExternal: ['js-yaml'],
     },

@@ -17,6 +17,7 @@ import {
   DEFAULT_ACCENTS,
   type AccentPair,
 } from './imageAccents.ts';
+import { displayQuality, HERO_WIDTH } from './imagePresets.ts';
 
 export const HOME_BG_TAG = 'home-page';
 
@@ -43,12 +44,15 @@ export async function getHomeBackgrounds(): Promise<HomeBackground[]> {
         const matches = inheritedHasTag || imgTags.includes(HOME_BG_TAG);
         if (!matches) continue;
 
-        // Optimised webp at high quality so dark astro gradients don't band.
+        // Width + quality match the section's display ladder top (2400px), so
+        // this reuses the gallery page's generated file instead of adding a
+        // third near-identical variant. Astro stays high-quality so dark
+        // gradients don't band; shards uses the lighter section quality.
         const optimised = await getImage({
           src: img.file,
-          width: 2400,
+          width: HERO_WIDTH,
           format: 'webp',
-          quality: 90,
+          quality: displayQuality(colName === 'astro-gallery' ? 'astro' : 'shards'),
         });
 
         // Image-derived accents — resolved off the original source bytes.

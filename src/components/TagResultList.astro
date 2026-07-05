@@ -7,6 +7,7 @@
 import { Image } from 'astro:assets';
 import { formatDate } from '../lib/format.ts';
 import type { TagEntry } from '../lib/tags.ts';
+import { CARD_SIZE } from '../lib/imagePresets.ts';
 
 interface Props {
   section: 'astro' | 'shards';
@@ -50,7 +51,7 @@ const images    = entries.filter((e): e is Extract<TagEntry, { type: 'image' }> 
       {galleries.map((g) => (
         <li>
           <a class="card" href={g.href}>
-            {g.thumbnail && <Image src={g.thumbnail} alt={g.title} width={520} height={520} class="thumb" />}
+            {g.thumbnail && <Image src={g.thumbnail} alt={g.title} width={CARD_SIZE} height={CARD_SIZE} class="thumb" />}
             <span class="card-meta">
               <span class="card-title">{g.title}</span>
               <span class="card-sub">{formatDate(g.date)}</span>
@@ -69,7 +70,7 @@ const images    = entries.filter((e): e is Extract<TagEntry, { type: 'image' }> 
       {images.map((im) => (
         <li>
           <a class="image" href={im.href}>
-            <Image src={im.thumbnail} alt={im.caption ?? im.title} width={520} height={520} />
+            <Image src={im.thumbnail} alt={im.caption ?? im.title} width={CARD_SIZE} height={CARD_SIZE} />
             <span class="image-meta">
               <span class="image-caption">{im.caption ?? '—'}</span>
               <span class="image-parent">{im.title}</span>

@@ -8,7 +8,8 @@
  * no redirects, no JS, the URL serves the file itself.
  *
  * - `original`: source bytes copied byte-for-byte.
- * - `4k / 2k / 800`: sharp re-encode at quality 95 in the source format.
+ * - `4k / 2k / 800`: sharp re-encode in the source format at the section's
+ *   download quality (see lib/imagePresets.ts — astro stays archival at 95).
  *   Variants whose width is >= source width are not generated.
  */
 import type { APIRoute, GetStaticPaths } from 'astro';
@@ -24,6 +25,7 @@ import {
   sharpFormatFor,
   resolveFileRequest,
 } from '../../../../../lib/imagePermalinks.ts';
+import { downloadQuality } from '../../../../../lib/imagePresets.ts';
 
 export const prerender = true;
 
@@ -69,7 +71,7 @@ export const GET: APIRoute = async ({ params }) => {
     if (!width || !fmt) return new Response('Bad variant', { status: 400 });
     bytes = await sharp(permalink.fsPath)
       .resize(width, null, { fit: 'inside', withoutEnlargement: true })
-      .toFormat(fmt, { quality: 95 })
+      .toFormat(fmt, { quality: downloadQuality('astro') })
       .toBuffer();
   }
 

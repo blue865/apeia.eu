@@ -15,21 +15,28 @@
  *   'wide'  — bleeds into the article's side padding, giving astrophotos more room
  */
 import { Image } from 'astro:assets';
+import { displayQuality, type Section } from '../lib/imagePresets.ts';
 
 interface Props {
   src: ImageMetadata;
   alt: string;
   caption?: string;
   size?: 'prose' | 'wide';
+  /** Which section's display quality to encode at. Post images are usually
+   *  gallery photographs — matching the section ladder (widths + quality)
+   *  lets the build reuse the gallery page's generated files. */
+  section?: Section;
 }
-const { src, alt, caption, size = 'prose' } = Astro.props;
+const { src, alt, caption, size = 'prose', section = 'astro' } = Astro.props;
 ---
 
 <figure class:list={['post-image', `post-image--${size}`]}>
   <Image
     {src}
     {alt}
-    widths={[800, 1600, src.width]}
+    widths={[800, 1200, 1800]}
+    format="webp"
+    quality={displayQuality(section)}
     sizes={size === 'wide'
       ? '(max-width: 700px) 100vw, min(900px, calc(100vw - 3rem))'
       : '(max-width: 700px) 100vw, 65ch'}
