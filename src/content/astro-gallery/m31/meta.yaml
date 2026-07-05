@@ -5,6 +5,7 @@ description: 150kly wide. distance 2.5Mly and closing. brace for impact in 4 bil
 tags: [galaxy, m31, m110]
 images:
   - file: ./M31 - Andromeda Galaxy.jpg
+    sizes: [2k, 800]
     alt: M31 - Andromeda Galaxy
     caption: Easy to capture, surprisingly challenging to process
     tags: [4k, wallpaper, home-page]

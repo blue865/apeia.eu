@@ -20,7 +20,7 @@ import {
   variantUrl,
   variantLabel,
   variantDownloadName,
-  variantsForWidth,
+  variantsForPermalink,
   type ImagePermalink,
 } from '../lib/imagePermalinks.ts';
 
@@ -51,7 +51,7 @@ const {
 } = Astro.props;
 
 const tags = Array.from(new Set([...normalizeTags(galleryTags), ...normalizeTags(image.tags)]));
-const variants = variantsForWidth(image.file.width);
+const variants = variantsForPermalink(permalink, image.file.width);
 
 const pageTitle = image.caption ? `${image.caption} — ${galleryTitle}` : galleryTitle;
 const pageDescription =

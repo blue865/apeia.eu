@@ -5,22 +5,26 @@ description: IC1396 - With Elephant's Trunk Nebula
 tags: [nebula, IC1396, elephants-trunk-nebula]
 images:
   - file: ./ic1396-fullres.jpg
+    sizes: [4k, 2k, 800]
     added: 2024-11-19
     alt: IC1396A - Elephant's Trunk Nebula
     caption: IC1396 - Fullres
     tags: [home-page]
 
   - file: ./ic1396-fly.jpg
+    sizes: [2k, 800]
     alt: IC1396
     caption: Fly!
     tags: [home-page, 4k, wallpaper]
 
   - file: ./ic1396a-elephants-trunk-nebula-azuro.jpg
+    sizes: [2k, 800]
     alt: IC1396A - Elephant's Trunk Nebula
     caption: IC1396A - Elephant's Trunk Nebula
     tags: [4k, wallpaper, home-page, ic1396a]
 
   - file: ./ic1396-4k.jpg
+    sizes: [2k, 800]
     alt: IC1396 - Elephant's Trunk Nebula
     caption: IC1396 - 4k
     tags: [home-page, 4k, wallpaper]

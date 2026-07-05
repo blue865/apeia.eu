@@ -5,6 +5,7 @@ description: The Galactic Comet
 tags: [nebula, dark-nebula, ic5146 , cocoon-nebula]
 images:
   - file: ./ic5146-cocoon-nebula.jpg
+    sizes: [2k, 800]
     alt: IC5146 - Coccon Nebula
     caption: IC5146 - Coccon Nebula
     tags: [4k, wallpaper, home-page]

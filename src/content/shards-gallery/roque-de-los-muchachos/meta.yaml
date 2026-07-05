@@ -6,108 +6,136 @@ cover: ./PXL_20241030_134544320.jpg
 tags: [la-palma, roque-de-los-muchachos, observatory, astronomy, pilgrimage]
 images:
   - file: ./PXL_20241029_121332556.jpg
+    sizes: [2k, 800]
     caption: He's doing it for notes and shoutouts from around the world.
     tags: [la-fajana]
 
   - file: ./PXL_20241029_122112253.jpg
+    sizes: [2k, 800]
     caption: Send him one.
 
   - file: ./PXL_20241029_123255893.jpg
+    sizes: [4k, 2k, 800]
     caption: The House
     tags: [la-fajana]
 
   - file: ./PXL_20241030_121058373.jpg
+    sizes: [4k, 2k, 800]
     alt: A telescope with a large faceted, mirror-tiled reflector dish under blue sky
     caption: MAGIC telescope
     notes: MAGIC 17m Cherenkov gamma-ray telescope.
     tags: [magic, gamma-ray, telescope]
 
   - file: ./PXL_20241030_121355003.jpg
+    sizes: [4k, 2k, 800]
 
   - file: ./PXL_20241030_122227174.jpg
+    sizes: [4k, 2k, 800]
     caption: Gran Telescopio Canaria
     tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_123846619.jpg
+    sizes: [4k, 2k, 800]
     caption: Gran Telescopio Canaria
     tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_124128400.jpg
+    sizes: [4k, 2k, 800]
     alt: Observatory access road curving up toward domes on the ridge
     caption: The road up
     tags: [telescope]
 
   - file: ./PXL_20241030_124311331.jpg
+    sizes: [4k, 2k, 800]
     tags: [telescope]
 
   - file: ./PXL_20241030_125137494.jpg
+    sizes: [4k, 2k, 800]
     caption: Isaac Newton Telescope
     tags: [isaac-newton-telescope, telescope]
 
   - file: ./PXL_20241030_130130025.jpg
+    sizes: [4k, 2k, 800]
     tags: [telescope]
 
   - file: ./PXL_20241030_130337743.jpg
+    sizes: [2k, 800]
     caption: Nice domes for home observatory:)
     tags: [domes, robotic-telescope, fog]
 
   - file: ./PXL_20241030_131100841.jpg
+    sizes: [2k, 800]
     caption: William Herschel Telescope
     tags: [william-herschel-telescope, telescope]
 
   - file: ./PXL_20241030_131210678.jpg
+    sizes: [4k, 2k, 800]
     caption: William Herschel Telescope
     tags: [william-herschel-telescope, telescope]
     
   - file: ./PXL_20241030_131324677.MP.jpg
+    sizes: [2k, 800]
     caption: William Herschel Telescope
     tags: [william-herschel-telescope, telescope]
     
   - file: ./PXL_20241030_131812050.jpg
+    sizes: [4k, 2k, 800]
     caption: Locals
     tags: [goats, wildlife, landscape]
 
   - file: ./PXL_20241030_131945168.jpg
+    sizes: [4k, 2k, 800]
     caption: That's how they live over there
     tags: [landscape]
 
   - file: ./PXL_20241030_133553725.jpg
+    sizes: [4k, 2k, 800]
     caption: GTC
     tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_134544320.jpg
+    sizes: [4k, 2k, 800]
     caption: GTC
     tags: [gran-telescopio-canarias, gtc, telescope]
 
   - file: ./PXL_20241030_135104734.jpg
+    sizes: [4k, 2k, 800]
     caption: Galileo Telescope
     tags: [galileo-telescope, telescope]
 
   - file: ./PXL_20241030_135650755.jpg
+    sizes: [2k, 800]
     caption: Galileo Telescope
     tags: [galileo-telescope, telescope]
     
   - file: ./PXL_20241030_135659540.jpg
+    sizes: [4k, 2k, 800]
     tags: [galileo-telescope, gran-telescopio-canarias, gtc, telescope]
     
   - file: ./PXL_20241030_135754610.jpg
+    sizes: [4k, 2k, 800]
     tags: [telescope]
     
   - file: ./PXL_20241030_140241392.jpg
+    sizes: [2k, 800]
     caption: Mirador del Roque de los Muchachos ~2426m
     
   - file: ./PXL_20241030_140954513.PANO.jpg
+    sizes: [4k, 2k, 800]
     caption: The Observatory
     tags: [panorama]
 
   - file: ./PXL_20241030_150251352.jpg
+    sizes: [4k, 2k, 800]
     tags: [landscape]
 
   - file: ./PXL_20241030_151330403.jpg
+    sizes: [4k, 2k, 800]
     caption: MAGIC and neighbours
     tags: [magic, telescope]
 
   - file: ./PXL_20241030_151857145.jpg
+    sizes: [4k, 2k, 800]
     alt: Mountain road with observatory domes in the distance over volcanic terrain
     caption: Leaving the summit
     tags: [landscape]

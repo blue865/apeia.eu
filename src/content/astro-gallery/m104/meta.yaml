@@ -5,7 +5,9 @@ description: TBD
 tags: [galaxy, m104]
 images:
   - file: ./m104-sombrero-galaxy-close-up.jpg
+    sizes: []
   - file: ./m104-sombrero-galaxy-4k.jpg
+    sizes: [2k, 800]
     alt: M104 - Sombrero Galaxy
     caption: M104 - Sombrero Galaxy
     tags: []

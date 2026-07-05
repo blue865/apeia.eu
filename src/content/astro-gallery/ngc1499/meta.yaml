@@ -5,6 +5,7 @@ description: NGC1499 - California Nebula
 tags: [nebula, ngc1499, california-nebula]
 images:
   - file: ./ngc1499-california-nebula.jpg
+    sizes: [2k, 800]
     alt: NGC1499
     caption: NGC1499
     tags: [4k, wallpaper, home-page]

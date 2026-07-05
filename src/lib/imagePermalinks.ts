@@ -37,6 +37,10 @@ export interface ImagePermalink {
   imageSlug: string;           // URL-safe; derived from filename
   originalFilename: string;    // exactly what meta.yaml declared
   fsPath: string;              // absolute on-disk path
+  /** Downsized tiers declared in meta.yaml (`sizes:`), normalised to known
+   *  variants and de-duplicated. Never contains 'original'. Empty ⇒ the image
+   *  offers only its original for download. */
+  sizes: Exclude<Variant, 'original'>[];
 }
 
 /* ----------------------- Variant tables ----------------------- */
@@ -64,6 +68,21 @@ const VARIANT_SHORT: Record<Variant, string> = {
 
 /** All variants in display order (largest first; original at the very top). */
 export const ALL_VARIANTS: Variant[] = ['original', '4k', '2k', '800'];
+
+/** Downsized tiers (everything except 'original'), in display order. */
+const DOWNSIZE_VARIANTS = ALL_VARIANTS.filter(
+  (v): v is Exclude<Variant, 'original'> => v !== 'original',
+);
+
+/** Normalise a raw `sizes:` value from meta.yaml into known downsize tiers.
+ *  Mirrors the schema coercion: `4k`/`2k` arrive as strings, `800` as a
+ *  number, so each token is lowercased-stringified before matching. Unknown
+ *  tokens are dropped; duplicates are collapsed; order follows display order. */
+function normalizeSizes(raw: unknown): Exclude<Variant, 'original'>[] {
+  if (!Array.isArray(raw)) return [];
+  const declared = new Set(raw.map((v) => String(v).toLowerCase()));
+  return DOWNSIZE_VARIANTS.filter((v) => declared.has(v));
+}
 
 /* ----------------------- Registry build ----------------------- */
 
@@ -100,6 +119,7 @@ for (const [vPath, raw] of Object.entries(metaSources)) {
       imageSlug: filenameToSlug(filename),
       originalFilename: filename,
       fsPath: path.resolve(process.cwd(), 'src', 'content', collection, gallerySlug, filename),
+      sizes: normalizeSizes(entry?.sizes),
     });
   });
 }
@@ -182,13 +202,18 @@ export function variantWidth(variant: Variant): number | null {
   return VARIANT_WIDTHS[variant];
 }
 
-/** Variants offered for a source of the given width (px). Never offers a
- *  resized variant >= the source width — we don't upscale on download. */
-export function variantsForWidth(sourceWidth: number): Variant[] {
-  return ALL_VARIANTS.filter((v) => {
+/** Download variants offered for an image. Always includes 'original'; then
+ *  each tier the image explicitly declares in `sizes:`, skipping any tier at or
+ *  above the source width (we never upscale on download). When the image
+ *  declares no sizes, only the original is offered. Order: original first, then
+ *  largest → smallest. */
+export function variantsForPermalink(p: ImagePermalink, sourceWidth: number): Variant[] {
+  const out: Variant[] = ['original'];
+  for (const v of p.sizes) {
     const w = VARIANT_WIDTHS[v];
-    return w === null || w < sourceWidth;
-  });
+    if (w !== null && w < sourceWidth) out.push(v);
+  }
+  return out;
 }
 
 /** Resolve a `[file]` route param back to its (permalink, variant). */

@@ -5,6 +5,7 @@ description: Wide-field shot of LDN 935 containing a wide variety of nebulae, in
 tags: [nebula, ldn935, North America Nebula, Pelican Nebula, ngc7000]
 images:
   - file: ./LDN935.jpg
+    sizes: [2k, 800]
     alt: LDN935
     caption: LDN935 OSC
     tags: [4k, wallpaper, home-page]

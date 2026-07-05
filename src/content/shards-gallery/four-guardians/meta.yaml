@@ -4,26 +4,32 @@ description: Gastonne, Gépardinne, Erwinne and the mighty Pedro the Little Pail
 tags: [four-guardians, cats]
 images:
   - file: ./four-guardians.webp 
+    sizes: [800]
     alt: The Four Guardians
     caption: The Four Guardians
     tags: [four-guardians]
   - file: ./gastonne.jpg 
+    sizes: [2k, 800]
     alt: Gastonne
     caption: Gastonne
     tags: [gastonne]
   - file: ./gepardinne.jpg 
+    sizes: [4k, 2k, 800]
     alt: Gépardinne
     caption: Gépardinne
     tags: [gepardinne]
   - file: ./erwinne.jpg
+    sizes: [2k, 800]
     alt: Erwinne
     caption: Erwinne
     tags: [erwinne]
   - file: ./pedro.jpg 
+    sizes: [4k, 2k, 800]
     alt: Pedro
     caption: Pedro the Little Pail
     tags: [pedro]
   - file: ./zofka-la-palma.jpg
+    sizes: [4k, 2k, 800]
     alt: Soffie
     caption: A bonus guardian, Soffie, guarding the Gran Telescopio Canarias.
     tags: [žofka, soffie]

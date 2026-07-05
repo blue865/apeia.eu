@@ -5,6 +5,7 @@ description: no green up there? - so what
 tags: [nebula, m16, eagle nebula, pillars of creation]
 images:
   - file: ./m16-eagle-nebula.jpg
+    sizes: [2k, 800]
     alt: M16 - Eagle Nebula
     caption: Autumnal melancholy on burning voids.
     tags: [4k, wallpaper, home-page]
@@ -16,10 +17,12 @@ images:
 
       <a href="/astro/blog/2026-05-12-a-fear-and-loathing-of-green/">A Fear and Loathing of Green →</a>
   - file: ./pillars-of-creation-hubble.png
+    sizes: []
     alt: Pillars of Creation - Hubble
     caption: Pillars of Creation - Hubble
     tags: [hubble]
   - file: ./pillars-of-creation-backyard.jpg
+    sizes: []
     alt: Pillars of Creation - backyard
     caption: Pillars of Creation - backyard
     tags: []

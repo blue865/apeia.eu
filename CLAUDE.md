@@ -137,6 +137,16 @@ images:
 
 **Gallery ordering is by activity, not creation**: everywhere galleries are listed (section indexes, gallery indexes, the home page's recent mix), they sort by the newest `added` across their images, falling back to the gallery's own `date` (which also stands in for images without `added`). Adding a fresh picture with today's `added` elevates the gallery to the top. Implemented in `src/lib/galleryDates.ts` (`galleryActivityDate`, `byActivityDesc`). Applies to both sections; the RSS feed and tag result pages still use the gallery's creation `date`.
 
+Each image also takes an optional **`sizes:`** list that declares which downsized download variants are generated for it. Tokens are the named tiers `4k`, `2k`, and `800`:
+
+```yaml
+images:
+  - file: ./m104-sombrero-galaxy-4k.jpg
+    sizes: [4k, 2k, 800]
+```
+
+The download menu always offers the **Original**, plus each declared tier - skipping any tier at or above the source width so nothing is ever upscaled. When `sizes` is omitted (or empty, `sizes: []`), only the Original is offered. The tiers are explicit per image by design: the size list is the source of truth, not the source width. Applies to both sections. See [Variants offered](#variants-offered).
+
 Astro galleries also accept an optional **`object:`** block describing the astronomical subject. Every field is itself optional — pick whatever the night and the source data justified, leave the rest off. The card only renders the fields that are present, and is hidden entirely if the whole block is absent.
 
 ```yaml
@@ -352,18 +362,20 @@ Concrete example for `src/content/astro-gallery/m104-sombrero/M104.jpg` (4096 ×
 
 ### Variants offered
 
-Same rule as before — never offer a resolution larger than the source:
+Which downsized variants an image offers is **explicitly declared per image** via the `sizes:` list in `meta.yaml` (see [Content Collections](#astro-gallery)). The Original is always offered; declared tiers are added on top, and a tier is never offered at or above the source width (no upscaling):
 
-- **Original** — the source file, byte-for-byte.
-- **4K · 3840 px** — only when source > 3840 wide.
-- **2K · 2048 px** — only when source > 2048 wide.
-- **800 px** — only when source > 800 wide.
+- **Original** — the source file, byte-for-byte. Always present.
+- **4K · 3840 px** — offered only if `4k` is in `sizes` *and* source > 3840 wide.
+- **2K · 2048 px** — offered only if `2k` is in `sizes` *and* source > 2048 wide.
+- **800 px** — offered only if `800` is in `sizes` *and* source > 800 wide.
 
-A 600-px source thus offers only Original. A 1500-px source offers Original + 800. Only 4K-or-bigger sources show every option.
+So an image with no `sizes` (or `sizes: []`) offers only the Original, regardless of how large the source is. An image with `sizes: [4k, 2k, 800]` on a 4096-px source shows every option; the same list on a 1500-px source resolves to Original + 800 (the 4K/2K tiers are dropped as upscales). The width guard means a `sizes` list can safely be copied across images without producing upscaled downloads.
+
+Implemented by `variantsForPermalink(permalink, sourceWidth)` in `imagePermalinks.ts`; the declared tiers live on each registry entry as `permalink.sizes`.
 
 ### How it's wired
 
-The single source of truth is **`src/lib/imagePermalinks.ts`**. At module load it walks every `meta.yaml` via `import.meta.glob('/src/content/*-gallery/*/meta.yaml', { query: '?raw' })`, builds a registry of `{section, gallerySlug, imageIndex, imageSlug, originalFilename, fsPath}` per image, and exposes helpers (`pageUrl`, `variantUrl`, `variantDownloadName`, `variantsForWidth`, `resolveFileRequest`, …).
+The single source of truth is **`src/lib/imagePermalinks.ts`**. At module load it walks every `meta.yaml` via `import.meta.glob('/src/content/*-gallery/*/meta.yaml', { query: '?raw' })`, builds a registry of `{section, gallerySlug, imageIndex, imageSlug, originalFilename, fsPath, sizes}` per image (`sizes` is the normalised list of declared download tiers), and exposes helpers (`pageUrl`, `variantUrl`, `variantDownloadName`, `variantsForPermalink`, `resolveFileRequest`, …).
 
 Two route files per section serve the URLs:
 

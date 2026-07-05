@@ -18,12 +18,11 @@ import fs from 'node:fs/promises';
 import {
   findByIndex,
   variantFile,
-  variantsForWidth,
+  variantsForPermalink,
   variantWidth,
   contentTypeFor,
   sharpFormatFor,
   resolveFileRequest,
-  type Variant,
 } from '../../../../../lib/imagePermalinks.ts';
 
 export const prerender = true;
@@ -36,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const permalink = findByIndex('astro', gallery.id, i);
       if (!permalink) continue;
       const img = gallery.data.images[i];
-      const variants = variantsForWidth(img.file.width);
+      const variants = variantsForPermalink(permalink, img.file.width);
       for (const variant of variants) {
         paths.push({
           params: {

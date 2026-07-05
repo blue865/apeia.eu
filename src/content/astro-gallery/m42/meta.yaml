@@ -5,10 +5,12 @@ description: The Centre of The Orion Belt
 tags: [nebula, m42, ngc1976, sh2-279]
 images:
   - file: ./M42 - Orion Nebula.jpg
+    sizes: [2k, 800]
     alt: M42 - Orion Nebula
     caption: RGB
     tags: [4k, wallpaper, home-page]
   - file: ./M42 - lomo1.jpg
+    sizes: [4k, 2k, 800]
     alt: M42 - Orion Nebula
     caption: First take at astrophoto
     tags: [lomo]

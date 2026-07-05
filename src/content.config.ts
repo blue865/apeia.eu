@@ -48,6 +48,15 @@ const shardsPosts = defineCollection({
     }),
 });
 
+/** A downsized download tier. YAML parses `4k`/`2k` as strings but `800` as a
+ *  number, so coerce to a lowercase string before validating against the set
+ *  of named tiers. An image's `sizes` list controls which downscaled downloads
+ *  are generated; when it is absent or empty, only the original is offered. */
+const downloadSize = z
+  .union([z.string(), z.number()])
+  .transform((v) => String(v).toLowerCase())
+  .pipe(z.enum(['800', '2k', '4k']));
+
 /** Gallery — one entry per <slug>/meta.yaml. Id is normalised to just <slug>. */
 const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
   z.object({
@@ -65,6 +74,10 @@ const gallerySchema = ({ image }: { image: SchemaContext['image'] }) =>
           file: image(),
           alt: z.string().optional(),
           caption: z.string().optional(),
+          /** Downsized download tiers to generate for this image, e.g.
+           *  `[4k, 2k, 800]`. Tiers at or above the source width are skipped
+           *  (no upscaling). Omit or leave empty to offer only the original. */
+          sizes: z.array(downloadSize).optional(),
           /** Optional multiline prose. Use YAML's `|` literal block style
            *  so line breaks survive into the rendered output. */
           notes: z.string().optional(),

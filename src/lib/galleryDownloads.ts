@@ -15,7 +15,7 @@ import {
   variantDownloadName,
   variantLabel,
   variantWidth,
-  variantsForWidth,
+  variantsForPermalink,
   type Variant,
 } from './imagePermalinks.ts';
 
@@ -41,7 +41,7 @@ export async function buildDownloadOptions(args: {
   const permalink = findByIndex(section, gallerySlug, imageIndex);
   if (!permalink) return [];
 
-  const variants = variantsForWidth(imageMeta.width);
+  const variants = variantsForPermalink(permalink, imageMeta.width);
   const out: DownloadOption[] = variants.map((v: Variant) => {
     const isOriginal = v === 'original';
     const width = isOriginal ? imageMeta.width : (variantWidth(v) ?? 0);

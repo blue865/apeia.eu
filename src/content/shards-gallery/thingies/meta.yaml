@@ -3,5 +3,6 @@ date: 2000-1-1
 description: Random thingies.
 images:
   - file: ./galaxy_callibration.png 
+    sizes: [800]
     caption: Galaxy White Reference
     notes: I suffered from bad galaxy colours for years. This white balance value eventually did help greatly.
