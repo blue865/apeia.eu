@@ -6,46 +6,46 @@ cover: ./20260626_124403.jpg
 tags: [bratislava]
 images:
   - file: ./20260624_172832.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Apollo a panák
     tags: [apollo-bridge, sculpture, danube]
 
   - file: ./20260624_175145.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Sem ma poslali ako 10 ročného hľadať kamene na Go - dva biele som našiel :)
     tags: [danube, river, landscape]
 
   - file: ./20260624_175645.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Zvyšky z dvoch potopených remorkérov z 80' - AKA detské preliezky - tetá, može ísť martin vón? - ale budete len pri dome. :)
     tags: [danube, boat, nature]
 
   - file: ./20260624_180802.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Pod Prístavným mostom
     tags: [pristavny-most, graffiti, bridge]
 
   - file: ./20260624_180944.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Prístavný most
     tags: [pristavny-most, bridge, danube]
 
   - file: ./20260624_181312.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Bratislavský prístav
     tags: [port, cranes, danube, industry]
 
   - file: ./20260624_181405.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     tags: [port, cranes, danube]
 
   - file: ./20260624_182648.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Nefunguje
     tags: [park, fountain, sad-janka-krala]
 
   - file: ./20260624_182722.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     tags: [park, sad-janka-krala]
 
   - file: ./20260624_183436.jpg
@@ -54,51 +54,51 @@ images:
     tags: [cafe, mosaic, interior, sad-janka-krala]
 
   - file: ./20260624_194821.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Štýlová večera po výcvale
     tags: [food, langos, old-town]
 
   - file: ./20260625_123045.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: The Danube from Nový most
     tags: [danube, novy-most, city]
 
   - file: ./20260625_131305.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     alt: The UFO observation tower of Most SNP peeking above the trees
     caption: UFO
     tags: [ufo-tower, most-snp, bridge, sad-janka-krala]
 
   - file: ./20260626_120015.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     alt: Rocky lake shore and promenade framed by a large Mondrian-style coloured frame installation
     caption: Through the frame
     tags: [art, installation, cunovo, danube, danubiana]
 
   - file: ./20260626_123407.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     alt: Minimalist museum hall with floor-to-ceiling glass overlooking the Danube, a sculpture in a vitrine at centre
     caption: Danubiana Meulensteen Art Museum
     tags: [danubiana, museum, danube, art]
 
   - file: ./20260626_124403.jpg
-    sizes: [2k, 800]
+    sizes: [800]
     alt: Photograph of a pilot in a golden helmet surrounded by flying great tits
     caption: Exhibition at Danubiana
     tags: [danubiana, art, photography]
 
   - file: ./20260626_130111.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Old Danube
     tags: [danube, river, landscape, island]
 
   - file: ./20260626_145037.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     caption: Čunovské jazero
     tags: [cunovo, lake, nature]
 
   - file: ./20260627_000440.jpg
-    sizes: [4k, 2k, 800]
+    sizes: [800]
     alt: Night shot of a bridge unrerbelly, lights reflecting in still water
     caption: Most SNP
     tags: [night, bratislava, most-snp]
