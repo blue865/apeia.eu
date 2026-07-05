@@ -13,7 +13,8 @@
     "astro": "astro",
     "deploy:init": "node deploy/deploy.mjs init",
     "deploy:plan": "node deploy/deploy.mjs plan",
-    "deploy": "node deploy/deploy.mjs push"
+    "deploy": "node deploy/deploy.mjs push",
+    "deploy:reset": "node deploy/deploy.mjs reset"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",

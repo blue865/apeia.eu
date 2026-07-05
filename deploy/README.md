@@ -11,20 +11,33 @@ server-side hash table kept locally - no full second copy of the site on disk.
 2. Copy `deploy/.env.example` to `deploy/.env` and fill in FTP credentials.
    `.env` is gitignored; never commit it.
 3. The baseline `deploy/manifest.json` was generated from the `dist/` that
-   equals current production. If production and this manifest ever drift, re-run
-   `npm run deploy:init` from a `dist/` you trust equals the server.
+   equals current production.
 
 ## Everyday use
 
 ```
 npm run build          # regenerate dist/
 npm run deploy:plan    # show exactly what would upload/delete (no network)
-npm run deploy         # build already done? this just pushes the diff
+npm run deploy         # push the diff (5s pause before uploading)
 npm run deploy -- --verify   # push, then HTTP-check a sample of changed files
 ```
 
-`npm run deploy` prints the plan and pauses 5s before uploading; Ctrl-C aborts.
+`npm run deploy` prints the plan and pauses before uploading; Ctrl-C aborts.
 Pass `--yes` to skip the pause (e.g. from a skill).
+
+## Regenerating the manifest
+
+The manifest records what's on disk, not what's on the server - it trusts that
+`dist/` equals production. Refresh it two ways:
+
+- **`npm run deploy:init`** - re-hash `dist/` and overwrite the baseline. Only
+  safe when `dist/` is known to match the server (right after a full, complete
+  upload). Running it while the two differ bakes that drift into the baseline.
+- **`npm run deploy:reset`** - recovery button. Force-uploads *every* file in
+  `dist/` (ignoring "unchanged" status), deletes anything the old manifest
+  tracked but `dist/` no longer has, then writes a fresh manifest. Use this when
+  you suspect the manifest and server have drifted and want a guaranteed-clean
+  resync.
 
 ## How it stays safe
 
@@ -38,5 +51,6 @@ Pass `--yes` to skip the pause (e.g. from a skill).
 ```
 node deploy/deploy.mjs init    # write baseline manifest from dist/
 node deploy/deploy.mjs plan    # dry-run diff
-node deploy/deploy.mjs push    # deploy diff  [--yes] [--verify] [--dist <dir>]
+node deploy/deploy.mjs push    # deploy diff       [--yes] [--verify] [--dist <dir>]
+node deploy/deploy.mjs reset   # force full resync [--yes] [--verify] [--dist <dir>]
 ```

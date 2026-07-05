@@ -12,10 +12,13 @@
 //   plan          Build the diff and print what WOULD be uploaded/deleted. No network.
 //   push          Do the deploy: upload added/changed, delete removed, update manifest.
 //                 Add --verify to re-fetch a sample of changed files over HTTPS.
+//   reset         Force-upload EVERY file in dist/ (ignore the manifest's "unchanged"
+//                 status), delete anything the old manifest tracked but dist/ no longer
+//                 has, then write a fresh manifest. Use to recover from suspected drift.
 //
 // Flags:
 //   --dist <dir>     Override dist directory (default: ../dist relative to this file)
-//   --yes            Skip the 5s safety pause before pushing
+//   --yes            Skip the safety pause before pushing
 //   --verify         After push, HTTP-check a sample of changed files
 //
 // Credentials come from deploy/.env (gitignored). See deploy/.env.example.
@@ -308,17 +311,33 @@ async function main() {
     return;
   }
 
-  const oldFiles = await loadManifest();
+  let oldFiles = await loadManifest();
   if (oldFiles === null) {
-    console.error(
-      'No manifest found. Run `node deploy/deploy.mjs init` when dist/ equals production.'
-    );
-    process.exit(1);
+    if (cmd === 'reset') {
+      oldFiles = {}; // reset doesn't need a prior baseline
+    } else {
+      console.error(
+        'No manifest found. Run `node deploy/deploy.mjs init` when dist/ equals production.'
+      );
+      process.exit(1);
+    }
   }
 
   console.log(`Hashing ${distDir}...`);
   const newFiles = await hashTree(distDir);
-  const d = diff(oldFiles, newFiles);
+
+  // reset = force-upload every file regardless of hash match; still delete
+  // anything the old manifest tracked that's no longer in dist/.
+  const d =
+    cmd === 'reset'
+      ? {
+          added: Object.keys(newFiles).sort(),
+          changed: [],
+          deleted: Object.keys(oldFiles)
+            .filter((r) => !newFiles[r])
+            .sort(),
+        }
+      : diff(oldFiles, newFiles);
 
   if (cmd === 'plan') {
     if (!d.added.length && !d.changed.length && !d.deleted.length) {
@@ -330,23 +349,31 @@ async function main() {
     return;
   }
 
-  if (cmd === 'push') {
+  if (cmd === 'push' || cmd === 'reset') {
     const env = await loadEnv();
     if (!d.added.length && !d.changed.length && !d.deleted.length) {
       console.log('No changes to deploy.');
       return;
     }
+    if (cmd === 'reset') {
+      console.log(
+        `RESET: re-uploading ALL ${d.added.length} file(s) in dist/, ignoring unchanged status.`
+      );
+    }
     printPlan(d, newFiles);
     if (!args.yes) {
-      console.log('\nStarting in 5s... (Ctrl-C to abort, or pass --yes to skip)');
-      await sleep(5000);
+      const secs = cmd === 'reset' ? 8 : 5;
+      console.log(
+        `\nStarting in ${secs}s... (Ctrl-C to abort, or pass --yes to skip)`
+      );
+      await sleep(secs * 1000);
     }
     await push(env, distDir, d, newFiles, oldFiles, { verify: args.verify });
     console.log('Done.');
     return;
   }
 
-  console.error(`Unknown command: ${cmd}\nUse one of: init | plan | push`);
+  console.error(`Unknown command: ${cmd}\nUse one of: init | plan | push | reset`);
   process.exit(1);
 }
 
