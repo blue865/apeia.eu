@@ -178,32 +178,6 @@ src/content/shards/gallery/
 
 ---
 
-## Page Routes
-
-| Route | File |
-|---|---|
-| `/` | `src/pages/index.astro` — landing, links to both sections |
-| `/astro` | Section index: recent posts + gallery previews |
-| `/astro/blog` | Post list |
-| `/astro/blog/[slug]` | Single post |
-| `/astro/gallery` | Gallery index |
-| `/astro/gallery/[slug]` | Single gallery |
-| `/astro/gallery/[slug]/[image]` | Per-image **permalink** page (one per image in the gallery) |
-| `/astro/gallery/[slug]/[image]/[file]` | Per-image **variant download** endpoint (serves the actual bytes) |
-| `/astro/tags` | Tag browser for Astro section |
-| `/astro/tags/[tag]` | All Astro artefacts (posts + galleries + images) with that tag |
-| `/shards` | Section index |
-| `/shards/blog` | Post list |
-| `/shards/blog/[slug]` | Single post |
-| `/shards/gallery` | Gallery index |
-| `/shards/gallery/[slug]` | Single gallery |
-| `/shards/gallery/[slug]/[image]` | Per-image **permalink** page |
-| `/shards/gallery/[slug]/[image]/[file]` | Per-image **variant download** endpoint |
-| `/shards/tags` | Tag browser for Shards section |
-| `/shards/tags/[tag]` | All Shards artefacts (posts + galleries + images) with that tag |
-
----
-
 ## Component Conventions
 
 - One component per file in `src/components/`
