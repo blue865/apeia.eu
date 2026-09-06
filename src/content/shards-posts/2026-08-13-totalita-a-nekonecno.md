@@ -2,7 +2,7 @@
 title: Totality and Infinity
 date: 2026-8-13
 summary: Konspekt
-topic: pholisophy
+topic: philosophy
 tags: [levinas, metaphysics]
 draft: true
 ---

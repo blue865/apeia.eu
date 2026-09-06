@@ -11,6 +11,12 @@ const path = Astro.url.pathname;
 const astroActive = path.startsWith('/astro');   // /astro/*  → Astro
 const shardsActive = path.startsWith('/shards');  // /shards/* → Shards
 const atHome = !astroActive && !shardsActive;     // "/" and anything else
+
+// Standalone tool link, left of the switch. Same pill geometry and mono type
+// as a segment, but with its own hairline outline so it reads as a single
+// destination rather than a third section of the toggle.
+const halohaloHref = '/astro/blog/2026-09-xx-halohalo-star-removal-pixinsght';
+const halohaloActive = path.startsWith(halohaloHref);
 ---
 
 <header class="header">
@@ -26,6 +32,21 @@ const atHome = !astroActive && !shardsActive;     // "/" and anything else
     </a>
 
     <div class="actions">
+      <div class="switch">
+        <a href={halohaloHref} class:list={['seg seg-tool', { active: halohaloActive }]}
+           title="Pixinsight Star Halo Removal Script"
+           aria-label="HaloHalo — Pixinsight Star Halo Removal Script"
+           aria-current={halohaloActive ? 'page' : undefined}>
+          <svg class="ic ic-svg" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.6 8.2 A8.6 8.6 0 0 1 19.4 8.2" />
+            <path d="M19.4 15.8 A8.6 8.6 0 0 1 4.6 15.8" stroke-dasharray="2 2.6" />
+            <path d="M12 7.6 L13.2 10.8 L16.4 12 L13.2 13.2 L12 16.4 L10.8 13.2 L7.6 12 L10.8 10.8 Z" />
+          </svg>
+          <span class="lbl">HaloHalo</span>
+        </a>
+      </div>
+
       <nav class="switch" aria-label="Sections">
         <a href="/astro" class:list={['seg seg-astro', { active: astroActive }]}
            aria-current={astroActive ? 'true' : undefined}>
@@ -136,6 +157,21 @@ const atHome = !astroActive && !shardsActive;     // "/" and anything else
   .seg-shards.active {
     color: var(--color-accent-shards);
     background: rgba(232, 168, 124, 0.14);
+  }
+
+  /* HaloHalo — a one-segment switch: identical pill, type and states to the
+     section toggle it sits beside. */
+  .seg-tool:hover { color: var(--color-accent-astro); }
+  .seg-tool.active {
+    color: var(--color-accent-astro);
+    background: rgba(93, 214, 200, 0.14);
+  }
+  /* Sized to sit level with the ◐ / ◇ glyphs: an outlined SVG fills its box,
+     a glyph does not, so it runs slightly smaller than the 1.05em font-size. */
+  .ic-svg {
+    width: 0.95em;
+    height: 0.95em;
+    flex: none;
   }
 
   .link-rss {
