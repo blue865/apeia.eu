@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-05T13:59:48.408Z",
-  "fileCount": 1107,
+  "generatedAt": "2026-09-02T20:15:19.774Z",
+  "fileCount": 1111,
   "files": {
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -2853,6 +2853,22 @@
     "_astro/zofka-la-palma.BLAC1ItH_Z2nq2kI.webp": {
       "sha256": "17813131c5446edda059a84ffc5a52f1caedb2819c36cbaadacd947d94a91128",
       "size": 100906
+    },
+    "astro-tools/halohalo/HaloHalo.js": {
+      "sha256": "20b9549d34dc14761568b5c9a1e29366a5ad26f0fa9d3e45010c954c713ff5e8",
+      "size": 140347
+    },
+    "astro-tools/halohalo/HaloHalo.svg": {
+      "sha256": "17dceb2810dbc26a0181a2d01e24b2c4edd824eab2b10974247455fde7d3a2a1",
+      "size": 573
+    },
+    "astro-tools/halohalo/halohalo-1.0.zip": {
+      "sha256": "56fa530317f312f630837ac874d6420303720389b9ef15e7ad52feeb35fc6ab6",
+      "size": 44754
+    },
+    "astro-tools/halohalo/updates.xri": {
+      "sha256": "8b52036c24114d6f38871bee9b6deb53fc9dd810e946093efe607b61cd615544",
+      "size": 962
     },
     "astro/blog/2026-05-12-a-fear-and-loathing-of-green/index.html": {
       "sha256": "acc851db033709ec470c110c3ef043d7b053ffb09de01671ace1fa2fb0eb6556",
