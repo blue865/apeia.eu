@@ -36,8 +36,23 @@ export const DOWNLOAD_QUALITY: Record<Section, number> = {
   shards: 85,
 };
 
+/** Post-local illustrations: screenshots, diagrams, snapshots that live in the
+ *  post's own folder. Never opened fullscreen, never offered as a download,
+ *  and never rendered wider than the 65ch prose column - so the gallery ladder
+ *  is wasted bytes. Deliberately NOT a subset of DISPLAY_WIDTHS: these sources
+ *  appear in exactly one place, so there is nothing to dedupe with. The top
+ *  rung (1400) is 2x the ~700 px `--measure` column; the bottom two cover
+ *  phones at 1x/2x. */
+export const PROSE_WIDTHS = [560, 840, 1400];
+export const PROSE_QUALITY = 72;
+
 /** In-flow gallery images (and any other main-content photograph). */
 export const DISPLAY_WIDTHS = [480, 800, 1200, 1800, 2400];
+
+/** A gallery photograph shown inside a post (GalleryPhoto). Strict subset of
+ *  DISPLAY_WIDTHS, paired with the same section quality, so a photo appearing
+ *  in both a post and its gallery generates ONE set of files. */
+export const POST_PHOTO_WIDTHS = [800, 1200, 1800];
 
 /** Fullscreen overlay ladder. Shares 1200/1800/2400 with DISPLAY_WIDTHS (same
  *  quality ⇒ same files); only 3840 is an extra variant. The former 3000 tier

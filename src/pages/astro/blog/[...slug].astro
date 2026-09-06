@@ -17,6 +17,8 @@ const { Content } = await render(entry);
   date={entry.data.date}
   summary={entry.data.summary}
   tags={normalizeTags(entry.data.tags)}
+  cover={entry.data.cover}
+  coverAlt={entry.data.coverAlt}
   section="astro"
 >
   <Content />

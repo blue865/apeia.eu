@@ -2,7 +2,9 @@
 import Base from './Base.astro';
 import PageDecor from '../components/PageDecor.astro';
 import TagPill from '../components/TagPill.astro';
+import ImageFigure from '../components/ImageFigure.astro';
 import { formatDateLong } from '../lib/format.ts';
+import { POST_PHOTO_WIDTHS, displayQuality } from '../lib/imagePresets.ts';
 
 interface Props {
   title: string;
@@ -11,8 +13,13 @@ interface Props {
   tags?: string[];
   topic?: string;
   section: 'astro' | 'shards';
+  /** Frontmatter `cover` — shown once, in the header above the summary.
+   *  Encoded on the display ladder: a cover spans the container, not the
+   *  prose column, and is usually a gallery photograph. */
+  cover?: ImageMetadata;
+  coverAlt?: string;
 }
-const { title, date, summary, tags = [], topic, section } = Astro.props;
+const { title, date, summary, tags = [], topic, section, cover, coverAlt } = Astro.props;
 ---
 
 <Base title={title} description={summary} section={section}>
@@ -24,6 +31,15 @@ const { title, date, summary, tags = [], topic, section } = Astro.props;
       </p>
       {topic && <p class="topic">{topic}</p>}
       <h1>{title}</h1>
+      {cover && (
+        <ImageFigure
+          src={cover}
+          alt={coverAlt ?? title}
+          size="cover"
+          widths={POST_PHOTO_WIDTHS}
+          quality={displayQuality(section)}
+        />
+      )}
       {summary && <p class="lede">{summary}</p>}
       <p class="when">
         <time datetime={date.toISOString()}>{formatDateLong(date)}</time>
@@ -49,7 +65,11 @@ const { title, date, summary, tags = [], topic, section } = Astro.props;
 
 <style>
   .post { padding: var(--space-8) var(--space-5) var(--space-6); }
-  .post-header { margin-bottom: var(--space-7); max-width: var(--measure); }
+  /* The header text keeps the 65ch measure; the cover figure is the one child
+     allowed to span the full container, so the cap lives on the children
+     rather than on the header itself. */
+  .post-header { margin-bottom: var(--space-7); }
+  .post-header > :not(figure) { max-width: var(--measure); }
 
   .meta { margin: 0 0 var(--space-3); font-family: var(--font-mono); font-size: var(--fs-xs); }
   .back {

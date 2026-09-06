@@ -1,0 +1,94 @@
+---
+/**
+ * ImageFigure — internal shared markup + styling for an in-post figure.
+ *
+ * Not for direct use in posts. Author-facing wrappers:
+ *   PostFigure.astro   — post-local illustrations (prose ladder)
+ *   GalleryPhoto.astro — photographs pulled in from a gallery (display ladder)
+ * PostLayout also uses it directly for a post's frontmatter `cover`, which is
+ * authored in YAML rather than in the body and so needs no wrapper.
+ *
+ * Both wrappers pass their ladder in; this file owns the <figure> markup and
+ * the caption/motif styling so the two never drift apart visually.
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  /** 'prose' fills the --measure column; 'wide' bleeds into the side padding;
+   *  'cover' spans the article container (post header hero). */
+  size?: 'prose' | 'wide' | 'cover';
+  widths: number[];
+  quality: number;
+}
+const { src, alt, caption, size = 'prose', widths, quality } = Astro.props;
+
+/** Cap the non-srcset fallback at the top rung. Without this, `<Image>` emits
+ *  an extra variant at the SOURCE width - for a 6000 px astrophoto that is a
+ *  multi-megabyte webp that only a browser without srcset support would ever
+ *  fetch. Capped, the fallback resolves to the same file as the top rung. */
+const fallbackWidth = Math.min(src.width, Math.max(...widths));
+
+/** `sizes` per layout role - what share of the viewport the figure occupies,
+ *  so the browser picks the right rung off the srcset. */
+const SIZES: Record<NonNullable<Props['size']>, string> = {
+  prose: '(max-width: 700px) 100vw, 65ch',
+  wide: '(max-width: 700px) 100vw, min(900px, calc(100vw - 3rem))',
+  cover: '(max-width: 700px) 100vw, min(var(--maxw), calc(100vw - 3rem))',
+};
+---
+
+<figure class:list={['post-image', `post-image--${size}`]}>
+  <Image
+    {src}
+    {alt}
+    {widths}
+    {quality}
+    width={fallbackWidth}
+    format="webp"
+    sizes={SIZES[size]}
+    loading={size === 'cover' ? 'eager' : 'lazy'}
+    fetchpriority={size === 'cover' ? 'high' : undefined}
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .post-image {
+    margin: var(--space-6) 0;
+  }
+  .post-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border-soft);
+  }
+  /* Shards section motif override */
+  body[data-section='shards'] .post-image img {
+    border-radius: 0;
+    clip-path: var(--motif-shards-cut);
+  }
+  figcaption {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-align: center;
+    margin-top: var(--space-2);
+  }
+
+  /* cover: spans the article container. The width itself comes from the
+     parent (PostLayout lifts the header's --measure cap for this one child);
+     here we only give it a little more air than an in-flow figure. */
+  .post-image--cover {
+    margin: var(--space-5) 0 var(--space-6);
+  }
+
+  /* wide: bleeds beyond the 65ch measure into the article's side padding */
+  .post-image--wide {
+    margin-left: calc(-1 * var(--space-5));
+    margin-right: calc(-1 * var(--space-5));
+  }
+</style>

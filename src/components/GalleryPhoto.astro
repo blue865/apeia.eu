@@ -1,0 +1,41 @@
+---
+/**
+ * GalleryPhoto — a photograph from a gallery, shown inside a post.
+ *
+ *   import GalleryPhoto from '../../components/GalleryPhoto.astro';
+ *   import m16 from '../astro-gallery/m16/m16-eagle-nebula.jpg';
+ *
+ *   <GalleryPhoto src={m16} alt="M16 - Eagle Nebula" size="wide" section="astro" />
+ *
+ * Encoded on the section's DISPLAY ladder and quality, so the generated files
+ * are the very same ones the gallery page already emits — the picture costs
+ * the build nothing extra. That sharing is the whole point of this component;
+ * for an image that exists only in the post, use PostFigure.
+ *
+ * size:
+ *   'prose' — fills the --measure column (default)
+ *   'wide'  — bleeds into the article's side padding, giving photos more room
+ */
+import ImageFigure from './ImageFigure.astro';
+import { displayQuality, POST_PHOTO_WIDTHS, type Section } from '../lib/imagePresets.ts';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  size?: 'prose' | 'wide';
+  /** Which section's display quality to encode at — match the gallery the
+   *  picture comes from, or the shared files won't be shared after all. */
+  section?: Section;
+}
+const { src, alt, caption, size = 'prose', section = 'astro' } = Astro.props;
+---
+
+<ImageFigure
+  {src}
+  {alt}
+  {caption}
+  {size}
+  widths={POST_PHOTO_WIDTHS}
+  quality={displayQuality(section)}
+/>

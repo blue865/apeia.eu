@@ -1,0 +1,40 @@
+---
+/**
+ * PostFigure — an illustration that lives in the post's own folder.
+ *
+ * For screenshots, diagrams, charts, phone snaps: pictures that belong to one
+ * essay and have no reason to exist as a gallery. Put the file next to the
+ * post and import it with a relative path:
+ *
+ *   src/content/shards-posts/2026-06-21-bayes/
+ *     index.mdx
+ *     prior-curve.png
+ *
+ *   import PostFigure from '../../../components/PostFigure.astro';
+ *   import priorCurve from './prior-curve.png';
+ *
+ *   <PostFigure src={priorCurve} alt="Prior vs posterior" caption="Shifting the prior" />
+ *
+ * Encoded on the PROSE ladder — narrower and cheaper than the gallery ladder,
+ * because these never go fullscreen and never exceed the prose column. For a
+ * photograph that also lives in a gallery, use GalleryPhoto instead.
+ */
+import ImageFigure from './ImageFigure.astro';
+import { PROSE_WIDTHS, PROSE_QUALITY } from '../lib/imagePresets.ts';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+}
+const { src, alt, caption } = Astro.props;
+---
+
+<ImageFigure
+  {src}
+  {alt}
+  {caption}
+  size="prose"
+  widths={PROSE_WIDTHS}
+  quality={PROSE_QUALITY}
+/>

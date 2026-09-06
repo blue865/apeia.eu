@@ -113,9 +113,14 @@ Define in `src/content/config.ts`.
 ### `astro-posts`
 ```
 src/content/astro/posts/
-  YYYY-MM-DD-slug.md
+  YYYY-MM-DD-slug.md          # flat: a post with no images of its own
+  YYYY-MM-DD-slug/            # bundled: a post that carries its own pictures
+    index.mdx
+    diagram.png
 ```
 Frontmatter: `title`, `date`, `summary`, `tags[]`, `draft`
+
+Both shapes are first-class - see [Post images](#post-images).
 
 ### `astro-gallery`
 ```
@@ -164,7 +169,7 @@ Values are free-form strings so authors can write whatever notation reads best (
 ### `shards-posts`
 ```
 src/content/shards/posts/
-  YYYY-MM-DD-slug.md
+  YYYY-MM-DD-slug.md          # or YYYY-MM-DD-slug/index.mdx + local images
 ```
 Frontmatter: `title`, `date`, `summary`, `tags[]`, `topic` (philosophy | science | politics | shard | travel | IT — defaults to `shard`), `draft`, optional `cover` + `coverAlt`
 
@@ -175,6 +180,74 @@ src/content/shards/gallery/
     meta.yaml       # title, date, description, tags[]
     *.jpg / *.webp
 ```
+
+---
+
+## Post images
+
+A post picture comes from one of two places, and the writer picks per image.
+
+**1. From a gallery** - the photograph is part of a collection and has its own
+gallery page. Import it across and use `GalleryPhoto`:
+
+```mdx
+import GalleryPhoto from '../../components/GalleryPhoto.astro';
+import m16 from '../astro-gallery/m16/m16-eagle-nebula.jpg';
+
+<GalleryPhoto src={m16} alt="M16 - Eagle Nebula" size="wide" section="astro" />
+```
+
+Encoded on `POST_PHOTO_WIDTHS` at the section's display quality - a strict
+subset of the gallery ladder, so the post reuses the gallery's generated files
+and costs the build nothing extra. Pass the `section` the picture belongs to,
+or the quality won't match and the sharing is lost.
+
+**2. Local to the post** - a screenshot, diagram or snapshot that belongs to
+one essay and has no reason to be a gallery. Put the post in a folder, drop the
+file beside it, import it relatively, and use `PostFigure`:
+
+```
+src/content/shards-posts/2026-06-21-bayes/
+  index.mdx
+  prior-curve.png
+```
+```mdx
+import PostFigure from '../../../components/PostFigure.astro';
+import priorCurve from './prior-curve.png';
+
+<PostFigure src={priorCurve} alt="Prior vs posterior" caption="Shifting the prior" />
+```
+
+Encoded on `PROSE_WIDTHS` / `PROSE_QUALITY` - narrower and cheaper, because
+these never open fullscreen, are never offered as downloads, and never render
+wider than the `--measure` column. No `size` prop: a prose illustration stays
+in the column.
+
+**3. The post `cover`** - frontmatter, not body. `cover: shot.png` resolves
+relative to the entry file (Astro normalises a bare name to `./shot.png`, so
+both spellings work), and it may be either a post-local file or a gallery
+photograph. It renders in ONE place: the post header, between the title and the
+summary, spanning the article container rather than the 65ch text column.
+Deliberately not on post cards - the blog indexes stay text-only lists.
+
+Covers always use the display ladder, not the prose one: unlike a body image
+there is no import line saying where the picture came from, and a cover is
+rendered container-wide, so it is sized for the wider of the two cases. It is
+also the LCP element, so `ImageFigure` gives `size="cover"` `loading="eager"`
+and `fetchpriority="high"` while every other figure stays lazy.
+
+**Why two components rather than one prop.** A component only ever receives an
+`ImageMetadata` ({ src, width, height, format }), and by build time `src` is a
+hashed `/_astro/...` path - the original folder is gone, so the component
+cannot infer where the picture came from. The choice has to be authored, and a
+component name says it more loudly than a prop with a default that is easy to
+forget. Both wrap `ImageFigure.astro`, which owns the markup and styling; don't
+use `ImageFigure` directly from a post.
+
+**No `generateId` needed for folder posts.** Astro's glob loader already ends
+its default id with `.replace(/\/index$/, '')`, so `2026-06-21-bayes/index.mdx`
+resolves to `/shards/blog/2026-06-21-bayes`. Flat and bundled posts share one
+URL shape; converting a post to a folder does not move it.
 
 ---
 
