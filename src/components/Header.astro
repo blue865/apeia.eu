@@ -37,11 +37,15 @@ const halohaloActive = path.startsWith(halohaloHref);
            title="Pixinsight Star Halo Removal Script"
            aria-label="HaloHalo — Pixinsight Star Halo Removal Script"
            aria-current={halohaloActive ? 'page' : undefined}>
+          <!-- Halo ring around a star. Drawn for a ~13px box: the star is
+               filled and the ring is a single unbroken stroke, so it holds up
+               at the size the glyph segments (◐ ◇) beside it are drawn. Thin
+               outlines and dashes below 1px render as grey mush. -->
           <svg class="ic ic-svg" viewBox="0 0 24 24" aria-hidden="true" fill="none"
-               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4.6 8.2 A8.6 8.6 0 0 1 19.4 8.2" />
-            <path d="M19.4 15.8 A8.6 8.6 0 0 1 4.6 15.8" stroke-dasharray="2 2.6" />
-            <path d="M12 7.6 L13.2 10.8 L16.4 12 L13.2 13.2 L12 16.4 L10.8 13.2 L7.6 12 L10.8 10.8 Z" />
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" opacity="0.6" />
+            <path d="M12 5.2 L13.9 10.1 L18.8 12 L13.9 13.9 L12 18.8 L10.1 13.9 L5.2 12 L10.1 10.1 Z"
+                  fill="currentColor" stroke="none" />
           </svg>
           <span class="lbl">HaloHalo</span>
         </a>
@@ -169,8 +173,8 @@ const halohaloActive = path.startsWith(halohaloHref);
   /* Sized to sit level with the ◐ / ◇ glyphs: an outlined SVG fills its box,
      a glyph does not, so it runs slightly smaller than the 1.05em font-size. */
   .ic-svg {
-    width: 0.95em;
-    height: 0.95em;
+    width: 1em;
+    height: 1em;
     flex: none;
   }
 
