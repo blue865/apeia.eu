@@ -7,14 +7,41 @@ coverAlt: HaloHalo UI
 tags: [halohalo, star halo, pixinsight, tool]
 draft: false
 ---
+import PostFigure from '../../../components/PostFigure.astro';
+import haloTutorial from './halo_tutorial.png';
+import haloTutorialSettings from './halo_tutorial_settings.png';
+import asymetric from './asymetric.png';
+import asymetricSettings from './asymetric_settings.png';
+import nastyExample from './halo-removal-example-hard.png';
+import nastySettings from './nasty_settings.png';
+
 I always struggled with star halos, have tried a lots of workflows one can find on youtube or on the internet generaly. 
 The work tedious it was, with limited and unsatisfatory outcomes. The little HaloHalo tool is my attempt to squash these
-little gremlins of stray optics I learned to hate.
+nasty gremlins of stray optics I learned to hate. 
 
-Now the removal is mostly the matter of few clicks.
+Now the removal is mostly the matter of few clicks. The best results can be achieved with linear images but the tool works with stretched ones as well.
 
-#### Installation
 
-#### Default Workflow
-best in linear
-- 
+### Installation
+
+
+### A Few Examples
+
+#### A textbook halo
+I pulled this example from a the article descibing a manual halo removal workflow. [So that you can compare the results.](https://digitalstars.wordpress.com/2019/10/27/tutorial-how-to-eliminate-star-halos-in-pixinsight/)
+I processed already stretched image. Not ideal, but works.
+<PostFigure src={haloTutorial} alt="Before and after: a broad circular halo around a bright star is gone in the corrected image" caption="Before and after - the halo goes, the nebulosity behind it stays." />
+
+<PostFigure src={haloTutorialSettings} alt="Used settings" caption="Used settings" />
+
+#### An asymmetric, low-contrast one
+<PostFigure src={asymetric} alt="Before and after of a faint uneven glow around a star" caption="A faint, lopsided glow - barely above the noise, and still enough to flatten the background." />
+
+<PostFigure src={asymetricSettings} alt="Used settings" caption="Used settings" />
+
+#### A nasty one
+
+<PostFigure src={nastyExample} alt="Before and after of a strong halo sitting on top of nebulosity" caption="Strong halo sitting right on top of nebulosity - the hard case." />
+
+<PostFigure src={nastySettings} alt="Used settings" caption="Used settings" />
+
