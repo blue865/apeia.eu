@@ -4,15 +4,15 @@
       <p>HaloHalo - interactive halo removal for PixInsight, from apeia.eu.</p>
    </description>
    <platform os="all" arch="noarch" version="1.8.0:2.9.9">
-      <package fileName="halohalo-1.0.zip" sha1="ffec32bccc3d75b9d1d2dcee17b1828e69ee0469" type="script" releaseDate="20260902">
+      <package fileName="halohalo-1.0.zip" sha1="de37d64af77507287828ce7823afb1855db59c9b" type="script" releaseDate="20260910">
          <title>HaloHalo 1.0</title>
          <description>
             <p>Interactive removal of star halos. Select an ellipse around a
             halo, and the measured halo model is subtracted from the image,
             with a live preview before anything is committed.</p>
-            <p>Installs as Script &gt; Utilities &gt; HaloHalo.</p>
+            <p>Installs as Script &gt; apeia &gt; HaloHalo.</p>
          </description>
       </package>
    </platform>
 </xri>
-<Signature developerId="apeia.eu" timestamp="2026-09-02T20:07:32.445Z" encoding="Base64">IoHBsCcKh9pwKZqyO7oIPPqP9VnThBcRjt3P+TJZ5bSCEYHsNPMtuqMRmqIyRlQAOpC8zzBJ3IX3zhEkopzpCw==</Signature>
+<Signature developerId="apeia.eu" timestamp="2026-09-10T17:24:03.394Z" encoding="Base64">CG5NZW1TqxKLDLf71KzV3RH3cln5bOMRxM4gMxra2wydfdh4MHzrs4AA5AyowalyS6aHwa6p5UKEeDmvmgBcAg==</Signature>

@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-02T20:15:19.774Z",
-  "fileCount": 1111,
+  "generatedAt": "2026-09-10T16:26:34.525Z",
+  "fileCount": 1139,
   "files": {
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
     },
     "404.html": {
-      "sha256": "1ad9148b1d93f2e5b99f406a7cf01530bbc4adcdd358d494b00c2b2156e9a49f",
-      "size": 4442
+      "sha256": "ec5767d40e42ddf9a985d44e5b815770ccbceb97ffb1a6d36c26f412412787ec",
+      "size": 5486
     },
     "@/20260625_181932.jpg": {
       "sha256": "c01b07f65377a7f05b1c951308b3a4cb4101687bcb8599239440bb7fe4b643aa",
@@ -670,9 +670,9 @@
       "sha256": "f7bde8c84985cbd3f95ae659132039f0e161d1002a875af153e899a3f9b8d499",
       "size": 27280
     },
-    "_astro/Base.CqVtPlLz.css": {
-      "sha256": "227697ed4dd375000ebf080b60e6ff19814e8f1e8cd708d780a5ca5c40481965",
-      "size": 8750
+    "_astro/Base.CPBZO2kv.css": {
+      "sha256": "861e5dd32d59b3a977a74e5af10f8a49f08f7f86b6d908b356e9539b42772968",
+      "size": 8982
     },
     "_astro/GalleryLayout.ButWD-aP.css": {
       "sha256": "33c8a32e8decaeb583ff6559802c6513fd29ab2c05c03b9db712d13724b612a2",
@@ -2330,6 +2330,38 @@
       "sha256": "0e2364bec7231b75e7900d23c61f30f1792c7ee7214fc5116a8fa5e4bbda2cc5",
       "size": 33802
     },
+    "_astro/asymetric.BzKmLCnf.png": {
+      "sha256": "fd51711191de4d998f350e20fe66c227164bc9e76ed98a48f05d71117a8f1e21",
+      "size": 727557
+    },
+    "_astro/asymetric.BzKmLCnf_1GMLU7.webp": {
+      "sha256": "b5da752c7c232489ab5d895796031dde6fff88736a57bf7edbbdacfb17142f8a",
+      "size": 67170
+    },
+    "_astro/asymetric.BzKmLCnf_Z15f33q.webp": {
+      "sha256": "2ca6706bc32cb1f4065cf1e50cbadfb7a74078a5e22a62bb44ea88b61627f181",
+      "size": 23314
+    },
+    "_astro/asymetric.BzKmLCnf_Z1HIixL.webp": {
+      "sha256": "b1652ee795e2f2b87e6f865e054edffb6f903fb53e41a06ce2d0836d2d47e3e8",
+      "size": 194242
+    },
+    "_astro/asymetric_settings.CRo3AyLh.png": {
+      "sha256": "3798517bc500c180278d523ed1a178742512022398bb268e3b8d7d3977966816",
+      "size": 875900
+    },
+    "_astro/asymetric_settings.CRo3AyLh_1mXEMo.webp": {
+      "sha256": "e0ed1ff6d39ad6b376c7fc37efde34f0b5436e4a5eb5a6614169308a0aa842c8",
+      "size": 57002
+    },
+    "_astro/asymetric_settings.CRo3AyLh_jW8c2.webp": {
+      "sha256": "cd76023018aa98194a48a3bf977c3c33ab64ea55cef365641cd2f40cbe3c0c60",
+      "size": 9494
+    },
+    "_astro/asymetric_settings.CRo3AyLh_nheSN.webp": {
+      "sha256": "5523f06b79f573144bfb5ad48c0c81c114bc3b846cc749e9c8617504ee96a6b7",
+      "size": 21538
+    },
     "_astro/erwinne.tgzIQUXZ.jpg": {
       "sha256": "bd8eaaec8dd596a2197f4772e59ae6b850acfc15fb38c612d3e52c68dee4ca70",
       "size": 3690091
@@ -2465,6 +2497,50 @@
     "_astro/gepardinne.fdHaR8Br_syqg4.webp": {
       "sha256": "c1012b3bf84bb172234da6337fbebaaf2250fe0a9a0a91b07e40cf56628de04a",
       "size": 305830
+    },
+    "_astro/halo-removal-example-hard.C_Q2lFVU.png": {
+      "sha256": "0a1d419ae0190a772421736291a63897bb6c16024038b7892681e0f17272d820",
+      "size": 123200
+    },
+    "_astro/halo-removal-example-hard.C_Q2lFVU_1MNJoz.webp": {
+      "sha256": "6a588b3f02e5721b305be7538c27c285d19cb0d08af070cd0c4a38c97763b54e",
+      "size": 23860
+    },
+    "_astro/halo-removal-example-hard.C_Q2lFVU_1mgVUO.webp": {
+      "sha256": "86accdec2547469b7ab168fd9f828ad4e8dbe89f25f0be962c51958886931ee9",
+      "size": 20514
+    },
+    "_astro/halo_tutorial.583zSN2C.png": {
+      "sha256": "a6fe74a84122784661ed3625a516fd790c576084f5bdea496b45c28023bf7787",
+      "size": 1233299
+    },
+    "_astro/halo_tutorial.583zSN2C_1MgJLC.webp": {
+      "sha256": "722b9e938c0b7f627f10898bb2027c6eac8f9b8a35938ec6c518462a9a70fc72",
+      "size": 54772
+    },
+    "_astro/halo_tutorial.583zSN2C_1s4oq.webp": {
+      "sha256": "59483dfd66862991c135322e672e7de486f009182396b1c16e40ed28149a8673",
+      "size": 23360
+    },
+    "_astro/halo_tutorial.583zSN2C_Z1XmXqv.webp": {
+      "sha256": "0c7faa0dd860d536c401d26e7a7cd4876c0f847c962dfc337b18515a29088943",
+      "size": 145022
+    },
+    "_astro/halo_tutorial_settings.DLvjJsZv.png": {
+      "sha256": "162603596998cd300b93d98d5818ebf703ddf130df358b164d60b44e4c80fccc",
+      "size": 1408203
+    },
+    "_astro/halo_tutorial_settings.DLvjJsZv_2aStxD.webp": {
+      "sha256": "4b4b77f06e8bc691b9bfa5a4de9fdc26128e8ad12e6625411d68f30efd4a717d",
+      "size": 115996
+    },
+    "_astro/halo_tutorial_settings.DLvjJsZv_Z1MQ8oo.webp": {
+      "sha256": "f0884d9b19ace028c6adfa671967ba2f5328c9a2a1b68dd38734d4436788e1a7",
+      "size": 48914
+    },
+    "_astro/halo_tutorial_settings.DLvjJsZv_Z1q6AdQ.webp": {
+      "sha256": "18c7cb379bec84726e17e825aab8db33515a00083aae00aef2d9dbc85288e713",
+      "size": 22408
     },
     "_astro/ic1396-4k.C2yWOMbV.jpg": {
       "sha256": "a5308757d7cd8d8e31b4d74e1f897445746bd9ffae8bcdf0cd7927bdb0b1da2e",
@@ -2722,6 +2798,22 @@
       "sha256": "11a6f6951f21ded906dd4a38344a9e7c9e868d836938ac7e9e68b3e5dceca4a5",
       "size": 88132
     },
+    "_astro/nasty_settings.CoSXfIgy.png": {
+      "sha256": "531076fe9df8b82fe161e49bf403cfd456cc4919098fb9128081a96385c3396a",
+      "size": 504947
+    },
+    "_astro/nasty_settings.CoSXfIgy_17rkBL.webp": {
+      "sha256": "fcdbb0f8dec612f7676a2272a50a2a52e522f0acc53b91b4b160db6a00dd5a99",
+      "size": 76518
+    },
+    "_astro/nasty_settings.CoSXfIgy_1C6R14.webp": {
+      "sha256": "2cac1bdbdaab831e8705460757d6d85de50c874ef56c2d135a4a9213cbb297f1",
+      "size": 12966
+    },
+    "_astro/nasty_settings.CoSXfIgy_Z1TdMfr.webp": {
+      "sha256": "54849b6b6d1fe8d0a504eda1af52e0436d190f2bc1ce246705762309a6295839",
+      "size": 29920
+    },
     "_astro/ngc1499-california-nebula.DjS9YbLE.jpg": {
       "sha256": "2dad97d0199cfe1fc3f7dc79c04eaf3cd3880af162c3ebe53330a4b29c2686b1",
       "size": 4937995
@@ -2871,12 +2963,16 @@
       "size": 962
     },
     "astro/blog/2026-05-12-a-fear-and-loathing-of-green/index.html": {
-      "sha256": "acc851db033709ec470c110c3ef043d7b053ffb09de01671ace1fa2fb0eb6556",
-      "size": 13486
+      "sha256": "9d954e13d8664f0d99a59c88d01d0e4799e5169a5c832eafbc410ca6fe3f59cb",
+      "size": 15184
+    },
+    "astro/blog/2026-09-10-halohalo-star-removal-pixinsght/index.html": {
+      "sha256": "01c2af78c81947d3b4f182c1e33b168daef378537f92b737497db7a6b17e3a88",
+      "size": 16325
     },
     "astro/blog/index.html": {
-      "sha256": "ee5af4c4db68c228ffcd2562f0b29e36c4fa069ec8169ac8bb523e790e2afcb7",
-      "size": 8299
+      "sha256": "ed1a15be396de5f80ded0be55be5d7a14d75cdd87c4026893d52adfec5290f26",
+      "size": 9852
     },
     "astro/gallery/ic1396/ic1396-4k/ic1396-4k-2k.jpg": {
       "sha256": "ba56e185e5d207f192943b13477fa4d1998192c131be5b4810b378ae34e46e0d",
@@ -2891,8 +2987,8 @@
       "size": 11379519
     },
     "astro/gallery/ic1396/ic1396-4k/index.html": {
-      "sha256": "633509c8b6ba7b9563b2a85941205f53e4c350e18e89eb22f4402336c24a1396",
-      "size": 13066
+      "sha256": "223ed9cc584689d990171a739d3a1156da4c9b165c265f9935681cf9d8f825d8",
+      "size": 14110
     },
     "astro/gallery/ic1396/ic1396-fly/ic1396-fly-2k.jpg": {
       "sha256": "65ce1c290a27ed5b5f7a5aad7f711d7d519af1fa40d62133b8adb4073ad58492",
@@ -2907,8 +3003,8 @@
       "size": 10610094
     },
     "astro/gallery/ic1396/ic1396-fly/index.html": {
-      "sha256": "aeadbf52daffdd3a327fff806c5f8433933329df56ba162c3a35b8161258bc18",
-      "size": 13024
+      "sha256": "1d28332c9821b096091309913af700d64325159092ebc765120feaf2804a5353",
+      "size": 14068
     },
     "astro/gallery/ic1396/ic1396-fullres/ic1396-fullres-2k.jpg": {
       "sha256": "5452237d145241f03dd7c623cd93ba8a2329cf2fd4b5fab2b6965b4fa736f429",
@@ -2927,8 +3023,8 @@
       "size": 13867995
     },
     "astro/gallery/ic1396/ic1396-fullres/index.html": {
-      "sha256": "57f1b729fbe08419a6d5d22a972af8fadacb4f6288714d85df3d6c2aab353224",
-      "size": 12911
+      "sha256": "c62fe2eb0f7e84fc60d6fbc58343839c9153ed3f95603c2d5a4cf11421f4e466",
+      "size": 13955
     },
     "astro/gallery/ic1396/ic1396a-elephants-trunk-nebula-azuro/ic1396a-elephants-trunk-nebula-azuro-2k.jpg": {
       "sha256": "9c100ec049f9ecc1832177735220585bacfdee0aca265705122d8bd6a1a6d7d9",
@@ -2943,12 +3039,12 @@
       "size": 10085108
     },
     "astro/gallery/ic1396/ic1396a-elephants-trunk-nebula-azuro/index.html": {
-      "sha256": "3bb16c44f28370bb6af384d7bdda45151da783c91267104a093600a6206d4b71",
-      "size": 13870
+      "sha256": "c6e18049308fab2337b250184ad60dcd7461cd6a54bf1d8b12ed84b24edd218b",
+      "size": 14914
     },
     "astro/gallery/ic1396/index.html": {
-      "sha256": "c3cfcde4a4ae49523464bf08f8d15268ac11e8c371a8e68e76cf6f6f4346278c",
-      "size": 28594
+      "sha256": "ffa866ba26ab78c250df26ee8bc5caf32e38eb5bbf7f4239356c418a5e6c565e",
+      "size": 29638
     },
     "astro/gallery/ic5146/ic5146-cocoon-nebula/ic5146-cocoon-nebula-2k.jpg": {
       "sha256": "3f53b6ca75b3e8a0a1ed5d74a51755e79295d6fdde2cb986a67d950ba858f39e",
@@ -2963,24 +3059,24 @@
       "size": 10857529
     },
     "astro/gallery/ic5146/ic5146-cocoon-nebula/index.html": {
-      "sha256": "2ebf011175974cedad40dd86574c4cb5b456f9a54c38a0bfc066a3cd5af7d279",
-      "size": 13474
+      "sha256": "78c9ead2ba931c0885ee9102d07c4e8f1e50e49c51dfed3a8b8c4a155f4d0830",
+      "size": 14518
     },
     "astro/gallery/ic5146/index.html": {
-      "sha256": "74a44bf568762a479b4ac6380d5881cae5e1ba85e2f53f64d7c6bf983549eccc",
-      "size": 13284
+      "sha256": "c6ab17ae31784f9e8c431bb7f959e6a7defa392e8abb2575738896d58232425b",
+      "size": 14328
     },
     "astro/gallery/index.html": {
-      "sha256": "1999e5ee636bc221bf705b6cf4fb66100cab79a22c87766418e2f01b813f2e85",
-      "size": 15275
+      "sha256": "f6ec1dea65ced7f537603b7f771fe27f7ab0cfad3fd044a9dc171cecb09c3d2c",
+      "size": 16319
     },
     "astro/gallery/ldn935/index.html": {
-      "sha256": "29ea5ae2ce9ce1123f0946b34da46eb0b36782e078d208f04764202f2f2203a5",
-      "size": 13545
+      "sha256": "8c52cac78b99e7dbd2f470d000391bf20140a1349f6b78f66261052dc55c88ec",
+      "size": 14589
     },
     "astro/gallery/ldn935/ldn935/index.html": {
-      "sha256": "0d3e26597df2ddae8c428238ed4ee4686adcdd74a35ac973bd49946ba0e1d9d8",
-      "size": 13399
+      "sha256": "51f83ac80d74b4bfda7cc097b0e1ada32c66a36024c4b76f5cbf6c2e8ba95ecf",
+      "size": 14443
     },
     "astro/gallery/ldn935/ldn935/ldn935-2k.jpg": {
       "sha256": "3f7697b5512de7e31cc55b3e93b50e8a43ca57e57b58a5addf39a39223fb2b21",
@@ -2995,12 +3091,12 @@
       "size": 6749231
     },
     "astro/gallery/m104/index.html": {
-      "sha256": "563d3718be899f97ea975498c06a00b674414284910cc959432fee4ab1c921ba",
-      "size": 15205
+      "sha256": "65b664111e013dbeae5168e863a14ab8b387717feb5d34d25c636c0c4e3dd7f3",
+      "size": 16249
     },
     "astro/gallery/m104/m104-sombrero-galaxy-4k/index.html": {
-      "sha256": "e54ce1b0675b7ff1e707f678dd33d21c0c37645efd1aed141b1659cdd4483908",
-      "size": 12237
+      "sha256": "4503447d0bdacc770fcc2def2b5a97006db4947af660bace1c763c092112908d",
+      "size": 13281
     },
     "astro/gallery/m104/m104-sombrero-galaxy-4k/m104-sombrero-galaxy-4k-2k.jpg": {
       "sha256": "caae021b7b20dc55ad0fdd2b79d0cbdcbd7a1bff2e7773645594ed18e5e3985f",
@@ -3015,20 +3111,20 @@
       "size": 1315038
     },
     "astro/gallery/m104/m104-sombrero-galaxy-close-up/index.html": {
-      "sha256": "dc6fb5a509f8596186cea8d8b98193c533be8eb3b98df0152c5fa74d05ad0cbb",
-      "size": 11433
+      "sha256": "af0120b8863bb7370fa3f093b2dec79702095347609a56ca471f3c07e49e97ca",
+      "size": 12477
     },
     "astro/gallery/m104/m104-sombrero-galaxy-close-up/m104-sombrero-galaxy-close-up-original.jpg": {
       "sha256": "433359205caf87827a558ed9c011026d857867b72469c411bcaca97ae89ac831",
       "size": 138626
     },
     "astro/gallery/m16/index.html": {
-      "sha256": "d58dc3bee85faac0bb8eaa6b0a1eaf7a9c11e95f30556f10850820bd21389dc0",
-      "size": 22093
+      "sha256": "a3217df36ac8da7d15889a5f2504a507df0b92322e1334cc8c0bb8387e9b4879",
+      "size": 23137
     },
     "astro/gallery/m16/m16-eagle-nebula/index.html": {
-      "sha256": "4c003f4df8d30b4cf5b559c4f207a51f0eb78503c84e5a275c0709e0ff081122",
-      "size": 14117
+      "sha256": "05562369161e4e5d9029e0ad9d11674ebaf753bfecb5573c96fd1df83e68fc9b",
+      "size": 15161
     },
     "astro/gallery/m16/m16-eagle-nebula/m16-eagle-nebula-2k.jpg": {
       "sha256": "707595027920aad8328538b921ee4236073059cd021a1ce8603e91c94fef51cf",
@@ -3043,28 +3139,28 @@
       "size": 8184991
     },
     "astro/gallery/m16/pillars-of-creation-backyard/index.html": {
-      "sha256": "d17413215a2ee5e87d8a33ccb1b1b144c449dc95974774092ba71eb5fb04c971",
-      "size": 12140
+      "sha256": "2b1995aefd1575a006dc166fc3ad647a6532d10700ef49ace0c31eab0b659809",
+      "size": 13184
     },
     "astro/gallery/m16/pillars-of-creation-backyard/pillars-of-creation-backyard-original.jpg": {
       "sha256": "8663aa0536290bbfbc198f7c357546d9e38fce492c8fec95b41be4ab0e486136",
       "size": 39132
     },
     "astro/gallery/m16/pillars-of-creation-hubble/index.html": {
-      "sha256": "5ccd70777ea3af613ae80cc731643b1d961b19cf90b1f654482386d0da02838a",
-      "size": 12362
+      "sha256": "dd02114967c181d84979803a46c170210ec8db19c18f19c79cda8bb5e2fba20f",
+      "size": 13406
     },
     "astro/gallery/m16/pillars-of-creation-hubble/pillars-of-creation-hubble-original.png": {
       "sha256": "37523901d85b273df57daa5e37dcc8b6a4ee1ef2a59bee763ea7f6684901dcf3",
       "size": 973866
     },
     "astro/gallery/m31/index.html": {
-      "sha256": "b17190d2222f20943fae6d998317a9fc6017af892df89e835ec731dddefd9f48",
-      "size": 13011
+      "sha256": "283f4908b48186a8473580b74ff34847beb64cf635114a8261585362d99aaabb",
+      "size": 14055
     },
     "astro/gallery/m31/m31-andromeda-galaxy/index.html": {
-      "sha256": "88cd6cd1b82167cfba9743275afc444e13bb520fa90356c8569556c5c528a463",
-      "size": 13376
+      "sha256": "17859b697a71d204e0755c2c21857509d042256231b2a02df078fe601b106123",
+      "size": 14420
     },
     "astro/gallery/m31/m31-andromeda-galaxy/m31-andromeda-galaxy-2k.jpg": {
       "sha256": "49a0b2e4b396e5d0cbd507da3d59235a65f5b148b843272d67b458bf34901e52",
@@ -3079,12 +3175,12 @@
       "size": 7818876
     },
     "astro/gallery/m42/index.html": {
-      "sha256": "1bf965ec102472d311da7c745ad0f1b9af4a51a6a2eec4451256d24c9109e9d4",
-      "size": 18381
+      "sha256": "8ad5b249ffbf2d6e8bf0bb9b43ad969ab1d3a87b33389d96f6ad720eb3286a6a",
+      "size": 19425
     },
     "astro/gallery/m42/m42-lomo1/index.html": {
-      "sha256": "c0caaa66fbf74e409e3cf6229f8b0dce553a4306fafd70bc50964e170ba0652a",
-      "size": 13006
+      "sha256": "96f92b2ab8997131b7bc577d3aeec342b31050a28404f8a5e174d04c52304d36",
+      "size": 14050
     },
     "astro/gallery/m42/m42-lomo1/m42-lomo1-2k.jpg": {
       "sha256": "8e805ded859fe580c5fb260c224601d1d9e7a93bd91003ed39e989ce5e25df25",
@@ -3103,8 +3199,8 @@
       "size": 8842983
     },
     "astro/gallery/m42/m42-orion-nebula/index.html": {
-      "sha256": "8b0b107b095b07b36ebb2dbeece236e7b72c40644a0c8e1f710d6a7c0d581b41",
-      "size": 13311
+      "sha256": "fc2af3f4b4e2b3f471824eff847209f638252ff7781ee59e48cd1751edb758d6",
+      "size": 14355
     },
     "astro/gallery/m42/m42-orion-nebula/m42-orion-nebula-2k.jpg": {
       "sha256": "1d4d059961820d3efd508dc96dfdcb9fb9f61b9f37c0d0fc3451d95579e9395f",
@@ -3119,12 +3215,12 @@
       "size": 2678355
     },
     "astro/gallery/ngc1499/index.html": {
-      "sha256": "6babdeefb9781732cb32a66e26be06407c277679ccb232e226ef9f1c41a2711f",
-      "size": 12947
+      "sha256": "5b62bc9dfa39a93f57a7d3c7dace7b1dea22aa6b4e657742d3d7cf36298a9d11",
+      "size": 13991
     },
     "astro/gallery/ngc1499/ngc1499-california-nebula/index.html": {
-      "sha256": "cb2971158e67a771de2fc1fde35f1de8e2db2417e433e4aa5e38640b168a3fee",
-      "size": 13240
+      "sha256": "719003196462d4a5e8e946c31867cbfe2cba03f1f77d010ebd3f45a5a135141c",
+      "size": 14284
     },
     "astro/gallery/ngc1499/ngc1499-california-nebula/ngc1499-california-nebula-2k.jpg": {
       "sha256": "fc38a311ac8a7fd69df00f3c36b9fcdd920d547ab41806df4183ca6a2fe6f047",
@@ -3139,168 +3235,184 @@
       "size": 4937995
     },
     "astro/index.html": {
-      "sha256": "d9c1b3a5d966a841f816cfc5c70d4415d46cee64f9631ebc65725872e5a8db8e",
-      "size": 416821
+      "sha256": "bbae5ef657ababfb3e54ae5b0455c98c3f2a095ab2fb5552b076b1ef3e739665",
+      "size": 418374
     },
     "astro/tags/4k/index.html": {
-      "sha256": "9df5aea649f43d078809e9e960fe095c7e52d83331ef2512c6c64ec43761e3cd",
-      "size": 14158
+      "sha256": "1387b681ab342c45476a635ac555b27aa727940b2a9a65109a2eebb7210db5c6",
+      "size": 15202
     },
     "astro/tags/astro-processing/index.html": {
-      "sha256": "91309a9308236a19fbee37985314d9506bd102ca907581acd088e5860ade91d4",
-      "size": 10090
+      "sha256": "570ce32ab71866e6788b53ca85dcf4b3d4e4f503eb89a5a2f18c4054e70b2588",
+      "size": 11134
     },
     "astro/tags/astrophotography/index.html": {
-      "sha256": "de7528d70724309fc2d662bf7309cf0b633b92b9dbdce89aac1392eaa264b699",
-      "size": 10090
+      "sha256": "24c75b643f4fc95c795de6469d4936ade0447d021fdc643c0a7efb763ea196cf",
+      "size": 11134
     },
     "astro/tags/california-nebula/index.html": {
-      "sha256": "7586460f77e1a0bc6fb30e6998d72e5dd414d75189c33aac82a42c2c21e64724",
-      "size": 10860
+      "sha256": "be5d91f05519fa9f413828726ccbfe4f5c845140cbb6cc3824a86cf68eac786e",
+      "size": 11904
     },
     "astro/tags/cocoon-nebula/index.html": {
-      "sha256": "a73b2c76c4e039e8d5dc8187b51599d2d26b50d8ff46f3f59da789d3c8e4a3ca",
-      "size": 10833
+      "sha256": "434a78a186651c87723e5b6b88e3e22693c698bf3153038371180a2562c47b5d",
+      "size": 11877
     },
     "astro/tags/dark-nebula/index.html": {
-      "sha256": "ee62595c804a36804ecea6bb70279aae7b86228422a94ea981302217768a421c",
-      "size": 10817
+      "sha256": "731ef1d1ce2f12880dd25cf7c511b0805f7d19ac86311ab566520576e9f3d7eb",
+      "size": 11861
     },
     "astro/tags/eagle-nebula/index.html": {
-      "sha256": "4aa075660e42a590455f7a8b2080673d9ca84100fd9bf36ff71bc80cb8a66357",
-      "size": 11873
+      "sha256": "f09ef96ca6cd098f134bdeb394b3b60fd0235b8c9d80ad2a3c7fb7b760f55785",
+      "size": 12917
     },
     "astro/tags/elephants-trunk-nebula/index.html": {
-      "sha256": "53b4da1a083ed9706d13329c7b913ec3b92e34a3d31d1a0a44501ce5b7567733",
-      "size": 12477
+      "sha256": "c94005de254f6a8505a5487c9de06678eac451b121416c1bf393b741ac8ad4d7",
+      "size": 13521
     },
     "astro/tags/galaxy/index.html": {
-      "sha256": "4f3d26d2c659ccec2e2197e5eaac5a0480c01bb16e7445f71a6766452e786b5e",
-      "size": 12353
+      "sha256": "1fa98bf53b39bdd455cde8e2bafaf464161ad83f62f4bb95010e18055600e2e3",
+      "size": 13397
     },
     "astro/tags/green/index.html": {
-      "sha256": "c023eb28c6b7b340a046fc48692c5e98f9d71eaaa4458981e5076030161407b1",
-      "size": 10002
+      "sha256": "3e0944c6d6e240ce894d3226d16f61caffbde0bfbc40be1284e08951a0dfbf36",
+      "size": 11046
+    },
+    "astro/tags/halohalo/index.html": {
+      "sha256": "a891c35b1287da72f08ee58f5cdeca73f2091515a779affe312bbfdd16b70345",
+      "size": 11087
     },
     "astro/tags/home-page/index.html": {
-      "sha256": "b93380c3b22d5fd798ed1e67df725014738766d0a79b0f22b0459177f5c74354",
-      "size": 14724
+      "sha256": "65475165b8ec62566677d9e02abd3564ea86cdfd029ecb888a0cb74dad034ac7",
+      "size": 15768
     },
     "astro/tags/hubble/index.html": {
-      "sha256": "aa017c68f10b4fd9f9ec8edbab798918247df0fb7426a0ba32f61549a07ad317",
-      "size": 10138
+      "sha256": "86c851debc1141e5e5a03b6f9ae7813ef697a05726b81c6bb1637fabdec99cc9",
+      "size": 11182
     },
     "astro/tags/ic1396/index.html": {
-      "sha256": "712f46e38a7a58112400a06ad0eedefcbfc6069923060a83a5a9dea098d4f0a1",
-      "size": 12349
+      "sha256": "3c555c86db5d76bf79bc7c201fb1e5326dddd314c6b1cb8f9d374660c5edf372",
+      "size": 13393
     },
     "astro/tags/ic1396a/index.html": {
-      "sha256": "1cddd7064e581fe1ce379f3fa4a8e0ea273ac3d4f88836f07ace3adb41fe686d",
-      "size": 10196
+      "sha256": "55effdfcd02ec6ed3185756ebdb583bcdb2dfedc33acfa291b73305c3f31b690",
+      "size": 11240
     },
     "astro/tags/ic5146/index.html": {
-      "sha256": "5447fb2f9b40a94019328b2e94450a0b897decdd246389f4b5486c80015a9ed7",
-      "size": 10777
+      "sha256": "84ec16110e2d06e1211e7f08af14d038f1cdbccfecbee9cfa5cb05bee300672c",
+      "size": 11821
     },
     "astro/tags/index.html": {
-      "sha256": "75246f1a5a84bc9442e9cf51c8dd96132e991df9b1d5d281a1677f9da2d9b1b2",
-      "size": 17785
+      "sha256": "0de296ac87626bd9c836f6df990452d15d9956dad9307dbe785c41ab4c1189d7",
+      "size": 19741
     },
     "astro/tags/ldn935/index.html": {
-      "sha256": "627205b06b898227e18c48ac770988fa89bc15ce119ce10dbabb7b9adf487a93",
-      "size": 10677
+      "sha256": "f16bc049659fc36404e4ab7320740bdb3efe7091245460d3c6d6ed7af292aa24",
+      "size": 11721
     },
     "astro/tags/lomo/index.html": {
-      "sha256": "d9843018cea4f224c04c8163640bf4ef54e58eb6f747fc80b8def93c3ec9fb30",
-      "size": 10106
+      "sha256": "acf9dbab37bfe7f46e4f41c4e333475bec132401fa11c6e96b5d8ccfe9b3b9e0",
+      "size": 11150
     },
     "astro/tags/m104/index.html": {
-      "sha256": "dbf254ddfd54d69b4d7a7f77398b04bd8ed98752e31e699d080d0a0cccbee0b4",
-      "size": 11263
+      "sha256": "5a2382cc7420f1bf576281d8f548fcc8d856356b96e4e016f5320fb5d5d7552d",
+      "size": 12307
     },
     "astro/tags/m110/index.html": {
-      "sha256": "cd67189434f733b9d19d990792dc2061b8550b39c74f8a0535ab6ad1623f20ed",
-      "size": 10829
+      "sha256": "7c55203a5c641cfe8319fb86590a471eea44bcb62e69140cf9beb88915c00dad",
+      "size": 11873
     },
     "astro/tags/m16/index.html": {
-      "sha256": "789e497571be4102d1294ee70abd82a7e570574ec80cb38fe0c804c938fc6df3",
-      "size": 11801
+      "sha256": "9c7616a5ba53e82a026cf515ab511c6d51b702796fd66901c86ba7e7f05e2ff2",
+      "size": 12845
     },
     "astro/tags/m31/index.html": {
-      "sha256": "7153e8f6aceda7e8cdcc541fce604366dd530ea514a78f9180be4c50a362bab2",
-      "size": 10821
+      "sha256": "660d58d6a894c58e3232ab12e5c9d93d3e759d7a2086e38c2b1a162c376aa6ca",
+      "size": 11865
     },
     "astro/tags/m42/index.html": {
-      "sha256": "4079354bcbefcc0a5fbef3a98b67e97cebc56817aeb49cf32722d5356dc990a0",
-      "size": 11214
+      "sha256": "2e8c2be600d67101d21f1630ef53f569ed649fdcc011f0136675a270bc0df93c",
+      "size": 12258
     },
     "astro/tags/nebula/index.html": {
-      "sha256": "4f2bc824e876af4972a75deda65511248787fc56a3434dd4910d1e0585335c36",
-      "size": 18784
+      "sha256": "db20ec29dd07d2d853a10b543f52e00c3b137b246597bef68143710fc6f0a635",
+      "size": 19828
     },
     "astro/tags/ngc1499/index.html": {
-      "sha256": "639ca9f61d34d7b766b09e79af925cb2e7fe642326a03eeace565387f93d9a4a",
-      "size": 10780
+      "sha256": "9ae61e1c80e660fe31dc4efae552cd4efbf44733ed555eaab4968afc45fb1322",
+      "size": 11824
     },
     "astro/tags/ngc1976/index.html": {
-      "sha256": "275aa836303c1a97ec4c9af22d0e9726991dfc4c2c31bea016d47882558fc76b",
-      "size": 11246
+      "sha256": "6397ef584fb13b77c415848ba2c77b5d146ec34590dfa9d989da417f669e32c6",
+      "size": 12290
     },
     "astro/tags/ngc7000/index.html": {
-      "sha256": "f99199b8bd793e288a6b3e66fa9ca669977735c219df31556d80489fe8142125",
-      "size": 10685
+      "sha256": "7a822446f034770f1f17b29f73e8723e8ba579bad7f3fc015d15aa4793747813",
+      "size": 11729
     },
     "astro/tags/north-america-nebula/index.html": {
-      "sha256": "b85a698f73e00360f70b26fb79c5b18363728729e010a36e487c83ed7cf8fe88",
-      "size": 10789
+      "sha256": "fe38e12e70f68720f4977f0a75853d21f3e3ce229bebf2bceb7ced6e972fab95",
+      "size": 11833
     },
     "astro/tags/pelican-nebula/index.html": {
-      "sha256": "e638f430022c0b4a3bf29e8efb9c1b418eaef200e66238b580fc7bcf429305d7",
-      "size": 10741
+      "sha256": "d5498498bef6f0d1bad76f764ba02c29f4242763843288fd6aa417134576ad0e",
+      "size": 11785
     },
     "astro/tags/pillars-of-creation/index.html": {
-      "sha256": "40ec301d16c41b8e6f864a07930dc9156b7452367c9e5153ad9bd657684bf52e",
-      "size": 11929
+      "sha256": "e47ed0d70965498c8671c793db0e977f1775248f94dc19d804e5ef00a3c32779",
+      "size": 12973
     },
     "astro/tags/pixinsight/index.html": {
-      "sha256": "a9bfd5c45b6427e90b2990477cf484220491220b84c6a596f581efd233f555b7",
-      "size": 10042
+      "sha256": "27d17b550234f3df9d5baba8bfa66cbf9c051459a07e1dbdf9869cdc3fe4bdba",
+      "size": 11498
     },
     "astro/tags/scnr/index.html": {
-      "sha256": "347923fc1768fdf491b7b54276c6056054b868f633d2f62dce8474662220b0b5",
-      "size": 9994
+      "sha256": "831f76939b6c5f5b22a824259df0abcac818c665df9fb0e40964326ffbf09cc5",
+      "size": 11038
     },
     "astro/tags/sh2-279/index.html": {
-      "sha256": "9f8e7f6ebca417a56fc34e17f44c0c489e97eaa1e74811a2524c4adab4f7d857",
-      "size": 11246
+      "sha256": "3c28860a7dc2754fa7f20912713acb7cf15688cf8baf3883224e1bd7c881538b",
+      "size": 12290
+    },
+    "astro/tags/star-halo/index.html": {
+      "sha256": "5bf7a2fc13bd7e11a91a1b2db1e4179ab08ff25936715352aef58b3e1dc2dbb1",
+      "size": 11095
+    },
+    "astro/tags/tool/index.html": {
+      "sha256": "1ff30060822f723e9160808c39f00057c667d2dbfcb579fec66dd826ad24abed",
+      "size": 11055
     },
     "astro/tags/wallpaper/index.html": {
-      "sha256": "0914af9d05de74144a159871db301b76e40806f48324d956180cf5a3403c239d",
-      "size": 14214
+      "sha256": "67eee6e6794486083f77094fd8f859ab0f1127ff56b76b234ad60762b828895d",
+      "size": 15258
     },
     "favicon.svg": {
       "sha256": "4a33695e8931b9c6e8028bc0d3a9f5ca1780cf31c1324e5eec9c6267fdc19b38",
       "size": 382
     },
+    "halohalo.svg": {
+      "sha256": "7ab83539349760069f55e9a51f9fa56c719e317e33450729f6c0751b08f669f2",
+      "size": 8232
+    },
     "index.html": {
-      "sha256": "97c13a2a5313e499105ac1e4d538326a106d76ea09bba44fa894672c78d9ef69",
-      "size": 12409
+      "sha256": "776bff96603af4acd585b71f1a6ffbcc8faf9dcfe7ca70ed80dc9745b8366215",
+      "size": 13445
     },
     "robots.txt": {
       "sha256": "6b5d5fa517d4d41432f7c01e60186349f4800ac7de0e034f0abc47b43ec1b611",
       "size": 68
     },
     "rss.xml": {
-      "sha256": "6e2ddfc0e57d0153405ab940adc779ccea7360d40a00ee3be271d2879dd8e849",
-      "size": 7234
+      "sha256": "b0096ddb0055557453cacc06b88d8c6aeab1d828af8efd5a20d3693041a8fbe2",
+      "size": 7758
     },
     "shards/blog/2026-06-07-cognitive-architectures-language/index.html": {
-      "sha256": "cd56d79a982d81b01c3502d0b9355d95714f7f8c23c6da7d7af80a1ecf139665",
-      "size": 10853
+      "sha256": "b0ebcc12f9a252f334407993876178800bb7d9a00e57b8a7fff0f34ec3f03cc1",
+      "size": 12715
     },
     "shards/blog/index.html": {
-      "sha256": "db10c5ef83f8e868ac28b972130afdc096a1db1fe0a95f8c33bff9a1d581cde6",
-      "size": 8096
+      "sha256": "d0ecc375821b9b09bbe26b364229a93b77573e50733f0bd173c9b5fbe0ee62e8",
+      "size": 9140
     },
     "shards/gallery/bratislava-2026-06/20260624-172832/20260624-172832-800.jpg": {
       "sha256": "891a6fa890d253ce4e02a56a4fa8891261f7a59d2961a9c47413ad8444c6883f",
@@ -3311,8 +3423,8 @@
       "size": 3916218
     },
     "shards/gallery/bratislava-2026-06/20260624-172832/index.html": {
-      "sha256": "9fe7b10698495716fd2f47b3a605f54d44bf042df602d9268a6aca0d4f9955c9",
-      "size": 12108
+      "sha256": "49b160365e290617638b470b6047d005b1406117a98327ebf37c7273a7658d2b",
+      "size": 13152
     },
     "shards/gallery/bratislava-2026-06/20260624-175145/20260624-175145-800.jpg": {
       "sha256": "8f4599907cdb7694084152187bde7cbf8d4df5ffb0ca7a1cb4a6eb8a186fbcdf",
@@ -3323,8 +3435,8 @@
       "size": 4704868
     },
     "shards/gallery/bratislava-2026-06/20260624-175145/index.html": {
-      "sha256": "7531a6357a7e50c5ab48ce43e7ed38f57f10c21b46b7c615d723a8f1840ced1e",
-      "size": 12483
+      "sha256": "92fb295cbf00cf42ca1e311ece87e5db7b4574125009c819f17069e6925d69e1",
+      "size": 13527
     },
     "shards/gallery/bratislava-2026-06/20260624-175645/20260624-175645-800.jpg": {
       "sha256": "de4b6f63ead5f3f4fd70acc56591a1a387c10de21bafc85e113a4d9729faaf61",
@@ -3335,8 +3447,8 @@
       "size": 12959193
     },
     "shards/gallery/bratislava-2026-06/20260624-175645/index.html": {
-      "sha256": "d605fb45b59441f5f0c64df5a1385d53260668d84fb650de3b44f12438025cd7",
-      "size": 12802
+      "sha256": "097356aeecace771cb85810efa9cc4e11733dc1934f33e6b0a7aca305e906409",
+      "size": 13846
     },
     "shards/gallery/bratislava-2026-06/20260624-180802/20260624-180802-800.jpg": {
       "sha256": "2d29e926a2960ab4958a78619aa92f68289c1b96916a59339506074137804346",
@@ -3347,8 +3459,8 @@
       "size": 4044668
     },
     "shards/gallery/bratislava-2026-06/20260624-180802/index.html": {
-      "sha256": "ebc4a6b0340d8baec2280c16741db4fdef7e279278f944d9692be2123e6686f2",
-      "size": 12156
+      "sha256": "e491b77071dd09cabac89b2db89fa39ace5357c5ce58e7e4e63bb66087aa55c9",
+      "size": 13200
     },
     "shards/gallery/bratislava-2026-06/20260624-180944/20260624-180944-800.jpg": {
       "sha256": "01b7b5ac940623332597421ba22e0370ec442312dc19b0d1564077ef0945f8a8",
@@ -3359,8 +3471,8 @@
       "size": 3948705
     },
     "shards/gallery/bratislava-2026-06/20260624-180944/index.html": {
-      "sha256": "558e8e1343c63a579402382cc81e88c3ba6fa835ec8125e681990c2c18bba170",
-      "size": 12109
+      "sha256": "aafbecdee756361f5f9c177d702df4790a7620e12606da376986102b7e61ca4e",
+      "size": 13153
     },
     "shards/gallery/bratislava-2026-06/20260624-181312/20260624-181312-800.jpg": {
       "sha256": "69ba13c82e5069b5c6c89cb6e63f87882b49ebcfaa9bace50708a7cd47264144",
@@ -3371,8 +3483,8 @@
       "size": 3350849
     },
     "shards/gallery/bratislava-2026-06/20260624-181312/index.html": {
-      "sha256": "34fcaaec74e8b282a6dab1687ab95dcbb89b6516f6abcaba5ef1ee8ad35a3d76",
-      "size": 12380
+      "sha256": "cbfe42244629ad2818e97d7660d7836b28ec96a331a9e8877ae6a3beaf27c5a1",
+      "size": 13424
     },
     "shards/gallery/bratislava-2026-06/20260624-181405/20260624-181405-800.jpg": {
       "sha256": "118cbcb5cab3c3140752ad889de931a083bd12ce24eaf221da5a03c24fce53fc",
@@ -3383,8 +3495,8 @@
       "size": 2591404
     },
     "shards/gallery/bratislava-2026-06/20260624-181405/index.html": {
-      "sha256": "404b3f61dd1e762043a96d2ada837c133553482befc22ffc384f72e7c5bba3e0",
-      "size": 12008
+      "sha256": "3aab6f08963fd40a10c9d7ba9a6c5064929db0d040e625765312729d5b2b0ac7",
+      "size": 13052
     },
     "shards/gallery/bratislava-2026-06/20260624-182648/20260624-182648-800.jpg": {
       "sha256": "7a5395917b170a8832470dd7c16d8d105242d3a7e1ea276ed23061d866481067",
@@ -3395,8 +3507,8 @@
       "size": 4754973
     },
     "shards/gallery/bratislava-2026-06/20260624-182648/index.html": {
-      "sha256": "d9f8b1af4213b5cab5d62902759d192d2c04dc28be29b3b0fc524385083d269c",
-      "size": 12072
+      "sha256": "7773656b8be5c856e189f3c89f9cd210eafe763ceb6169262ef7a22944aa360d",
+      "size": 13116
     },
     "shards/gallery/bratislava-2026-06/20260624-182722/20260624-182722-800.jpg": {
       "sha256": "757cf751fe1b95abfcd7ee9f1eacbaeb720248a2ab95d9fc46c6ec5f804c7755",
@@ -3407,8 +3519,8 @@
       "size": 6211488
     },
     "shards/gallery/bratislava-2026-06/20260624-182722/index.html": {
-      "sha256": "3fde552daf8569f91d33d5b0ae32e2e9af39f12b8a7163b3d0990fc613d1a8be",
-      "size": 11773
+      "sha256": "15a2407e7978ed375b3cd5ac0b47738e5a8263b79b280a80f64b59e74bfa1703",
+      "size": 12817
     },
     "shards/gallery/bratislava-2026-06/20260624-183436/20260624-183436-800.jpg": {
       "sha256": "36aa7756f540afac65d06db95decb44f9c6164ec8ec3766a66f586117ef4e46e",
@@ -3419,8 +3531,8 @@
       "size": 1150585
     },
     "shards/gallery/bratislava-2026-06/20260624-183436/index.html": {
-      "sha256": "1b8ddb06767310ad98f93b2106c9d912afc333ff530560cc2b56f172b87654ae",
-      "size": 12366
+      "sha256": "2668986d6dbb5b92d05205548890e1bdf45f9b933025fc1f3221f4f0a5b9b324",
+      "size": 13410
     },
     "shards/gallery/bratislava-2026-06/20260624-194821/20260624-194821-800.jpg": {
       "sha256": "a55fc3cccb6b6434ece0eec89d4ba856ae5ff989bb40a2e023726b389025fb88",
@@ -3431,8 +3543,8 @@
       "size": 3370455
     },
     "shards/gallery/bratislava-2026-06/20260624-194821/index.html": {
-      "sha256": "f3d56651dcedb5c9e0057bdcb02037b46fee4377dd045643a63158b2eb8d6a93",
-      "size": 12178
+      "sha256": "8cd972f56333dc0c52e6a3fcab95b0d3d22086b6335a54a7757d8ec70db0aaec",
+      "size": 13222
     },
     "shards/gallery/bratislava-2026-06/20260625-123045/20260625-123045-800.jpg": {
       "sha256": "011f3bea9b2ea50a9e01f23b9c0d30c92d84e4c351572c3cddfc5b7d8b8112fa",
@@ -3443,8 +3555,8 @@
       "size": 2069283
     },
     "shards/gallery/bratislava-2026-06/20260625-123045/index.html": {
-      "sha256": "631b630b707ecf141237159da5e3a5ca5102ef4532014cd490c28c3e5e22a15d",
-      "size": 12157
+      "sha256": "3d0a5d11e0c355d67671167e2761d9152dcda4f6778e1b20a122c4b82c66c938",
+      "size": 13201
     },
     "shards/gallery/bratislava-2026-06/20260625-131305/20260625-131305-800.jpg": {
       "sha256": "b2316ca9361db07fd8945742b1b1e4ccd0fdd0874c6356d5755ef78eb21b8ab1",
@@ -3455,8 +3567,8 @@
       "size": 5017154
     },
     "shards/gallery/bratislava-2026-06/20260625-131305/index.html": {
-      "sha256": "f3b559d81b072428e68cd6d326152d36a10c14e0cb73c52f3db4d6910e1f843a",
-      "size": 12352
+      "sha256": "70fc582dbe2c5921b6ba0731e8bd1fdf1724e4e52a084f607903b4e86ffccf7c",
+      "size": 13396
     },
     "shards/gallery/bratislava-2026-06/20260626-120015/20260626-120015-800.jpg": {
       "sha256": "9480f146d87f0b69a29d8fd84fe43b86460e7e89c5537165201358362ebe7328",
@@ -3467,8 +3579,8 @@
       "size": 2390652
     },
     "shards/gallery/bratislava-2026-06/20260626-120015/index.html": {
-      "sha256": "09f11ed6bbae6eb44cc4b8c11816c662bea500e3f8a1064b7cab41dbbca5472d",
-      "size": 12687
+      "sha256": "0a361eeef1ef7ffa5ed93fb964678c1a99c11fa6004230bf551c0c30fecb31d2",
+      "size": 13731
     },
     "shards/gallery/bratislava-2026-06/20260626-123407/20260626-123407-800.jpg": {
       "sha256": "a61c66b4abcd67eef0554fd786de02c1986cb074112e263a72e8d457801cdd0a",
@@ -3479,8 +3591,8 @@
       "size": 1779244
     },
     "shards/gallery/bratislava-2026-06/20260626-123407/index.html": {
-      "sha256": "6835b87f809a1716ee7287cbd1681bdbf2e00d700f549ed155645c4e9f91123a",
-      "size": 12519
+      "sha256": "7f7185acac92c9970df4935d9c69a0dfa4ace7c124f5a01af4c2de3236371107",
+      "size": 13563
     },
     "shards/gallery/bratislava-2026-06/20260626-124403/20260626-124403-800.jpg": {
       "sha256": "9910def910cfd0b9506fac7baea130613da9b01e8f11d0d699807959e678d321",
@@ -3491,8 +3603,8 @@
       "size": 1299161
     },
     "shards/gallery/bratislava-2026-06/20260626-124403/index.html": {
-      "sha256": "d41868bce6ce2ca319731e0012278269d3c03ea6438f3df5af2f0bfd9c09f9f9",
-      "size": 12197
+      "sha256": "8935b096095dc9a065c63cba28c365c53b7ffe530620d07919bfb2ca98e2a05f",
+      "size": 13241
     },
     "shards/gallery/bratislava-2026-06/20260626-130111/20260626-130111-800.jpg": {
       "sha256": "1492891ce8a8a8792696da7600ae49ee769903413a2852c8f4bddb0d6c1951a6",
@@ -3503,8 +3615,8 @@
       "size": 2694268
     },
     "shards/gallery/bratislava-2026-06/20260626-130111/index.html": {
-      "sha256": "e27757c632927c6e33a6938c5417703dfd64f7687c0c4f2b2d3385edcc380471",
-      "size": 12313
+      "sha256": "61136b331d5743cf15ab38b7f33ebc5277fee67f21756c52bddc2ded58dd558f",
+      "size": 13357
     },
     "shards/gallery/bratislava-2026-06/20260626-145037/20260626-145037-800.jpg": {
       "sha256": "881953c97f07d4e981d072e67bbb4fd716a088751c70a48c291c4ad480df7e6a",
@@ -3515,8 +3627,8 @@
       "size": 4373796
     },
     "shards/gallery/bratislava-2026-06/20260626-145037/index.html": {
-      "sha256": "5e7d8567c44dfc75ce2bea1088f4c2e2e77f768dc5e70fcf588353d6959e85b9",
-      "size": 12095
+      "sha256": "dff241c24a0740224cf87c6639739aa8b069d740a61a6c49aa15afcee3d12593",
+      "size": 13139
     },
     "shards/gallery/bratislava-2026-06/20260627-000440/20260627-000440-800.jpg": {
       "sha256": "fba91cf0b4e12c3053e95ace0b4d2fe946f89505e84c9210e6b26fd5f5fed1ba",
@@ -3527,12 +3639,12 @@
       "size": 2386564
     },
     "shards/gallery/bratislava-2026-06/20260627-000440/index.html": {
-      "sha256": "b603fc676689ff24730e5d75a92709893460c63e233229d8c801dfee2f71a66f",
-      "size": 11862
+      "sha256": "b3ac0c5485739c39d2b94a55d702f69ed9ca7bf41ee22a2719e6bd29045d8185",
+      "size": 12906
     },
     "shards/gallery/bratislava-2026-06/index.html": {
-      "sha256": "eebc0b9403fca6c55a5e1b84212f74c9ddc37e81c0f54a9f73a8ec1513de101e",
-      "size": 95460
+      "sha256": "298c4373d5e6dbf59a1e68b0a55c3b0f1734ff29540bceebf2e8c6cef65f2840",
+      "size": 96504
     },
     "shards/gallery/four-guardians/erwinne/erwinne-800.jpg": {
       "sha256": "d2d2bff1d8b89baca1292f561f0f53e0c66f03c187a7d04065d4cc90c8ff7bbb",
@@ -3543,8 +3655,8 @@
       "size": 3690091
     },
     "shards/gallery/four-guardians/erwinne/index.html": {
-      "sha256": "d5008fd30da2480d4045f2995c33ec16e0ce2c2e323bc7be6c42dc0abd6ca6bf",
-      "size": 11665
+      "sha256": "8eef3248a3a30e31431df02acc4a1b90aec3977171d7f2b8dfcff81294367fd0",
+      "size": 12709
     },
     "shards/gallery/four-guardians/four-guardians/four-guardians-800.webp": {
       "sha256": "ebed59604edcc7a493e9a10597cfa321ad9e3f2b1b663069e3d3fafa6888c5eb",
@@ -3555,8 +3667,8 @@
       "size": 475020
     },
     "shards/gallery/four-guardians/four-guardians/index.html": {
-      "sha256": "533d811e45bfd0327780819123a9fc7de19ee9fbf790b1c48ca0e97fc875edad",
-      "size": 11471
+      "sha256": "0bed7cb17d3dea99d3ce51bb522a63f06c5d8bd6f42b7d1656d532d88573e9ce",
+      "size": 12515
     },
     "shards/gallery/four-guardians/gastonne/gastonne-800.jpg": {
       "sha256": "660dd7ce7c6ac541b8b3ff950c857220c81ef98da88aad96b2f439fdf3b96a9b",
@@ -3567,8 +3679,8 @@
       "size": 9356036
     },
     "shards/gallery/four-guardians/gastonne/index.html": {
-      "sha256": "75424d3c14c928aaa6719b93daf663cd7e7079119f4205fa16e06ea1b137d7cc",
-      "size": 11688
+      "sha256": "e7672754466afa09acd23021e9330453b86fa90fc2deb085bb098653ec725b96",
+      "size": 12732
     },
     "shards/gallery/four-guardians/gepardinne/gepardinne-800.jpg": {
       "sha256": "de6bb47a020e0fdd0171d255710073f732a324a1f7df51d89121393619f44793",
@@ -3579,16 +3691,16 @@
       "size": 8537474
     },
     "shards/gallery/four-guardians/gepardinne/index.html": {
-      "sha256": "36eefe1a463fd5dfebe90e16573cf841b632b268d4aec63ef3b3c9eadbb0ac58",
-      "size": 11731
+      "sha256": "09972dc2a93df2e4f662d5fbf2ca8c6805f06ddecd50b02560936dcf67df51f0",
+      "size": 12775
     },
     "shards/gallery/four-guardians/index.html": {
-      "sha256": "708bfb39f331cd0ae1d3619aeff9546802def8579d9c421183284eede4026c30",
-      "size": 32402
+      "sha256": "b8dc9982ff72a684185191c69c4ab9682c0a798989dcc54e22951ac5d06e9a42",
+      "size": 33446
     },
     "shards/gallery/four-guardians/pedro/index.html": {
-      "sha256": "868d6838c793546f55e6175db47abcc9e609f91b8067953d76ab8cea90ce73e2",
-      "size": 11702
+      "sha256": "fdd6c729f065b6dd2b37d1122053bfc2837e40c23b7af38061422b804f390c78",
+      "size": 12746
     },
     "shards/gallery/four-guardians/pedro/pedro-800.jpg": {
       "sha256": "446a520755f048d21b33f3ad4c058c7136e9a086cdc559f7d74ea803ea944369",
@@ -3599,8 +3711,8 @@
       "size": 7559633
     },
     "shards/gallery/four-guardians/zofka-la-palma/index.html": {
-      "sha256": "a64db16469f57c6a72bd6ef8ba7fdadb0e4679bee103847f61ab44ac4ef0f0bc",
-      "size": 12289
+      "sha256": "0b2b6097210b44c40f7dacd48009002d74380b939e31c8af36c3ac51c4a4c877",
+      "size": 13333
     },
     "shards/gallery/four-guardians/zofka-la-palma/zofka-la-palma-800.jpg": {
       "sha256": "9a60e599db473ac2e970acb23191f0a55180128ec5a280023893ffd27a8fd30d",
@@ -3611,16 +3723,16 @@
       "size": 5328776
     },
     "shards/gallery/index.html": {
-      "sha256": "b14992ae3611fe96970b9604ec83ba401446168783fd17918bbebc966e1a22e8",
-      "size": 12633
+      "sha256": "2f23a6230a0686204a3150a2347e49a46d655700ef43f3c6ee36388e830feea6",
+      "size": 13677
     },
     "shards/gallery/roque-de-los-muchachos/index.html": {
-      "sha256": "ab5c8081b987f1571d5ad43a19096ce9d0254e61c8ea78dfd61629d2c90db592",
-      "size": 158425
+      "sha256": "fafdc1c5f5d27b9fc8063ca6eedaf70978b9716c20226aed6f0a1c53c67270de",
+      "size": 159469
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-121332556/index.html": {
-      "sha256": "61dcb1fa7d61461310a65ed8b60479e2343b0cf79b13823fe207eec5074ea9ba",
-      "size": 13046
+      "sha256": "c818411ded74fe54e0b6afcaa6b6bb84678e8406bc358a55fd4d7dcbe76d0998",
+      "size": 14090
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-121332556/pxl-20241029-121332556-800.jpg": {
       "sha256": "c6317d53940bce0e3dd6f56fc97c4572e1782a98110839a0d42859d0d7d701a5",
@@ -3631,8 +3743,8 @@
       "size": 4228775
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-122112253/index.html": {
-      "sha256": "90e5af13ab9078bd2a787c2f922d28ca0bf0e3a684c471900953cc416a3b765c",
-      "size": 12493
+      "sha256": "54ba550d87f9689868861eea66a61f510b08baa113849b118e0488efdb325ade",
+      "size": 13537
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-122112253/pxl-20241029-122112253-800.jpg": {
       "sha256": "a259c82f865298d22906e2569e08b3f4ce822b5d0d09b9c0d3157569de8b78d5",
@@ -3643,8 +3755,8 @@
       "size": 2861367
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-123255893/index.html": {
-      "sha256": "cc6ae05af5c95f3233e52510289383f3574a55d12e4d655f46ffe423d382b516",
-      "size": 12729
+      "sha256": "ef7d1ca6909fca5400e55144e4ee39c1e9bd652d257674b2fbfa8eaa84a59933",
+      "size": 13773
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241029-123255893/pxl-20241029-123255893-800.jpg": {
       "sha256": "54d5c263b11582aac8ecc3155888e038395fd70203943954ee40f7326dc69096",
@@ -3655,8 +3767,8 @@
       "size": 5033596
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-121058373/index.html": {
-      "sha256": "74f437a7fa9c5c002b508ed9b2ed27eaf141bad8d79e11784166560ea658ee26",
-      "size": 13500
+      "sha256": "f076c32ec1a4da33a0548c817841ebb0915f9c75bac801c6a148ba70537c2f04",
+      "size": 14544
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-121058373/pxl-20241030-121058373-800.jpg": {
       "sha256": "8a116972bee29b7bb97af05f40bc50dd5530d01b1898073719b3696a1398d3b9",
@@ -3667,8 +3779,8 @@
       "size": 3008431
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-121355003/index.html": {
-      "sha256": "fe040592f4d2ed72ad21654964a3fdfb2e79ab6ff28d82c7cecd3120d6adee63",
-      "size": 12595
+      "sha256": "8100f419bc1b1169de90ec82ec053503782b3c6a25452459bf3141e63bd25ef5",
+      "size": 13639
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-121355003/pxl-20241030-121355003-800.jpg": {
       "sha256": "c63ad23358bb1919f869068136455259061b311dbc20a0dc1212b216be163cc6",
@@ -3679,8 +3791,8 @@
       "size": 1999621
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-122227174/index.html": {
-      "sha256": "ce845d931414a74ed02e1a81f6b6e909357a18fc12ac0014f59d0a9ba1e9bd17",
-      "size": 13344
+      "sha256": "aec368cccaf2b392f1cd61f84304c79b06a6ab33b673dad790444566a2cc9316",
+      "size": 14388
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-122227174/pxl-20241030-122227174-800.jpg": {
       "sha256": "1b8cdf2014865697d6bb3a8ada6e1c38329697bfb2646be2325593385043b0da",
@@ -3691,8 +3803,8 @@
       "size": 3100733
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-123846619/index.html": {
-      "sha256": "92c1cbcf4f1b9b2fe502a11c2758f9a9d6c6cf7dc0dbf1edead0bc91d3d56d6f",
-      "size": 13342
+      "sha256": "9d6a5ec8373eb473055b2ffdf92a73190ca00d1e2c7867c4ad95a194d945811c",
+      "size": 14386
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-123846619/pxl-20241030-123846619-800.jpg": {
       "sha256": "9bbaac4e2c07c2a24a6ef4d8b8efd138ee7da6273ee66a0192ea2eeef8aed3ca",
@@ -3703,8 +3815,8 @@
       "size": 3135809
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-124128400/index.html": {
-      "sha256": "d55c31bd7b141b42873888168354793ecd26fc1503556049e21b17f69c44f498",
-      "size": 12789
+      "sha256": "c2138858364cb7f5667b074019362e444ffb2843a1d0b6b7983323a13fe54549",
+      "size": 13833
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-124128400/pxl-20241030-124128400-800.jpg": {
       "sha256": "ef97fefd72a364313347a24c867f49a68c829b00e14a8b0a4ff497e16357f0e5",
@@ -3715,8 +3827,8 @@
       "size": 2321080
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-124311331/index.html": {
-      "sha256": "e2e08a4fb5c1a36e6ec1e30274f3f06c450f8289bfda6022630206639e6bea26",
-      "size": 12851
+      "sha256": "da30473c9a678ec7539838d18e32650c5aa60425a3af433860c46ff07588f69a",
+      "size": 13895
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-124311331/pxl-20241030-124311331-800.jpg": {
       "sha256": "6abeebe095af94c0f75ce208c842d3c56a238c292a759327e9ec6285adff0431",
@@ -3727,8 +3839,8 @@
       "size": 2299048
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-125137494/index.html": {
-      "sha256": "11ef9d60379f214bae39a3fcdaf4cb4be816faefcaa1bc488273e87552c6fe1a",
-      "size": 13087
+      "sha256": "86a53f6db0070300913bc68fb33f30780b11c47a56e7bf6eed06244abb226aec",
+      "size": 14131
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-125137494/pxl-20241030-125137494-800.jpg": {
       "sha256": "add5aecd8c827018c0d1e6d9ab4e147ea1c90ecb58239a543ed7b49548c3483e",
@@ -3739,8 +3851,8 @@
       "size": 3476605
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-130130025/index.html": {
-      "sha256": "2275d56bfcb9eeb231ce07085701f32c59e362a770bc6610cd776c636a7f8372",
-      "size": 12851
+      "sha256": "27df070b3416060c183e0ce3f22d151b40359f494968eba91a23946b331ddffe",
+      "size": 13895
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-130130025/pxl-20241030-130130025-800.jpg": {
       "sha256": "7c55773c6e030a09bba2ebdbd175790ad7a4f8944b99eb08e588ff49368ba311",
@@ -3751,8 +3863,8 @@
       "size": 2693958
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-130337743/index.html": {
-      "sha256": "43b7720e8bfb153e1bbf0dc18082f03e165ddf525b0cac7e3b3220197aff2b6b",
-      "size": 13383
+      "sha256": "fe76cf645022dde3c0f1a2220281bff2673999f0231f3beb831b0748c0681d05",
+      "size": 14427
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-130337743/pxl-20241030-130337743-800.jpg": {
       "sha256": "755f2f1232f135986376c75e12447b81d0baed2f17ca79d347e347c18c22e3be",
@@ -3763,8 +3875,8 @@
       "size": 2137581
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131100841/index.html": {
-      "sha256": "5bfc0a4f08b199be7d8eeffe463be39cdc54b458d1e0a8d86c93a6f6cce8aa57",
-      "size": 13122
+      "sha256": "9e79097422e0c104282e07edb2e7a531e7f8924ccf84d6d788f9958d63b6440c",
+      "size": 14166
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131100841/pxl-20241030-131100841-800.jpg": {
       "sha256": "aaf81d3a1ab3ae2823e471a6568f310f574fb3255a8c5c8e7666715acadea33a",
@@ -3775,8 +3887,8 @@
       "size": 2849905
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131210678/index.html": {
-      "sha256": "10372b8e7425b2c3c7c425964a4ba4b251b5843aa8227d4b7319502a4bc994b7",
-      "size": 13120
+      "sha256": "7e5dc729e3c0cff276fbc3c48c5429ef6e85c0c683228bf39f3ba125137b7269",
+      "size": 14164
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131210678/pxl-20241030-131210678-800.jpg": {
       "sha256": "9d71f90219d881a6367ee2cc1d509c823f2b1be847c3f61d68486a72143dcadf",
@@ -3787,8 +3899,8 @@
       "size": 3786031
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131324677-mp/index.html": {
-      "sha256": "30d441ef2d487b417114d50586ee1967446b1c3149bcd5c18025c2545f6cc76f",
-      "size": 13157
+      "sha256": "9b2deca042d42d813a9810371beb3be5269ae34587a627cfb0083d8b1f2c8094",
+      "size": 14201
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131324677-mp/pxl-20241030-131324677-mp-800.jpg": {
       "sha256": "05383f9d520a4238d52af8951ea9392166a7fde60230539128f9c790e9919e3c",
@@ -3799,8 +3911,8 @@
       "size": 4485617
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131812050/index.html": {
-      "sha256": "a6d4bc722003409188a9bd0cc66d59362689a31923d5019fb335ef50473f7a55",
-      "size": 13213
+      "sha256": "e574be0a35e01952e3aae9beaaf6c0c175976e2d999144bec01ba98781f29c2e",
+      "size": 14257
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131812050/pxl-20241030-131812050-800.jpg": {
       "sha256": "a292c6caec3de4e3db6a3740abed7b0a9012cc9f5952408695f01e440da4f94c",
@@ -3811,8 +3923,8 @@
       "size": 4143289
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131945168/index.html": {
-      "sha256": "862f8f0fa8a0201093455ecb55a20e43c86f69a248afbc31322a14207069e1bc",
-      "size": 12868
+      "sha256": "fe38ff64ca20e4f3585e0d8ec176df1b35ebaf00df508da436f2eb37c35339de",
+      "size": 13912
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-131945168/pxl-20241030-131945168-800.jpg": {
       "sha256": "b349598774aea6f7668c726c7030f33a4609596f5cdef752819ba4c6b7c3d0ce",
@@ -3823,8 +3935,8 @@
       "size": 4577283
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-133553725/index.html": {
-      "sha256": "af160d106a04ff9db2b5ebc28b9c3395dc90f505e0235cdc02524dfa2184a93b",
-      "size": 13222
+      "sha256": "e42148ec4c4172d547b6e11d53fa8c7ba7e5ec930f07d82ab160d1e3e99943a4",
+      "size": 14266
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-133553725/pxl-20241030-133553725-800.jpg": {
       "sha256": "b8e3e9093856a03256deab2a82e565f6a07e405b5cb8c1e1242240f9bcbf5fbd",
@@ -3835,8 +3947,8 @@
       "size": 4035477
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-134544320/index.html": {
-      "sha256": "fa2f88b25614c5c977490d9fce47a0be1067c3ce96d149b24bc2ef839b2a0ddd",
-      "size": 13224
+      "sha256": "9faf7023573d3d6c683fcaa4f6b6bb1ca66f0732facbe47a7b85f06ec45f4448",
+      "size": 14268
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-134544320/pxl-20241030-134544320-800.jpg": {
       "sha256": "a44789172142dc3a10b4e20a50ab60330d977faec7a306efae24d0649ae490fe",
@@ -3847,8 +3959,8 @@
       "size": 4187245
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135104734/index.html": {
-      "sha256": "803c4d179d0ce4be6088afca3b417d6bc95872328c818225c1c564b38c95255d",
-      "size": 13048
+      "sha256": "d1a7b2811f946b9a6034e7d7f615693aa09957650a681d95cd9d1c7698e8349c",
+      "size": 14092
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135104734/pxl-20241030-135104734-800.jpg": {
       "sha256": "e55865c5671437cb252ca9dd5ff427353b7505edbf7d8ae602e34842c4dbafe2",
@@ -3859,8 +3971,8 @@
       "size": 3061535
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135650755/index.html": {
-      "sha256": "ab6f12e8cb3eb86533cb873a23cec32907c993155ad19a297c81ea9e1287d338",
-      "size": 13046
+      "sha256": "df98106a44d36ba7ee47d880617821c4eacd55fd478496187b31d89bfc9b703a",
+      "size": 14090
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135650755/pxl-20241030-135650755-800.jpg": {
       "sha256": "b4a028a1d23bc0217949bc3e711cb196389cdbc50eb7d03edbd070aa67c35b4d",
@@ -3871,8 +3983,8 @@
       "size": 3600289
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135659540/index.html": {
-      "sha256": "4c7995c359d141743128d559aceae2504c8c8e30632bd4fb5a088466f1858054",
-      "size": 13653
+      "sha256": "ce25969b425fc2c3737a21b9bd7aca2443b4cd91b5e1d882be9c7ae3dd34dabf",
+      "size": 14697
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135659540/pxl-20241030-135659540-800.jpg": {
       "sha256": "f6e411f2b4307ecb8449dcaefeb920c89a3ca1b60abd893668ab45cdc4339b08",
@@ -3883,8 +3995,8 @@
       "size": 4225075
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135754610/index.html": {
-      "sha256": "ad85a45ce686a0e16231801f1d39cc731078944e8c6a487265b4ee497dd80145",
-      "size": 12852
+      "sha256": "7149d03e85b1a1305d02c7951cf731a1425afc51b8de688ad5e4769c3fb9fb4e",
+      "size": 13896
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-135754610/pxl-20241030-135754610-800.jpg": {
       "sha256": "bbc08cf65395c123bc3e6814b64106be480704b0fe83ca128f306a7eb002d38e",
@@ -3895,8 +4007,8 @@
       "size": 1998886
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-140241392/index.html": {
-      "sha256": "24748ccc62c98e4c69d0877d04f9078f913de084f16036bbf4ffdfa0b9775f28",
-      "size": 12661
+      "sha256": "d4ded3fca05026e97fbd14b19e0521c86ec22eae8dd2582a24768ee8b4d43e92",
+      "size": 13705
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-140241392/pxl-20241030-140241392-800.jpg": {
       "sha256": "365c4bebb82475c650a6bfe1e0be1cae1e296c01de36974db1d720199c994f06",
@@ -3907,8 +4019,8 @@
       "size": 4163348
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-140954513-pano/index.html": {
-      "sha256": "193e0c9f121f8a187f624edaa07513eeadfc83f7b754df6eb66fbe7b69fe588b",
-      "size": 12829
+      "sha256": "9cab5aed1da4f4bb200827cc8ea8120e5f9d2f80ae5acc1190386c40ffbc9309",
+      "size": 13873
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-140954513-pano/pxl-20241030-140954513-pano-800.jpg": {
       "sha256": "bdf7635f50edbaa26cf05eeac44151fde4e440aa5f1ea7a5d959b8cf6a21a52a",
@@ -3919,8 +4031,8 @@
       "size": 3207062
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-150251352/index.html": {
-      "sha256": "02e5ab06c86e88042311ff61bd9f1360b5cf479213efe3408c2d80da764a72f0",
-      "size": 12852
+      "sha256": "7ce9c8a3618f93bf0356a8bfea33494aa1ec7ba4719c7f590fda3daeaedafafc",
+      "size": 13896
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-150251352/pxl-20241030-150251352-800.jpg": {
       "sha256": "5577c94dd6eaf2d0195070bf290289a57b22eb1cf07352b0a077181148e911ec",
@@ -3931,8 +4043,8 @@
       "size": 2354908
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-151330403/index.html": {
-      "sha256": "9d013822d26f13391e2ffc0dd1150345b70d6ea9a7640c3df14fcf76fa9672b7",
-      "size": 13044
+      "sha256": "84755a81a31b9b76a410dfd1f52737970a07816473a5b2ad6c1e5039736032a7",
+      "size": 14088
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-151330403/pxl-20241030-151330403-800.jpg": {
       "sha256": "9cd44386fb7a138442e67a20b330d461ae948fd5c4b93d47f75153f9dcfcb99f",
@@ -3943,8 +4055,8 @@
       "size": 4402571
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-151857145/index.html": {
-      "sha256": "b82d020810e2b0e3178c87624fbcd3cc676a6242544be92f974322790e12f1bc",
-      "size": 12838
+      "sha256": "e6744975c616c75cc0e012e153bf38bb3f9eac19257247f98c76b4aecc4da924",
+      "size": 13882
     },
     "shards/gallery/roque-de-los-muchachos/pxl-20241030-151857145/pxl-20241030-151857145-800.jpg": {
       "sha256": "2f43dbfebf6bbf3d99b1877998f2639f052decf6527cdfcf4840d420315352fd",
@@ -3955,12 +4067,12 @@
       "size": 4474501
     },
     "shards/gallery/telescopio-gran-canaria/index.html": {
-      "sha256": "bd4846c6eedf25e2c6149dff879e2659eee5197697f9a7b2079466142c8a3538",
-      "size": 95337
+      "sha256": "ffc317aa0189d0ac917907e9975e76380bfe856b2d56cce7960ff0c1b404bd56",
+      "size": 96381
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-092941406-mp/index.html": {
-      "sha256": "2aac806086bfea1a82746cd3b89b2457ebfe2f7fc6eabf05d2318419df336df0",
-      "size": 13115
+      "sha256": "6e7b68fd45edb59e8173c4c6c2272fbc3b498cf9d6eeed074875df827e22a740",
+      "size": 14159
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-092941406-mp/pxl-20241027-092941406-mp-800.jpg": {
       "sha256": "07c87a36eb434f06f4397ac3f087047d87177abf122f6c4df2e656a0a4ba6123",
@@ -3971,8 +4083,8 @@
       "size": 5961341
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114229777/index.html": {
-      "sha256": "e1efd889a9391d96810577bb4f514aca9289aea94e0186e60fed56a4564c957e",
-      "size": 13181
+      "sha256": "a13ca148ee76be3e8e045592adc77e58c4838a7e948e2b3a677d7cb6fed3f5c6",
+      "size": 14225
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114229777/pxl-20241027-114229777-800.jpg": {
       "sha256": "5c2839b2f794021fb7709de3c950cdbd781408c02204951592e30c941128f260",
@@ -3983,8 +4095,8 @@
       "size": 3258027
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114332768/index.html": {
-      "sha256": "2cd3b670b4facfda1b581c1a6adffe2f58f44abe48de9bd842204b2d01e42221",
-      "size": 13024
+      "sha256": "a4aa6f95c86cd44a2bdaa399bc98d87239f7d21a289169b16318d25a2d8b67ff",
+      "size": 14068
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114332768/pxl-20241027-114332768-800.jpg": {
       "sha256": "9130bbe32f9e1877830d420252e1223df2e238c5f0d8b5e05bf4ff9fb23ca841",
@@ -3995,8 +4107,8 @@
       "size": 2896685
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114422118/index.html": {
-      "sha256": "9e5bd9f964c52e82fd43de1bbcbe5cff9973e690ca43a134669459d20478aadd",
-      "size": 13075
+      "sha256": "dfb9eb152ded263c97f407d7b71a6b86abcdc512a669ba3cbdeb08a82669072b",
+      "size": 14119
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114422118/pxl-20241027-114422118-800.jpg": {
       "sha256": "b613f9493d89626114eb8d9d8a489e4cb5667f9b2ebfab9724e6e6b1c99bf085",
@@ -4007,8 +4119,8 @@
       "size": 2244893
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114615842/index.html": {
-      "sha256": "44413ad5ae502811f1ea45e87183c589db546083d60759502a45790272d5c1c9",
-      "size": 13119
+      "sha256": "a8bfdb9934bec5c6e0698f6ce4b6313964cc5e2236a06d5e9126faf556c6bf4e",
+      "size": 14163
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114615842/pxl-20241027-114615842-800.jpg": {
       "sha256": "9cbc356f60d8f0da6bdcc2760a4fb3152c7c7b70cea0a8b72ae6a3ddd1991831",
@@ -4019,8 +4131,8 @@
       "size": 2075253
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114620806/index.html": {
-      "sha256": "c226671cd316a1f09ebd26b1cf37687122855e199d848ef6ea459137fabceffe",
-      "size": 13025
+      "sha256": "8a8737dc5d82688d43af65abcf06a3d33b860e17a5e2cb9e6d792fbdb563503a",
+      "size": 14069
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114620806/pxl-20241027-114620806-800.jpg": {
       "sha256": "b7cbf6ec65aef3b80c3b5d1cde5bdc07297d032a2560d92c159766a151d65928",
@@ -4031,8 +4143,8 @@
       "size": 2921801
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114802441/index.html": {
-      "sha256": "cd5f4d120a847610c86773d7ba8bcfd42b36dbdfc7e2bbbb16a098f46363e4a3",
-      "size": 13078
+      "sha256": "03556cb0b4c49690bfa2c8cd351eeb7ad6c6cc7b4049260a05a82f6c4c429a22",
+      "size": 14122
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114802441/pxl-20241027-114802441-800.jpg": {
       "sha256": "b061cb63ebebb3b682c8533baef5300e249afb4ff289b4c0c9159dc55c9780d5",
@@ -4043,8 +4155,8 @@
       "size": 2040481
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114810661/index.html": {
-      "sha256": "869db6db1c4cdc5e9c652ac32e48a90f2f6777cb450023614341ed56dfb27da1",
-      "size": 13024
+      "sha256": "e7dc6feb078234119d554ba191d982b20c24306670e18f8c1d58ccce758f58be",
+      "size": 14068
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114810661/pxl-20241027-114810661-800.jpg": {
       "sha256": "74170f46d8382d3120219c6fcace97c1643ad8d6953c4b55e7bee8c98476f661",
@@ -4055,8 +4167,8 @@
       "size": 2073528
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114827566-mp/index.html": {
-      "sha256": "e4dde857d1d4150c32817703b88f3a58801d3017bdfba814802f1cf3ddc0a766",
-      "size": 13112
+      "sha256": "5a99533298d8ef1c4a03c923a3c1e43ddc90712499df67a4aba134e68d9c39d4",
+      "size": 14156
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114827566-mp/pxl-20241027-114827566-mp-800.jpg": {
       "sha256": "fcaf91ec2b1e3c518bd0653d4ae00cffd4df086cfee13a3fcf9ef1b8a7b1196b",
@@ -4067,8 +4179,8 @@
       "size": 4282255
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114833541/index.html": {
-      "sha256": "50a8d41b881e03cd3361950f01c6a2f1ba95ba75fff100c87faccb083814de9d",
-      "size": 13025
+      "sha256": "816b760696c552e2755ee017195a3de39fa8300c4ca815424460e1357cc87d88",
+      "size": 14069
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-114833541/pxl-20241027-114833541-800.jpg": {
       "sha256": "2a4b8566c50662c842b9afd150edfe25fbe3ed9422143eef387a5ccf3bbde338",
@@ -4079,8 +4191,8 @@
       "size": 3130625
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-115431250-mp/index.html": {
-      "sha256": "a0e40116e67416783947421f8533ea6c09dbaf6fd8a42caec78c18342b994ebe",
-      "size": 13269
+      "sha256": "c425d92e20e990b176ea6f64afeb4a1fb53393666c25545ea31e69d19093be5c",
+      "size": 14313
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-115431250-mp/pxl-20241027-115431250-mp-800.jpg": {
       "sha256": "94f3c3e5a77566d1e70a15bbaed8098b2992b3e751b974eec1cabe79528fdc5c",
@@ -4091,8 +4203,8 @@
       "size": 4415052
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-115742023-mp/index.html": {
-      "sha256": "1cde5b812b1cade0495115a70b2bec22baddc08cca50fb14ce0bb0e912d7ca25",
-      "size": 13164
+      "sha256": "f1a052b437394c41e6ee4caa7edd630475c3d65e6d9798b8536d0ac8ce22988f",
+      "size": 14208
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-115742023-mp/pxl-20241027-115742023-mp-800.jpg": {
       "sha256": "99b6527d3c157871d2609e6717dd474f70df1aa2277aa94fef28820f3ac78126",
@@ -4103,8 +4215,8 @@
       "size": 7506714
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-120048186/index.html": {
-      "sha256": "7d570f553ae2aa48c7e55b27459765b99655ebc47b7dfb5e4ee9f7ca2e9f755a",
-      "size": 13023
+      "sha256": "350bea01e5f70182e54abd7960376b9d002a9757d16dfe176869a05db0cb65fe",
+      "size": 14067
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-120048186/pxl-20241027-120048186-800.jpg": {
       "sha256": "de7fecaebce8547b80beac85d85a310247c691ae45ed38e07cecf071aad934ce",
@@ -4115,8 +4227,8 @@
       "size": 2314002
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-120252354-mp/index.html": {
-      "sha256": "f86a1e37bcc417cd10c986148369d96c8869b1b334d6ea4a52a43c6fae585cba",
-      "size": 13061
+      "sha256": "e79cdcb4ab00d5a859a15a53fd08276826382635e058669a0c2b61527835180c",
+      "size": 14105
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-120252354-mp/pxl-20241027-120252354-mp-800.jpg": {
       "sha256": "c74177872f4415a9b4eb92237d2d3f5cd74eed55c06a7cba0c92527ea42d5f39",
@@ -4127,8 +4239,8 @@
       "size": 6183968
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-122240363/index.html": {
-      "sha256": "6f40b2245fad17072ab2407af162e805b5990d52694099bf75636a88df731339",
-      "size": 13024
+      "sha256": "04eb1ed3af24f713a9e79c0cc8f8f554f6a119bfbd0f466767a17cecb1c48032",
+      "size": 14068
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-122240363/pxl-20241027-122240363-800.jpg": {
       "sha256": "42d640b4183b071e321420e7bbc87a4afe9569a9b515dd8c2179ed332e0d7a58",
@@ -4139,8 +4251,8 @@
       "size": 2297717
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-124738746/index.html": {
-      "sha256": "0a28efbd964c8b8188785c9f740050e675a5ccd35181967c4dfec6e54ae1cf7f",
-      "size": 13024
+      "sha256": "1607758902988524cf8c247358fb9456a3badfa2d2db8446dfc2928b8031159d",
+      "size": 14068
     },
     "shards/gallery/telescopio-gran-canaria/pxl-20241027-124738746/pxl-20241027-124738746-800.jpg": {
       "sha256": "8718c8dc77ecfc830db7bd2b69551d89bf295e6a36d94a129828bd3de1bd6b8c",
@@ -4159,288 +4271,288 @@
       "size": 107084
     },
     "shards/gallery/thingies/galaxy-callibration/index.html": {
-      "sha256": "8e16b2a333a95b68e79b7d8156441113c8cac1cd4a87ac4fd5e195bd4748098c",
-      "size": 11156
+      "sha256": "e9ea5197ecb355598d5a8a6d6158fe41a469b50ac5877a5c08d135fdebdf54a2",
+      "size": 12200
     },
     "shards/gallery/thingies/index.html": {
-      "sha256": "bb680db7a0cbcf98e82676ac3f66e1f61876087a29eb538014601fd7b0fd9c7e",
-      "size": 10135
+      "sha256": "22895b05742109d0ffd985c885e5eda4f42b506cfc7a69db66e60823087033ee",
+      "size": 11179
     },
     "shards/index.html": {
-      "sha256": "5f90f7748689ce19914b9449231ea65bec6151d41ec2b27c615966f2942510d5",
-      "size": 20249
+      "sha256": "94b20daddf9e39a874bdb6dc7e9ba47d0af99372b8e13f7094b82cc377fbf6cd",
+      "size": 21293
     },
     "shards/tags/apollo-bridge/index.html": {
-      "sha256": "124672863eb7e4d1a8526b31955b3487f9c119edae5ee2df9644ed710e624400",
-      "size": 9851
+      "sha256": "0baccf5dedc9284a99f3fa1d9a210ee583411222090fdb2fa6dbb5eb1e18b58c",
+      "size": 10895
     },
     "shards/tags/art/index.html": {
-      "sha256": "559c6f69952a96a06857feb1e6c541f36d18e64857efe012ea43c80b687543b1",
-      "size": 10833
+      "sha256": "61f0af391e3784727575ea688b4be54de1c26a2f6d8ae41289fa3baa8ae8916a",
+      "size": 11877
     },
     "shards/tags/astronomy/index.html": {
-      "sha256": "60444535589fdeef55f738e0dbb4eb1e05521a8db4d24e6a9b44d3b86888f974",
-      "size": 33594
+      "sha256": "7117c916f3f1e0c174059c340938050e0b430d357bb72bf82df24444858528a6",
+      "size": 34638
     },
     "shards/tags/boat/index.html": {
-      "sha256": "c288f1ab2196858691db62d67aeeea09ff970169f0a9dc06e9fd0e8ce555f99e",
-      "size": 10020
+      "sha256": "ec29517c9aaf37650b4162fac03a9d44f2b7fc821ff3e342ec98f3d6964886b5",
+      "size": 11064
     },
     "shards/tags/bratislava/index.html": {
-      "sha256": "854fc2484795f84403d00fdce4699973980c77c506d43ec935f837edd492aaec",
-      "size": 19953
+      "sha256": "a741ce1b112cf4551a5cbe4942275543cbdf8d6d11d23b11a0c108b0e934dc8e",
+      "size": 20997
     },
     "shards/tags/bridge/index.html": {
-      "sha256": "67fbbba1a509e42a1885ea5e6ca9589920bf03cbb67c362d5b97b3e782bdea72",
-      "size": 10793
+      "sha256": "94733b017b501d6a634d9959d4188a074b29b6158a3df4e87c9ca2ea15feccfa",
+      "size": 11837
     },
     "shards/tags/cafe/index.html": {
-      "sha256": "7e0b59219afe9abb8f40b50729460f9303ecc885f87165844fbb3fbe903a2e08",
-      "size": 9782
+      "sha256": "b184f4fb90bfcd9b25ba1630907a6caac6fc56a1367f92f8fad1dcc87e366ddd",
+      "size": 10826
     },
     "shards/tags/cats/index.html": {
-      "sha256": "d9189893b4c75c41c78bbfc9eb1df3292c4eb75599ab778845a7eef7c50bb77e",
-      "size": 12933
+      "sha256": "4cda814fcf3411b305a6faef91d12019e9deba9fa655d1ab89049ee95e7a737f",
+      "size": 13977
     },
     "shards/tags/city/index.html": {
-      "sha256": "17005094326ce3a2c7d757d9d28e9363c4618e26a079590366847c55caf76cef",
-      "size": 9802
+      "sha256": "298dbfce7120c704af85f08c58a4dff65555dc6bfa8e59f38553da76210b5bfd",
+      "size": 10846
     },
     "shards/tags/cognitive-architectures/index.html": {
-      "sha256": "083eaf192c811dcc131a597cb6c3b1c834c978e55c3fee4d50cd6c51da98edb6",
-      "size": 9824
+      "sha256": "274e890c6f2cbf0289b819c884920372ec0fd8c1852c57c63f9454e64cc0582b",
+      "size": 10868
     },
     "shards/tags/cranes/index.html": {
-      "sha256": "fa3ddbd772d85a3ee150ba025058a9b958b21cd074b3305c4572738ad1f3a191",
-      "size": 10307
+      "sha256": "f2b101d9ea6d8f0002a70a6e0edd64681192e659bef430b22bb5ea04527a2443",
+      "size": 11351
     },
     "shards/tags/cunovo/index.html": {
-      "sha256": "c13edd06d6b611f681a817a0c36ede13eabcd1385b431326402198bbcd0da268",
-      "size": 10308
+      "sha256": "9991dc9dd30df7341587e5c1585ae2650a073fd405b27530a1441666bcbc5260",
+      "size": 11352
     },
     "shards/tags/danube/index.html": {
-      "sha256": "a0cef20d530fb5ac347485915145c3e0fa75afb8b9f98cc9dda683542167b509",
-      "size": 14744
+      "sha256": "9fe07c2ee2d9950c03e93339dd532a2f68e2ab539b5751f7db9bde4b4914ad2f",
+      "size": 15788
     },
     "shards/tags/danubiana/index.html": {
-      "sha256": "43507a26036770d7e4305efcb09652fe78b1cbd27e120d1fb302d247fabb37c9",
-      "size": 10881
+      "sha256": "a4eb887b1429916745b7526517d8741bb7a80de78eb9b31676937f4a4a37ab40",
+      "size": 11925
     },
     "shards/tags/domes/index.html": {
-      "sha256": "1f5b27920616de314d62e30a7c75098a4c589c46c2bbcd506f827f310276dbdb",
-      "size": 9836
+      "sha256": "b73e0e558f5c5504cdef16535cc4af738ecefb7b98475a5dbc00ab5f33aa258b",
+      "size": 10880
     },
     "shards/tags/erwinne/index.html": {
-      "sha256": "bf8e2467aeec573362428f3c59a3c73d2553ae96fea70a9b0a23db65abbbd83d",
-      "size": 9772
+      "sha256": "0d4b636ea4841b385b3edde6a6e2f61d64e5b6f60320f862c6f6f124544c72b2",
+      "size": 10816
     },
     "shards/tags/fog/index.html": {
-      "sha256": "b3b30b30fdc8dde06ad1b1aaa3545b7c5538ffc7a0afb206eb7708d50eb5c6e0",
-      "size": 9820
+      "sha256": "cd79167fb7bee273d560edfcc0bd49635a2b0db836776488771621c44a6599b9",
+      "size": 10864
     },
     "shards/tags/food/index.html": {
-      "sha256": "e931dd048bb15edb5b3a53150bf1c083d2044e0ec927d4e24e0cbcf289836f84",
-      "size": 9809
+      "sha256": "61a938cc1d2e7514776b4e291c55d126ebb63ccc0f8800e02fd1aea632e29606",
+      "size": 10853
     },
     "shards/tags/fountain/index.html": {
-      "sha256": "732bf47b06dce49fc4d38583c7a70591da2d31b0243cdd2446abfb4ad0c572d1",
-      "size": 9799
+      "sha256": "dc32752ec5ccab6c49cd4a3d5887c922732146df0afa07b2dbb25f72b01e09c9",
+      "size": 10843
     },
     "shards/tags/four-guardians/index.html": {
-      "sha256": "4ebc02c3766edc025e97e324bc6bbc705b9728cf315b08fe3f14b3440298cbe3",
-      "size": 13013
+      "sha256": "1acc6828769f118c1a2ca480e322d2d834b0f2416f6c6648a1f439738d49b122",
+      "size": 14057
     },
     "shards/tags/galileo-telescope/index.html": {
-      "sha256": "93b3c47c06bd9bd572939926541f04c6878626a2c73e1d535e5acaafdf65ce08",
-      "size": 10930
+      "sha256": "7d33d9e75903ad3b7a31e509920bf6f78052ad90def106ae97393b722bb537d0",
+      "size": 11974
     },
     "shards/tags/gamma-ray/index.html": {
-      "sha256": "0dd8b20de4a0ff433c611c3301176b355a7f28d4244645c0e6042062563c4c99",
-      "size": 9831
+      "sha256": "e7add930ae26a8fb3a53e8259a6c4e9c630bfa581bc25ce30636a0dec0ad9ac7",
+      "size": 10875
     },
     "shards/tags/gastonne/index.html": {
-      "sha256": "21ed53bfca28c216abaeb88dcc3613a3d34a8e60b382e95b0e303129a3dcb3a2",
-      "size": 9783
+      "sha256": "f348d74f671858643df43181aa640c318eb20d73e992f9fbed57ee8724f1439e",
+      "size": 10827
     },
     "shards/tags/gepardinne/index.html": {
-      "sha256": "9bd549d268f836250c09850c2b396278787f44dccfd5b101ed92037ed6f9026e",
-      "size": 9808
+      "sha256": "228d6e44d9aa84605700f36aa084c8006d5d519201c5a6dc7472359d3888143f",
+      "size": 10852
     },
     "shards/tags/goats/index.html": {
-      "sha256": "355e7531338498879b26bd1a16a9afd805d4f9440c787d5bab6ea74175eea19b",
-      "size": 9783
+      "sha256": "6cde2b935f29446c0862c852e7f3776ea2cdec20ebb0cfe10b24a405fe51962e",
+      "size": 10827
     },
     "shards/tags/graffiti/index.html": {
-      "sha256": "a0d8f5fd27fabe73c73bfa094312d1ec90619025e1374555acdea75162b455d7",
-      "size": 9827
+      "sha256": "3f856fd3d7804704919db95044341e1e9aaff2ca632cb6b864547883acaecc89",
+      "size": 10871
     },
     "shards/tags/gran-telescopio-canarias/index.html": {
-      "sha256": "9bd65f7e568037442f915444993e4d5c6131ec5e459ba3a4aff52b68a760585f",
-      "size": 21117
+      "sha256": "6711f36d283d1f3e513013e4541e0f3649153f0667c4212c3cadaede4fc32deb",
+      "size": 22161
     },
     "shards/tags/gtc/index.html": {
-      "sha256": "d0c860ade3536dda30bca77949418f026e6ab4a454a6405f50738fe37d5339d9",
-      "size": 20949
+      "sha256": "50af8edf8baeb75c3833c487aca70699d70b7e9e2f815c7acbc0b22bf7895d98",
+      "size": 21993
     },
     "shards/tags/index.html": {
-      "sha256": "2cd4809daf2930764e2ad09d33f8720251edf4b23fed14159123282a90058948",
-      "size": 27689
+      "sha256": "903b3e57c330f93796d7efe5cd6707d5455c18761f152241b09d908468e7c1c0",
+      "size": 28733
     },
     "shards/tags/industry/index.html": {
-      "sha256": "d1960b222f567f5dc35c318e1059805f359c6c89c126caa50a89f94bd76222c6",
-      "size": 9825
+      "sha256": "9b55a9c4a69bcc1e1a4a6aed2f4db1b0903742287703e5cad69f80717ebe9679",
+      "size": 10869
     },
     "shards/tags/installation/index.html": {
-      "sha256": "c59517c082285929d6b6deb5ef3de3221ec533df58bd2088283e655493f4c889",
-      "size": 9848
+      "sha256": "777d7e90dc62677ad5972a49a3c3f17ef35e7e99f9a896a3c2b8fac88d089e72",
+      "size": 10892
     },
     "shards/tags/interior/index.html": {
-      "sha256": "a57caaf8c8c7b7500bcf27336dc0b73e024d6370bf8ce3b765f93b9387ebb90f",
-      "size": 9814
+      "sha256": "5a054cc6af62432bf295444511d7d1c679530a3e8ad91b85a031553befb16595",
+      "size": 10858
     },
     "shards/tags/isaac-newton-telescope/index.html": {
-      "sha256": "1fc851741c818b6331a2bb9e8646f281c7c546c33dbb097f49dee0e40055a8d6",
-      "size": 9949
+      "sha256": "9ad16875a31080cd4cd9862861024e10446ef65e4a4b7d5a948bb316fc0c0cf0",
+      "size": 10993
     },
     "shards/tags/island/index.html": {
-      "sha256": "2e319eba386c3903dea5db469f6c80d01fd53fc0cdd796d14fc5e4477398c31f",
-      "size": 9786
+      "sha256": "6bec57542b03f2bba1308578571d06dcc3c6c4609e1ca1b6bff8c1351fc6723d",
+      "size": 10830
     },
     "shards/tags/la-fajana/index.html": {
-      "sha256": "f0b9f97446b9339c07b578885b2832b0b7bddcf6a00274881e3811fd61329f98",
-      "size": 10427
+      "sha256": "c0fda66d380c96fcf7fbdd2280e6050dff00d2b2459559a6fde67306d830cfa1",
+      "size": 11471
     },
     "shards/tags/la-palma/index.html": {
-      "sha256": "520e2d8b4524e80d251a860d9cdbe102e1bed0dedaa35e6442f96b45195dfdbe",
-      "size": 33586
+      "sha256": "575abc5dc9a811dfc5016b951028e0820e3c272de67e7993959f21d2ff2400ad",
+      "size": 34630
     },
     "shards/tags/lake/index.html": {
-      "sha256": "9ca50359d9d67addc9ecc1d8a4ba2f6621a0a3b592477b5d68944ead29444361",
-      "size": 9784
+      "sha256": "64fda05f856b212c868bc043113e969f19d378fea6ad69fd457685c303f614ef",
+      "size": 10828
     },
     "shards/tags/landscape/index.html": {
-      "sha256": "c4237228882c39ecd384d6a0127ab75f17e040f814b538694a360caf73ad3890",
-      "size": 12519
+      "sha256": "3751022865a9c65806c2f70502b1fb8283df59c3b3924841f06b18c55e402ef8",
+      "size": 13563
     },
     "shards/tags/langos/index.html": {
-      "sha256": "35fa7aaafb382083f5496437cac44973e58854e63582e9957aa622f51cf3aa7b",
-      "size": 9825
+      "sha256": "a95f546c1e97606e7b057e207404d7e49fc4fd22d8af9715617e8e6a12ed65d5",
+      "size": 10869
     },
     "shards/tags/language/index.html": {
-      "sha256": "84ff72c87cfb4566870808028c4a8e94fc181327b816730f2ac41cbeb2c80353",
-      "size": 9704
+      "sha256": "769df4d0bccd67fe80b4e95175059de6a2c421af31323d902edf75d88dfcc660",
+      "size": 10748
     },
     "shards/tags/magic/index.html": {
-      "sha256": "ee10b3893d7828bff90496d8eb6bba19ff3a691de861f0bde3b3ceb68a7cf4bb",
-      "size": 10325
+      "sha256": "f2f730bfd68fc8b6291e08704ac55fc190a1699967fec5871cc6ea56c9a29b04",
+      "size": 11369
     },
     "shards/tags/mosaic/index.html": {
-      "sha256": "5be2cbee1d1749f76c44bb37cf19ebc881ff81f304ee3eb9ceb2907d1bb03db3",
-      "size": 9798
+      "sha256": "216ea5582ce4fbd112a9d766bd080da6aaf7ee02846a69e408fb4f6d62da88a1",
+      "size": 10842
     },
     "shards/tags/most-snp/index.html": {
-      "sha256": "6e0bcf9ed01a22c6e7480ad083c6c4db3b78924b7675ca47e4da56f0164a7613",
-      "size": 10277
+      "sha256": "9ec311d59fefd0d4d97d266965bead67b1fefa7a9598ca0b633b6656e1931c61",
+      "size": 11321
     },
     "shards/tags/museum/index.html": {
-      "sha256": "fff94442a45b05a8e7c8281f1851fcebb83627c7e1b2218f9a1f44a1711353ee",
-      "size": 9831
+      "sha256": "4b971bb3a78e03444c02e05375bd1a9cca5858018fe01b3650c21894b460bd04",
+      "size": 10875
     },
     "shards/tags/nature/index.html": {
-      "sha256": "9b7796e58478d0cc6522c7d8ed6e1842df69156f8c8f0561c9dd7f79cc6259a5",
-      "size": 10544
+      "sha256": "a79e46de1480c32cfd8c0ad97d25cbd38444f4329bfdd831fabbb46343182ea6",
+      "size": 11588
     },
     "shards/tags/night/index.html": {
-      "sha256": "2c4de328b2d72f624a5d5db66e56bd4caa844af5c8b7677cef53c1e82f479754",
-      "size": 9774
+      "sha256": "069df2260f60073c6168061f3fc2086eecb41ca5ed3941edd6e0b138c3101ed1",
+      "size": 10818
     },
     "shards/tags/novy-most/index.html": {
-      "sha256": "4fe4a06d13d7a971fdf3ffd498b66662b274ef29cf30e74e1fd9089d6ea5148c",
-      "size": 9842
+      "sha256": "db9a438ca06473ecc52fec890034e2c3addef06b749c6fb7535dafaaacc5024d",
+      "size": 10886
     },
     "shards/tags/observatory/index.html": {
-      "sha256": "0b5cdb66799261175c58077d6d398bc2ae2af36e9d44e6d10d9fa821463ad630",
-      "size": 24632
+      "sha256": "22d8a6a279784ab3ba6ab8f59d0919ac547f912c968cf2458668d41710b1a8ff",
+      "size": 25676
     },
     "shards/tags/old-town/index.html": {
-      "sha256": "d4e81c014e83cd486a4b08f47b783f778b7933fb85006e0f888482357e2d946c",
-      "size": 9841
+      "sha256": "6121d23884ab353ad15e76cf81ef34759d4677e9d134885c6804dda9767a2a6d",
+      "size": 10885
     },
     "shards/tags/panorama/index.html": {
-      "sha256": "611f4a1f393e82b1da6d232226230c69b5362cda841f14f2c067c95aa84cd9cc",
-      "size": 9829
+      "sha256": "d46dac605e28fee2479276aa46779c2bb8d2ecb8c07c884d7f646b80598ea4dd",
+      "size": 10873
     },
     "shards/tags/park/index.html": {
-      "sha256": "5cc2e7e00e347e4776dfb6705d9ee1ccfede1a9494659289a2f887cf345bdc2d",
-      "size": 10264
+      "sha256": "91d94739172d7a04ec88f841e89b14d950dcfde9125f6e42384155ec48b30a5c",
+      "size": 11308
     },
     "shards/tags/pedro/index.html": {
-      "sha256": "236c8f7b67366416983ad8a0e61cf29ea3ba72df376178b73fbf4c02e80e0b03",
-      "size": 9783
+      "sha256": "a8997d7b00a70a74edec7d211cf51b77a4bea4fbf780c36b7290da22994bd612",
+      "size": 10827
     },
     "shards/tags/photography/index.html": {
-      "sha256": "756cc03a36fe06497574ccaa78898fec371208a476569c52fd1175b4d6073bfc",
-      "size": 9852
+      "sha256": "8278aae0fc1b2a3e7fc1f8b7a7c05d56099599fb7a1ee86ba5f03d4c704f133f",
+      "size": 10896
     },
     "shards/tags/pilgrimage/index.html": {
-      "sha256": "d223854ef70f35280f2f6a1c0ba9cae80b5c2ede9033cacb07a44fdeefb590f1",
-      "size": 33602
+      "sha256": "41315f32a498a1b759209f99ead7b37d25e0b160a646de70624ff38302a24299",
+      "size": 34646
     },
     "shards/tags/port/index.html": {
-      "sha256": "1d21e6fa91f0089cfb2680c980774a1f13f8f06d12b25a2cd65e531293152eb3",
-      "size": 10291
+      "sha256": "f59b44eb698579a879507e9e992e0596100ec4ab324ec7f99dbd65ad4798eb8a",
+      "size": 11335
     },
     "shards/tags/pristavny-most/index.html": {
-      "sha256": "cb360a207598cce0792a0e7aa2be6f9a631c4c14f34d1140b64c49da513aad27",
-      "size": 10380
+      "sha256": "5c33fd52448857b6cd75e7bdb23074ffbe89161ebf076c7dd90a0d703f3b0bb2",
+      "size": 11424
     },
     "shards/tags/river/index.html": {
-      "sha256": "927516da236918abd5d4494f9f6ced883b93caba509a9de23a9caf82d2a4cc1c",
-      "size": 10411
+      "sha256": "deeb0ec04ceb7081625949dd0292b28b72546bb85a064b3eb232c4ee396c83a7",
+      "size": 11455
     },
     "shards/tags/robotic-telescope/index.html": {
-      "sha256": "1f7f33725f98f7d2c5dbeec377ee0055cb01369d54696e9494b85e20c4d007cf",
-      "size": 9932
+      "sha256": "bb32a4b240c766b95ad79635ce8ebc69e846abef66c628d2c3f6ff0fd6a51b2f",
+      "size": 10976
     },
     "shards/tags/roque-de-los-muchachos/index.html": {
-      "sha256": "abc0ba2b4da77c2ddbc6805b20a57390c270458ada6129021c72040ad3bc4a00",
-      "size": 33698
+      "sha256": "bc457cd00bd0a84807481a01a2834fa2b575a9e186256098e02c0085f30bd8cf",
+      "size": 34742
     },
     "shards/tags/sad-janka-krala/index.html": {
-      "sha256": "bb59fc84e0eb734fb3e33d69e5241d3717d1a6d075a4d9c59c33c75a426f072d",
-      "size": 11333
+      "sha256": "bf47b0938631ec868f6419d0ca52aa5904e2a9facac33ad409e52e2fb01bc7da",
+      "size": 12377
     },
     "shards/tags/sculpture/index.html": {
-      "sha256": "ff2aa6e64c5af9ee82a6111cb7a81d12a0d90ed3de8237d64e26916a7b7793f9",
-      "size": 9819
+      "sha256": "6dc16e8be457d0558ce4af5e8c7dab0f1b54095aba1f2f6ba5fbbb43d4f050c5",
+      "size": 10863
     },
     "shards/tags/soffie/index.html": {
-      "sha256": "5352b48600def4a6f6f0c0c8d17119d391e223de5490dcddc01238bb711d06db",
-      "size": 9885
+      "sha256": "14c09386da62e7cf9ed36e5a689eb7cb5f9d3cf74396342f614e157e51213d86",
+      "size": 10929
     },
     "shards/tags/telescope/index.html": {
-      "sha256": "a3fc69207936b65ff9ccc275d8faa683352173c7408306a9de6b9c1412b264f2",
-      "size": 27241
+      "sha256": "8ee48c380c01f5933fd6231842d4a6588c51c87afdb97e10b99472e6f24ed271",
+      "size": 28285
     },
     "shards/tags/ufo-tower/index.html": {
-      "sha256": "fde0c39b27bc146c0f354a0513548102025b4e02ac032d9c7d137a1d083a5426",
-      "size": 9795
+      "sha256": "0b2fa59f81a964d5c77ba27bed831f2954bf746253c9ff1a13817a27aa73fc3e",
+      "size": 10839
     },
     "shards/tags/wildlife/index.html": {
-      "sha256": "e4c19c8acef79b11f63c00276bf065e5c62caeb6dd4dc13216fb602e36ce7649",
-      "size": 9807
+      "sha256": "0f3b7d4c137b03d62d33f8b2a67d59ec9ce0a6fc932691687b815bcfc7e288b3",
+      "size": 10851
     },
     "shards/tags/william-herschel-telescope/index.html": {
-      "sha256": "78ab8ad38a0aa8b62f7d840815ff29b6f353c4ab0a32da61428eda3a6dc6bb6d",
-      "size": 11067
+      "sha256": "933001f9f914c6cf653f46234b34005bf8ac597aea7d5608ccac9fc74de8e89d",
+      "size": 12111
     },
     "shards/tags/žofka/index.html": {
-      "sha256": "6b3ca53e26e48f0a2b020999ffe05e58d70d6faad78e2c673e9896a500edb4f1",
-      "size": 9893
+      "sha256": "3353221d27eb4c23e6131bd2dbfdf2a4653bf134d0b1a81380d96f09544ac442",
+      "size": 10937
     },
     "sitemap-0.xml": {
-      "sha256": "0a5b08e14e14199ac307e1014b9f1890ef0bed53abd60ab0c13b248b9f11a103",
-      "size": 15654
+      "sha256": "03692c697635432cc8f9cc0b518adad39b3307e19b669587f06b69eef54d6be2",
+      "size": 15921
     },
     "sitemap-index.xml": {
       "sha256": "174309914a56e170768ef0831e50621a8e2052ed0a6a9b350ef8e55925c972cd",
