@@ -13,6 +13,7 @@ import asymetric from './asymetric.png';
 import asymetricSettings from './asymetric_settings.png';
 import nastyExample from './halo-removal-example-hard.png';
 import nastySettings from './nasty_settings.png';
+import nastySettings2 from './nasty_settings2.png';
 
 I have always struggled with star halos and have tried lots of workflows one can find on youtube or on the internet generaly. 
 Tedious the work was, with limited and unsatisfatory outcomes. The little HaloHalo tool is my attempt to squash these
@@ -39,9 +40,10 @@ reflection that cannot be properly represented by the internal halo model. Large
 
 <PostFigure src={asymetricSettings} alt="Used settings" caption="Used settings" />
 
-#### A nasty one
+#### A nasty one with a rim
 
-<PostFigure src={nastyExample} alt="Before and after of a strong halo sitting on top of nebulosity" caption="Strong halo sitting right on top of nebulosity - the hard case." />
+<PostFigure src={nastyExample} alt="Before and after of a strong halo sitting on top of nebulosity" caption="Strong halo sitting right on top of nebulosity and with a rim. Two passes were needed to get rid of the rim." />
 
-<PostFigure src={nastySettings} alt="Used settings" caption="Used settings" />
+<PostFigure src={nastySettings} alt="Used settings" caption="Quite bright stars often need manual protection since star model does not protect sufficiently. This first pass was not able to get rid of the rim fully." />
+<PostFigure src={nastySettings2} alt="Used settings" caption="Second pass for subduing the rim even more. I didn't want to touch the inner circle since it is de-haloed already. Feathering is boosted too for smoother transition." />
 
