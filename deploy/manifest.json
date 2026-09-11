@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-10T16:26:34.525Z",
-  "fileCount": 1139,
+  "generatedAt": "2026-09-10T20:49:40.505Z",
+  "fileCount": 1137,
   "files": {
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -2946,29 +2946,21 @@
       "sha256": "17813131c5446edda059a84ffc5a52f1caedb2819c36cbaadacd947d94a91128",
       "size": 100906
     },
-    "astro-tools/halohalo/HaloHalo.js": {
-      "sha256": "20b9549d34dc14761568b5c9a1e29366a5ad26f0fa9d3e45010c954c713ff5e8",
-      "size": 140347
-    },
-    "astro-tools/halohalo/HaloHalo.svg": {
-      "sha256": "17dceb2810dbc26a0181a2d01e24b2c4edd824eab2b10974247455fde7d3a2a1",
-      "size": 573
-    },
     "astro-tools/halohalo/halohalo-1.0.zip": {
-      "sha256": "56fa530317f312f630837ac874d6420303720389b9ef15e7ad52feeb35fc6ab6",
-      "size": 44754
+      "sha256": "10322237c9dbe6e4db1c63bd405b70b43162449a3930c287238fcfe2428b4d3d",
+      "size": 48821
     },
     "astro-tools/halohalo/updates.xri": {
-      "sha256": "8b52036c24114d6f38871bee9b6deb53fc9dd810e946093efe607b61cd615544",
-      "size": 962
+      "sha256": "9e560daf00a9f0862baee9c1ddbfc6ecd2dc1546db0276d78560d35628da8978",
+      "size": 958
     },
     "astro/blog/2026-05-12-a-fear-and-loathing-of-green/index.html": {
       "sha256": "9d954e13d8664f0d99a59c88d01d0e4799e5169a5c832eafbc410ca6fe3f59cb",
       "size": 15184
     },
     "astro/blog/2026-09-10-halohalo-star-removal-pixinsght/index.html": {
-      "sha256": "01c2af78c81947d3b4f182c1e33b168daef378537f92b737497db7a6b17e3a88",
-      "size": 16325
+      "sha256": "1e26587e1e2c340fa1ca49376b5a0cfbcec5eaa73150410cdb9f9207432ee87a",
+      "size": 16332
     },
     "astro/blog/index.html": {
       "sha256": "ed1a15be396de5f80ded0be55be5d7a14d75cdd87c4026893d52adfec5290f26",
