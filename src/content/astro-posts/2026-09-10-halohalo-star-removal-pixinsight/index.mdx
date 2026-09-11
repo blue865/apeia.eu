@@ -26,6 +26,7 @@ Now the removal is mostly a matter of a few clicks. The best results can be achi
 1. Add the link below to PixInsight's script repositories via RESOURCES -> Updates -> Manage Repositories. The link must end with a trailing `/` character, otherwise PixInsight will not recognize it.
 2. Click RESOURCES -> Updates -> Check for Updates. Unfortunately I'm not a registered PixInsight developer yet, so PixInsight will ask whether you really want to install the script. Click yes.
 3. Restart PixInsight.
+4. You will find it here: SCRIPT -> apeia -> HaloHalo
 
 ```
 https://apeia.eu/astro-tools/halohalo/
@@ -43,7 +44,7 @@ The image was already stretched. Not ideal, but the tool still works.
 <PostFigure src={haloTutorialSettings} alt="Used settings" caption="Used settings: instead of the standard 'Star Model' I used a star protection mask here, because of a micro-lens reflection that the internal halo model cannot represent properly. Large feathering avoids a sudden drop at the star edge, which doesn't look natural on stars this bright." />
 
 #### An asymmetric, low-contrast one
-<PostFigure src={asymetric} alt="Before and after of a faint uneven glow around a star" caption="A faint, lopsided glow - barely above the noise, and still enough to flatten the background." />
+<PostFigure src={asymetric} alt="Before and after of a faint uneven glow around a star" caption="A faint, lopsided glow - barely above the noise." />
 
 <PostFigure src={asymetricSettings} alt="Used settings" caption="Used settings" />
 
@@ -52,5 +53,5 @@ The image was already stretched. Not ideal, but the tool still works.
 <PostFigure src={nastyExample} alt="Before and after of a strong halo sitting on top of nebulosity" caption="A strong halo sitting right on top of nebulosity, with a rim on it. Two passes were needed to get rid of the rim." />
 
 <PostFigure src={nastySettings} alt="Used settings" caption="Quite bright stars often need manual protection, since the star model doesn't protect them well enough. This first pass couldn't get rid of the rim completely." />
-<PostFigure src={nastySettings2} alt="Used settings" caption="A second pass to subdue the rim further. I didn't want to touch the inner circle, since it is de-haloed already. Feathering is boosted too, for a smoother transition." />
+<PostFigure src={nastySettings2} alt="Used settings" caption="A second pass to subdue the rim further. Star protection is extened since I didn't want to touch the inner circle, since it is de-haloed already. Feathering is boosted too, for a smoother transition." />
 
