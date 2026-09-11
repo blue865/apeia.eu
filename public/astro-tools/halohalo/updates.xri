@@ -4,7 +4,10 @@
       <p>HaloHalo - interactive halo removal for PixInsight, from apeia.eu.</p>
    </description>
    <platform os="all" arch="noarch" version="1.8.0:2.9.9">
-      <package fileName="halohalo-1.0.zip" sha1="de37d64af77507287828ce7823afb1855db59c9b" type="script" releaseDate="20260910">
+      <package fileName="halohalo-1.0.zip"
+               sha1="adbe6d9a5debc95ef5dfa0f1f04a66c19cd03a59"
+               type="script"
+               releaseDate="20260911">
          <title>HaloHalo 1.0</title>
          <description>
             <p>Interactive removal of star halos. Select an ellipse around a
@@ -15,4 +18,3 @@
       </package>
    </platform>
 </xri>
-<Signature developerId="apeia.eu" timestamp="2026-09-10T17:24:03.394Z" encoding="Base64">CG5NZW1TqxKLDLf71KzV3RH3cln5bOMRxM4gMxra2wydfdh4MHzrs4AA5AyowalyS6aHwa6p5UKEeDmvmgBcAg==</Signature>
