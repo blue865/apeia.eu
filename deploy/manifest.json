@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T13:59:36.852Z",
+  "generatedAt": "2026-09-11T14:10:51.510Z",
   "fileCount": 1142,
   "files": {
     ".nojekyll": {
@@ -2967,11 +2967,11 @@
       "size": 100906
     },
     "astro-tools/halohalo/halohalo-1.0.zip": {
-      "sha256": "a3c038f2f7c9dd9010cf33412fe405a462dcc893afd848bb0a46063db79c1b45",
-      "size": 48257
+      "sha256": "f35b7b78669fbc8ad6ab5b90962ef8b223924693c2b928e7edc01db63499f235",
+      "size": 48096
     },
     "astro-tools/halohalo/updates.xri": {
-      "sha256": "4a8799cbe1c5aafefb9af54eb021b2aee23452dc2623b98a94d9deb55fbe01f0",
+      "sha256": "fde7e6033dc04c12becc4628ca64579c6cb7d8361950f28b42a901de356fab38",
       "size": 813
     },
     "astro/blog/2026-05-12-a-fear-and-loathing-of-green/index.html": {
