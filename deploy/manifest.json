@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-11T07:14:16.675Z",
-  "fileCount": 1137,
+  "generatedAt": "2026-09-11T13:06:50.382Z",
+  "fileCount": 1142,
   "files": {
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -2498,17 +2498,21 @@
       "sha256": "c1012b3bf84bb172234da6337fbebaaf2250fe0a9a0a91b07e40cf56628de04a",
       "size": 305830
     },
-    "_astro/halo-removal-example-hard.C_Q2lFVU.png": {
-      "sha256": "0a1d419ae0190a772421736291a63897bb6c16024038b7892681e0f17272d820",
-      "size": 123200
+    "_astro/halo-removal-example-hard.DEeVz-Vb.png": {
+      "sha256": "1d6313ba05dce9d4b515b9dabf4cf4516f88d450736db67398dea24925291bd0",
+      "size": 630264
     },
-    "_astro/halo-removal-example-hard.C_Q2lFVU_1MNJoz.webp": {
-      "sha256": "6a588b3f02e5721b305be7538c27c285d19cb0d08af070cd0c4a38c97763b54e",
-      "size": 23860
+    "_astro/halo-removal-example-hard.DEeVz-Vb_26DKrP.webp": {
+      "sha256": "fa0f45473b4ed9abd06ade508dc839eccfbc346852f62d56833a378807792954",
+      "size": 15164
     },
-    "_astro/halo-removal-example-hard.C_Q2lFVU_1mgVUO.webp": {
-      "sha256": "86accdec2547469b7ab168fd9f828ad4e8dbe89f25f0be962c51958886931ee9",
-      "size": 20514
+    "_astro/halo-removal-example-hard.DEeVz-Vb_Z1MTv3I.webp": {
+      "sha256": "856b18052fc1c197e0ca70ddc98ba085b569133566319240c92911394a5a92c2",
+      "size": 119884
+    },
+    "_astro/halo-removal-example-hard.DEeVz-Vb_eeXky.webp": {
+      "sha256": "8b0452787c6dda55b48f18a1430b87710f9b3b8dbfe4ea62634d008d70d049a1",
+      "size": 37818
     },
     "_astro/halo_tutorial.583zSN2C.png": {
       "sha256": "a6fe74a84122784661ed3625a516fd790c576084f5bdea496b45c28023bf7787",
@@ -2798,21 +2802,37 @@
       "sha256": "11a6f6951f21ded906dd4a38344a9e7c9e868d836938ac7e9e68b3e5dceca4a5",
       "size": 88132
     },
-    "_astro/nasty_settings.CoSXfIgy.png": {
-      "sha256": "531076fe9df8b82fe161e49bf403cfd456cc4919098fb9128081a96385c3396a",
-      "size": 504947
+    "_astro/nasty_settings.C3OKiMNC.png": {
+      "sha256": "8360c8faf937856e509a1b191036c3b363e76bcc2a2cbe646e33ef5a2523435f",
+      "size": 472085
     },
-    "_astro/nasty_settings.CoSXfIgy_17rkBL.webp": {
-      "sha256": "fcdbb0f8dec612f7676a2272a50a2a52e522f0acc53b91b4b160db6a00dd5a99",
-      "size": 76518
+    "_astro/nasty_settings.C3OKiMNC_KwH2V.webp": {
+      "sha256": "f9adf348ddb0e9e20258eb1e99249bffc3ba21fc21ed43715b3a3e78c94c630d",
+      "size": 88058
     },
-    "_astro/nasty_settings.CoSXfIgy_1C6R14.webp": {
-      "sha256": "2cac1bdbdaab831e8705460757d6d85de50c874ef56c2d135a4a9213cbb297f1",
-      "size": 12966
+    "_astro/nasty_settings.C3OKiMNC_Z1kHihf.webp": {
+      "sha256": "f2f04803471bd4bab63c8bd471202240d72b1f356d66144861198cfda01ee938",
+      "size": 14648
     },
-    "_astro/nasty_settings.CoSXfIgy_Z1TdMfr.webp": {
-      "sha256": "54849b6b6d1fe8d0a504eda1af52e0436d190f2bc1ce246705762309a6295839",
-      "size": 29920
+    "_astro/nasty_settings.C3OKiMNC_ZtHvOi.webp": {
+      "sha256": "204a6220cd2ca834403317442080d7662793f08ed3cecd061d04591002360471",
+      "size": 34454
+    },
+    "_astro/nasty_settings2.CFDqk-b9.png": {
+      "sha256": "8106aa568491475263b24c6525c0cc6160d0ba2ae5124ec4781e0b2cd4426594",
+      "size": 524746
+    },
+    "_astro/nasty_settings2.CFDqk-b9_Z1M46p4.webp": {
+      "sha256": "58d7893c70f3cb938104b713af77b61d1dc584804a5ad22725a707f0c81d8823",
+      "size": 82160
+    },
+    "_astro/nasty_settings2.CFDqk-b9_Z2c1Tud.webp": {
+      "sha256": "71d9ccd7beb0eb1c13c2c56522fa5ab445846981c68720d0f10ca8c97b1826dc",
+      "size": 13092
+    },
+    "_astro/nasty_settings2.CFDqk-b9_ZKoVwq.webp": {
+      "sha256": "237abf6fdc73cd6330554fe39702fb439c2a5d73b3eee74580eb9f535643f128",
+      "size": 31288
     },
     "_astro/ngc1499-california-nebula.DjS9YbLE.jpg": {
       "sha256": "2dad97d0199cfe1fc3f7dc79c04eaf3cd3880af162c3ebe53330a4b29c2686b1",
@@ -2959,8 +2979,8 @@
       "size": 15184
     },
     "astro/blog/2026-09-10-halohalo-star-removal-pixinsght/index.html": {
-      "sha256": "6aa39f3cdf10b3597750c85d536d9e62047f7e4886514b637d123325696519b8",
-      "size": 16614
+      "sha256": "de8bf170de3b7e3b0c4344d20e4a952f1fcc65ace7d9332d0e09d799b1df7741",
+      "size": 17647
     },
     "astro/blog/index.html": {
       "sha256": "ed1a15be396de5f80ded0be55be5d7a14d75cdd87c4026893d52adfec5290f26",
