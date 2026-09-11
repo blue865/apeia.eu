@@ -1,7 +1,11 @@
 {
-  "generatedAt": "2026-09-11T14:10:51.510Z",
-  "fileCount": 1142,
+  "generatedAt": "2026-09-11T14:19:00.654Z",
+  "fileCount": 1143,
   "files": {
+    ".htaccess": {
+      "sha256": "2a4f827590315966bb964122517dea6e040fd6354129ffeecf29832aa974b8b4",
+      "size": 1247
+    },
     ".nojekyll": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size": 0
