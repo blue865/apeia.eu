@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T13:06:50.382Z",
+  "generatedAt": "2026-09-11T13:08:15.034Z",
   "fileCount": 1142,
   "files": {
     ".nojekyll": {
@@ -2979,8 +2979,8 @@
       "size": 15184
     },
     "astro/blog/2026-09-10-halohalo-star-removal-pixinsght/index.html": {
-      "sha256": "de8bf170de3b7e3b0c4344d20e4a952f1fcc65ace7d9332d0e09d799b1df7741",
-      "size": 17647
+      "sha256": "29a5a6c4d2e8f6bbea86d80e435dc6fc0c73f833ac12c60efb926d29556e63ce",
+      "size": 17649
     },
     "astro/blog/index.html": {
       "sha256": "ed1a15be396de5f80ded0be55be5d7a14d75cdd87c4026893d52adfec5290f26",
