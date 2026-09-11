@@ -5,7 +5,7 @@
    </description>
    <platform os="all" arch="noarch" version="1.8.0:2.9.9">
       <package fileName="halohalo-1.0.zip"
-               sha1="adbe6d9a5debc95ef5dfa0f1f04a66c19cd03a59"
+               sha1="1bac94a8ba641531a76bdb5c732775f4a942150a"
                type="script"
                releaseDate="20260911">
          <title>HaloHalo 1.0</title>
