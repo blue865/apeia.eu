@@ -3,12 +3,9 @@
    <description>
       <p>HaloHalo - interactive halo removal for PixInsight, from apeia.eu.</p>
    </description>
-   <platform os="all" arch="noarch" version="1.8.0:2.9.9">
-      <package fileName="halohalo-1.0.zip"
-               sha1="b2394deb78de8ddd40503de27bc8168cf1021219"
-               type="script"
-               releaseDate="20260911">
-         <title>HaloHalo 1.0</title>
+   <platform os="all" arch="noarch" version="1.9.4:2.9.9">
+      <package fileName="halohalo-1.1.zip" sha1="9e59f04fa2fde54f15018826ecfb3ec7f3199d16" type="script" releaseDate="20260920">
+         <title>HaloHalo 1.1</title>
          <description>
             <p>Interactive removal of star halos. Select an ellipse around a
             halo, and the measured halo model is subtracted from the image,
@@ -18,3 +15,4 @@
       </package>
    </platform>
 </xri>
+<Signature developerId="apeia.eu" timestamp="2026-09-20T08:28:21.511Z" encoding="Base64">CetxOdCaJ7Zd2QnRgQOUgNzCtqwM5Vyo1gDgIWWOpWFkQ/gb/j2z9dgeFnLIL8Zd9y1Tovy0Rac7IJ1H9j0FDg==</Signature>
