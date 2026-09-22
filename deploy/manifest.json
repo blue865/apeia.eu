@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T13:02:11.811Z",
+  "generatedAt": "2026-09-21T15:11:42.385Z",
   "fileCount": 1143,
   "files": {
     ".htaccess": {
@@ -2983,8 +2983,8 @@
       "size": 15185
     },
     "astro/blog/2026-09-10-halohalo-star-removal-pixinsight/index.html": {
-      "sha256": "d32a63db473386fe646ef6ae92d7b912859bc257271663d3f499b885ecc7895e",
-      "size": 18946
+      "sha256": "9adf2d93c6fa1c9c27387a7c5e8a1b4f8bec6f95634fa760d53d9b78c83e9d12",
+      "size": 18802
     },
     "astro/blog/index.html": {
       "sha256": "2620da442267b405294f47f9645f157c034b15c876bb322363b4b1b7db13d1dd",
