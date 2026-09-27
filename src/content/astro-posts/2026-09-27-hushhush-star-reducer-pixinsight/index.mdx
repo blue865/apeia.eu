@@ -1,36 +1,36 @@
 ---
 title: Star Reducer for PixInsight
 date: 2026-09-27
-summary: Star Reducer for PixInsight
-tags: [hushush, star reducer, pixinsight, tool]
+summary: A one-click star reducer for PixInsight
+tags: [hushhush, star reducer, pixinsight, tool]
 draft: false
 ---
 import PostFigure from '../../../components/PostFigure.astro';
 import before from './before.png';
 import after from './after.png';
 
-I've added the star reducer tool to HaloHalo astro tooling suite. I know. This already exists elsewhere but I wasn't content with the usability and wanted it to be more one-clicky. 
-I also added a few other tweaks that I find useful in the processing stage I usually start to de-ephasize the stars. 
+I've added a star reducer tool, HushHush, to the apeia astro tooling suite. I know, this already exists elsewhere, but I wasn't happy with the usability and wanted it to be more one-clicky.
+I also added a few other tweaks that I find useful at the processing stage where I usually start to de-emphasize the stars.
 
-The tool is mostly useful in processing wide field shots where the number of stars start to get a little bit out of hands. It can be used even in situation where no star reduction is needed -
-namely for star saturation and the final image contrast enhandcement.
+The tool is most useful for wide-field shots, where the number of stars starts to get a bit out of hand. It can be used even when no star reduction is needed -
+namely for star saturation and final contrast enhancement.
 
-It works both with linear and stretched images.
+It works with both linear and stretched images.
 
-### Workings
-The tool separates stars from the background object using StarXTerminator and works separately on them. If you do not have StarXTerminator you have to separate them by other means. 
-HushHush sould be than open with the starless image and the star must be selected manually. 
+### How it works
+The tool separates the stars from the background object using StarXTerminator and processes each part separately. If you don't have StarXTerminator, you have to separate them by other means.
+HushHush should then be opened with the starless image, and the stars image must be selected manually.
 
-Just a note. The star selection box shows only images that have the same resolution as the currently loaded one. I tripped on this myself that I wasn't able to find the stars image
-and started looking for a bug. Only to eventually found, that the star image wasn't the right resolution - I extracted them from differently cropped version.
+Just a note: the star selection box only lists images with the same resolution as the currently loaded one. I tripped over this myself - I couldn't find my stars image
+and started looking for a bug, only to eventually find that it had a different resolution because I had extracted it from a differently cropped version.
 
 #### Functions
-- Automatic Stars Extraction
-- Optionally Manual Stars selection
-- Star Manipulation
-  - Strength 
+- Automatic star extraction
+- Optional manual star selection
+- Star manipulation
+  - Strength
   - Saturation
-- Background Object Manipulation
+- Background object manipulation
   - Contrast
 
 ### Installation
@@ -41,15 +41,14 @@ and started looking for a bug. Only to eventually found, that the star image was
 
 ```
 https://apeia.eu/astro-tools/halohalo/
-
 ```
-If you find HaloHalo useful, please consider <a href="https://buymeacoffee.com/apeia" target="_blank">buying me a coffee</a>. 
+If you find HushHush useful, please consider <a href="https://buymeacoffee.com/apeia" target="_blank">buying me a coffee</a>. 
 
 #### Contact
-If you find a bug or a halo that defeats the tool, you can post it at [Cloudynights HaloHalo post](https://www.cloudynights.com/forums/topic/1010534-halohalo-star-halo-removal-for-pixinsight).
+If you find a bug or just to suggest an improvement, you can post it at [Cloudynights HaloHalo post](https://www.cloudynights.com/forums/topic/1010534-halohalo-star-halo-removal-for-pixinsight).
 
 ### A Processing Example
-The follwing example shows everything in action. Stars are reduced and saturated a bit more the background object has enhanced contrast.
+The following example shows everything in action. The stars are reduced and slightly more saturated, and the background object has enhanced contrast.
 
 <PostFigure src={before} alt="Starting image" caption="Starting image"/>
 <PostFigure src={after} alt="Processed image" caption="Processed image"/>
