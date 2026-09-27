@@ -1,0 +1,55 @@
+---
+title: Star Reducer for PixInsight
+date: 2026-09-27
+summary: Star Reducer for PixInsight
+tags: [hushush, star reducer, pixinsight, tool]
+draft: false
+---
+import PostFigure from '../../../components/PostFigure.astro';
+import before from './before.png';
+import after from './after.png';
+
+I've added the star reducer tool to HaloHalo astro tooling suite. I know. This already exists elsewhere but I wasn't content with the usability and wanted it to be more one-clicky. 
+I also added a few other tweaks that I find useful in the processing stage I usually start to de-ephasize the stars. 
+
+The tool is mostly useful in processing wide field shots where the number of stars start to get a little bit out of hands. It can be used even in situation where no star reduction is needed -
+namely for star saturation and the final image contrast enhandcement.
+
+It works both with linear and stretched images.
+
+### Workings
+The tool separates stars from the background object using StarXTerminator and works separately on them. If you do not have StarXTerminator you have to separate them by other means. 
+HushHush sould be than open with the starless image and the star must be selected manually. 
+
+Just a note. The star selection box shows only images that have the same resolution as the currently loaded one. I tripped on this myself that I wasn't able to find the stars image
+and started looking for a bug. Only to eventually found, that the star image wasn't the right resolution - I extracted them from differently cropped version.
+
+#### Functions
+- Automatic Stars Extraction
+- Optionally Manual Stars selection
+- Star Manipulation
+  - Strength 
+  - Saturation
+- Background Object Manipulation
+  - Contrast
+
+### Installation
+1. Add the link below to PixInsight's script repositories via RESOURCES -> Updates -> Manage Repositories. The link must end with a trailing `/` character, otherwise PixInsight will not recognize it.
+2. Click RESOURCES -> Updates -> Check for Updates. 
+3. Restart PixInsight.
+4. You will find it here: SCRIPT -> apeia -> HaloHalo
+
+```
+https://apeia.eu/astro-tools/halohalo/
+
+```
+If you find HaloHalo useful, please consider <a href="https://buymeacoffee.com/apeia" target="_blank">buying me a coffee</a>. 
+
+#### Contact
+If you find a bug or a halo that defeats the tool, you can post it at [Cloudynights HaloHalo post](https://www.cloudynights.com/forums/topic/1010534-halohalo-star-halo-removal-for-pixinsight).
+
+### A Processing Example
+The follwing example shows everything in action. Stars are reduced and saturated a bit more the background object has enhanced contrast.
+
+<PostFigure src={before} alt="Starting image" caption="Starting image"/>
+<PostFigure src={after} alt="Processed image" caption="Processed image"/>
