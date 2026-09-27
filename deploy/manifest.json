@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-21T15:11:42.385Z",
-  "fileCount": 1143,
+  "generatedAt": "2026-09-27T18:00:19.390Z",
+  "fileCount": 1154,
   "files": {
     ".htaccess": {
       "sha256": "2a4f827590315966bb964122517dea6e040fd6354129ffeecf29832aa974b8b4",
@@ -2334,6 +2334,22 @@
       "sha256": "0e2364bec7231b75e7900d23c61f30f1792c7ee7214fc5116a8fa5e4bbda2cc5",
       "size": 33802
     },
+    "_astro/after.Cfy-PRGu.png": {
+      "sha256": "fa27fdbee15f60b22134d1f1bc6a6cb0bd8188da30377365418be1cda6be15a8",
+      "size": 3663052
+    },
+    "_astro/after.Cfy-PRGu_1S7PkW.webp": {
+      "sha256": "bda62273c985edda47ff2e9445d53230459c8c9ce78eb1b8a9b27f3be21da7c6",
+      "size": 277912
+    },
+    "_astro/after.Cfy-PRGu_2iaeHP.webp": {
+      "sha256": "0d8de107ce96ff2628020f85ac9614b5349f62265f9502e21228b0b943317f08",
+      "size": 38338
+    },
+    "_astro/after.Cfy-PRGu_Zbf1xu.webp": {
+      "sha256": "ac560d71dcf27bfd98c339be2323c19276c421bd0d694237746716ffdb1da5b3",
+      "size": 93500
+    },
     "_astro/asymetric.BzKmLCnf.png": {
       "sha256": "fd51711191de4d998f350e20fe66c227164bc9e76ed98a48f05d71117a8f1e21",
       "size": 727557
@@ -2365,6 +2381,22 @@
     "_astro/asymetric_settings.CRo3AyLh_nheSN.webp": {
       "sha256": "5523f06b79f573144bfb5ad48c0c81c114bc3b846cc749e9c8617504ee96a6b7",
       "size": 21538
+    },
+    "_astro/before.CiGe_H2C.png": {
+      "sha256": "09403a9cc556b9fd5dcdcc8d993ebf33bdd7dc1070352df20c8b656d08f129a2",
+      "size": 4327374
+    },
+    "_astro/before.CiGe_H2C_2vqOQD.webp": {
+      "sha256": "0fd754c3bb0ffef8d73151d0a380e467328d0f1f65fa8267f561143c3682c6a2",
+      "size": 52174
+    },
+    "_astro/before.CiGe_H2C_PjYbt.webp": {
+      "sha256": "f60a7a72389b5670422efdeee0173604f3aa05769b3146993dc7455d4076a983",
+      "size": 129442
+    },
+    "_astro/before.CiGe_H2C_Z11Fo6r.webp": {
+      "sha256": "02f310e4975678ff1073781e1a5f30c49982cbe230ba7cd5f44a5d12b37e8cd7",
+      "size": 386644
     },
     "_astro/erwinne.tgzIQUXZ.jpg": {
       "sha256": "bd8eaaec8dd596a2197f4772e59ae6b850acfc15fb38c612d3e52c68dee4ca70",
@@ -2986,9 +3018,13 @@
       "sha256": "9adf2d93c6fa1c9c27387a7c5e8a1b4f8bec6f95634fa760d53d9b78c83e9d12",
       "size": 18802
     },
+    "astro/blog/2026-09-27-hushhush-star-reducer-pixinsight/index.html": {
+      "sha256": "cb705f8978f404ce51b9e761ed42d62b8e2a1b553b098b2380f76903665ad4bf",
+      "size": 15728
+    },
     "astro/blog/index.html": {
-      "sha256": "2620da442267b405294f47f9645f157c034b15c876bb322363b4b1b7db13d1dd",
-      "size": 9856
+      "sha256": "febad22eab82d8c01ff4438c7a169512f77ea8dfda5c8267e544aa2fba099870",
+      "size": 10364
     },
     "astro/gallery/ic1396/ic1396-4k/ic1396-4k-2k.jpg": {
       "sha256": "ba56e185e5d207f192943b13477fa4d1998192c131be5b4810b378ae34e46e0d",
@@ -3251,8 +3287,8 @@
       "size": 4937995
     },
     "astro/index.html": {
-      "sha256": "1eddb09864e24e7506c45288ffeb0b28605951bf612edb555dc606ad173d100e",
-      "size": 418378
+      "sha256": "4e79ae71185fa09b5cb7e3a3b5ea24cae1c005fe6996e9937db9aec5b4ffaa30",
+      "size": 418886
     },
     "astro/tags/4k/index.html": {
       "sha256": "2788153345ff69b9a6727e1e89706c6d2188165dcb2b2575a5b8a3b4bea57979",
@@ -3306,6 +3342,10 @@
       "sha256": "6b2939cfac0912374969a7dfef4486c0c9d7d57ccf9e0581723305b0f6ffe8f0",
       "size": 11183
     },
+    "astro/tags/hushhush/index.html": {
+      "sha256": "eb96902fb2c35ae73cacefe0fa45f2fe72d889e0c5c450aa60145e6c3296ee9e",
+      "size": 11087
+    },
     "astro/tags/ic1396/index.html": {
       "sha256": "9f79dc65338bef439fac0ec0cdeb222e8e7db58fa6e36762b8589f7b93902951",
       "size": 13394
@@ -3319,8 +3359,8 @@
       "size": 11822
     },
     "astro/tags/index.html": {
-      "sha256": "e12d38559ffce1ef64f089b19303aed237db554bb0e859eb5cd9488468f65399",
-      "size": 19742
+      "sha256": "66fc385d6be1ca2bbe6eb615b04d70c753df38f9622d307de81b0cebab84fc0a",
+      "size": 20362
     },
     "astro/tags/ldn935/index.html": {
       "sha256": "48343c7bcb59ae56b965da4ce309e1897719e972b15828afc2cc4b64301dbd80",
@@ -3379,8 +3419,8 @@
       "size": 12974
     },
     "astro/tags/pixinsight/index.html": {
-      "sha256": "846663bf0813201814c91916b394b5746d0553e6fc36d1f5b308de27b4e27f83",
-      "size": 11502
+      "sha256": "2d9eaa74c31f01d229a1b9efe30291efc8f630620d51d59c229522a2ef57a87b",
+      "size": 11911
     },
     "astro/tags/scnr/index.html": {
       "sha256": "34d3e938c6b217358b655ebc5bb1394cefd90888b9b6b39adc0644b4b3cfcc6b",
@@ -3394,9 +3434,13 @@
       "sha256": "43380dc9acd941eb8b6d9ab39dbf7954d7d04b3a1c996cb169c2b87a44f480dc",
       "size": 11099
     },
+    "astro/tags/star-reducer/index.html": {
+      "sha256": "e39e28d5e85b139cb7976fee790414ba241ae772475a9ca83000dd3b77ba1bb3",
+      "size": 11119
+    },
     "astro/tags/tool/index.html": {
-      "sha256": "a0d1da4bcf49e1d47ee836dc7ae336a756a1e1ec4207af29f5842d2f3a013dd0",
-      "size": 11059
+      "sha256": "e125aef8c6a4a1d81a6aebbea791346aac1fd413e5a6e9dac6a1bc3d422a3779",
+      "size": 11470
     },
     "astro/tags/wallpaper/index.html": {
       "sha256": "eb54e08974ac76096780e0312c6f3bfeb2b14938016c16edae7252ab2a5a3991",
@@ -3411,16 +3455,16 @@
       "size": 8232
     },
     "index.html": {
-      "sha256": "b1ed5d27efb9bb9769c954f86ecc4cedcfa51421347daf7256fbd6245f704ce2",
-      "size": 13447
+      "sha256": "7502b44cc5865a619a6f2cb1a001d29a8f2cd42bc92dae57ad4d8f91d60dc9e4",
+      "size": 13428
     },
     "robots.txt": {
       "sha256": "6b5d5fa517d4d41432f7c01e60186349f4800ac7de0e034f0abc47b43ec1b611",
       "size": 68
     },
     "rss.xml": {
-      "sha256": "8bfbc941632c9e6c8ac66f3a6ca8d6136e6a087088abf94d1c3b614c0960ec81",
-      "size": 7762
+      "sha256": "d4ca0f855bcee068478596bcc82594a7086a80031fbf73d5c586dd5f25eec446",
+      "size": 8289
     },
     "shards/blog/2026-06-07-cognitive-architectures-language/index.html": {
       "sha256": "a5497fc497d4341718c9e82f0f8e0a149016a0b2188b0b16170dfcd0be9daab7",
@@ -4567,8 +4611,8 @@
       "size": 10938
     },
     "sitemap-0.xml": {
-      "sha256": "eb5e3c9256af53909fc3090cca7c2b83d18afe2c4e500b1165fdd0f98ced6bd5",
-      "size": 15922
+      "sha256": "b45538df4269d65f7b24cea8a096d6f79daed38a5d748a98c0d6cc26902b88d9",
+      "size": 16138
     },
     "sitemap-index.xml": {
       "sha256": "174309914a56e170768ef0831e50621a8e2052ed0a6a9b350ef8e55925c972cd",
