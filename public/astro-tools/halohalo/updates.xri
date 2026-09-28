@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xri version="1.0">
    <description>
-      <p>HaloHalo - interactive halo removal for PixInsight, from apeia.eu.</p>
+      <p>apeia astro processing suite for PixInsight.</p>
    </description>
    <platform os="all" arch="noarch" version="1.9.4:2.9.9">
-      <package fileName="halohalo-1.1.zip" sha1="9e59f04fa2fde54f15018826ecfb3ec7f3199d16" type="script" releaseDate="20260920">
-         <title>HaloHalo 1.1</title>
+      <package fileName="halohalo-1.2.zip" sha1="d11593a249f582afaedebf6501eea5fbe6d99a03" type="script" releaseDate="20260927">
+         <title>HaloHalo 1.2</title>
          <description>
-            <p>Interactive removal of star halos. Select an ellipse around a
-            halo, and the measured halo model is subtracted from the image,
-            with a live preview before anything is committed.</p>
+            <p>Interactive removal of star halos. Select an ellipse around a halo, and the measured halo model is subtracted from the image, with a live preview before anything is committed.</p>
             <p>Installs as Script &gt; apeia &gt; HaloHalo.</p>
+         </description>
+      </package>
+      <package fileName="hushhush-1.0.zip" sha1="ee3246df28951fef7ad7067d0a8abeab842839e0" type="script" releaseDate="20260927">
+         <title>HushHush 1.0</title>
+         <description>
+            <p>Quiet the stars: separate them with StarXTerminator, take the star layer down with one slider, and add it back.</p>
+            <p>Installs as Script &gt; apeia &gt; HushHush.</p>
          </description>
       </package>
    </platform>
 </xri>
-<Signature developerId="apeia.eu" timestamp="2026-09-20T08:28:21.511Z" encoding="Base64">CetxOdCaJ7Zd2QnRgQOUgNzCtqwM5Vyo1gDgIWWOpWFkQ/gb/j2z9dgeFnLIL8Zd9y1Tovy0Rac7IJ1H9j0FDg==</Signature>
+<Signature developerId="apeia.eu" timestamp="2026-09-27T18:43:22.451Z" encoding="Base64">dGmjDrRbl3JMTH415r799asg6fhLX0hnomqs1MrwwzsYHOGeHGdVpDmLgWWNfxCjjia6imbGe6BhQGeLXB5eBA==</Signature>
