@@ -14,19 +14,21 @@ import wizardTintCorrected from './greengreen-tool-corrected.jpg';
 There are basically two methods for green tint suppression in our images. One is relativelly laborious manual hue manipulation or the mighty SCNR.
 There is a proplem with SCNR that you risk to loose data contained in green channel and loose a distinction of different areas that are visible in the untreated image.
 
-<PostFigure src={wizardGreenTint} alt="Greenish Wizard" caption="Greenish Wizard" />
-<PostFigure src={wizardScnr} alt="SCNR" caption="SCNR" />
+<PostFigure src={wizardGreenTint} alt="Greenish Wizard" caption="Greenish Wizard with clearly discernible redish nebulosity." />
+<PostFigure src={wizardScnr} alt="SCNR" caption="SCNR eats the distinction between redish and greenish parts." />
 
 There is a better way. The idea is to plot all pixels onto a hue wheel and shift continually the greeinish pixels away of the green area. It is quite intuitive when you see it. 
 It is basically one click operation. When the tool is opened, it automaticall auto-fits the settings to the actual image. The one click is the apply button itself.
 
 <PostFigure src={wizardTintCorrected} alt="Corrected Wizard in the Tool" caption="Corrected Wizard in the Tool" />
 
-I understand. It is a small help and one can achieve the same result by other means too. But it is much more controllable and you can see that's really happening.
+I understand. It is a small help and one can achieve the same result by other means too. But it is much more controllable and you can see that's really happening. 
+SCNR squashes the colours towards the oranges, GreenGreen always keep the separation.
 
 I generalised the tool, so it can be used for every continuous hue shift of any colour band on the wheel. Just set the white pie where you want it and set it's colour band width.
-Then you can adjust the colour shift by turning the yellow target pie.
+Then you can adjust the colour shift by turning the yellow target pie. 
 
+As of the example image. One can for example shift blues to a more desirable hue.
 
 ### Installation
 It is part of HaloHalo apeia tool suite. (See the flagship star removal tool here)-hey claude, make this a link the the halohalo post.
@@ -40,7 +42,7 @@ It is part of HaloHalo apeia tool suite. (See the flagship star removal tool her
 https://apeia.eu/astro-tools/halohalo/
 
 ```
-If you find HaloHalo useful, please consider <a href="https://buymeacoffee.com/apeia" target="_blank">buying me a coffee</a>. 
+If you find any of the tools useful, please consider <a href="https://buymeacoffee.com/apeia" target="_blank">buying me a coffee</a>. 
 
 #### Contact
 If you find a bug or a halo that defeats the tool, you can post it at [Cloudynights HaloHalo post](https://www.cloudynights.com/forums/topic/1010534-halohalo-star-halo-removal-for-pixinsight).
