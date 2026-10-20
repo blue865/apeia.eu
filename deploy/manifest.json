@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-27T18:46:37.303Z",
-  "fileCount": 1155,
+  "generatedAt": "2026-10-20T16:22:18.984Z",
+  "fileCount": 1173,
   "files": {
     ".htaccess": {
       "sha256": "2a4f827590315966bb964122517dea6e040fd6354129ffeecf29832aa974b8b4",
@@ -2534,6 +2534,22 @@
       "sha256": "c1012b3bf84bb172234da6337fbebaaf2250fe0a9a0a91b07e40cf56628de04a",
       "size": 305830
     },
+    "_astro/greengreen-tool-corrected.BvQpqdwy.jpg": {
+      "sha256": "ada97525f7d40ae59bcfd244fd6b97b21a241cbd1e93a809e5f51963fd26ff0a",
+      "size": 718294
+    },
+    "_astro/greengreen-tool-corrected.BvQpqdwy_Z2bEBWp.webp": {
+      "sha256": "c6436f578e06c47c26d15de94257d3ad13f90d5e0709872c047d432b957e05e7",
+      "size": 203936
+    },
+    "_astro/greengreen-tool-corrected.BvQpqdwy_Z5VVxI.webp": {
+      "sha256": "25f47e3969253d5fa2bb542e070968e120a9e65f887bcb9dcd38ed94e12fc203",
+      "size": 37300
+    },
+    "_astro/greengreen-tool-corrected.BvQpqdwy_rJv2J.webp": {
+      "sha256": "74fddcd09a8f1aa4814325e2200c0e9e6fcbece1ad63639ec2ccbcd68d67b5ab",
+      "size": 84444
+    },
     "_astro/halo-removal-example-hard.DEeVz-Vb.png": {
       "sha256": "1d6313ba05dce9d4b515b9dabf4cf4516f88d450736db67398dea24925291bd0",
       "size": 630264
@@ -2966,6 +2982,38 @@
       "sha256": "fef10c62691f1aa01f57c6450519c39b39624f30f17c8c3a53168553814a193b",
       "size": 96456
     },
+    "_astro/wizard-green-tint.BVP_APiZ.jpg": {
+      "sha256": "4bc8ba43c5d4ec5ad1f4d9eade41bf732e450bf582d59bb42542560b512db56f",
+      "size": 1767734
+    },
+    "_astro/wizard-green-tint.BVP_APiZ_16uj9q.webp": {
+      "sha256": "24ff552aaaeda39d959edc273a9be76f772a39fd81530df4d5791eb8824e2127",
+      "size": 24080
+    },
+    "_astro/wizard-green-tint.BVP_APiZ_ZvXl7C.webp": {
+      "sha256": "a2394b7bbbe2e54a89ee4f00f380a1be49f64e65d5408f09f47fec90e79407d4",
+      "size": 165026
+    },
+    "_astro/wizard-green-tint.BVP_APiZ_yT63m.webp": {
+      "sha256": "7f03c2b72623f6cf5dc5b3337564e3493b4e2502f4fd0a4c474ed4b53acdb801",
+      "size": 60058
+    },
+    "_astro/wizzard_scnr.DGy9PPpL.jpg": {
+      "sha256": "53c79a542f9bdd314bd80443aa4ef0cd40f8c139dd8d0a5da87ca82c33dcce56",
+      "size": 1759280
+    },
+    "_astro/wizzard_scnr.DGy9PPpL_1pjhk7.webp": {
+      "sha256": "a24b52234e7a7ad2f0ae801f271cb50cf31799b8a225eeb4f788514ace4e8eff",
+      "size": 163846
+    },
+    "_astro/wizzard_scnr.DGy9PPpL_5Ttwg.webp": {
+      "sha256": "839dbb365007572a68271db3ec65a16f9bd1e1524ec79fb478a8945855037b12",
+      "size": 59118
+    },
+    "_astro/wizzard_scnr.DGy9PPpL_Z2iEmEC.webp": {
+      "sha256": "7d4453d48a3e76208ba01bad7bac7c8f2e04f5f466558d37e05924eda4681462",
+      "size": 24068
+    },
     "_astro/zofka-la-palma.BLAC1ItH.jpg": {
       "sha256": "5b71cb194cb8be5b5d15e6d511b6a2dc6e56357f705eb6649b8a9faa913972f8",
       "size": 5328776
@@ -3002,17 +3050,29 @@
       "sha256": "17813131c5446edda059a84ffc5a52f1caedb2819c36cbaadacd947d94a91128",
       "size": 100906
     },
+    "astro-tools/halohalo/greengreen-1.0.zip": {
+      "sha256": "26767091d872d477fbbaf1221ff017fa1050f84aa3c51e5881b5732823aa7075",
+      "size": 30904
+    },
     "astro-tools/halohalo/halohalo-1.2.zip": {
       "sha256": "f36c781a4f1812db5d60470c69f41b74cc8de75d835627d7855d6e10b0b8684b",
       "size": 53190
+    },
+    "astro-tools/halohalo/halohalo-1.3.zip": {
+      "sha256": "3b2e57f64783c76f8f328c64266f015e467c9925423cc6a9da8e8b8ec0609f4d",
+      "size": 70026
     },
     "astro-tools/halohalo/hushhush-1.0.zip": {
       "sha256": "d51bb705749393dfba35726f729d23ecca59f74d7cfa95489a104f4a6431d695",
       "size": 23659
     },
+    "astro-tools/halohalo/hushhush-1.1.zip": {
+      "sha256": "bb1c70623978dd12947cca77fbc97e3d6dbcf5e77ae2c1ec0ddc7c67af2fc530",
+      "size": 24916
+    },
     "astro-tools/halohalo/updates.xri": {
-      "sha256": "30697069849807e1c293eb9d2c559df9a194edb1593154acd49e43c2b1cf0c7e",
-      "size": 1337
+      "sha256": "398ace04a06250625cc5a07d217cea133e3816e31d66ad0abfca860dd52710cd",
+      "size": 1944
     },
     "astro/blog/2026-05-12-a-fear-and-loathing-of-green/index.html": {
       "sha256": "6995b6a22aaf6c8607be7e024c6be9fafff9f8003381ac39e5e96b0cc1bf0108",
@@ -3026,9 +3086,13 @@
       "sha256": "cb705f8978f404ce51b9e761ed42d62b8e2a1b553b098b2380f76903665ad4bf",
       "size": 15728
     },
+    "astro/blog/2026-10-20-greengreen-the-scnr-replacement/index.html": {
+      "sha256": "a06d750a5bc25e67b8237e023bb0c8d152ef3125f213c7014fd441ad5d067879",
+      "size": 16781
+    },
     "astro/blog/index.html": {
-      "sha256": "febad22eab82d8c01ff4438c7a169512f77ea8dfda5c8267e544aa2fba099870",
-      "size": 10364
+      "sha256": "bb015b807f136ee389693e05ee6bf72f3e6312804f486cf714ff95808f8cb28d",
+      "size": 10907
     },
     "astro/gallery/ic1396/ic1396-4k/ic1396-4k-2k.jpg": {
       "sha256": "ba56e185e5d207f192943b13477fa4d1998192c131be5b4810b378ae34e46e0d",
@@ -3291,8 +3355,8 @@
       "size": 4937995
     },
     "astro/index.html": {
-      "sha256": "4e79ae71185fa09b5cb7e3a3b5ea24cae1c005fe6996e9937db9aec5b4ffaa30",
-      "size": 418886
+      "sha256": "ea885710a5af0ffd8677add7e0126f62cba005aa5ff007b68e7affea22254dff",
+      "size": 419429
     },
     "astro/tags/4k/index.html": {
       "sha256": "2788153345ff69b9a6727e1e89706c6d2188165dcb2b2575a5b8a3b4bea57979",
@@ -3330,6 +3394,14 @@
       "sha256": "4cc3bc886de8853aa05a836d92a9274b457b8881ec3c7aad8aaeda6258e09054",
       "size": 13398
     },
+    "astro/tags/green-green/index.html": {
+      "sha256": "c42028cda8e3e91a298406a80727daf6ca329d4762260badeb05f3a132e4c344",
+      "size": 11146
+    },
+    "astro/tags/green-tint/index.html": {
+      "sha256": "8d15b8e7f881eb852cf1ff7d941371440a169d3917915741954cba9996040fb4",
+      "size": 11138
+    },
     "astro/tags/green/index.html": {
       "sha256": "0b907d92459d8b21387c81e0f22d396ac676e6ad811394db348beaddb8a66582",
       "size": 11047
@@ -3363,8 +3435,8 @@
       "size": 11822
     },
     "astro/tags/index.html": {
-      "sha256": "66fc385d6be1ca2bbe6eb615b04d70c753df38f9622d307de81b0cebab84fc0a",
-      "size": 20362
+      "sha256": "7ff55d592d11f48a08ae1b4eae1974b7147e074530aad1b1b103f6c7d345bd22",
+      "size": 20984
     },
     "astro/tags/ldn935/index.html": {
       "sha256": "48343c7bcb59ae56b965da4ce309e1897719e972b15828afc2cc4b64301dbd80",
@@ -3423,12 +3495,12 @@
       "size": 12974
     },
     "astro/tags/pixinsight/index.html": {
-      "sha256": "2d9eaa74c31f01d229a1b9efe30291efc8f630620d51d59c229522a2ef57a87b",
-      "size": 11911
+      "sha256": "8d7ef0ca436284eb2c332c8d95bde451c7d7922bce40f54cc013401df5f3e21f",
+      "size": 12355
     },
     "astro/tags/scnr/index.html": {
-      "sha256": "34d3e938c6b217358b655ebc5bb1394cefd90888b9b6b39adc0644b4b3cfcc6b",
-      "size": 11039
+      "sha256": "5f74e422cec870ae08a282dbda60a5a2e7b2c7895a5d9741e0d04a6eea71ee09",
+      "size": 11485
     },
     "astro/tags/sh2-279/index.html": {
       "sha256": "f04c86c9021d8fc7c1bf06ff8464f490d0d94c127c1a64d6ba4872ddf5804c9a",
@@ -3443,8 +3515,8 @@
       "size": 11119
     },
     "astro/tags/tool/index.html": {
-      "sha256": "e125aef8c6a4a1d81a6aebbea791346aac1fd413e5a6e9dac6a1bc3d422a3779",
-      "size": 11470
+      "sha256": "e9ff44fec7c4242f1afd225f8444a43a9c34ce1c6d2f078eb5574d2c72c3f6b4",
+      "size": 11914
     },
     "astro/tags/wallpaper/index.html": {
       "sha256": "eb54e08974ac76096780e0312c6f3bfeb2b14938016c16edae7252ab2a5a3991",
@@ -3459,16 +3531,16 @@
       "size": 8232
     },
     "index.html": {
-      "sha256": "7502b44cc5865a619a6f2cb1a001d29a8f2cd42bc92dae57ad4d8f91d60dc9e4",
-      "size": 13428
+      "sha256": "475a334843291b7f378a209ca262b9bff7c07c629c395954e3aec8262553cd55",
+      "size": 13416
     },
     "robots.txt": {
       "sha256": "6b5d5fa517d4d41432f7c01e60186349f4800ac7de0e034f0abc47b43ec1b611",
       "size": 68
     },
     "rss.xml": {
-      "sha256": "d4ca0f855bcee068478596bcc82594a7086a80031fbf73d5c586dd5f25eec446",
-      "size": 8289
+      "sha256": "010b4a3c1a2260426b5fbd9c3c97891edd62453ee40ba8ea0a3b9eb2a9071b7d",
+      "size": 8877
     },
     "shards/blog/2026-06-07-cognitive-architectures-language/index.html": {
       "sha256": "a5497fc497d4341718c9e82f0f8e0a149016a0b2188b0b16170dfcd0be9daab7",
@@ -4615,8 +4687,8 @@
       "size": 10938
     },
     "sitemap-0.xml": {
-      "sha256": "b45538df4269d65f7b24cea8a096d6f79daed38a5d748a98c0d6cc26902b88d9",
-      "size": 16138
+      "sha256": "5ca94c86717d7e126b9ae677431e2c504ac84bac45195a1b8cb752ceea915664",
+      "size": 16354
     },
     "sitemap-index.xml": {
       "sha256": "174309914a56e170768ef0831e50621a8e2052ed0a6a9b350ef8e55925c972cd",
