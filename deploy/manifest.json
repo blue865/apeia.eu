@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-20T16:22:18.984Z",
-  "fileCount": 1173,
+  "generatedAt": "2026-10-23T14:08:19.648Z",
+  "fileCount": 1203,
   "files": {
     ".htaccess": {
       "sha256": "2a4f827590315966bb964122517dea6e040fd6354129ffeecf29832aa974b8b4",
@@ -709,10 +709,6 @@
     "_astro/LDN935.DEd_RH0s_ZTxTsf.webp": {
       "sha256": "0920becdab59b6cd9e9d400480ea8104951f7b734903a646b178a2c886162738",
       "size": 155058
-    },
-    "_astro/LDN935.DEd_RH0s_ZsU8n5.webp": {
-      "sha256": "3d15ca928dfcd6065a37a242ce5f2e067517f624bf4d2ef135e6b438f05c64d7",
-      "size": 24012
     },
     "_astro/LDN935.DEd_RH0s_oeg9e.webp": {
       "sha256": "8d97dd8e7ee55b93bd36a349bacdf187bd05a44e714f23875e1263a593d5064f",
@@ -2918,6 +2914,78 @@
       "sha256": "88f3806bffdb0de26c0f725db14da941365db65ca35f29e2a7e85cf9232d851c",
       "size": 445006
     },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI.jpg": {
+      "sha256": "229255c14baee5477accc039fae1e7ff8e80a07b7b8c663a207c9e4f897d97b8",
+      "size": 5194367
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_10htzy.webp": {
+      "sha256": "c5dc39f4ae3dfdd08522c14a81ec352a181e0e6aec4ff93ad2cafbd7e1b451c0",
+      "size": 46002
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_1g00hA.webp": {
+      "sha256": "06f2fde333c93502154f36e5154fe91a21e83ad6686a6a068e7f6069b43c3ac2",
+      "size": 1399700
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_LooYv.webp": {
+      "sha256": "5aaed7c1ed256ca26da6992d07dcf34d6d13cb41a9b2fc0041a328f6011ba7ce",
+      "size": 104668
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_NclQb.webp": {
+      "sha256": "0af3fe7ee043cae8c5d866eab32f3187a4bf7e3881319feb2f29fd838f06f51d",
+      "size": 2988912
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_Z16YHnr.webp": {
+      "sha256": "f3304c6afe67b2669a685fe41f6ebbb051f9d64448d91a6ea6613ef493bb9dba",
+      "size": 150040
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_Z1Rxocx.webp": {
+      "sha256": "a3e105d633d50ec038ed0f1791cc0256ee96e799d7dbb3d1b8ff39d395f2ac64",
+      "size": 363038
+    },
+    "_astro/ngc7380-wizard-nebula-4k.DTzJ-TGI_zCder.webp": {
+      "sha256": "66cb6fd560425be39a17115759e32c4a3fa14b2fb984516d8b784ba56fc99a37",
+      "size": 819660
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27.jpg": {
+      "sha256": "47bc0dddbd74e6983db454132e7d0c0965bdad6ff44d5471c773344a08e05173",
+      "size": 15314217
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_1boVqH.webp": {
+      "sha256": "24b8a7b33ebf50aefd1e049273b5423fc444bb4c74067280cce46cc2f45acec8",
+      "size": 375074
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_Al1lP.webp": {
+      "sha256": "54ae4d9b8aefdf3b4d7ebe057545d828b5dc79280172707ff5183890f657e227",
+      "size": 3191510
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_Ano7V.webp": {
+      "sha256": "6ffd0d6de5516e3338aee7c9b46952fe4ed6fc58b7e170ad211bfea400a23f80",
+      "size": 156386
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_PomhH.webp": {
+      "sha256": "0421facbe9554b8e905bf3c2dbad30f0d72f414b547ef762acc1938bd5ed9de7",
+      "size": 1569104
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_Z1A8GyI.webp": {
+      "sha256": "70a46229a1355ecdf407f7f077bf8133a152f5d1b8b2cefd326a63de0600cdaa",
+      "size": 876898
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_Z1vP7UX.webp": {
+      "sha256": "27fa267e3822fc33520d435bf88d614bd365e6c5f9aae8e01727793af72f8a82",
+      "size": 80598
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_ZmbMc8.webp": {
+      "sha256": "a5eb4570f705e07d1cb4ad35d012614f77e226f2d62612a4b30883988f5951d4",
+      "size": 10919374
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_s6JjS.webp": {
+      "sha256": "c3a344a851462d719baab97d980f15ae8b39d5a05021fc3c005f62f55d6aa65f",
+      "size": 21684
+    },
+    "_astro/ngc7380-wizard-nebula.DcbLr-27_yfQ82.webp": {
+      "sha256": "b24552229d1f4a53cc661592842d54af93de557ced7111452ff68e0c90f91f24",
+      "size": 50358
+    },
     "_astro/pedro.CPmwRF-v.jpg": {
       "sha256": "c679ba2076209ae343135b631c9a26a837d3ffa428b0496a69b09c65a5ee2d91",
       "size": 7559633
@@ -3087,8 +3155,8 @@
       "size": 15728
     },
     "astro/blog/2026-10-20-greengreen-the-scnr-replacement/index.html": {
-      "sha256": "a06d750a5bc25e67b8237e023bb0c8d152ef3125f213c7014fd441ad5d067879",
-      "size": 16781
+      "sha256": "78242ae8ad6f058b9df721cd6a7de508b7c4ec4215b4a9e3b6d1c35a8725842a",
+      "size": 16641
     },
     "astro/blog/index.html": {
       "sha256": "bb015b807f136ee389693e05ee6bf72f3e6312804f486cf714ff95808f8cb28d",
@@ -3187,8 +3255,8 @@
       "size": 14329
     },
     "astro/gallery/index.html": {
-      "sha256": "de0c79d22ccc49109278003e797f21c2cf80e140a0b434b5b16bca79643bd844",
-      "size": 16320
+      "sha256": "18628016ec4f9bdc180bc3ebabf8b7063f9482f9700bb804e7b3970932f8a2cb",
+      "size": 17243
     },
     "astro/gallery/ldn935/index.html": {
       "sha256": "c853f426e077c106779c50180a8a02126a8ef3142d324367beebddc0dea41f4c",
@@ -3354,13 +3422,53 @@
       "sha256": "2dad97d0199cfe1fc3f7dc79c04eaf3cd3880af162c3ebe53330a4b29c2686b1",
       "size": 4937995
     },
+    "astro/gallery/ngc7380/index.html": {
+      "sha256": "b6953c45b025de67d3ad8ab06e019bd7efeeca4f6987c9b334f14e420f0ac601",
+      "size": 20211
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula-4k/index.html": {
+      "sha256": "00c98731b3f0c319e1bba0967123d8563e140c609763a488244c9e17fba9c4bc",
+      "size": 14561
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula-4k/ngc7380-wizard-nebula-4k-2k.jpg": {
+      "sha256": "e01243d9fdf929889846a5c5c1b17c8b08e8f76d2cbfb95011efc1714d538a3c",
+      "size": 1382916
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula-4k/ngc7380-wizard-nebula-4k-800.jpg": {
+      "sha256": "c9f8b2c8f5975a0eb2a3695faf4d1e7e352d38e21bb05392927934a44963edac",
+      "size": 190323
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula-4k/ngc7380-wizard-nebula-4k-original.jpg": {
+      "sha256": "229255c14baee5477accc039fae1e7ff8e80a07b7b8c663a207c9e4f897d97b8",
+      "size": 5194367
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula/index.html": {
+      "sha256": "61edff91baf54d84a91e38637b87f33fc84c3be67f92a02cb4cfa6ac17590281",
+      "size": 14152
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula/ngc7380-wizard-nebula-2k.jpg": {
+      "sha256": "a14ba89af0b9e62c7a026527669ad28bd18373dd3cbe06c414b16329535348bd",
+      "size": 1557291
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula/ngc7380-wizard-nebula-4k.jpg": {
+      "sha256": "9d60fac0c409a7831f98ffa50684229b53a2c5522956902219fbf8320dea8bb2",
+      "size": 5198111
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula/ngc7380-wizard-nebula-800.jpg": {
+      "sha256": "4ca375cb905eef31e474b4aa312b84e9717fe5c2e7c35747ec2e3a32e74b4ffb",
+      "size": 206765
+    },
+    "astro/gallery/ngc7380/ngc7380-wizard-nebula/ngc7380-wizard-nebula-original.jpg": {
+      "sha256": "47bc0dddbd74e6983db454132e7d0c0965bdad6ff44d5471c773344a08e05173",
+      "size": 15314217
+    },
     "astro/index.html": {
-      "sha256": "ea885710a5af0ffd8677add7e0126f62cba005aa5ff007b68e7affea22254dff",
-      "size": 419429
+      "sha256": "1bcc9051f04512db4eee2e060552ff3df03830c030e70158de0e2e197eeb637c",
+      "size": 422543
     },
     "astro/tags/4k/index.html": {
-      "sha256": "2788153345ff69b9a6727e1e89706c6d2188165dcb2b2575a5b8a3b4bea57979",
-      "size": 15203
+      "sha256": "0b9b6270ac7e0f2f2e08d6c2c6af3b2bdf19a82b62f274ccaa5f42be71f0fa49",
+      "size": 15697
     },
     "astro/tags/astro-processing/index.html": {
       "sha256": "f45ebb80aa4bc47d50078df21d081209b33459438d1eb238af639e8dc40ac72d",
@@ -3411,8 +3519,8 @@
       "size": 11091
     },
     "astro/tags/home-page/index.html": {
-      "sha256": "dbb495f8ca2df1ab2ad9321b07588e4f29aea2703f8b533a83f019b15c550008",
-      "size": 15769
+      "sha256": "897972789b2fe4f0dcc8990da8a20e0fd6e7b1e1a8c41a46440de66c62178aa7",
+      "size": 16262
     },
     "astro/tags/hubble/index.html": {
       "sha256": "6b2939cfac0912374969a7dfef4486c0c9d7d57ccf9e0581723305b0f6ffe8f0",
@@ -3435,8 +3543,8 @@
       "size": 11822
     },
     "astro/tags/index.html": {
-      "sha256": "7ff55d592d11f48a08ae1b4eae1974b7147e074530aad1b1b103f6c7d345bd22",
-      "size": 20984
+      "sha256": "18c8a9f08ad66c076f4daf97e5541c15bd6aea730dc15734c8b4234b9f3a2d19",
+      "size": 21920
     },
     "astro/tags/ldn935/index.html": {
       "sha256": "48343c7bcb59ae56b965da4ce309e1897719e972b15828afc2cc4b64301dbd80",
@@ -3467,8 +3575,8 @@
       "size": 12259
     },
     "astro/tags/nebula/index.html": {
-      "sha256": "51563259c0de7275fbfc6e1935c13a40e88917495bbd3dba93370e2ff0adafdc",
-      "size": 19829
+      "sha256": "a191bb2a517cb89a58e943e3e19ca427a0954db2af4e55c9202b3ed4c24c8ade",
+      "size": 21337
     },
     "astro/tags/ngc1499/index.html": {
       "sha256": "7a21e3e0a7172da56ed5177c540621a4578b5e843d0b095d2037acf60b1aca76",
@@ -3482,9 +3590,17 @@
       "sha256": "66658469c5a56419b549ed62083b528704573ae2a2b22f83fbdca80a72d0b92e",
       "size": 11730
     },
+    "astro/tags/ngc7380/index.html": {
+      "sha256": "b8638df2183301988fbe0d031c8c26165f0e8b33756bed8aaac1c2e8c66536c9",
+      "size": 12332
+    },
     "astro/tags/north-america-nebula/index.html": {
       "sha256": "a96c792cb13f7dca145eb7d01b8be1cc88b489e87dd684ffe9da88aa8914203d",
       "size": 11834
+    },
+    "astro/tags/open-cluster/index.html": {
+      "sha256": "99b83dcabe7b9d2e222cd9d62fcab71811398c7982f58e763a62188c2561ed76",
+      "size": 12372
     },
     "astro/tags/pelican-nebula/index.html": {
       "sha256": "e6270d45866736d788453a6eec5842507af455e1d65621d272ffedc22ef20ef0",
@@ -3519,8 +3635,12 @@
       "size": 11914
     },
     "astro/tags/wallpaper/index.html": {
-      "sha256": "eb54e08974ac76096780e0312c6f3bfeb2b14938016c16edae7252ab2a5a3991",
-      "size": 15259
+      "sha256": "9f02962599ae4b555abc95e61b1b51677e45eff0962d7507bd5cfa0323be4657",
+      "size": 15753
+    },
+    "astro/tags/wizard-nebula/index.html": {
+      "sha256": "17ce3392fc494b1adfeca3b1c5f64391c0cd1514688c92b98aef19cb8e4671f4",
+      "size": 12380
     },
     "favicon.svg": {
       "sha256": "4a33695e8931b9c6e8028bc0d3a9f5ca1780cf31c1324e5eec9c6267fdc19b38",
@@ -3531,16 +3651,16 @@
       "size": 8232
     },
     "index.html": {
-      "sha256": "475a334843291b7f378a209ca262b9bff7c07c629c395954e3aec8262553cd55",
-      "size": 13416
+      "sha256": "aa4e3083d563b03896f4bb805b1d3339ef85f6abb13bbddecaba2c7daf9d3406",
+      "size": 13541
     },
     "robots.txt": {
       "sha256": "6b5d5fa517d4d41432f7c01e60186349f4800ac7de0e034f0abc47b43ec1b611",
       "size": 68
     },
     "rss.xml": {
-      "sha256": "010b4a3c1a2260426b5fbd9c3c97891edd62453ee40ba8ea0a3b9eb2a9071b7d",
-      "size": 8877
+      "sha256": "c7073bc1ad61e3cc5755c9690a5438cc9261870fd01937f0b2be140fd57a602d",
+      "size": 9447
     },
     "shards/blog/2026-06-07-cognitive-architectures-language/index.html": {
       "sha256": "a5497fc497d4341718c9e82f0f8e0a149016a0b2188b0b16170dfcd0be9daab7",
@@ -4687,8 +4807,8 @@
       "size": 10938
     },
     "sitemap-0.xml": {
-      "sha256": "5ca94c86717d7e126b9ae677431e2c504ac84bac45195a1b8cb752ceea915664",
-      "size": 16354
+      "sha256": "dd23b64c0ceabae4506d505219a6bad619dfc1cf2032a184e686d34d271e0113",
+      "size": 16769
     },
     "sitemap-index.xml": {
       "sha256": "174309914a56e170768ef0831e50621a8e2052ed0a6a9b350ef8e55925c972cd",

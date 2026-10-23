@@ -1,0 +1,26 @@
+title: NGC7380 - Wizard Nebula
+name: NGC7380
+date: 2026-10-22
+description: An open cluster wrapped in glowing magic gas illuminated by a binary system of two massive O-type stars. Discovered by Caroline Herschel in 1787.
+tags: [nebula, ngc7380, wizard-nebula, open-cluster]
+images:
+  - file: ./ngc7380-wizard-nebula.jpg
+    sizes: [4k, 2k, 800]
+    added: 2026-10-22
+    alt: NGC7380 - Wizard Nebula, a bright blue core rimmed with gold gas and dark dust lanes, fading into blue nebulosity
+    caption: NGC7380 - Wizard Nebula
+    tags: []
+
+  - file: ./ngc7380-wizard-nebula-4k.jpg
+    sizes: [2k, 800]
+    added: 2026-10-22
+    alt: NGC7380 - Wizard Nebula, 16:9 crop
+    caption: NGC7380 - 4k
+    tags: [home-page, 4k, wallpaper]
+object:
+  position: "RA 22h 47m 21s · Dec +58° 07′ 54″"
+  culmination: "Early September"
+  distance: "≈ 8500 ly"
+  size: "≈ 20 ly across"
+  apparentSize: "25 arcmin"
+  constellation: "Cepheus"
